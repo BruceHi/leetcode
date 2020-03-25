@@ -4,40 +4,35 @@ class ListNode:
         self.val = x
         self.next = None
 
+# 使用额外空间
 # class Solution:
 #     def isPalindrome(self, head: ListNode) -> bool:
-#         copy = ListNode(0)  # 数据结构后面要改变，所以先备份一下。
-#         first = copy
+#         num = []
 #         while head:
-#             value = head.val
-#             copy.next = ListNode(value)  # 必须要新建对象，否则还是指向原来的链表。
+#             num.append(head.val)
 #             head = head.next
-#             copy = copy.next
-
-#         second = reverseList(head)  # 调用过该函数head.next就变成了None. 因为是反向链表。
-#         # print(output_linklist(new))
-#         # print(head.next.val)
-#         # print(cur.next.val)
-#         first = first.next
-#         # print(first.next.next.val)
-#         while first:
-#             if first.val != second.val:
+#         i, j = 0, len(num)-1
+#         while i < j:
+#             if num[i] != num[j]:
 #                 return False
-#             first = first.next
-#             second = second.next
+#             i, j = i + 1, j - 1
 #         return True
 
+# 使用快慢指针，部分反转链表
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
-        num = []
-        while head:
-            num.append(head.val)
-            head = head.next
-        i, j = 0, len(num)-1
-        while i < j:
-            if num[i] != num[j]:
+        slow, fast, pre = head, head, None
+        while fast and fast.next:
+            fast = fast.next.next  # 就算为None,slow也要往前走一步,仅针对偶数链表
+            slow.next, pre, slow = pre, slow, slow.next
+
+        node1 = pre
+        node2 = slow.next if fast else slow  # 奇为slow.next
+
+        while node1:
+            if node1.val != node2.val:
                 return False
-            i, j = i + 1, j - 1
+            node1, node2 = node1.next, node2.next
         return True
 
 
@@ -56,15 +51,8 @@ def input_linklist(*val):
     return result.next
 
 
-# x = ListNode(1)
-# x.next = ListNode(2)
-# x.next.next = ListNode(3)
-# x.next.next.next = ListNode(4)
-
 x = input_linklist(1, 2, 2, 1)
 s = Solution()
-# # y = reverseList(x)
-# output_linklist(y)
 print(s.isPalindrome(x))
 
 
