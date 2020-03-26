@@ -1,3 +1,4 @@
+# 移动0
 # def moveZeroes(nums):
 #     count = 0
 #     i = 0
@@ -27,18 +28,31 @@
     #
     # nums.extend([0] * count)
 
+###### 分界线 #####
+
 # def moveZeroes(nums):
 #
 #     count = 0
-#
-#     # 倒叙
+#     # 倒叙并使用正数索引
 #     for i in range(len(nums) - 1, -1, -1):
-#          if nums[i] == 0:
+#         if not nums[i]:
 #             nums.pop(i)  # 遍历到就删除，准确。
 #             count += 1
 #
 #     nums.extend([0] * count)
 
+# import collections
+#
+#
+# def moveZeroes(nums):
+#     count = collections.Counter(nums)[0]
+#     # nums[:] = list(filter(lambda x: x, nums))
+#     nums[:] = [x for x in nums if x]
+#     nums.extend([0] * count)
+
+
+
+# 双指针
 # def moveZeroes(nums):
 #     slow, fast = 0, 0
 #     while fast < len(nums):
@@ -47,12 +61,20 @@
 #             slow += 1
 #         fast += 1
 
+# def moveZeroes(nums):
+#     j = 0
+#     for i in range(len(nums)):
+#         if nums[i]:
+#             nums[i], nums[j] = nums[j], nums[i]
+#             j += 1
+
+
 def moveZeroes(nums):
-    j = 0
-    for i in range(len(nums)):
-        if nums[i]:
-            nums[i], nums[j] = nums[j], nums[i]
-            j += 1
+    i = 0
+    for j, val in enumerate(nums):
+        if val:
+            nums[i], nums[j] = val, nums[i]
+            i += 1
 
 
 list1 = [1,1,0,3,0,12]

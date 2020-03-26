@@ -60,8 +60,6 @@ def maxProfit(prices):
 
 
 
-
-
 # 当只有一个元素时，上面出错要改
 money = [1]
 print(maxProfit(money))

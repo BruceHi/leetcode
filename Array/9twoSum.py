@@ -1,12 +1,12 @@
-def twoSum(nums, target):
-
-    i = 0
-    while i < len(nums) - 1:
-        try:
-            position = nums.index(target - nums[i], i + 1)
-            return [i, position]
-        except:
-            i += 1
+# def twoSum(nums, target):
+#
+#     i = 0
+#     while i < len(nums) - 1:
+#         try:
+#             position = nums.index(target - nums[i], i + 1)
+#             return [i, position]
+#         except:
+#             i += 1
 
 # # 暴力搜索
 # def twoSum(nums, target):
@@ -14,7 +14,6 @@ def twoSum(nums, target):
 #         for j in range(i+1, len(nums)):
 #             if nums[i] + nums[j] == target:
 #                 return [i, j]
-
 
 
 # hash 表
@@ -27,6 +26,13 @@ def twoSum(nums, target):
 #             return hashmap[temp], i
 #         else:
 #             hashmap[nums[i]] = i
+
+def twoSum(nums, target):
+    hash_map = {}
+    for i, val in enumerate(nums):
+        if target-val in hash_map:
+            return [hash_map[target-val], i]
+        hash_map[val] = i
 
 
 list1 = [3,2,4]

@@ -1,11 +1,8 @@
+# 将图像顺时针旋转 90 度。
 # def rotate(matrix):
 #     n = len(matrix)
+#     matrix.reverse()
 #
-#     # for i in range(n // 2):  # 交换顺序
-#     #    matrix[i], matrix[n - 1 - i] \
-#     #        = matrix[n - 1 - i], matrix[i]
-#      matrix.reverse()
-# #
 #     for j in range(n):  # 提取元素
 #         temp = [matrix[i][j] for i in range(n)]
 #         matrix.append(temp)
@@ -15,15 +12,19 @@
 
 
 def rotate(matrix):
-    n = len(matrix)
+    matrix[:] = map(list, zip(*(matrix[::-1])))
 
-    for i in range(n):  # 转置
-        for j in range(i+1, n):
-            matrix[i][j], matrix[j][i] \
-                    = matrix[j][i], matrix[i][j]
 
-    for i in range(n):
-        matrix[i].reverse()
+# def rotate(matrix):
+#     n = len(matrix)
+#
+#     for i in range(n):  # 转置
+#         for j in range(i+1, n):
+#             matrix[i][j], matrix[j][i] \
+#                     = matrix[j][i], matrix[i][j]
+#
+#     for i in range(n):  # 交换顺序
+#         matrix[i].reverse()
 
 
 matrix1 = [
@@ -33,14 +34,23 @@ matrix1 = [
 ]
 rotate(matrix1)
 print(matrix1)
-# [
-#  [7,8,9], [4,5,6], [1,2,3]
+#  [
+#   [1, 2, 3],
+#   [4, 5, 6],
+#   [7, 8, 9]
 # ]
-# 竖列排放
+# 反向列表
 # [
-#   [7,4,1],
-#   [8,5,2],
-#   [9,6,3]
+#  [7, 8, 9],
+#  [4, 5, 6],
+#  [1, 2, 3]
+# ]
+
+# 竖列提取元素
+# [
+#   [7, 4, 1],
+#   [8, 5, 2],
+#   [9, 6, 3]
 # ]
 
 

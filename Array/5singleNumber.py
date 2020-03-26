@@ -1,3 +1,5 @@
+# 只出现一次的数字
+
 ## 在原有数组上删除，难度太大
 # def singleNumber(nums):
 #     i = 0
@@ -51,15 +53,26 @@
 #             return key
 
 # 官方题解
-def singleNumber(nums):
-    hash_table = {}
-    for i in nums:
-        try:
-            hash_table.pop(i)
-        except:
-            hash_table[i] = i
+# def singleNumber(nums):
+#     hash_table = {}
+#     for i in nums:
+#         try:
+#             hash_table.pop(i)
+#         except:
+#             hash_table[i] = i
+#
+#     return hash_table.popitem()[0]
 
-    return hash_table.popitem()[0]
+
+# 集合
+def singleNumber(nums):
+    temp = set()
+    for i in nums:
+        if i in temp:
+            temp.remove(i)
+        else:
+            temp.add(i)
+    return temp.pop()
 
 
 list1 = [1,3,1,-1,3]
