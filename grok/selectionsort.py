@@ -1,12 +1,12 @@
 # 选择排序 不稳定、原地算法。O(n^2)
-def find_smallest(arr):
-    small = float('inf')
-    small_index = None
-    for i, v in enumerate(arr):
-        if v < small:
-            small = v
-            small_index = i
-    return small_index
+# def find_smallest(arr):
+#     small = float('inf')
+#     small_index = None
+#     for i, v in enumerate(arr):
+#         if v < small:
+#             small = v
+#             small_index = i
+#     return small_index
 
 
 # def select_sort(arr):  # array的缩写
@@ -15,6 +15,7 @@ def find_smallest(arr):
 #         j = i + find_smallest(arr[i:])
 #         arr[i], arr[j] = arr[j], arr[i]
 
+# 简洁写法
 def select_sort(arr):  # 当 nums 为空的时候，什么都不执行。没有返回值，相当于返回值是None.
     for i in range(len(arr)):
         min_index = i
