@@ -70,47 +70,45 @@ print(list1[-1])
 num_list = [1, 2, 3, 4, 5]
 print(num_list)
 
-# for i in range(len(num_list)):
-#     if num_list[i] == 2:
-#         num_list.pop(i)
-#     else:
-#         print(num_list[i])
-#
-# print(num_list)
+for i in range(len(num_list)):
+    if num_list[i] == 2:
+        num_list.pop(i)
 
-
-from collections import Iterator
-digits = [9, 9, 9]
-digits = map(str, digits)  # 使digits 变成由字符（串）组成的列表
-print(digits)
-
-print(isinstance(digits, Iterable))
-print(type(digits))
-nums = int(''.join(digits)) + 1
-print(nums)
-
-print(isinstance((x for x in {1, 5}), Iterator))
-print(isinstance((x for x in {1, 5}), Iterable))
-
-print(isinstance({1, 5}, Iterable))
-print(isinstance({1, 5}, Iterator))
-
-num_list = [1, 2, 3, 4, 5]
 print(num_list)
 #
-# for i in range(len(num_list) * 1):
-#     if num_list[i] == 2:
-#         num_list.pop(i)
-#     else:
-#         print(num_list[i])
 #
+# from collections import Iterator
+# digits = [9, 9, 9]
+# digits = map(str, digits)  # 使digits 变成由字符（串）组成的列表
+# print(digits)
+#
+# print(isinstance(digits, Iterable))
+# print(type(digits))
+# nums = int(''.join(digits)) + 1
+# print(nums)
+#
+# print(isinstance((x for x in {1, 5}), Iterator))
+# print(isinstance((x for x in {1, 5}), Iterable))
+#
+# print(isinstance({1, 5}, Iterable))
+# print(isinstance({1, 5}, Iterator))
+#
+# num_list = [1, 2, 3, 4, 5]
 # print(num_list)
-
-print("-91283472332")
-
-
-print("abc\r\ncba\rrr\bz\n")
-print("abcd\b\b")
+# #
+# # for i in range(len(num_list) * 1):
+# #     if num_list[i] == 2:
+# #         num_list.pop(i)
+# #     else:
+# #         print(num_list[i])
+# #
+# # print(num_list)
+#
+# print("-91283472332")
+#
+#
+# print("abc\r\ncba\rrr\bz\n")
+# print("abcd\b\b")
 
 
 print('ecdf\vasss')

@@ -1,6 +1,5 @@
 # # bf算法，可以使用切片。暴力法
 # def strStr(haystack, needle):
-#
 #     for i in range(len(haystack) - len(needle) + 1):
 #         if haystack[i: i+len(needle)] == needle:
 #             return i
@@ -88,8 +87,27 @@
 #     return -1
 
 # bf算法，可以使用切片。暴力法
-def strStr(haystack, needle):
-    return haystack.find(needle)
+# def strStr(haystack, needle):
+#     return haystack.find(needle)
+
+
+# Sunday 算法
+# def strStr(haystack, needle):
+#     if not needle or not haystack:
+#         return 0
+#     if len(needle) > len(haystack):
+#         return -1
+#
+#     # 原始串索引(记录匹配到的最后一个索引的下一个索引)，匹配串索引
+#     hay_idx, needle_idx = 0, 0
+#     while needle_idx < len(needle):
+#         if hay_idx > len(haystack) - 1:
+#
+#     return hay_idx - needle_idx  # 退出 while 循环时，needle_index
+
+
+
+
 
 
 haystack = "mississippi"
