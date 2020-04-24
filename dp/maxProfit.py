@@ -106,7 +106,7 @@ class Solution:
 
         dp_ik0, dp_ik1 = [0]*(k+1), [float('-inf')]*(k+1)
         for price in prices:
-            for j in range(k, 0, -1):
+            for j in range(1, k+1):
                 dp_ik0[j] = max(dp_ik0[j], dp_ik1[j]+price)
                 dp_ik1[j] = max(dp_ik1[j], dp_ik0[j-1]-price)
         return dp_ik0[k]
