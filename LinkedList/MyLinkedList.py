@@ -75,6 +75,8 @@
 # obj.addAtIndex(index,val)
 # obj.deleteAtIndex(index)
 
+
+# 双链表
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -105,7 +107,13 @@ class MyLinkedList:
         return curr.val
 
     def addAtHead(self, val: int) -> None:
-        self.addAtIndex(0, val)
+        # self.addAtIndex(0, val)
+        self.size += 1
+        add_node = ListNode(val)
+        pred = self.head
+        succ = self.head.next
+        add_node.prev, add_node.next = pred, succ
+        pred.next, succ.prev = add_node, add_node
 
     def addAtTail(self, val :int) -> None:
         self.addAtIndex(self.size, val)
