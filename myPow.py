@@ -1,19 +1,41 @@
 # 幂
 class Solution:
     # def myPow(self, x: float, n: int) -> float:
-    #     return pow(x, n)
+        # return pow(x, n)
+        # return x**n
+
+    # def myPow(self, x: float, n: int) -> float:
+    #     if n == 1:
+    #         return x
+    #     if n == 0:
+    #         return 1.0
+    #     if n == -1:
+    #         return 1/x
+    #     y = self.myPow(x, n >> 1)
+    #     if n & 1:
+    #         return y * y * x
+    #     return y * y
+
+    # def myPow(self, x: float, n: int) -> float:
+    #     res, tmp, m = 1.0, x, n
+    #     n = -n if n < 0 else n
+    #     while n:
+    #         if n & 1:
+    #             res *= tmp
+    #         n >>= 1
+    #         tmp *= tmp
+    #     return res if m >= 0 else 1/res
 
     def myPow(self, x: float, n: int) -> float:
-        if n == 1:
-            return x
-        if n == 0:
-            return 1.0
-        if n == -1:
-            return 1/x
-        if n & 1:  # 奇数幂
-            return self.myPow(x, n >> 1) ** 2 * x
-        else:
-            return self.myPow(x, n >> 1) ** 2
+        res, tmp = 1.0, n
+        if n < 0:
+            n = -n
+        while n:
+            if n & 1:
+                res *= x
+            n >>= 1
+            x *= x
+        return res if tmp >= 0 else 1/res
 
 
 s = Solution()

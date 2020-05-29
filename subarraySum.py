@@ -24,13 +24,13 @@ class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         nums_times = defaultdict(int)
         nums_times[0] = 1
-        pre_sum, res = 0, 0
+        pre, res = 0, 0
         for num in nums:
-            pre_sum += num
+            pre += num
             # if pre_sum - k in nums_times:
             #    res += nums_times[pre_sum - k]
-            res += nums_times[pre_sum - k]
-            nums_times[pre_sum] += 1
+            res += nums_times[pre - k]
+            nums_times[pre] += 1
         return res
 
 

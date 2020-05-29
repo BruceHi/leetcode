@@ -18,11 +18,9 @@ class Solution:
     #             while find is not slow:
     #                 find, slow = find.next, slow.next
     #             return find
-    #
-    #     return
 
     # 记录
-    def detectCycle(self, head: ListNode):
+    def detectCycle(self, head: ListNode) -> ListNode:
         record = set()
         node = head
         while node:
@@ -31,6 +29,6 @@ class Solution:
             else:
                 record.add(node)
             node = node.next
-        return
+        # return  # 不需要写，默认执行到最后返回的就是 None.
 
 

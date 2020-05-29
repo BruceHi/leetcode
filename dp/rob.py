@@ -1,4 +1,7 @@
 # 打家劫舍
+from typing import List
+
+
 class Solution:
     # def rob(self, nums) -> int:
     #     if not nums:
@@ -32,17 +35,26 @@ class Solution:
     #         dp[i] = max(dp[i-2]+nums[i-2], dp[i-1])
     #     return dp[n+1]
 
-    def rob(self, nums) -> int:
-        if not nums:
-            return 0
-        n = len(nums)
+    # def rob(self, nums) -> int:
+    #     if not nums:
+    #         return 0
+    #     n = len(nums)
+    #
+    #     dp, old_dp = 0, 0
+    #     for num in nums:
+    #         tmp = dp
+    #         dp = max(old_dp+num, dp)
+    #         old_dp = tmp
+    #     return dp
 
-        dp, old_dp = 0, 0
+    def rob(self, nums: List[int]) -> int:
+        dp, dp_old = 0, 0
         for num in nums:
             tmp = dp
-            dp = max(old_dp+num, dp)
-            old_dp = tmp
+            dp = max(dp_old+num, dp)
+            dp_old = tmp
         return dp
+
 
 
 s = Solution()
