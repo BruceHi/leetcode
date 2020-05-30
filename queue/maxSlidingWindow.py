@@ -1,11 +1,11 @@
-# 滑动窗口最大值，好像需要自己制做移动
+# 滑动窗口最大值，需要自己进行移动
 from typing import List
 from collections import deque
 
 
 class Solution:
 
-    # 暴力法都不怎么会,
+    # # 暴力法都不怎么会,
     # def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
     #     if k >= len(nums):
     #         return [max(nums)]
