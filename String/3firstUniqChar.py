@@ -38,15 +38,30 @@
 from collections import Counter
 
 
-# hash_map
-def firstUniqChar(s):
+# # hash_map
+# def firstUniqChar(s):
+#
+#     count = Counter(s)
+#     for idx, ch in enumerate(s):
+#         if count[ch] == 1:
+#             return idx
+#
+#     return -1
 
+
+from collections import Counter
+
+
+def firstUniqChar(s: str) -> int:
     count = Counter(s)
-    for idx, ch in enumerate(s):
-        if count[ch] == 1:
-            return idx
+
+    for i, c in enumerate(s):
+        if count[c] == 1:
+            return i
 
     return -1
+
+
 
 
 s = "aadadaad"  # 最后一个重复

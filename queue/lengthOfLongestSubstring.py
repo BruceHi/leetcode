@@ -1,4 +1,4 @@
-# 无重复最长字串长度
+# 无重复最长字串长度（滑动窗口）
 from collections import deque
 
 

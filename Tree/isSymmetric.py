@@ -49,21 +49,31 @@ class Solution:
     #
 
     # 迭代
+    # def isSymmetric(self, root: TreeNode):
+    #     queue = deque()
+    #     queue.append(root)
+    #     queue.append(root)
+    #     while queue:
+    #         t1, t2 = queue.popleft(), queue.popleft()
+    #         if not t1 and not t2:  # 说明上一个节点是叶结点
+    #             continue
+    #         if not t1 or not t2:
+    #             return False
+    #         if t1.val != t2.val:
+    #             return False
+    #         queue.append(t1.left)
+    #         queue.append(t2.right)
+    #         queue.append(t1.right)
+    #         queue.append(t2.left)
+    #     return True
+
     def isSymmetric(self, root: TreeNode):
-        queue = deque()
-        queue.append(root)
-        queue.append(root)
-        while queue:
-            t1, t2 = queue.popleft(), queue.popleft()
-            if not t1 and not t2:  # 说明上一个节点是叶结点
-                continue
+
+        def DFS(t1, t2):
+            if not t1 and not t2:
+                return True
             if not t1 or not t2:
                 return False
-            if t1.val != t2.val:
-                return False
-            queue.append(t1.left)
-            queue.append(t2.right)
-            queue.append(t1.right)
-            queue.append(t2.left)
-        return True
+            return t1.val == t2.val and DFS(t1.left, t2.right) and DFS(t1.right, t2.left)
 
+        return DFS(root, root)

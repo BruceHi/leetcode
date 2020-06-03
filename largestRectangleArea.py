@@ -1,4 +1,4 @@
-# 柱状图中最大的矩形
+# 柱状图中最大的矩形（滑动窗口）
 from typing import List
 
 
