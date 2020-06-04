@@ -1,7 +1,7 @@
 # 反序双层循环，便
 
 
-# # hash_map
+# hash_map
 # def firstUniqChar(s):
 #     hash_map = {}
 #     for i in range(len(s)):
@@ -10,30 +10,12 @@
 #             continue
 #         hash_map[s[i]] = i
 #
-#     for i in hash_map.values():
-#         if i != -1:
-#             return i
+#     # for i in hash_map.values():
+#     #     if i != -1:
+#     #         return i
 #
-#     return -1
+#     return hash_map
 
-# hash_map  失败
-# def firstUniqChar(s):
-#     hash_map = {}
-#
-#     if len(s) == 0:
-#         return -1
-#
-#     for i in range(len(s)):
-#         hash_map[s[i]] = i
-#
-#     if hash_map.get(s[0]) == 0:
-#         return 0
-#
-#     for i in range(1, len(s)):
-#         if i == hash_map[s[i]] and s[i] != s[0]:
-#             return i
-#
-#     return -1
 
 from collections import Counter
 
@@ -49,14 +31,31 @@ from collections import Counter
 #     return -1
 
 
-from collections import Counter
+# from collections import Counter
+#
+#
+# def firstUniqChar(s: str) -> int:
+#     count = Counter(s)
+#
+#     for i, c in enumerate(s):
+#         if count[c] == 1:
+#             return i
+#
+#     return -1
+
+from collections import OrderedDict
 
 
 def firstUniqChar(s: str) -> int:
-    count = Counter(s)
-
+    hash_map = OrderedDict()
     for i, c in enumerate(s):
-        if count[c] == 1:
+        if c in hash_map:
+            hash_map[c] = -1
+        else:
+            hash_map[c] = i
+
+    for i in hash_map.values():
+        if i != -1:
             return i
 
     return -1

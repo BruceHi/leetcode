@@ -30,18 +30,31 @@
 
 
 # 不整理数据，直接进行双指针的移动
-def isPalindrome(s):
+# def isPalindrome(s):
+#
+#     left, right = 0, len(s) - 1
+#     while left < right:
+#         while not s[left].isalnum() and left < right:  # 寻找下一个字母或数字点。加上left < right，怎么遍历也不会越界。
+#             left += 1
+#         while not s[right].isalnum() and left < right:  # 若没找到，最终形成left与right只差一个单位。然后再进行一步退出循环。
+#             right -= 1
+#         if s[left].lower() != s[right].lower():
+#             return False
+#         left, right = left + 1, right - 1
+#
+#     return True
 
-    left, right = 0, len(s) - 1
+
+def isPalindrome(s):
+    left, right = 0, len(s)-1
     while left < right:
-        while not s[left].isalnum() and left < right:  # 寻找下一个字母或数字点。加上left < right，怎么遍历也不会越界。
+        while left < right and not s[left].isalnum():
             left += 1
-        while not s[right].isalnum() and left < right:  # 若没找到，最终形成left与right只差一个单位。然后再进行一步退出循环。
+        while left < right and not s[right].isalnum():
             right -= 1
         if s[left].lower() != s[right].lower():
             return False
         left, right = left + 1, right - 1
-
     return True
 
 
