@@ -1,4 +1,6 @@
 # 将图像顺时针旋转 90 度。
+
+# 观察规律
 # def rotate(matrix):
 #     n = len(matrix)
 #     matrix.reverse()
@@ -11,8 +13,16 @@
 #         matrix.pop(i)
 
 
+# def rotate(matrix):
+#     matrix[:] = map(list, zip(*(matrix[::-1])))
+
+
+# 先转置再说
 def rotate(matrix):
-    matrix[:] = map(list, zip(*(matrix[::-1])))
+    matrix[:] = list(map(list, zip(*matrix)))
+
+    for lst in matrix:
+        lst.reverse()
 
 
 # def rotate(matrix):
@@ -28,9 +38,9 @@ def rotate(matrix):
 
 
 matrix1 = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
 ]
 rotate(matrix1)
 print(matrix1)
@@ -55,10 +65,10 @@ print(matrix1)
 
 
 matrix1 = [
-  [ 5, 1, 9,11],
-  [ 2, 4, 8,10],
-  [13, 3, 6, 7],
-  [15,14,12,16]
+    [ 5, 1, 9,11],
+    [ 2, 4, 8,10],
+    [13, 3, 6, 7],
+    [15,14,12,16]
 ]
 
 # [
