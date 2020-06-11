@@ -53,6 +53,60 @@ def longestCommonPrefix(strs):
     return prefix
 
 
+# # min 和 max 对字符串排序是按字典序排序
+# def longestCommonPrefix(strs):
+#     if not strs:
+#         return ''
+#     s1, s2 = min(strs), max(strs)
+#     for i, c in enumerate(s1):
+#         if c != s2[i]:
+#             return s1[:i]
+#     return s1
+
+# # 构建字典树
+# def longestCommonPrefix(strs):
+#     if not strs:
+#         return ''
+#
+#     root = {}
+#     for word in strs:
+#         if not word:
+#             return ''
+#         node = root
+#         for char in word:
+#             node = node.setdefault(char, {})
+#         node['#'] = '#'
+#
+#     res, node = '', root
+#     while node != {'#': '#'}:
+#         if len(node) == 1:
+#             char = str(*node)
+#             res += char
+#             node = node[char]
+#         else:
+#             return res
+#     return res
+
+
+def longestCommonPrefix(strs):
+    if not strs:
+        return ''
+
+    prefix = strs[0]
+    for s in strs[1:]:
+        while not s.startswith(prefix):
+            prefix = prefix[:len(prefix)-1]
+            if not prefix:
+                return ''
+    return prefix
+
+
+list1 = ["abc","abc"]
+print(longestCommonPrefix(list1))
+
+list1 = ["","b"]
+print(longestCommonPrefix(list1))
+
 list1 = ["aca","cba"]
 print(longestCommonPrefix(list1))
 
@@ -62,9 +116,15 @@ print(longestCommonPrefix(list1))
 list1 = ["a","b"]
 print(longestCommonPrefix(list1))
 
-list1 = ["dog","racecar","car"]
+list1 = ["dog","racecar","caraaaaa"]
 print(longestCommonPrefix(list1))
 
 list1 = []
+print(longestCommonPrefix(list1))
+
+list1 = ['a', 'ab']
+print(longestCommonPrefix(list1))
+
+list1 = ['']
 print(longestCommonPrefix(list1))
 

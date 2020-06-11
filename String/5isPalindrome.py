@@ -1,3 +1,4 @@
+# 验证回文字符串
 # 双指针
 # def isPalindrome(s):
 #

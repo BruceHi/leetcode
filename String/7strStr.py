@@ -105,8 +105,8 @@
 #
 #     return hay_idx - needle_idx  # 退出 while 循环时，needle_index
 
-
-
+def strStr(haystack, needle):
+    return haystack.find(needle)
 
 
 

@@ -76,7 +76,6 @@ class Solution:
                 tmp = stack.pop()
                 res[tmp] = i - tmp
             stack.append(i)
-
         return res
 
 
