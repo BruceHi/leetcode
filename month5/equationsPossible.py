@@ -1,17 +1,51 @@
 # 等式方程的可满足性
 from typing import List
 
+# class UnionFind:
+#     def __init__(self):
+#         self.parent = list(range(26))
+#
+#     def find(self, i):
+#         if self.parent[i] != i:
+#             self.parent[i] = self.find(self.parent[i])
+#         return self.parent[i]
+#
+#     # 未使用按 rank 合并
+#     def uoion(self, x, y):
+#         self.parent[self.find(x)] = self.find(y)
+#
+#
+# class Solution:
+#     def equationsPossible(self, equations: List[str]) -> bool:
+#         uf = UnionFind()
+#         index = ord('a')
+#         for s in equations:
+#             if s[1] == '=':
+#                 index1 = ord(s[0]) - index
+#                 index2 = ord(s[3]) - index
+#                 uf.uoion(index1, index2)
+#
+#         for s in equations:
+#             if s[1] == '!':
+#                 index1 = ord(s[0]) - index
+#                 index2 = ord(s[3]) - index
+#                 if uf.find(index1) == uf.find(index2):
+#                     return False
+#
+#         return True
+
+
+# 平时使用只用优化一个就行
 class UnionFind:
     def __init__(self):
-        self.parent = list(range(26))
+        self.parent = list(range(26))  # 注意初始化条件
 
     def find(self, i):
         if self.parent[i] != i:
             self.parent[i] = self.find(self.parent[i])
         return self.parent[i]
 
-    # 未使用按 rank 合并
-    def uoion(self, x, y):
+    def union(self, x, y):
         self.parent[self.find(x)] = self.find(y)
 
 
@@ -19,19 +53,15 @@ class Solution:
     def equationsPossible(self, equations: List[str]) -> bool:
         uf = UnionFind()
         index = ord('a')
+
         for s in equations:
             if s[1] == '=':
-                index1 = ord(s[0]) - index
-                index2 = ord(s[3]) - index
-                uf.uoion(index1, index2)
+                uf.union(ord(s[0])-index, ord(s[3])-index)
 
         for s in equations:
             if s[1] == '!':
-                index1 = ord(s[0]) - index
-                index2 = ord(s[3]) - index
-                if uf.find(index1) == uf.find(index2):
+                if uf.find(ord(s[0])-index) == uf.find(ord(s[3])-index):
                     return False
-
         return True
 
 

@@ -5,9 +5,14 @@ class ListNode:
         self.next = None
 
 
+# class Solution:
+#     def deleteNode(self, node):
+#         node.val, node.next = node.next.val, node.next.next
+
 class Solution:
     def deleteNode(self, node):
         node.val, node.next = node.next.val, node.next.next
+
 
 
 # class PrintNode():
@@ -20,7 +25,7 @@ class Solution:
 #       res_list.append(str(node.num))
 #       node=node.next
 #     print('->'.join(res_list))
-
+#
 # head = [4,5,1,9]
 # p = 5
 # node = ListNode(head)

@@ -19,16 +19,27 @@ class Solution:
     #                 find, slow = find.next, slow.next
     #             return find
 
-    # 记录
+    # # 记录
+    # def detectCycle(self, head: ListNode) -> ListNode:
+    #     record = set()
+    #     node = head
+    #     while node:
+    #         if node in record:
+    #             return node
+    #         else:
+    #             record.add(node)
+    #         node = node.next
+    #     # return  # 不需要写，默认执行到最后返回的就是 None.
+
     def detectCycle(self, head: ListNode) -> ListNode:
-        record = set()
-        node = head
-        while node:
-            if node in record:
-                return node
-            else:
-                record.add(node)
-            node = node.next
-        # return  # 不需要写，默认执行到最后返回的就是 None.
+        slow, fast = head, head
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+            if slow is fast:
+                pre = head
+                while pre is not slow:
+                    pre, slow = pre.next, slow.next
+                return slow
+
 
 

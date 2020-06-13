@@ -1,5 +1,8 @@
 # 三数之和
+from typing import List
 from collections import Counter
+
+
 class Solution:
     # # 我的方法
     # def isin(self, num, nums):
@@ -60,29 +63,56 @@ class Solution:
     #                 left, right = left+1, right-1
     #     return list(map(list, res))
 
-    # 双指针, 判重，不用 set
-    def threeSum(self, nums):
-        if len(nums) < 3:
-            return []
-        nums.sort()  # 方便判重
+    # # 双指针, 判重，不用 set
+    # def threeSum(self, nums):
+    #     if len(nums) < 3:
+    #         return []
+    #     nums.sort()  # 方便判重
+    #     res = []
+    #     for idx, val in enumerate(nums[:-2]):
+    #         if val > 0:
+    #             return res
+    #         if idx > 0 and val == nums[idx-1]:
+    #             continue
+    #         left, right = idx+1, len(nums)-1
+    #         while left < right:
+    #             s = nums[left] + nums[right] + val
+    #             if s > 0:
+    #                 # while left < right and nums[right] == nums[right-1]:  # 此处没有必要这样写，去重是针对值是确定的。
+    #                 #     right -= 1
+    #                 right -= 1
+    #             elif s < 0:
+    #                 left += 1
+    #             else:
+    #                 res.append([val, nums[left], nums[right]])
+    #                 while left < right and nums[left] == nums[left+1]:  # 去重
+    #                     left += 1
+    #                 while left < right and nums[right] == nums[right-1]:
+    #                     right -= 1
+    #                 left, right = left+1, right-1
+    #     return res
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
         res = []
-        for idx, val in enumerate(nums[:-2]):
+        for i, val in enumerate(nums[:-2]):
             if val > 0:
                 return res
-            if idx > 0 and val == nums[idx-1]:
+            left, right = i + 1, len(nums) - 1
+            if val + nums[left] + nums[left+1] > 0:  # 最前面的三个数大于 0 则结束。
+                return res
+            if i > 0 and val == nums[i-1]:  # 连续的两个相同的跳过
                 continue
-            left, right = idx+1, len(nums)-1
+
             while left < right:
-                s = nums[left] + nums[right] + val
+                s = val + nums[left] + nums[right]
                 if s > 0:
-                    # while left < right and nums[right] == nums[right-1]:  # 此处没有必要这样写，去重是针对值是确定的。
-                    #     right -= 1
                     right -= 1
                 elif s < 0:
                     left += 1
                 else:
                     res.append([val, nums[left], nums[right]])
-                    while left < right and nums[left] == nums[left+1]:  # 去重
+                    while left < right and nums[left] == nums[left+1]:
                         left += 1
                     while left < right and nums[right] == nums[right-1]:
                         right -= 1
@@ -91,13 +121,11 @@ class Solution:
 
 
 s = Solution()
-
 nums = [0,0,0,0]
 print(s.threeSum(nums))
 
 nums = [0,0,0]
 print(s.threeSum(nums))
-
 
 nums = [-1, 0, 1, 2, -1, -4]
 print(s.threeSum(nums))

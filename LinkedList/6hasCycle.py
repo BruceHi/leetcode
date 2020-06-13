@@ -1,4 +1,7 @@
-# Definition for singly-linked list.
+# 判断是否为环形链表
+from typing import List
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -17,8 +20,17 @@ class ListNode:
 #             head = head.next
 #         return False
 
+#
+# # 定义两个指针，快指针，慢指针
+# class Solution:
+#     def hasCycle(self, head: ListNode) -> bool:
+#         slow, fast = head, head
+#         while fast and fast.next:
+#             slow, fast = slow.next, fast.next.next
+#             if slow is fast:
+#                 return True
+#         return False
 
-# 定义两个指针，快指针，慢指针
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         slow, fast = head, head
@@ -29,23 +41,15 @@ class Solution:
         return False
 
 
-
-def output_linklist(link):
-    while link:
-        print(link.val)
-        link = link.next
-
-
-def input_linklist(*val):
-    prehead = ListNode(0)
-    result = prehead
-    for i in val:
-        prehead.next = ListNode(i)
-        prehead = prehead.next
-    return result.next
+def generate_link(nums: List[int]) -> ListNode:
+    head = ListNode(0)
+    cur = head
+    for num in nums:
+        cur.next = ListNode(num)
+        cur = cur.next
+    return head.next
 
 
-x = input_linklist(1, 2, 2, 1)
+x = generate_link([1, 2, 2, 1])
 s = Solution()
 print(s.hasCycle(x))
-

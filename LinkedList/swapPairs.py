@@ -1,4 +1,7 @@
-# Definition for singly-linked list.
+# 两两交换链表的结点
+from typing import List
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -6,33 +9,45 @@ class ListNode:
 
 
 class Solution:
+    # def swapPairs(self, head: ListNode) -> ListNode:
+    #     pre = ListNode(0)
+    #     pre.next = head
+    #     result = pre
+    #     # pre, pre.next = self, head
+    #     while pre.next and pre.next.next:
+    #         a, b = pre.next, pre.next.next
+    #         pre.next, b.next, a.next = b, a, b.next
+    #         pre = a
+    #     return result.next
+
     def swapPairs(self, head: ListNode) -> ListNode:
         pre = ListNode(0)
         pre.next = head
-        result = pre
-        # pre, pre.next = self, head
+        res = pre
         while pre.next and pre.next.next:
             a, b = pre.next, pre.next.next
             pre.next, b.next, a.next = b, a, b.next
             pre = a
-        return result.next
+        return res.next
 
 
-def output_linklist(link):
-    while link:
-        print(link.val)
-        link = link.next
+def generate_link(nums: List[int]) -> ListNode:
+    head = ListNode(0)
+    cur = head
+    for num in nums:
+        cur.next = ListNode(num)
+        cur = cur.next
+    return head.next
 
 
-def input_linklist(*val):
-    prehead = ListNode(0)
-    result = prehead
-    for i in val:
-        prehead.next = ListNode(i)
-        prehead = prehead.next
-    return result.next
+def print_link(head: ListNode) -> None:
+    res, cur = [], head
+    while cur:
+        res.append(cur.val)
+        cur = cur.next
+    print(res)
 
 
-x = input_linklist(1, 2, 3, 4)
+x = generate_link([1, 2, 3, 4])
 s = Solution()
-output_linklist(s.swapPairs(x))
+print_link(s.swapPairs(x))
