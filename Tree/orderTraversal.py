@@ -1,4 +1,7 @@
 # 深度优先遍历
+from typing import List
+
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -28,22 +31,60 @@ class Solution:
     #     return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
 
     # 迭代
-    def preorderTraversal(self, root: TreeNode) -> list[int]:
-        res = []
-        stack = []
-        cur = root
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                res.append(cur.val)
-                cur = cur.left
-            top = stack.pop()
-            cur = top.right
-        return res
+    # def preorderTraversal(self, root: TreeNode) -> list[int]:
+    #     res = []
+    #     stack = []
+    #     cur = root
+    #     while cur or stack:
+    #         while cur:
+    #             stack.append(cur)
+    #             res.append(cur.val)
+    #             cur = cur.left
+    #         top = stack.pop()
+    #         cur = top.right
+    #     return res
+    #
+    # def inorderTraversal(self, root: TreeNode):
+    #     res = []
+    #     stack = []
+    #     cur = root
+    #     while cur or stack:
+    #         while cur:
+    #             stack.append(cur)
+    #             cur = cur.left
+    #         top = stack.pop()
+    #         res.append(top.val)
+    #         cur = top.right
+    #     return res
+    #
+    # def postorderTraversal(self, root: TreeNode):
+    #     res = []
+    #     stack = []
+    #     cur = root
+    #     while cur or stack:
+    #         while cur:
+    #             stack.append(cur)
+    #             res.append(cur.val)
+    #             cur = cur.right
+    #         top = stack.pop()
+    #         cur = top.left
+    #     return res[::-1]
 
-    def inorderTraversal(self, root: TreeNode):
-        res = []
-        stack = []
+    # 迭代
+    # def preorderTraversal(self, root: TreeNode) -> list[int]:
+    #     res, stack = [], []
+    #     cur = root
+    #     while cur or stack:
+    #         while cur:
+    #             stack.append(cur)
+    #             res.append(cur.val)
+    #             cur = cur.left
+    #         top = stack.pop()
+    #         cur = top.right
+    #     return res
+
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        res, stack = [], []
         cur = root
         while cur or stack:
             while cur:
@@ -54,9 +95,8 @@ class Solution:
             cur = top.right
         return res
 
-    def postorderTraversal(self, root: TreeNode):
-        res = []
-        stack = []
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res, stack = [], []
         cur = root
         while cur or stack:
             while cur:
@@ -66,7 +106,6 @@ class Solution:
             top = stack.pop()
             cur = top.left
         return res[::-1]
-
 
 
 

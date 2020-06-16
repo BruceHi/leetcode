@@ -34,11 +34,25 @@ class Solution:
     #     return root
 
     # 二叉搜索树 迭代
-    def lowestCommonAncestor(self, root, p, q):
-        while root:
-            if p.val < root.val > q.val:
-                root = root.left
-            elif p.val > root.val < q.val:
-                root = root.right
-            else:  # 对于二叉搜索树而言，不会先出现一个大于结点一个小于结点的，肯定先出现的是等于某个结点。
-                return root
+    # def lowestCommonAncestor(self, root, p, q):
+    #     while root:
+    #         if p.val < root.val > q.val:
+    #             root = root.left
+    #         elif p.val > root.val < q.val:
+    #             root = root.right
+    #         else:  # 对于二叉搜索树而言，不会先出现一个大于结点一个小于结点的，肯定先出现的是等于某个结点。
+    #             return root
+
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if not root:
+            return
+        if p == root or q == root:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        if left:
+            return left
+        if right:
+            return right

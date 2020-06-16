@@ -36,6 +36,7 @@ class Solution:
     #     res1 = deepcopy(res)
     #     res.reverse()  # reverse没有返回值，活着说返回值是None
     #     return res == res1
+
     # 递归
     # def isSymmetric(self, root: TreeNode):
     #     def ismirr(t1, t2):
@@ -67,13 +68,38 @@ class Solution:
     #         queue.append(t2.left)
     #     return True
 
-    def isSymmetric(self, root: TreeNode):
+    # def isSymmetric(self, root: TreeNode):
+    #
+    #     def DFS(t1, t2):
+    #         if not t1 and not t2:
+    #             return True
+    #         if not t1 or not t2:
+    #             return False
+    #         return t1.val == t2.val and DFS(t1.left, t2.right) and DFS(t1.right, t2.left)
+    #
+    #     return DFS(root, root)
 
-        def DFS(t1, t2):
-            if not t1 and not t2:
+    # def isSymmetric(self, root: TreeNode) -> bool:
+    #     if not root:
+    #         return True
+    #     if not root.left and not root.right:
+    #         return True
+    #     if not root.left and root.right:
+    #         return False
+    #     if not root.right and root.left:
+    #         return False
+    #
+    #     if root.left.val
+
+    def isSymmetric(self, root: TreeNode) -> bool:
+
+        def ismirr(r1, r2):
+            if not r1 and not r2:
                 return True
-            if not t1 or not t2:
+            if not r1 or not r2:
                 return False
-            return t1.val == t2.val and DFS(t1.left, t2.right) and DFS(t1.right, t2.left)
 
-        return DFS(root, root)
+            return r1.val == r2.val and ismirr(r1.left, r2.right) and ismirr(r1.right, r2.left)
+
+        return ismirr(root, root)
+

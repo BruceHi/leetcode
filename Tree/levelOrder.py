@@ -1,5 +1,6 @@
 # 层次遍历
 # Definition for a binary tree node.
+
 from collections import deque
 from typing import List
 
@@ -11,31 +12,31 @@ class TreeNode:
         self.right = None
 
 
-class Solution:
-
-    #BFS(广度优先)，注意值是每一层是一个列表
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        if not root:
-            return []
-        res = []
-        queue = deque()
-        queue.append(root)
-
-        while queue:
-            level = len(queue)
-            curr = []  # 先把内层的填完了
-
-            for _ in range(level):
-                node = queue.popleft()
-                curr.append(node.val)
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-
-            res.append(curr)
-
-        return res
+# class Solution:
+#
+#     #BFS(广度优先)，注意值是每一层是一个列表
+#     def levelOrder(self, root: TreeNode) -> List[List[int]]:
+#         if not root:
+#             return []
+#         res = []
+#         queue = deque()
+#         queue.append(root)
+#
+#         while queue:
+#             level = len(queue)
+#             curr = []  # 先把内层的填完了
+#
+#             for _ in range(level):
+#                 node = queue.popleft()
+#                 curr.append(node.val)
+#                 if node.left:
+#                     queue.append(node.left)
+#                 if node.right:
+#                     queue.append(node.right)
+#
+#             res.append(curr)
+#
+#         return res
 
 
     # DFS（深度优先），因为用到了递归（内置栈）。
@@ -53,4 +54,24 @@ class Solution:
     #
     #     helper(root, 0)
     #     return res
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        res, queue = [], deque([root])
+
+        while queue:
+            cur = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                cur.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(cur)
+        return res
+
+
 
