@@ -1,4 +1,8 @@
 # 两个数组的交集
+from typing import List
+from collections import Counter
+
+
 # 列表方法，统计一个，删除一个数据
 # def intersect(nums1, nums2):
 #
@@ -39,22 +43,19 @@
 #
 #     return nums1[:k]
 
-import collections
-
-
-def intersect(nums1, nums2):
-    if len(nums2) > len(nums1):
-        nums1, nums2 = nums2, nums1
-    hash_map = collections.Counter(nums1)  # 统计词频
-    # for i in nums1:
-    #     hash_map[i] = hash_map.get(i, 0) + 1
-    res = []
-    for i in nums2:
-        if hash_map.get(i):
-            hash_map[i] -= 1
-            res.append(i)
-
-    return res
+# def intersect(nums1, nums2):
+#     if len(nums2) > len(nums1):
+#         nums1, nums2 = nums2, nums1
+#     hash_map = collections.Counter(nums1)  # 统计词频
+#     # for i in nums1:
+#     #     hash_map[i] = hash_map.get(i, 0) + 1
+#     res = []
+#     for i in nums2:
+#         if hash_map.get(i):
+#             hash_map[i] -= 1
+#             res.append(i)
+#
+#     return res
 
 
 # 排序
@@ -72,6 +73,25 @@ def intersect(nums1, nums2):
 #         else:
 #             i += 1
 #     return res
+
+# def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+#     dic1, dic2 = Counter(nums1), Counter(nums2)
+#     res = []
+#     for num in dic1:
+#         if num in dic2:
+#             res += [num] * min(dic1[num], dic2[num])
+#     return res
+
+# def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+#     return list((Counter(nums1) & Counter(nums2)).elements())
+
+
+def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+    inter = set(nums1) & set(nums2)
+    res = []
+    for i in inter:
+        res += [i] * min(nums1.count(i), nums2.count(i))
+    return res
 
 
 list1 = [1,2,2,1]

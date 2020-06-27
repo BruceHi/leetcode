@@ -27,12 +27,19 @@
 #         else:
 #             hashmap[nums[i]] = i
 
+# def twoSum(nums, target):
+#     hash_map = {}
+#     for i, val in enumerate(nums):
+#         if target-val in hash_map:
+#             return [hash_map[target-val], i]
+#         hash_map[val] = i
+
 def twoSum(nums, target):
     hash_map = {}
-    for i, val in enumerate(nums):
-        if target-val in hash_map:
-            return [hash_map[target-val], i]
-        hash_map[val] = i
+    for i, num in enumerate(nums):
+        if target - num in hash_map:
+            return [hash_map[target-num], i]
+        hash_map[num] = i
 
 
 list1 = [3,2,4]
