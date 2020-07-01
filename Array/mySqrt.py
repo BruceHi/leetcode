@@ -5,19 +5,19 @@ class Solution:
     #     return int(sqrt(x))
 
     # 二分法 结果为整数向下取整
-    def mySqrt(self, x: int) -> int:
-        left, right = 0, x
-        while left <= right:
-            mid = (left + right) >> 1
-            temp = mid ** 2
-            if temp == x:
-                return mid
-            elif temp > x:
-                right = mid - 1
-            else:
-                left = mid + 1
-
-        return right
+    # def mySqrt(self, x: int) -> int:
+    #     left, right = 0, x
+    #     while left <= right:
+    #         mid = (left + right) >> 1
+    #         temp = mid ** 2
+    #         if temp == x:
+    #             return mid
+    #         elif temp > x:
+    #             right = mid - 1
+    #         else:
+    #             left = mid + 1
+    #
+    #     return right
 
     # # 牛顿法
     # def mySqrt(self, x: int) -> int:
@@ -41,6 +41,19 @@ class Solution:
     #
     #     return right
 
+    def mySqrt(self, x: int) -> int:
+        left, right = 0, x
+        while left <= right:
+            mid = left + (right - left >> 1)
+            tmp = mid * mid
+            if tmp == x:
+                return mid
+            elif tmp < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return right
+
 
 s = Solution()
 a = 8
@@ -52,5 +65,6 @@ print(s.mySqrt(a))
 a = 4
 print(s.mySqrt(a))
 
-
+a = 2147395599
+print(s.mySqrt(a))
 

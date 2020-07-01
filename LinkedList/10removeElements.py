@@ -9,16 +9,27 @@ class ListNode:
 
 
 class Solution:
+    # def removeElements(self, head: ListNode, val: int) -> ListNode:
+    #     dummy = ListNode(0)
+    #     dummy.next = head
+    #     pre, cur = dummy, head
+    #     while cur:
+    #         if cur.val == val:
+    #             pre.next = cur.next
+    #         else:
+    #             pre = pre.next
+    #         cur = cur.next
+    #     return dummy.next
+
     def removeElements(self, head: ListNode, val: int) -> ListNode:
-        dummy = ListNode(0)
+        pre = dummy = ListNode(0)
         dummy.next = head
-        pre, cur = dummy, head
-        while cur:
-            if cur.val == val:  
+        while pre.next:
+            cur = pre.next
+            if cur.val == val:
                 pre.next = cur.next
             else:
                 pre = pre.next
-            cur = cur.next
         return dummy.next
 
 
