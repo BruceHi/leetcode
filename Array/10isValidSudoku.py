@@ -1,12 +1,6 @@
-# 判断数是否在列表中只出现一次
-# def isOnlyNumber(nums):
-#     temp = set(nums)
-#     temp.remove('.')
-#     for i in temp:
-#         if nums.count(i) > 1:
-#             return False
-#     return True
-#
+# 有效的数独
+from typing import List
+
 # def isValidSudoku(board):
 #     for i in range(9):
 #         if not isOnlyNumber(board[i]):
@@ -30,21 +24,39 @@
 #     return True
 
 
-def isValidSudoku(board):
-    rows = [set() for _ in range(9)]
-    columns = [set() for _ in range(9)]
-    boxes = [set() for _ in range(9)]
+# def isValidSudoku(board):
+#     rows = [set() for _ in range(9)]
+#     columns = [set() for _ in range(9)]
+#     boxes = [set() for _ in range(9)]
+#     for i in range(9):
+#         for j in range(9):
+#             val = board[i][j]
+#             if val != '.':
+#                 box_index = (i//3)*3 + j//3
+#                 if val in rows[i] or val in columns[j] or val in boxes[box_index]:
+#                     return False
+#                 rows[i].add(val)
+#                 columns[j].add(val)
+#                 boxes[box_index].add(val)
+#     return True
+
+def isValidSudoku(board: List[List[str]]) -> bool:
+    row = [set() for _ in range(9)]
+    col = [set() for _ in range(9)]
+    box = [set() for _ in range(9)]
     for i in range(9):
         for j in range(9):
-            val = board[i][j]
-            if val != '.':
-                box_index = (i//3)*3 + j//3
-                if val in rows[i] or val in columns[j] or val in boxes[box_index]:
+            tmp = board[i][j]
+            if tmp != '.':
+                index = i//3*3 + j//3
+                if tmp in row[i] or tmp in col[j] or tmp in box[index]:
                     return False
-                rows[i].add(val)
-                columns[j].add(val)
-                boxes[box_index].add(val)
+                row[i].add(tmp)
+                col[j].add(tmp)
+                box[index].add(tmp)
     return True
+
+
 
 
 board1 = [

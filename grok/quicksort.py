@@ -53,27 +53,79 @@
 #         quicksort(arr, p+1, right)
 #     return arr
 
-def partition(arr, left, right):
-    pivot, j = arr[right], left
-    for i in range(left, right):
-        if arr[i] < pivot:
-            arr[i], arr[j] = arr[j], arr[i]
-            j += 1
-    arr[j], arr[right] = arr[right], arr[j]
-    return j
+# def quicksort(arr, left=None, right=None):
+#     if left is None:
+#         left = 0
+#     if right is None:
+#         right = len(arr) - 1
+#     if left < right:
+#         p = partition(arr, left, right)
+#         quicksort(arr, left, p-1)
+#         quicksort(arr, p+1, right)
+#     return arr
+#
+#
+# def partition(arr, left, right):
+#     pivot, j = arr[right], left
+#     for i in range(left, right):
+#         if arr[i] < pivot:
+#             arr[i], arr[j] = arr[j], arr[i]
+#             j += 1
+#     arr[j], arr[right] = arr[right], arr[j]
+#     return j
+
+from typing import List
 
 
-def quicksort(arr, left=None, right=None):
-    if left is None:
-        left = 0
-    if right is None:
-        right = len(arr) - 1
+# def quick_sort(nums: List[int], left=None, right=None) -> List[int]:
+#     if left is None:
+#         left = 0
+#     if right is None:
+#         right = len(nums) - 1
+#     if left < right:
+#         p = partition(nums, left, right)
+#         quick_sort(nums, left, p-1)
+#         quick_sort(nums, p+1, right)
+#     return nums
+#
+#
+# def partition(nums: List[int], left: int, right: int) -> int:
+#     pivot, j = nums[right], left
+#     for i in range(left, right):
+#         if nums[i] < pivot:
+#             nums[i], nums[j] = nums[j], nums[i]
+#             j += 1
+#     nums[j], nums[right] = pivot, nums[j]
+#     return j
+
+def quick_sort(nums, left=None, right=None):
+    if left is None and right is None:
+        left, right = 0, len(nums) - 1
     if left < right:
-        p = partition(arr, left, right)
-        quicksort(arr, left, p-1)
-        quicksort(arr, p+1, right)
-    return arr
+        p = partition(nums, left, right)
+        quick_sort(nums, left, p-1)
+        quick_sort(nums, p+1, right)
+    return nums
+
+
+def partition(nums, left, right):
+    pivot, i = nums[right], left
+    for j in range(left, right):
+        if nums[j] < pivot:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+    nums[i], nums[right] = pivot, nums[i]
+    return i
 
 
 num = [5, 8, 9, 1, 2]
-print(quicksort(num))
+print(quick_sort(num))
+
+nums = []
+print(quick_sort(nums))
+
+nums = [1]
+print(quick_sort(nums))
+
+nums = [1, 4, 5, 6, 5, 6]
+print(quick_sort(nums))

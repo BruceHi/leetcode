@@ -16,24 +16,38 @@
 #         arr[i], arr[j] = arr[j], arr[i]
 
 # 简洁写法
-def select_sort(arr):  # 当 nums 为空的时候，什么都不执行。没有返回值，相当于返回值是None.
-    for i in range(len(arr)):
+# def select_sort(arr):  # 当 nums 为空的时候，什么都不执行。没有返回值，相当于返回值是None.
+#     for i in range(len(arr)):
+#         min_index = i
+#         min_val = arr[i]
+#         for j in range(i, len(arr)):
+#             if arr[j] < min_val:
+#                 min_val = arr[j]
+#                 min_index = j
+#         arr[i], arr[min_index] = arr[min_index], arr[i]
+
+# 改进
+# 选择排序，不稳定，比如[1, 6, 7, 6, 3, 4] 中第一个出现的 6 就被交换到第二次出现的 6 后面了。
+def select_sort(nums):
+    n = len(nums)
+    for i in range(n-1):
         min_index = i
-        min_val = arr[i]
-        for j in range(i, len(arr)):
-            if arr[j] < min_val:
-                min_val = arr[j]
+        for j in range(i+1, n):
+            if nums[min_index] > nums[j]:
                 min_index = j
-        arr[i], arr[min_index] = arr[min_index], arr[i]
+        nums[i], nums[min_index] = nums[min_index], nums[i]
 
 
 nums = [7, 5, 9, 6, 2]
 select_sort(nums)
-print(select_sort(nums))
 print(nums)
 
 nums = []
-print(select_sort(nums))
+select_sort(nums)
+print(nums)
+
+nums = [1, 4, 5, 6, 5, 6]
+select_sort(nums)
 print(nums)
 
 
