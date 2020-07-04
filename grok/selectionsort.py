@@ -28,7 +28,11 @@
 
 # 改进
 # 选择排序，不稳定，比如[1, 6, 7, 6, 3, 4] 中第一个出现的 6 就被交换到第二次出现的 6 后面了。
-def select_sort(nums):
+
+from typing import List
+
+
+def select_sort(nums: List[int]) -> List[int]:
     n = len(nums)
     for i in range(n-1):
         min_index = i
@@ -36,6 +40,7 @@ def select_sort(nums):
             if nums[min_index] > nums[j]:
                 min_index = j
         nums[i], nums[min_index] = nums[min_index], nums[i]
+    return nums
 
 
 nums = [7, 5, 9, 6, 2]

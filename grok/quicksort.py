@@ -10,7 +10,7 @@
 #     return quicksort(less) + [pivot] + quicksort(greater)
 
 
-# # 原地排序
+# # 原地排序  选取
 # def partition(arr, left, right):
 #     pivot, j = arr[left], left
 #     for i in range(left+1, right+1):

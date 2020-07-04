@@ -8,7 +8,11 @@
 
 
 # 冒泡排序, 改进
-def bubule_sort(nums):
+
+from typing import List
+
+
+def bubule_sort(nums: List[int]) -> List[int]:
     n = len(nums)
     for j in range(n-1):
         swap = False
@@ -18,6 +22,7 @@ def bubule_sort(nums):
                 swap = True
         if not swap:
             break
+    return nums
 
 
 nums = [7, 5, 9, 6, 2]
