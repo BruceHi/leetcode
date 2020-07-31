@@ -29,13 +29,3 @@ def merge(left: List[int], right: List[int]) -> List[int]:
 
 
 nums = [7, 5, 9, 6, 2]
-print(merge_sort(nums))
-
-nums = []
-print(merge_sort(nums))
-
-nums = [1]
-print(merge_sort(nums))
-
-nums = [1, 4, 5, 6, 5, 6]
-print(merge_sort(nums))

@@ -21,13 +21,25 @@ class Solution:
     #             or dfs(root.right, sum - root.val, level + 1)
     #     return dfs(root, sum, 0)
 
+    # def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+    #     if not root:
+    #         return False
+    #
+    #     sum -= root.val
+    #     if not root.left and not root.right:  # 叶子结点之后看剩余多少值。
+    #         return sum == 0
+    #
+    #     return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+
     def hasPathSum(self, root: TreeNode, sum: int) -> bool:
         if not root:
             return False
 
         sum -= root.val
-        if not root.left and not root.right:  # 叶子结点之后看剩余多少值。
+        if not root.left and not root.right:
             return sum == 0
 
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+
+
 

@@ -12,15 +12,24 @@ class Solution:
     #     return x == res
 
     # （后）部分反转
-    def isPalindrome(self, x: int) -> bool:
-        if x < 0 or x and not x % 10:
-            return False
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x and not x % 10:
+    #         return False
+    #
+    #     res = 0
+    #     while x > res:
+    #         res = res * 10 + x % 10
+    #         x //= 10
+    #
+    #     return x == res or x == res // 10
 
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0 or not x % 10:
+            return False
         res = 0
-        while x > res:
+        while res < x:
             res = res * 10 + x % 10
             x //= 10
-
         return x == res or x == res // 10
 
 

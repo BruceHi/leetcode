@@ -60,9 +60,10 @@ class Solution:
 
     def climbStairs(self, n: int) -> int:
         x, y = 1, 1
-        for _ in range(1, n):
+        for _ in range(2, n):
             x, y = y, x + y
         return y
+
 
 s = Solution()
 print(s.climbStairs(1))

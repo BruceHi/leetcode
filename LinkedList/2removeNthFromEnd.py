@@ -1,5 +1,7 @@
+# 删除倒数第 n 个结点
 from typing import List
-# Definition for singly-linked list.
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -63,12 +65,14 @@ class Solution:
 #     while res:
 #         print(res.val)
 #         res = res.next
+
 def print_link(head: ListNode):  # 打印链表
     res, cur = [], head,
     while cur:
         res.append(cur.val)
         cur = cur.next
     print(res)
+
 
 # def input_link(*val):  # 构造带无头结点的链表，传入的参数必须是解包过的，如 1，2， 3， 4
 #     prehead = ListNode(0)
@@ -78,20 +82,28 @@ def print_link(head: ListNode):  # 打印链表
 #         prehead = prehead.next
 #     return result.next
 
+# def generate_link(nums: List[int]):  # 构造不带头结点的链表
+#     head = ListNode(0)
+#     cur = head
+#     for num in nums:
+#         cur.next = ListNode(num)
+#         cur = cur.next
+#     return head.next
 
-def generate_link(nums: List[int]):  # 构造不带头结点的链表
-    head = ListNode(0)
-    cur = head
+def generate_link(*nums: int):
+    cur = head = ListNode(0)
     for num in nums:
         cur.next = ListNode(num)
         cur = cur.next
     return head.next
 
 
+
 s = Solution()
 # nums = [1, 2, 3, 4, 5]
 # a = input_linklist(*nums)
 
-a = generate_link([1, 2, 3, 4, 5])
+# a = generate_link([1, 2, 3, 4, 5])
+a = generate_link(1, 2, 3, 4, 5)
 new = s.removeNthFromEnd(a, 2)
 print_link(new)
