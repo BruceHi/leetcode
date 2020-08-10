@@ -1,121 +1,192 @@
-from collections.abc import Iterable
-print(list(range(10)))
-print(range(1, 10))
-print(list(range(1, 10)))
+s = "3[a]2[bc]"
+for char in s:
+    print(type(char))
+
+from collections import deque
+s = deque()
+s.append('d')
+print(s)
+print(list(s))
+
+print('b'.isalpha())
+print('3'.isnumeric())
+
+n = 3
+n *= 3 + 4
+print(n)
+
+import re
+s = re.split(r'\W+', 'runoob, runoob, runoob.')
+print(s)
+
+# 首尾处若有 \W 捕获到的，则分割的时候会有空字符‘’
+# 如果在模式中使用了捕获括号，则模式中所有组的文本也将作为结果列表的一部分返回。
 
 
-# 处理多个银行账户的余额信息
-def addInterest(balances, rate):
-    for i in range(len(balances)):
-        balances[i] = balances[i] * (1 + rate)
+s = re.split(r'(\W+)', 'runoob, runoob, runoob.')
+print(s)
+
+s = re.split(r'(\W+)', 'runoob, runoob, runoob.')
+print(s)
+
+s = re.split('\W', ' runoob, runoob, runoob.', 1)
+print(s)
+
+# ValueError: split() requires a non-empty pattern match.
+# 所以不要使用 *， 用 + 来替代
+# s = re.split(r'd*', 'hello, world')
+# c = re.compile('dd')
 
 
-# def test():
-# #     amounts = [1000, 105, 3500, 739]
-# #     rate = 0.05
-# #     addInterest(amounts, rate)
-# #     print(amounts)
-# #
-# #
-# # test()
-amounts = [1000, 105, 3500, 739]
-rate = 0.05
-addInterest(amounts, rate)
-print(amounts)
+print(s)
 
-print(range(4, 4))
-print(list(range(4, 4)))
+from collections import deque
+s = 'ddd'
+queue = deque(s[0])
+print(queue)
 
-if range(4, 4) == False:
-    print('a')
-for i in range(4, 5):
-    print("hello")
+a = [{1:2}, {'d':2}]
+print(a[0][1])
 
-L=['Google', 'Runoob', 'Taobao']
-print(L[1:])
-print(L[1:2])
+# 改正与进入是两回事，改正不影响顺序
+from collections import OrderedDict
+b = OrderedDict()
+b[1] = 2
+b[-1] = 3
+print(b)
+b[1] = 4
+print(b)
 
-list1 = [1, 3, 4, 3, 2, 1]
+print('abc' == 'bac')
+print(sorted('abc') == sorted('bac'))
 
-list1 = set(list1)
+print({1:2, 3:4} == {3:4, 1:2})
+from collections import Counter
 
-print(list1)
+a = '12'
+print('dd')
 
-site= {'name': '菜鸟教程', 'alexa': 10000, 'url': 'www.runoob.com'}
-pop_obj=site.pop('name')
-print(pop_obj)
-print(site)
 
-num = 12345
-print(int(str(num)))
-x = list(map(int,str(num)))
-print(x)
+b = Counter(a)
+print(b)
+print(dict(b))
+print({'1':1, '2':1} == b)
 
-num = 125
+p = "abc"
+s = dict((i, p.count(i)) for i in p)
+print(s)
 
-# print(map(int, num))
-print(list(map(int, str(num))))
+print(type(str(123)))
 
-# a = {1, 2, 3, 2, 3, 6, 5,5 }
-# print(a)
-# print(a[0])
+print(-123 // 10)
 
-list1 = ['c', 'a']
-print(''.join(list1))
+print(-123 % 10)
 
-list1 = [1]
-print(list1[-1])
+a = []
+print(int(-85))
+print(int(*a))
 
+
+print(int(8.2))
+print(int(0xf))
+print(int(0b100))
+
+a = [(1, 2), (3, 4)]
+# print(a.pop())
+
+# res = []
+# res = res + (1, 2, 4)
+# print(res)
 #
-num_list = [1, 2, 3, 4, 5]
-print(num_list)
+# res.extend((1, 2, 4))
+# print(res)
 
-for i in range(len(num_list)):
-    if num_list[i] == 2:
-        num_list.pop(i)
+d = (2, 2)
+c = set(d)
+print(c)
 
-print(num_list)
-#
-#
-# from collections import Iterator
-# digits = [9, 9, 9]
-# digits = map(str, digits)  # 使digits 变成由字符（串）组成的列表
-# print(digits)
-#
-# print(isinstance(digits, Iterable))
-# print(type(digits))
-# nums = int(''.join(digits)) + 1
-# print(nums)
-#
-# print(isinstance((x for x in {1, 5}), Iterator))
-# print(isinstance((x for x in {1, 5}), Iterable))
-#
-# print(isinstance({1, 5}, Iterable))
-# print(isinstance({1, 5}, Iterator))
-#
-# num_list = [1, 2, 3, 4, 5]
-# print(num_list)
-# #
-# # for i in range(len(num_list) * 1):
-# #     if num_list[i] == 2:
-# #         num_list.pop(i)
-# #     else:
-# #         print(num_list[i])
-# #
-# # print(num_list)
-#
-# print("-91283472332")
-#
-#
-# print("abc\r\ncba\rrr\bz\n")
-# print("abcd\b\b")
+s = {'1': 2}
+w = ''
+w += str(*s)
+print(w)
+
+import bisect
+
+L = [1,3,3,6,8,12,15]
+x = 3
+
+print(bisect.bisect_left(L, x))
+
+queue = [3, 4, 5]
+for _ in range(len(queue)):
+    queue.append(1)
+print(queue)
+
+a = '1,2,3,None,3,None,1,'
+b = list(a)
+print(b)
+
+c = a.split()
+# c.pop()
+# c[0] = c[0][1]
+# c[-1] = c[-1][1]
+# d = list(map(int, c))
+print(c)
+print(id(None))
+a = [3, 4, 4, 4, 5]
+for i in a:
+    print(i, end='\t')
+
+print(id(None))
+
+s = 'leetcode'
+t = 'code'
+print(s.find(t))
+s = s.replace(t, '')
+print(s)
+
+a = {4, 2, 6}
+# a.add(1)
+# a.add(3)
+print(a)
+
+print((1, 2) == (2, 1))
+
+row = [set()] * 2
+row[0].add(1)
+print(row)
+
+row = [set() for _ in range(2)]
+row[0].add(1)
+print(row)
+
+from collections import defaultdict
+from collections import Counter
+# count = Counter()
+count = defaultdict(int)
+count['a'] = 3
+count['b'] = 4
+count['c'] += 2
+print(count)
+
+a = 2
+a += 4 + 4
+print(a)
+
+print([1, None, 2])
+
+a = [[0] * 3] * 3
+print(a)
+
+a[0][0] = 1
+print(a)
+
+print([1, 2, 3] == [3, 2, 1])
+
+# b = input()dd
+# print(type(b))
+# s, t = [input()] * 2
+# print(s, t)
 
 
-print('ecdf\vasss')
 
-print('ec\rdf')
-print('ec\ndf\be')
-print('ec\vdf')
-print('ecdfasss')
-print('hello','\v','dd')
-print('hello','\f','dd')

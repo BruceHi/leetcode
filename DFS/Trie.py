@@ -28,14 +28,22 @@ class Trie:
 
 
 trie = Trie()
-trie.insert("apple")
+# trie.insert("apple")
+# print(trie.root)
+# print(trie.search("apple"))  # True
+#
+# print(trie.search("app"))  # 返回 false
+# print(trie.startsWith("app"))  # 返回 true
+#
+# trie.insert("app")
+# print(trie.search("app"))
+#
+# print(trie.root)
+
+sym = ['how', 'hi', 'her', 'hello', 'so', 'see']
+for s in sym:
+    trie.insert(s)
 print(trie.root)
-print(trie.search("apple"))  # True
 
-print(trie.search("app"))  # 返回 false
-print(trie.startsWith("app"))  # 返回 true
-
-trie.insert("app")
-print(trie.search("app"))
-
-print(trie.root)
+import pprint
+pprint.pprint(trie.root)

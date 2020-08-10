@@ -60,6 +60,14 @@ class Solution:
             heapq.heappushpop(queue, num)
         return queue[0]
 
+    # 数组中的第 K 个最小元素
+    def findKthSmallest(self, nums: List[int], k: int) -> int:
+        queue = nums[:]
+        heapq.heapify(queue)
+        for _ in range(k-1):
+            heapq.heappop(queue)
+        return heapq.heappop(queue)
+
 
 s = Solution()
 nums = [3,2,1,5,6,4]

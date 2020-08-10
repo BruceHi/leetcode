@@ -38,21 +38,39 @@ class Solution:
     #     triangle = []
     #     for i in range(numRows):
     #         row = [1] * (i + 1)
-    #         for j in range(1, i):  # 只计算除首尾地方的数
+    #         for j in range(1, i):  # 只计算除首尾地方的数。i 相当于 len(row) - 1
     #             row[j] = triangle[i-1][j-1] + triangle[i-1][j]
     #         triangle.append(row)
     #     return triangle
 
     # 错位相加
+    # def generate(self, numRows: int) -> List[List[int]]:
+    #     if not numRows:
+    #         return []
+    #
+    #     res = [[1]]
+    #     for _ in range(numRows-1):
+    #         tmp = [x+y for x, y in zip([0] + res[-1], res[-1] + [0])]
+    #         res.append(tmp)
+    #     return res
+
     def generate(self, numRows: int) -> List[List[int]]:
         if not numRows:
             return []
-
         res = [[1]]
-        for _ in range(numRows-1):
-            tmp = [x+y for x, y in zip([0] + res[-1], res[-1] + [0])]
+        for _ in range(numRows-1):  # 循环次数
+            tmp = [x + y for x, y in zip([0] + res[-1], res[-1] + [0])]
             res.append(tmp)
         return res
+
+    # def generate(self, numRows: int) -> List[List[int]]:
+    #     triangle = []
+    #     for i in range(numRows):
+    #         row = [1] * (i+1)
+    #         for j in range(1, i):
+    #             row[j] = triangle[i-1][j-1] + triangle[i-1][j]
+    #         triangle.append(row)
+    #     return triangle
 
 
 s = Solution()

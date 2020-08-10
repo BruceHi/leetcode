@@ -14,18 +14,28 @@
 
 # 有效的括号
 class Solution:
+    # def isValid(self, s: str) -> bool:
+    #     stack = []
+    #     paren_map = {')': '(', ']': '[', '}': '{'}
+    #     for i in s:
+    #         if i not in paren_map:
+    #             stack.append(i)
+    #         elif not stack or paren_map[i] != stack.pop():
+    #             return False
+    #         # elif not stack or stack[-1] != hashmap[i]:
+    #         #     return False
+    #         # else:
+    #         #     stack.pop()
+    #     return not stack
+
     def isValid(self, s: str) -> bool:
+        dic = {')': '(', ']': '[', '}': '{'}
         stack = []
-        paren_map = {')': '(', ']': '[', '}': '{'}
-        for i in s:
-            if i not in paren_map:
-                stack.append(i)
-            elif not stack or paren_map[i] != stack.pop():
+        for c in s:
+            if c in dic.values():
+                stack.append(c)
+            elif not stack or dic[c] != stack.pop():
                 return False
-            # elif not stack or stack[-1] != hashmap[i]:
-            #     return False
-            # else:
-            #     stack.pop()
         return not stack
 
 
@@ -46,4 +56,10 @@ string = "{[]}"
 print(s.isValid(string))
 
 string = ''
+print(s.isValid(string))
+
+string = '['
+print(s.isValid(string))
+
+string = ']'
 print(s.isValid(string))

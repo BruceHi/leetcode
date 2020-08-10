@@ -20,19 +20,57 @@ class Solution:
     #             res, diff = num, abs(target - cur)
     #     return res
 
+    # def findBestValue(self, arr: List[int], target: int) -> int:
+    #     n = len(arr)
+    #     arr.sort()
+    #     prefix = [0]
+    #     for num in arr:
+    #         prefix.append(prefix[-1] + num)
+    #
+    #     res, r, diff = 0, max(arr), target
+    #     for num in range(1, r+1):
+    #         it = bisect_left(arr, num)
+    #         cur = prefix[it] + (n-it) * num
+    #         if abs(target - cur) < diff:
+    #             res, diff = num, abs(target - cur)
+    #     return res
+
+    # def findBestValue(self, arr: List[int], target: int) -> int:
+    #     arr = sorted(arr)
+    #     n = len(arr)
+    #     diff = float('inf')
+    #     res = 0
+    #
+    #     prefix, s = [], 0
+    #     for num in arr:
+    #         s += num
+    #         prefix.append(s)
+    #
+    #     for num in range(0, arr[-1]+1):
+    #         idx = bisect_left(arr, num)
+    #         if not idx:
+    #             tmp = n * num
+    #         else:
+    #             tmp = prefix[idx-1] + (n-idx) * num
+    #         # tmp = sum(arr[:idx]) + (n-idx) * num
+    #         if abs(tmp - target) < diff:
+    #             diff = abs(tmp - target)
+    #             res = num
+    #     return res
+
     def findBestValue(self, arr: List[int], target: int) -> int:
         n = len(arr)
         arr.sort()
-        prefix = [0]
+        prefix = [0]  # 前缀和，并在前面补 [0]
         for num in arr:
             prefix.append(prefix[-1] + num)
 
-        res, r, diff = 0, max(arr), target
-        for num in range(1, r+1):
-            it = bisect_left(arr, num)
-            cur = prefix[it] + (n-it) * num
-            if abs(target - cur) < diff:
-                res, diff = num, abs(target - cur)
+        res, diff = 0, float('inf')
+        for num in range(0, arr[-1]+1):  # 枚举
+            idx = bisect_left(arr, num)
+            cur = prefix[idx] + (n-idx) * num
+            if abs(cur - target) < diff:
+                res, diff = num, abs(cur - target)
         return res
 
 

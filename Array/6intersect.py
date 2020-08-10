@@ -43,19 +43,17 @@ from collections import Counter
 #
 #     return nums1[:k]
 
-# def intersect(nums1, nums2):
-#     if len(nums2) > len(nums1):
-#         nums1, nums2 = nums2, nums1
-#     hash_map = collections.Counter(nums1)  # 统计词频
-#     # for i in nums1:
-#     #     hash_map[i] = hash_map.get(i, 0) + 1
-#     res = []
-#     for i in nums2:
-#         if hash_map.get(i):
-#             hash_map[i] -= 1
-#             res.append(i)
-#
-#     return res
+def intersect(nums1, nums2):
+    if len(nums1) > len(nums2):
+        nums1, nums2 = nums2, nums1
+    dic = Counter(nums1)  # 统计词频
+    res = []
+    for i in nums2:
+        if dic.get(i):
+            dic[i] -= 1
+            res.append(i)
+
+    return res
 
 
 # 排序

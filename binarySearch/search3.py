@@ -1,11 +1,11 @@
 class Solution:
-    # 第一个大于或等于目标的索引值，收缩右边，取下届
+    # 第一个大于或等于目标的索引值，收缩左边界
     def first_large_or_equal(self, nums, target):
         if not nums:
             return -1
         left, right = 0, len(nums) - 1
         while left < right:
-            mid = left + right >> 1
+            mid = left + right >> 1  # 地板除，取下届
             if nums[mid] < target:
                 left = mid + 1
             else:
@@ -14,13 +14,13 @@ class Solution:
             return right
         return -1
 
-    # 最后一个小于或等于目标的索引值，收缩左边，取上届
+    # 最后一个小于或等于目标的索引值，收缩右边
     def last_less_or_equal(self, nums, target):
         if not nums:
             return -1
         left, right = 0, len(nums) - 1
         while left < right:
-            mid = left + right + 1 >> 1
+            mid = left + right + 1 >> 1  # 取上界
             if nums[mid] > target:
                 right = mid - 1
             else:

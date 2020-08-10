@@ -10,32 +10,6 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # 递归
-    # 只判断形状相同，没用
-    # def isSymmetric(self, root: TreeNode) -> bool:
-        # if not root:
-        #     return True
-        # if not root.left and root.right:
-        #     return False
-        # if not root.right and root.left:
-        #     return False
-        # if not (root.left or root.right):
-        #     return True
-        # if root.right.val != root.left.right:
-        #     return False
-        # return self.isSymmetric(root.left) and self.isSymmetric(root.right)  # 剩余的情况是左右子树第一个相同
-
-    # def isSymmetric(self, root: TreeNode) -> bool:
-    #
-    #     def inorder(root):
-    #         if not root:
-    #             return []
-    #         return inorder(root.left) + [root.val] + inorder(root.right)
-    #
-    #     res = inorder(root)
-    #     res1 = deepcopy(res)
-    #     res.reverse()  # reverse没有返回值，活着说返回值是None
-    #     return res == res1
 
     # 递归
     # def isSymmetric(self, root: TreeNode):
@@ -80,26 +54,27 @@ class Solution:
     #     return DFS(root, root)
 
     # def isSymmetric(self, root: TreeNode) -> bool:
-    #     if not root:
-    #         return True
-    #     if not root.left and not root.right:
-    #         return True
-    #     if not root.left and root.right:
-    #         return False
-    #     if not root.right and root.left:
-    #         return False
     #
-    #     if root.left.val
+    #     def ismirr(r1, r2):
+    #         if not r1 and not r2:
+    #             return True
+    #         if not r1 or not r2:
+    #             return False
+    #
+    #         return r1.val == r2.val and ismirr(r1.left, r2.right) and ismirr(r1.right, r2.left)
+    #
+    #     return ismirr(root, root)
 
     def isSymmetric(self, root: TreeNode) -> bool:
 
-        def ismirr(r1, r2):
-            if not r1 and not r2:
+        def symmetric(root1, root2):
+            if not root1 and not root2:
                 return True
-            if not r1 or not r2:
+            if not root1 or not root2:
                 return False
+            if root1.val != root2.val:
+                return False
+            return symmetric(root1.left, root2.right) and symmetric(root1.right, root2.left)
 
-            return r1.val == r2.val and ismirr(r1.left, r2.right) and ismirr(r1.right, r2.left)
-
-        return ismirr(root, root)
+        return symmetric(root, root)
 

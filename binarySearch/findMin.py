@@ -13,15 +13,15 @@ class Solution:
                 right = mid
         return nums[right]
 
-    # 找到最大值，失败
-    # def findMax(self, nums: List[int]) -> int:
+    # # # 找到最大值
+    # def findMin(self, nums: List[int]) -> int:
     #     left, right = 0, len(nums) - 1
     #     while left < right:
-    #         mid = left + right >> 1
-    #         if nums[mid] > nums[left]:
-    #             left = mid
-    #         else:
+    #         mid = left + right + 1 >> 1  # 注意要加 1，回头再看看
+    #         if nums[left] > nums[mid]:
     #             right = mid - 1
+    #         else:
+    #             left = mid
     #     return nums[right]
 
 
@@ -39,8 +39,9 @@ nums = [1, 2, 3]
 print(s.findMin(nums))
 # print(s.findMax(nums))
 
-nums = [3, 2, 1]
-print(s.findMin(nums))
+# 下面是错误示例，都说了是旋转排序，肯定不能是递减的啊
+# nums = [3, 2, 1]
+# print(s.findMin(nums))
 # print(s.findMax(nums))
 
 nums = [2, 3, 4, 5, 1]
