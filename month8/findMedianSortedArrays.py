@@ -33,23 +33,40 @@ class Solution:
     #     else:
     #         return (nums[n // 2] + nums[n // 2 - 1]) / 2
 
+    # def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+    #
+    #     def merge(nums1, nums2):
+    #         if not nums1:
+    #             return nums2
+    #         if not nums2:
+    #             return nums1
+    #         if nums1[0] < nums2[0]:
+    #             return [nums1[0]] + merge(nums1[1:], nums2)
+    #         return [nums2[0]] + merge(nums1, nums2[1:])
+    #
+    #     nums = merge(nums1, nums2)
+    #     n = len(nums)
+    #     if n & 1:
+    #         return nums[n // 2]
+    #     else:
+    #         return (nums[n // 2] + nums[n // 2 - 1]) / 2
+
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
 
-        def merge(nums1, nums2):
-            if not nums1:
-                return nums2
-            if not nums2:
-                return nums1
-            if nums1[0] < nums2[0]:
-                return [nums1[0]] + merge(nums1[1:], nums2)
-            return [nums2[0]] + merge(nums1, nums2[1:])
+        def merge(num1, num2):
+            if not num1:
+                return num2
+            if not num2:
+                return num1
+            if num1[0] < num2[0]:
+                return [num1[0]] + merge(num1[1:], num2)
+            return [num2[0]] + merge(num1, num2[1:])
 
         nums = merge(nums1, nums2)
         n = len(nums)
         if n & 1:
             return nums[n // 2]
-        else:
-            return (nums[n // 2] + nums[n // 2 - 1]) / 2
+        return (nums[n // 2 - 1] + nums[n // 2]) / 2
 
 
 s = Solution()

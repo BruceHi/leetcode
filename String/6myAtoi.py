@@ -6,34 +6,46 @@ import re
 #     p = r'^\s*[+-]?\d+'
 #     pattern = re.compile(p)
 #     str_list = pattern.findall(str)
-#     num = int(*str_list)  # int()为0
+#     num = int(*str_list)  # int()为 0
+
 #     if not num:
 #         return 0
-#
 #     if num > 0:
 #         return min(num, 2**31 - 1)
-#
 #     return max(num, -2**31)
 
 
-def myAtoi(str):
-    return max(min(int(*re.findall(r'^[+-]?\d+', str.lstrip())), 2**31 - 1), -2**31)
-    # return max(min(int(*re.findall(re.compile(r'^\s*[+-]?\d+'), str)), 2**31 - 1), -2**31)
+# def myAtoi(str):
+#     return max(min(int(*re.findall(r'^[+-]?\d+', str.lstrip())), 2**31 - 1), -2**31)
+#     # return max(min(int(*re.findall(re.compile(r'^\s*[+-]?\d+'), str)), 2**31 - 1), -2**31)
 
 # def myAtoi(str):
 #     p = r'^\s*[-+]?\d+'
 #     pattern = re.compile(p)
 #     num_str = pattern.findall(str)
 #     num = ''.join(num_str)
+
 #     if not num:
 #         return 0
-#
 #     if int(num) < -2 ** 31:
 #         return -2 ** 31
 #     if int(num) > 2 ** 31 - 1:
 #         return 2 ** 31 - 1
-#
 #     return int(num)
+
+
+def myAtoi(str: str) -> int:
+    p = r'^\s*[+-]?\d+'
+    pattern = re.compile(p)
+    res_list = pattern.findall(str)
+    res = int(*res_list)
+
+    if res < -2**31:
+        return -2**31
+    if res > 2**31 - 1:
+        return 2**31 - 1
+    return res
+
 
 
 s = " "
@@ -96,4 +108,3 @@ print(myAtoi(s))
 #
 # print()
 
-print(int())

@@ -37,3 +37,12 @@ print(ord(']'))
 
 print(ord('{'))
 print(ord('}'))
+
+b = ['  +13']
+print(int(*b))
+
+c = []
+
+print(int(*c))
+
+

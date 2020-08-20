@@ -92,32 +92,81 @@ class Solution:
     #                 left, right = left+1, right-1
     #     return res
 
+    # def threeSum(self, nums: List[int]) -> List[List[int]]:
+    #     nums.sort()
+    #     res = []
+    #     for i, val in enumerate(nums[:-2]):
+    #         if val > 0:
+    #             return res
+    #         left, right = i + 1, len(nums) - 1
+    #         if val + nums[left] + nums[left+1] > 0:  # 最前面的三个数大于 0 则结束。
+    #             return res
+    #         if i > 0 and val == nums[i-1]:  # 连续的两个相同的跳过
+    #             continue
+    #
+    #         while left < right:
+    #             s = val + nums[left] + nums[right]
+    #             if s > 0:
+    #                 right -= 1
+    #             elif s < 0:
+    #                 left += 1
+    #             else:
+    #                 res.append([val, nums[left], nums[right]])
+    #                 while left < right and nums[left] == nums[left+1]:
+    #                     left += 1
+    #                 while left < right and nums[right] == nums[right-1]:
+    #                     right -= 1
+    #                 left, right = left+1, right-1
+    #     return res
+
+    # 双指针
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         res = []
-        for i, val in enumerate(nums[:-2]):
-            if val > 0:
-                return res
-            left, right = i + 1, len(nums) - 1
-            if val + nums[left] + nums[left+1] > 0:  # 最前面的三个数大于 0 则结束。
-                return res
-            if i > 0 and val == nums[i-1]:  # 连续的两个相同的跳过
+
+        for i, num in enumerate(nums[:-2]):
+            if num > 0:
+                break
+            if num + nums[i+1] + nums[i+2] > 0:
+                break
+            if num + nums[-1] + nums[-2] < 0:
                 continue
 
+            if i > 0 and num == nums[i-1]:
+                continue
+
+            left, right = i + 1, len(nums) - 1
             while left < right:
-                s = val + nums[left] + nums[right]
-                if s > 0:
+                tmp = num + nums[left] + nums[right]
+                if tmp > 0:
                     right -= 1
-                elif s < 0:
+                elif tmp < 0:
                     left += 1
                 else:
-                    res.append([val, nums[left], nums[right]])
+                    res.append([num, nums[left], nums[right]])
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
                     while left < right and nums[left] == nums[left+1]:
                         left += 1
-                    while left < right and nums[right] == nums[right-1]:
-                        right -= 1
-                    left, right = left+1, right-1
+                    left, right = left + 1, right - 1
         return res
+
+    # # 哈希表
+    # def threeSum(self, nums: List[int]) -> List[List[int]]:
+    #     nums.sort()
+    #     res = set()
+    #     for i, num in enumerate(nums[:-2]):
+    #         if i > 0 and num == nums[i-1]:
+    #             continue
+    #         record = set()
+    #         for j in range(i+1, len(nums)):
+    #             if -num-nums[j] in record:
+    #                 res.add((num, -num-nums[j], nums[j]))
+    #             record.add(nums[j])
+    #     return list(map(list, res))
+
+
+
 
 
 s = Solution()
@@ -128,4 +177,10 @@ nums = [0,0,0]
 print(s.threeSum(nums))
 
 nums = [-1, 0, 1, 2, -1, -4]
+print(s.threeSum(nums))
+
+nums = [-2,0,0,2,2]
+print(s.threeSum(nums))
+
+nums = [0,0]
 print(s.threeSum(nums))

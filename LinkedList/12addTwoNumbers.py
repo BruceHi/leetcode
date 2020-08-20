@@ -88,9 +88,21 @@ class Solution:
 
     # 改进 https://my.oschina.net/yves175/blog/827758
     # 若其后 l1、l2 不再使用，可以直接用他们遍历
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     cur = dummy = ListNode(0)
+    #     s = 0  # 进位 或 和
+    #     while l1 or l2 or s:
+    #         s += (l1.val if l1 else 0) + (l2.val if l2 else 0)
+    #         cur.next = ListNode(s % 10)
+    #         cur = cur.next
+    #         s //= 10
+    #         l1 = l1.next if l1 else None
+    #         l2 = l2.next if l2 else None
+    #     return dummy.next
+
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         cur = dummy = ListNode(0)
-        s = 0  # 进位 或 和
+        s = 0
         while l1 or l2 or s:
             s += (l1.val if l1 else 0) + (l2.val if l2 else 0)
             cur.next = ListNode(s % 10)

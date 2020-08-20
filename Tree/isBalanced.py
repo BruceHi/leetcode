@@ -1,5 +1,6 @@
 # 判断是否为平衡二叉树
 
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -42,15 +43,27 @@ class Solution:
     #         and self.isBalanced(root.left) and self.isBalanced(root.right)
 
     # 自底向下
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #
+    #     def helper(root):
+    #         if not root:
+    #             return 0
+    #         left = helper(root.left)
+    #         right = helper(root.right)
+    #         if left == -1 or right == -1 or abs(left - right) > 1:
+    #             return -1  # -1 代表非平衡树
+    #         return max(helper(root.left), helper(root.right)) + 1
+    #
+    #     return helper(root) != -1
+
     def isBalanced(self, root: TreeNode) -> bool:
 
-        def helper(root):
+        def height(root):
             if not root:
-                return 0
-            left = helper(root.left)
-            right = helper(root.right)
-            if left == -1 or right == -1 or abs(left - right) > 1:
-                return -1  # -1 代表非平衡树
-            return max(helper(root.left), helper(root.right)) + 1
+                return -1
+            return max(height(root.left), height(root.right)) + 1
 
-        return helper(root) != -1
+        if not root:
+            return True
+        return abs(height(root.left) - height(root.right)) <= 1 \
+            and self.isBalanced(root.left) and self.isBalanced(root.right)

@@ -29,10 +29,12 @@ class Solution:
     #     return not stack
 
     def isValid(self, s: str) -> bool:
+        if len(s) & 1:
+            return False
         dic = {')': '(', ']': '[', '}': '{'}
         stack = []
         for c in s:
-            if c in dic.values():
+            if c not in dic:
                 stack.append(c)
             elif not stack or dic[c] != stack.pop():
                 return False

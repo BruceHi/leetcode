@@ -45,19 +45,19 @@ class Solution:
     #
     #     return dummy.next
 
-    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        dummy = ListNode(0)
-        dummy.next = head
-
-        left, right = dummy, dummy
-        for _ in range(n+1):
-            right = right.next
-
-        while right:
-            left, right = left.next, right.next
-
-        left.next = left.next.next  # 遍历结束后，left 为前驱结点
-        return dummy.next
+    # def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+    #     dummy = ListNode(0)
+    #     dummy.next = head
+    #
+    #     left, right = dummy, dummy
+    #     for _ in range(n+1):
+    #         right = right.next
+    #
+    #     while right:
+    #         left, right = left.next, right.next
+    #
+    #     left.next = left.next.next  # 遍历结束后，left 为前驱结点
+    #     return dummy.next
 
 
 # def output_linklist(link):  # 输出链表
@@ -65,6 +65,20 @@ class Solution:
 #     while res:
 #         print(res.val)
 #         res = res.next
+
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        cur = pre = dummy = ListNode(0)
+        dummy.next = head
+
+        for _ in range(n+1):
+            cur = cur.next
+
+        while cur:
+            pre, cur = pre.next, cur.next
+        pre.next = pre.next.next
+
+        return dummy.next
+
 
 def print_link(head: ListNode):  # 打印链表
     res, cur = [], head,

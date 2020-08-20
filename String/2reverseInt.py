@@ -102,20 +102,43 @@
 #             return 0
 #     return res
 
+# def reverse(x: int) -> int:
+#     if x >= 0:
+#         sign = 1
+#     else:
+#         sign, x = -1, -x
+#
+#     res = 0
+#     while x:
+#         res = res * 10 + x % 10
+#         x //= 10
+#
+#     if -2**31 <= sign * res <= 2**31-1:
+#         return sign * res
+#     return 0
+
+# # 字符串转换
 def reverse(x: int) -> int:
-    if x >= 0:
-        sign = 1
-    else:
-        sign, x = -1, -x
-
-    res = 0
-    while x:
-        res = res * 10 + x % 10
-        x //= 10
-
-    if -2**31 <= sign * res <= 2**31-1:
-        return sign * res
+    sign = 1 if x > 0 else -1
+    x = x if x > 0 else -x
+    res = sign * int(str(x)[::-1])
+    if - 2 ** 31 < res < 2 ** 31 - 1:
+        return res
     return 0
+
+# # 数学方法
+# def reverse(x: int) -> int:
+#     sign = 1 if x > 0 else -1
+#     n = x if x > 0 else -x
+#     res = 0
+#     while n:
+#         res = res * 10 + n % 10
+#         n //= 10
+#     res = sign * res
+#     if - 2 ** 31 < res < 2 ** 31 - 1:
+#         return res
+#     return 0
+
 
 
 a = -123
