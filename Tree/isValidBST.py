@@ -60,13 +60,50 @@ class Solution:
     #     return True
 
     # 定义判断, 使用 DFS。
+    # def isValidBST(self, root: TreeNode) -> bool:
+    #
+    #     def DFS(root, left, right):
+    #         if not root:
+    #             return True
+    #
+    #         return left < root.val < right and DFS(root.left, left, root.val) \
+    #             and DFS(root.right, root.val, right)
+    #
+    #     return DFS(root, float('-inf'), float('inf'))
+
+    # def isValidBST(self, root: TreeNode) -> bool:
+    #
+    #     def dfs(root, left, right):
+    #         if not root:
+    #             return True
+    #         return left < root.val < right and dfs(root.left, left, root.val) \
+    #                and dfs(root.right, root.val, right)
+    #
+    #     return dfs(root, float('-inf'), float('inf'))
+
+    # def isValidBST(self, root: TreeNode) -> bool:
+    #
+    #     def inorder(root):
+    #         if not root:
+    #             return []
+    #         return inorder(root.left) + [root.val] + inorder(root.right)
+    #
+    #     return inorder(root) == sorted(set(inorder(root)))
+
     def isValidBST(self, root: TreeNode) -> bool:
+        cur = root
+        stack = []
+        cmp = float('-inf')
 
-        def DFS(root, left, right):
-            if not root:
-                return True
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            top = stack.pop()
+            if top.val <= cmp:
+                return False
+            cmp = top.val
+            cur = top.right
 
-            return left < root.val < right and DFS(root.left, left, root.val) \
-                and DFS(root.right, root.val, right)
+        return True
 
-        return DFS(root, float('-inf'), float('inf'))

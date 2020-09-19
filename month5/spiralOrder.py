@@ -12,12 +12,26 @@ class Solution:
     #     return res
 
     # 逆时针提取元素，试一试
+    # def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    #     matrix = list(zip(*matrix))  # 转置
+    #     res = list(matrix.pop(0))
+    #     while matrix:
+    #         matrix = list(zip(*matrix))[::-1]
+    #         res += matrix.pop(0)
+    #     return res
+
+    # def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    #     res = matrix.pop(0)
+    #     while matrix:
+    #         matrix[:] = list(map(list, zip(*matrix)))[::-1]
+    #         res += matrix.pop(0)
+    #     return res
+
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        matrix = list(zip(*matrix))  # 转置
-        res = list(matrix.pop(0))
+        res = []
         while matrix:
-            matrix = list(zip(*matrix))[::-1]
             res += matrix.pop(0)
+            matrix = list(zip(*matrix))[::-1]
         return res
 
 

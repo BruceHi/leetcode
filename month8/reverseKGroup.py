@@ -9,18 +9,38 @@ class ListNode:
 
 
 class Solution:
-    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        cur = head
-        for _ in range(k):
-            if not cur:
-                return head
-            cur = cur.next
+    # def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
 
-        pre, cur = None, head
-        for _ in range(k):
-            cur.next, pre, cur = pre, cur, cur.next
-        head.next = self.reverseKGroup(cur, k)
-        return pre
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+
+        def revrese(head, k):
+            pre, cur = None, head
+            for _ in range(k):
+                cur.next, pre, cur = pre, cur, cur.next
+            return pre, head
+
+        pre = dummy = ListNode(0)
+        dummy.next = head
+        while pre.next:
+            cur = pre.next
+            for _ in range(k):
+                if not cur:
+                    return dummy.next
+                cur = cur.next
+            pre.next, pre = revrese(pre.next, k)
+            pre.next = cur
+        return dummy.next
 
 
 def generate_link(nums: List[int]) -> ListNode:

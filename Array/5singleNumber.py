@@ -65,14 +65,24 @@
 
 
 # 集合
-def singleNumber(nums):
-    temp = set()
-    for i in nums:
-        if i in temp:
-            temp.remove(i)
-        else:
-            temp.add(i)
-    return temp.pop()
+# def singleNumber(nums):
+#     temp = set()
+#     for i in nums:
+#         if i in temp:
+#             temp.remove(i)
+#         else:
+#             temp.add(i)
+#     return temp.pop()
+
+
+from typing import List
+
+
+def singleNumber(nums: List[int]) -> int:
+    res = nums[0]
+    for num in nums[1:]:
+        res ^= num
+    return res
 
 
 list1 = [1,3,1,-1,3]

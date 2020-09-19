@@ -3,6 +3,7 @@
 
 from collections import deque
 from copy import deepcopy
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -65,16 +66,43 @@ class Solution:
     #
     #     return ismirr(root, root)
 
+    # def isSymmetric(self, root: TreeNode) -> bool:
+    #
+    #     def symmetric(root1, root2):
+    #         if not root1 and not root2:
+    #             return True
+    #         if not root1 or not root2:
+    #             return False
+    #         if root1.val != root2.val:
+    #             return False
+    #         return symmetric(root1.left, root2.right) and symmetric(root1.right, root2.left)
+    #
+    #     return symmetric(root, root)
+
+    # # 递归
     def isSymmetric(self, root: TreeNode) -> bool:
 
-        def symmetric(root1, root2):
-            if not root1 and not root2:
+        def symmetric(p, q):
+            if not p and not q:
                 return True
-            if not root1 or not root2:
+            if not p or not q:
                 return False
-            if root1.val != root2.val:
-                return False
-            return symmetric(root1.left, root2.right) and symmetric(root1.right, root2.left)
+            return p.val == q.val and symmetric(p.left, q.right) and symmetric(p.right, q.left)
 
         return symmetric(root, root)
+
+    # def isSymmetric(self, root: TreeNode) -> bool:
+    #     queue = deque([root, root])
+    #     while queue:
+    #         t1, t2 = queue.popleft(), queue.popleft()
+    #         if not t1 and not t2:
+    #             continue
+    #         if not t1 or not t2:
+    #             return False
+    #         if t1.val != t2.val:
+    #             return False
+    #         queue.extend([t1.left, t2.right, t1.right, t2.left])
+    #     return True
+
+
 

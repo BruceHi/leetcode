@@ -47,14 +47,46 @@ class Solution:
     #         old_dp = tmp
     #     return dp
 
-    def rob(self, nums: List[int]) -> int:
-        dp, dp_old = 0, 0
-        for num in nums:
-            tmp = dp
-            dp = max(dp_old+num, dp)
-            dp_old = tmp
-        return dp
+    # def rob(self, nums: List[int]) -> int:
+    #     dp, dp_old = 0, 0
+    #     for num in nums:
+    #         tmp = dp
+    #         dp = max(dp_old+num, dp)
+    #         dp_old = tmp
+    #     return dp
 
+    # ------------------- 以前写的-------------------------
+
+    # def rob(self, nums: List[int]) -> int:
+    #     if not nums:
+    #         return 0
+    #     n = len(nums)
+    #     if n == 1:
+    #         return nums[0]
+    #     dp = [0] * n
+    #     for i, num in enumerate(nums):
+    #         dp[i] = max(dp[i-1], dp[i-2] + num)
+    #     return dp[n-1]
+
+    # def rob(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     dp = [0] * (n+1)
+    #     for i in range(1, n+1):
+    #         dp[i] = max(dp[i-1], dp[i-2] + nums[i-1])
+    #     return dp[n]
+
+    # 状态压缩
+    # def rob(self, nums: List[int]) -> int:
+    #     dp_i, dp_j = 0, 0
+    #     for num in nums:
+    #         dp_i, dp_j = dp_j, max(dp_j, dp_i + num)
+    #     return dp_j
+
+    def rob(self, nums: List[int]) -> int:
+        pre, cur = 0, 0
+        for num in nums:
+            pre, cur = pre, max(cur, pre + num)
+        return cur
 
 
 s = Solution()
@@ -62,4 +94,10 @@ a = [1,2,3,1]
 print(s.rob(a))
 
 a = [2,7,9,3,1]
+print(s.rob(a))
+
+a = []
+print(s.rob(a))
+
+a = [2]
 print(s.rob(a))

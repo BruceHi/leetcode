@@ -80,22 +80,48 @@ class Solution:
     #             res = max(res, count)
     #     return res
 
-    def longestConsecutive(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
-        nums = set(nums)
+    # def longestConsecutive(self, nums: List[int]) -> int:
+    #     if not nums:
+    #         return 0
+    #     nums = set(nums)
+    #
+    #     res = 0
+    #     for num in nums:
+    #         if num - 1 not in nums:
+    #             length = 1
+    #             tmp = num + 1
+    #             while tmp in nums:
+    #                 length += 1
+    #                 tmp += 1
+    #             res = max(res, length)
+    #
+    #     return res
 
+    # def longestConsecutive(self, nums: List[int]) -> int:
+    #     nums = list(set(nums))
+    #     nums.sort()
+    #     res = 0
+    #     i = 0
+    #     for j, num in enumerate(nums[:-1]):  # 使用 j-i 的方法统计，不太好
+    #         if num + 1 != nums[j+1]:
+    #             res = max(res, j-i+1)
+    #             i = j+1
+    #     res = max(res, len(nums) - i)
+    #     return res
+
+    # 使用 哈希表
+    def longestConsecutive(self, nums: List[int]) -> int:
+        nums = set(nums)
         res = 0
         for num in nums:
             if num - 1 not in nums:
-                length = 1
-                tmp = num + 1
-                while tmp in nums:
-                    length += 1
-                    tmp += 1
-                res = max(res, length)
-
+                count = 1
+                while num + 1 in nums:
+                    count += 1
+                    num = num + 1
+                res = max(res, count)
         return res
+
 
 
 s = Solution()

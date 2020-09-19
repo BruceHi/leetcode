@@ -12,6 +12,29 @@ class Solution:
     #             if dic[s[i]] != t[i]:
     #                 return False
     #     return True
+    #
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         else:
+    #             if dic[a] != b:
+    #                 return False
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     record = {}
+    #     for i in range(len(s)):
+    #         if s[i] not in record:
+    #             if t[i] in record.values():
+    #                 return False
+    #             record[s[i]] = t[i]
+    #         elif record[s[i]] != t[i]:
+    #             return False
+    #     return True
 
     def isIsomorphic(self, s: str, t: str) -> bool:
         dic = {}
@@ -20,9 +43,8 @@ class Solution:
                 if b in dic.values():
                     return False
                 dic[a] = b
-            else:
-                if dic[a] != b:
-                    return False
+            elif dic[a] != b:
+                return False
         return True
 
 

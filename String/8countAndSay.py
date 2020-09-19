@@ -15,7 +15,7 @@
 #             count = 0
 #
 #         return str(num)
-
+import re
 
 class Solution:
     # def countAndSay(self, n: int) -> str:
@@ -52,20 +52,20 @@ class Solution:
     #     return res
 
     # 改写成循环
-    def countAndSay(self, n: int) -> str:
-        res = '1'
-        for _ in range(n-1):
-            i, tmp = 0, ''
-            while i < len(res):
-                count = 1
-                while i + 1 < len(res) and res[i] == res[i+1]:
-                    count += 1
-                    i += 1
-                tmp += str(count) + res[i]
-                i += 1
-            res = tmp
-
-        return res
+    # def countAndSay(self, n: int) -> str:
+    #     res = '1'
+    #     for _ in range(n-1):
+    #         i, tmp = 0, ''
+    #         while i < len(res):
+    #             count = 1
+    #             while i + 1 < len(res) and res[i] == res[i+1]:
+    #                 count += 1
+    #                 i += 1
+    #             tmp += str(count) + res[i]
+    #             i += 1
+    #         res = tmp
+    #
+    #     return res
 
 
 # import re
@@ -87,6 +87,59 @@ class Solution:
 #
 #         res = [_.group() for _ in pattern.finditer(s)]
 #         return ''.join([str(len(_)) + _[0] for _ in res])
+
+    # def countAndSay(self, n: int) -> str:
+    #     res = '1'
+    #     for _ in range(n-1):
+    #         i, tmp = 0, ''
+    #         for j, c in enumerate(res):
+    #             if c != res[i]:
+    #                 tmp += str(j-i) + res[i]
+    #                 i = j
+    #         res = tmp + str(len(res) - i) + res[-1]
+    #     return res
+
+    # def countAndSay(self, n: int) -> str:
+    #     if n == 1:
+    #         return '1'
+    #     s = self.countAndSay(n-1)
+    #
+    #     i, res = 0, ''
+    #     for j, c in enumerate(s):
+    #         if c != s[i]:
+    #             res += str(j-i) + s[i]
+    #             i = j
+    #     res += str(len(s) - i) + s[-1]
+    #     return res
+
+    # def countAndSay(self, n: int) -> str:
+    #     if n == 1:
+    #         return '1'
+    #     s = self.countAndSay(n-1)
+    #
+    #     p = r'(\d)\1*'
+    #     pattern = re.compile(p)
+    #     res = [_.group() for _ in pattern.finditer(s)]
+    #     # res = ''.join(str(len(c)) + c[0] for c in str_list)
+    #     # print(type(str(len(c)) + c[0] for c in str_list))
+    #     return ''.join(str(len(c)) + c[0] for c in res)  # join 内部的 str(len(c)) + c[0] for c in res 表示生成器
+
+    # def countAndSay(self, n: int) -> str:
+    #     if n == 1:
+    #         return '1'
+    #     s = self.countAndSay(n-1)
+    #     p = r'(\d)\1*'
+    #     pattern = re.compile(p)
+    #     res = pattern.sub(lambda x: str(len(x.group())) + x.group(1), s)
+    #     return res
+
+    def countAndSay(self, n: int) -> str:
+        res = '1'
+        p = r'(\d)\1*'
+        pattern = re.compile(p)
+        for _ in range(n-1):
+            res = pattern.sub(lambda x: str(len(x.group())) + x.group(1), res)
+        return res
 
 
 s = Solution()

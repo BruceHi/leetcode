@@ -8,10 +8,11 @@
 #     return list(map(int, str(int(''.join(map(str, digits))) + 1)))
 
 # from functools import reduce
-#
-#
+# #
+# #
 # def plusOne(digits):
 #     s = reduce((lambda x, y: x * 10 + y), digits) + 1
+#     print(s)
 #     return list(map(int, str(s)))
 
 
@@ -31,18 +32,58 @@
 #     return digits
 
 # 按照加法的进位计算，上面的改进
-def plusOne(digits):
-    i = len(digits) - 1
-    while i >= 0:
+# def plusOne(digits):
+#     i = len(digits) - 1
+#     while i >= 0:
+#         digits[i] += 1
+#         if digits[i] < 10:
+#             break
+#         else:  # 需要进位
+#             digits[i] = 0
+#             i -= 1
+#         if i == -1:  # 应对出现[9, 9, 9]这样全为9的情况。
+#             digits.insert(0, 1)
+#     return digits
+
+from typing import List
+
+
+# def plusOne(digits: List[int]) -> List[int]:
+#     i = len(digits) - 1
+#     while i >= 0:
+#         digits[i] += 1
+#         if digits[i] < 10:
+#             break
+#         else:
+#             digits[i] = 0
+#             i -= 1
+#     if i == -1:
+#         digits.insert(0, 1)
+#     return digits
+
+
+# def plusOne(digits: List[int]) -> List[int]:
+#     i = len(digits) - 1
+#     while i >= 0:
+#         digits[i] += 1
+#         if digits[i] < 10:
+#             return digits
+#         else:
+#             digits[i] = 0
+#             i -= 1
+#     digits.insert(0, 1)
+#     return digits
+
+
+# 由于每次加上 1，所以最大结果是 10
+def plusOne(digits: List[int]) -> List[int]:
+    for i in range(len(digits) - 1, -1, -1):
         digits[i] += 1
         if digits[i] < 10:
-            break
-        else:  # 需要进位
+            return digits
+        else:
             digits[i] = 0
-            i -= 1
-        if i == -1:  # 应对出现[9, 9, 9]这样全为9的情况。
-            digits.insert(0, 1)
-    return digits
+    return [1] + digits
 
 
 list1 =[9, 9, 9]
@@ -53,3 +94,7 @@ print(plusOne(list1))
 
 list1 =[4,3,2,1]
 print(plusOne(list1))
+
+list1 =[0]
+print(plusOne(list1))
+

@@ -9,9 +9,13 @@ class Solution:
     #     count = Counter(nums)
     #     return sorted(count, key=count.get, reverse=True)[:k]
 
+    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    #     count = Counter(nums)
+    #     return heapq.nlargest(k, count, key=count.get)
+
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
-        return heapq.nlargest(k, count, key=count.get)
+        return [x for x, _ in count.most_common(k)]
 
 
 s = Solution()

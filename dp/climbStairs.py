@@ -58,11 +58,17 @@ class Solution:
     #         dp, dp_old = dp + dp_old, dp
     #     return dp
 
+    # def climbStairs(self, n: int) -> int:
+    #     x, y = 1, 1
+    #     for _ in range(2, n):
+    #         x, y = y, x + y
+    #     return y
+
     def climbStairs(self, n: int) -> int:
-        x, y = 1, 1
-        for _ in range(2, n):
-            x, y = y, x + y
-        return y
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, a+b
+        return b
 
 
 s = Solution()

@@ -12,14 +12,14 @@ class TreeNode:
 class Solution:
 
     # # 中序和后序
-    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
-        if not inorder:
-            return
-        node = TreeNode(postorder[-1])
-        i = inorder.index(node.val)
-        node.left = self.buildTree(inorder[:i], postorder[:i])
-        node.right = self.buildTree(inorder[i+1:], postorder[i:-1])
-        return node
+    # def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+    #     if not inorder:
+    #         return
+    #     node = TreeNode(postorder[-1])
+    #     i = inorder.index(node.val)
+    #     node.left = self.buildTree(inorder[:i], postorder[:i])
+    #     node.right = self.buildTree(inorder[i+1:], postorder[i:-1])
+    #     return node
 
     # 前序和中序
     # def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
@@ -30,3 +30,12 @@ class Solution:
     #     root.left = self.buildTree(preorder[1:i+1], inorder[:i])
     #     root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
     #     return root
+
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        if not inorder:
+            return
+        root = TreeNode(postorder[-1])
+        i = inorder.index(postorder[-1])
+        root.left = self.buildTree(inorder[:i], postorder[:i])
+        root.right = self.buildTree(inorder[i+1:], postorder[i:-1])
+        return root

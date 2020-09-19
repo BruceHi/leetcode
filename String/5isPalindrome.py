@@ -58,9 +58,13 @@
 #         left, right = left + 1, right - 1
 #     return True
 
-def isPalindrome(s):
-    s = list(map(str.lower, filter(str.isalnum, s)))
-    return s == s[::-1]
+# def isPalindrome(s):
+#     s = list(map(str.lower, filter(str.isalnum, s)))
+#     return s == s[::-1]
+
+def isPalindrome(s: str) -> bool:
+    res = list(map(str.lower, filter(str.isalnum, s)))
+    return res == res[::-1]
 
 
 s = "a."
@@ -80,3 +84,5 @@ s = "race a car"
 print(isPalindrome(s))
 
 
+s = "0P"
+print(isPalindrome(s))

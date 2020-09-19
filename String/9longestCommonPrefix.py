@@ -104,14 +104,36 @@ from typing import List
 #     return prefix
 
 
-def longestCommonPrefix(strs: List[str]) -> str:
+# def longestCommonPrefix(strs: List[str]) -> str:
+#     if not strs:
+#         return ''
+#     s1, s2 = min(strs), max(strs)
+#     for i, c in enumerate(s1):
+#         if c != s2[i]:
+#             return s1[:i]
+#     return s1
+
+def longestCommonPrefix(strs):
     if not strs:
         return ''
-    s1, s2 = min(strs), max(strs)
-    for i, c in enumerate(s1):
-        if c != s2[i]:
-            return s1[:i]
-    return s1
+    root = {}
+    for word in strs:
+        if not word:
+            return ''
+        node = root
+        for c in word:
+            node = node.setdefault(c, {})
+        node['#'] = '#'
+
+    res, node = '', root
+    while node != {'#': '#'}:
+        if len(node) == 1:
+            c, = node
+            res += c
+            node = node[c]
+        else:
+            break
+    return res
 
 
 list1 = ["abc","abc"]

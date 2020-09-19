@@ -12,6 +12,8 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(a[::-1] for a in s.split())
 
+    # def reverseWords(self, s: str) -> str:
+    #     return ' '.join(s[::-1].split()[::-1])
 
 
 obj = Solution()

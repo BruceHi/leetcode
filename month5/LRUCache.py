@@ -57,7 +57,7 @@
 # 使用有序字典：OrderedDict
 from collections import OrderedDict
 
-
+#
 # class LRUCache:
 #
 #     def __init__(self, capacity: int):
@@ -82,37 +82,57 @@ from collections import OrderedDict
 #                 self.dic.popitem(last=False)
 #         self.dic[key] = value
 
-class LRUCache(OrderedDict):
+# class LRUCache(OrderedDict):
+#
+#     def __init__(self, capacity: int):
+#         super().__init__()
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self:
+#             return -1
+#         self.move_to_end(key)
+#         return self[key]
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self:
+#             self.move_to_end(key)
+#         self[key] = value
+#         if len(self) > self.capacity:
+#             self.popitem(last=False)
+
+
+class LRUCache:
 
     def __init__(self, capacity: int):
-        super().__init__()
+        self.dic = OrderedDict()
         self.capacity = capacity
 
     def get(self, key: int) -> int:
-        if key not in self:
+        if key not in self.dic:
             return -1
-        self.move_to_end(key)
-        return self[key]
+        self.dic.move_to_end(key)
+        return self.dic[key]
 
     def put(self, key: int, value: int) -> None:
-        if key in self:
-            self.move_to_end(key)
-        self[key] = value
-        if len(self) > self.capacity:
-            self.popitem(last=False)
+        if key in self.dic:
+            self.dic.move_to_end(key)
+        self.dic[key] = value
+        if len(self.dic) > self.capacity:
+            self.dic.popitem(last=False)
 
 
-# cache = LRUCache(2)
-#
-# cache.put(1, 1)
-# cache.put(2, 2)
-# print(cache.get(1))  # 返回  1
-# cache.put(3, 3)  # 该操作会使得密钥 2 作废
-# print(cache.get(2))  # 返回 -1 (未找到)
-# cache.put(4, 4)  # 该操作会使得密钥 1 作废
-# print(cache.get(1))  # 返回 -1 (未找到)
-# print(cache.get(3))  # 返回  3
-# print(cache.get(4))  # 返回  4
+cache = LRUCache(2)
+
+cache.put(1, 1)
+cache.put(2, 2)
+print(cache.get(1))  # 返回  1
+cache.put(3, 3)  # 该操作会使得密钥 2 作废
+print(cache.get(2))  # 返回 -1 (未找到)
+cache.put(4, 4)  # 该操作会使得密钥 1 作废
+print(cache.get(1))  # 返回 -1 (未找到)
+print(cache.get(3))  # 返回  3
+print(cache.get(4))  # 返回  4
 
 cache = LRUCache(2)
 print(cache.get(2))

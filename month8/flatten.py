@@ -7,39 +7,19 @@ class TreeNode:
 
 class Solution:
 
-    # 递归
+    # 1.递归方法
     # def flatten(self, root: TreeNode) -> None:
-    #
     #     def preorder(root):
     #         if not root:
     #             return []
     #         return [root] + preorder(root.left) + preorder(root.right)
     #
-    #     order = preorder(root)
-    #     for i in range(1, len(order)):
-    #         pre, cur = order[i-1], order[i]
-    #         pre.right = cur
-    #         pre.left = None
-
-    # # 迭代
-    # def flatten(self, root: TreeNode) -> None:
-    #     res, stack = [], []
-    #     cur = root
-    #     while cur or stack:
-    #         while cur:
-    #             res.append(cur)
-    #             stack.append(cur)
-    #             cur = cur.left
-    #         top = stack.pop()
-    #         cur = top.right
+    #     nodes = preorder(root)
+    #     for i, node in enumerate(nodes[:-1]):
+    #         node.left, node.right = None, nodes[i+1]
     #
-    #     for i in range(1, len(res)):
-    #         pre, cur = res[i-1], res[i]
-    #         pre.right = cur
-    #         pre.left = None
 
-    #
-    # # 迭代与重组链表同时进行
+    # # 2.迭代与重组链表同时进行（这个看不懂）
     # def flatten(self, root: TreeNode) -> None:
     #     if not root:
     #         return
@@ -57,16 +37,29 @@ class Solution:
     #             stack.append(left)
     #         pre = cur
 
-    # 不需要借助 stack，在原来的基础上构造链表, 空间复杂度是 O(1)
+    # 3、不需要借助 stack，在原来的基础上构造链表, 空间复杂度是 O(1)
+    # def flatten(self, root: TreeNode) -> None:
+    #     pre = root
+    #     while pre:
+    #         cur = pre.left
+    #         if cur:
+    #             while cur.right:
+    #                 cur = cur.right
+    #             cur.right = pre.right
+    #             pre.left, pre.right = None, pre.left
+    #         pre = pre.right
+
+    # 4、整体使用迭代
     def flatten(self, root: TreeNode) -> None:
-        cur = root
-        while cur:
-            if cur.left:
-                pre = nxt = cur.left
-                while pre.right:
-                    pre = pre.right
-                pre.right = cur.right
-                cur.left = None
-                cur.right = nxt
-            cur = cur.right
+        if not root:
+            return
+        self.flatten(root.left)
+        self.flatten(root.right)
+
+        cur = root.left
+        if cur:
+            while cur.right:  # cur 要找到左子树的最末一位
+                cur = cur.right
+            cur.right = root.right
+            root.left, root.right = None, root.left
 

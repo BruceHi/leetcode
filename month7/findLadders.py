@@ -2,6 +2,7 @@
 from typing import List
 from collections import deque
 from collections import defaultdict
+from string import ascii_lowercase
 
 
 class Solution:
@@ -64,22 +65,6 @@ class Solution:
     #     dfs(beginWord, endWord, wordList)
     #     return tmp
 
-    # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]):
-    #     dic = defaultdict(list)
-    #     n = len(beginWord)
-    #     for w in wordList:
-    #         for i in range(n):
-    #             dic[w[:i] + '*' + w[i + 1:]].append(w)
-    #
-    #     queue = deque([(beginWord, [beginWord])])  # 列表里面是一个一个的元组
-    #     visted = set()
-    #     res = []
-    #     while queue:
-    #         w, path = queue.popleft()
-    #         if w == endWord:
-    #             res.append(path)
-    #         visted.add(w)
-
     # bfs，以后要多看看，没怎么看懂
     # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
     #     wordList = set(wordList)
@@ -88,7 +73,7 @@ class Solution:
     #     for w in wordList:
     #         for i in range(n):
     #             dic[w[:i] + '*' + w[i + 1:]].append(w)
-    #     q, s = deque([(beginWord, [beginWord])]), deque()
+    #     q, s = deque([(beginWord, [beginWord])]), deque()  # 列表里面是一个一个的元组
     #     seen = set()  # 访问过的结点都要记录
     #     res = []
     #     while q:
@@ -133,6 +118,37 @@ class Solution:
                 return res
             queue, tmp = tmp, queue
         return []
+
+    # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+    #     if endWord not in wordList:
+    #         return []
+    #     res = [beginWord]
+    #     n = len(beginWord)
+    #     for i in range(n):
+    #         for c in ascii_lowercase:
+    #             tmp = beginWord[:i] + c + beginWord[i+1:]
+    #             if tmp in wordList:
+    #                 res.append(tmp)
+    #                 wordList.remove(tmp)
+    #                 self.findLadders(tmp, endWord, wordList)
+    #                 wordList.append(tmp)
+    #     return res
+
+    # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+    #     if endWord not in wordList:
+    #         return []
+    #     dic = defaultdict(list)
+    #     n = len(beginWord)
+    #
+    #     for word in wordList:
+    #         for i in range(n):
+    #             tmp = word[:i] + '-' + word[i+1:]
+    #             dic[tmp].append(word)
+
+
+
+
+
 
 
 s = Solution()

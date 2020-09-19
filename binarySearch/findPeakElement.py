@@ -12,15 +12,32 @@ class Solution:
     #     return len(nums) - 1
 
     # 二分查找，时间复杂度 O(n log n)
+    # def findPeakElement(self, nums: List[int]) -> int:
+    #     left, right = 0, len(nums) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] < nums[mid+1]:
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #     return right
+
+    # def findPeakElement(self, nums: List[int]) -> int:
+    #     left, right = 0, len(nums) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] <= nums[mid+1]:
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #     return left
+
+
     def findPeakElement(self, nums: List[int]) -> int:
-        left, right = 0, len(nums) - 1
-        while left < right:
-            mid = left + right >> 1
-            if nums[mid] < nums[mid+1]:
-                left = mid + 1
-            else:
-                right = mid
-        return right
+        for i, num in enumerate(nums[:-1]):
+            if num > nums[i+1]:
+                return i
+        return len(nums) - 1
 
 
 s = Solution()

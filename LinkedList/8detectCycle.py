@@ -31,15 +31,26 @@ class Solution:
     #         node = node.next
     #     # return  # 不需要写，默认执行到最后返回的就是 None.
 
+    # def detectCycle(self, head: ListNode) -> ListNode:
+    #     slow, fast = head, head
+    #     while fast and fast.next:
+    #         slow, fast = slow.next, fast.next.next
+    #         if slow is fast:
+    #             pre = head
+    #             while pre is not slow:
+    #                 pre, slow = pre.next, slow.next
+    #             return slow
+
     def detectCycle(self, head: ListNode) -> ListNode:
-        slow, fast = head, head
+        slow = fast = head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
             if slow is fast:
-                pre = head
-                while pre is not slow:
-                    pre, slow = pre.next, slow.next
-                return slow
+                find = head
+                while slow != find:
+                    slow, find = slow.next, find.next
+                return find
+
 
 
 

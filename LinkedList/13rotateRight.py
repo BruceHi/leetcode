@@ -31,23 +31,43 @@ class Solution:
     #     return dummy.next
 
     # 连成环
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if not head or not head.next:  # head 为 none，或只有一个结点
+    #         return head
+    #
+    #     n, cur = 1, head
+    #     while cur.next:  # 可以定位到最后一个结点
+    #         n += 1
+    #         cur = cur.next
+    #     cur.next = head  # 首尾相连
+    #
+    #     cur = head
+    #     for _ in range(n - k % n - 1):  # 定位到前驱结点，即新的尾结点
+    #         cur = cur.next
+    #     new_head = cur.next
+    #     cur.next = None
+    #
+    #     return new_head
+
+    # 推荐使用连成环
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if not head or not head.next:  # head 为 none，或只有一个结点
+        if not head or not head.next:
             return head
 
-        n, cur = 1, head
-        while cur.next:  # 可以定位到最后一个结点
+        n = 1
+        cur = head
+        while cur.next:
             n += 1
             cur = cur.next
-        cur.next = head  # 首尾相连
+        cur.next = head
 
         cur = head
-        for _ in range(n - k % n - 1):  # 定位到前驱结点，即新的尾结点
+        for _ in range(n - k % n - 1):
             cur = cur.next
-        new_head = cur.next
+        new = cur.next
         cur.next = None
 
-        return new_head
+        return new
 
 
 def generate_link(nums: List[int]) -> ListNode:
@@ -74,4 +94,7 @@ a = generate_link([0, 1, 2])
 print_link(s.rotateRight(a, 4))
 
 a = generate_link([])
+print_link(s.rotateRight(a, 0))
+
+a = generate_link([1])
 print_link(s.rotateRight(a, 0))

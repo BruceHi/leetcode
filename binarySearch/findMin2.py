@@ -3,19 +3,31 @@ from typing import List
 
 
 class Solution:
+    # def findMin(self, nums: List[int]) -> int:
+    #     left, right = 0, len(nums) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] > nums[right]:
+    #             left = mid + 1
+    #         elif nums[mid] < nums[right]:
+    #             right = mid
+    #         else:
+    #             right -= 1
+    #
+    #     return nums[right]
+
     def findMin(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1
         while left < right:
             mid = left + right >> 1
-            if nums[mid] > nums[right]:
+            tmp = nums[mid]
+            if tmp > nums[right]:
                 left = mid + 1
-            elif nums[mid] < nums[right]:
+            elif tmp < nums[right]:
                 right = mid
             else:
                 right -= 1
-
-        return nums[right]
-
+        return nums[left]
 
 
 s = Solution()
@@ -41,4 +53,7 @@ nums = [3, 3, 1, 3]
 print(s.findMin(nums))
 
 nums = [1, 3, 3]
+print(s.findMin(nums))
+
+nums = [10,1,10,10,10]
 print(s.findMin(nums))

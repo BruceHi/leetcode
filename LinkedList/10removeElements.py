@@ -21,9 +21,33 @@ class Solution:
     #         cur = cur.next
     #     return dummy.next
 
+    # def removeElements(self, head: ListNode, val: int) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         cur = pre.next
+    #         if cur.val == val:
+    #             pre.next = cur.next
+    #         else:
+    #             pre = pre.next
+    #     return dummy.next
+
+    # def removeElements(self, head: ListNode, val: int) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     cur = dummy.next = head
+    #
+    #     while cur:
+    #         if cur.val == val:
+    #             pre.next = cur.next
+    #         else:
+    #             pre = pre.next
+    #         cur = cur.next
+    #     return dummy.next
+
     def removeElements(self, head: ListNode, val: int) -> ListNode:
         pre = dummy = ListNode(0)
         dummy.next = head
+
         while pre.next:
             cur = pre.next
             if cur.val == val:

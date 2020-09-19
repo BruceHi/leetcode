@@ -1,4 +1,5 @@
 # 括号生成
+from typing import List
 
 
 class Solution:
@@ -26,21 +27,45 @@ class Solution:
     #     return list(res)
 
     # 改进
-    def generateParenthesis(self, n: int):
+    # def generateParenthesis(self, n: int):
+    #     res = []
+    #
+    #     def DFS(s, left, right):
+    #         if len(s) == 2 * n:
+    #             res.append(s)
+    #             return
+    #
+    #         if left < n:
+    #             DFS(s+'(', left+1, right)
+    #         if right < left:
+    #             DFS(s+')', left, right+1)
+    #
+    #     DFS('', 0, 0)
+    #     return res
+
+    def generateParenthesis(self, n: int) -> List[str]:
         res = []
 
-        def DFS(s, left, right):
-            if len(s) == 2 * n:
-                res.append(s)
+        def dfs(cur, left, right):
+            if len(cur) == 2 * n:
+                res.append(cur)
                 return
 
-            if left < n:
-                DFS(s+'(', left+1, right)
             if right < left:
-                DFS(s+')', left, right+1)
+                dfs(cur + ')', left, right + 1)
+            if left < n:
+                dfs(cur + '(', left + 1, right)
 
-        DFS('', 0, 0)
+        dfs('(', 1, 0)
         return res
+
+
+
+
+
+
+
+
 
 
 s = Solution()

@@ -34,8 +34,8 @@ class Solution:
         heights = [0] + heights + [0]
         for i, val in enumerate(heights):
             while stack and heights[stack[-1]] > val:
-                tmp = stack.pop()
-                res = max(res, (i-stack[-1]-1) * heights[tmp])
+                idx = stack.pop()
+                res = max(res, (i-stack[-1]-1) * heights[idx])
             stack.append(i)
         return res
 

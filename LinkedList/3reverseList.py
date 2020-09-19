@@ -26,8 +26,7 @@ class Solution:
             return head
         a = head.next
         p = self.reverseList(a)
-        a.next = head
-        head.next = None
+        a.next, head.next = head, None
         return p
 
 

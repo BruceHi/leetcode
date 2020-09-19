@@ -41,17 +41,30 @@ class Solution:
     #
     #     return right
 
+    # def mySqrt(self, x: int) -> int:
+    #     left, right = 0, x
+    #     while left <= right:
+    #         mid = left + (right - left >> 1)
+    #         tmp = mid * mid
+    #         if tmp == x:
+    #             return mid
+    #         elif tmp < x:
+    #             left = mid + 1
+    #         else:
+    #             right = mid - 1
+    #     return right
+
     def mySqrt(self, x: int) -> int:
-        left, right = 0, x
+        left, right = 1, x
         while left <= right:
-            mid = left + (right - left >> 1)
+            mid = left + right >> 1
             tmp = mid * mid
             if tmp == x:
                 return mid
-            elif tmp < x:
-                left = mid + 1
-            else:
+            elif tmp > x:
                 right = mid - 1
+            else:
+                left = mid + 1
         return right
 
 
