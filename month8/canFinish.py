@@ -2,7 +2,7 @@
 from typing import List
 from functools import lru_cache
 from collections import defaultdict
-
+from collections import deque
 
 class Solution:
 
@@ -43,30 +43,50 @@ class Solution:
     #                 return False
     #     return True
 
+    # # 深度优先搜索，不太直观
+    # def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    #     visited = [0] * numCourses
+    #     # edges = defaultdict(int)  # 有的课程编号就为 0，有的没有前驱节点的出现的也会是 0，不能用 int
+    #     edges = defaultdict(list)
+    #     for cur, pre in prerequisites:
+    #         edges[pre].append(cur)
+    #
+    #     @lru_cache(None)
+    #     def dfs(i):  # i 代表课程编号
+    #         if visited[i]:
+    #             return False
+    #         visited[i] = 1
+    #         for j in edges[i]:
+    #             if not dfs(j):
+    #                 return False
+    #         visited[i] = 0
+    #         return True
+    #
+    #     for i in range(numCourses):
+    #         if not dfs(i):
+    #             return False
+    #     return True
+
+    # 拓扑排序，使用广度优先搜索，更为直观
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        visited = [0] * numCourses
-        # edges = defaultdict(int)  # 有的课程编号就为 0，有的没在出现的也会是 0，不能用 int
         edges = defaultdict(list)
+        in_degree = [0] * numCourses  # 入度
+
         for cur, pre in prerequisites:
             edges[pre].append(cur)
+            in_degree[cur] += 1
 
-        @lru_cache(None)
-        def dfs(i):  # i 代表课程编号
-            if visited[i]:
-                return False
-            visited[i] = 1
-            for j in edges[i]:
-                if not dfs(j):
-                    return False
-            visited[i] = 0
-            return True
+        queue = deque([cur for cur in range(numCourses) if not in_degree[cur]])
+        visited = 0  # 访问的节点个数，以便后续判断
 
-        for i in range(numCourses):
-            if not dfs(i):
-                return False
-        return True
-
-
+        while queue:
+            visited += 1
+            u = queue.popleft()
+            for v in edges[u]:
+                in_degree[v] -= 1  # 修改当前节点的入度
+                if not in_degree[v]:
+                    queue.append(v)
+        return visited == numCourses
 
 
 s = Solution()

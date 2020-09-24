@@ -2,7 +2,7 @@
 # def bubulesort(nums):
 #     n = len(nums)
 #     for j in range(n-1):  # 总共比较 n-1 次
-#         for i in range(n-1-j):  # 每次比较的元素个数
+#         for i in range(n-1-j):  # 每次比较的元素个数，每次 i 要到的最后索引不超过 n-1-j
 #             if nums[i] > nums[i+1]:
 #                 nums[i], nums[i+1] = nums[i+1], nums[i]
 
@@ -11,6 +11,18 @@
 
 from typing import List
 
+
+# def bubule_sort(nums: List[int]) -> List[int]:
+#     n = len(nums)
+#     for j in range(n-1):
+#         swap = False
+#         for i in range(n-1-j):
+#             if nums[i] > nums[i+1]:
+#                 nums[i], nums[i+1] = nums[i+1], nums[i]
+#                 swap = True
+#         if not swap:
+#             break
+#     return nums
 
 def bubule_sort(nums: List[int]) -> List[int]:
     n = len(nums)

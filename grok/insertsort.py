@@ -2,14 +2,24 @@
 from typing import List
 
 
+# def insert_sort(nums: List[int]) -> List[int]:
+#     for i in range(1, len(nums)):
+#         val = nums[i]
+#         j = i - 1
+#         while j >= 0 and nums[j] > val:
+#             nums[j+1] = nums[j]
+#             j -= 1
+#         nums[j+1] = val
+#     return nums
+
 def insert_sort(nums: List[int]) -> List[int]:
     for i in range(1, len(nums)):
-        val = nums[i]
+        tmp = nums[i]
         j = i - 1
-        while j >= 0 and nums[j] > val:
+        while j >= 0 and nums[j] > tmp:
             nums[j+1] = nums[j]
             j -= 1
-        nums[j+1] = val
+        nums[j+1] = tmp
     return nums
 
 

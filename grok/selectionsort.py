@@ -32,14 +32,34 @@
 from typing import List
 
 
+# def select_sort(nums: List[int]) -> List[int]:
+#     n = len(nums)
+#     for i in range(n-1):
+#         min_index = i
+#         for j in range(i+1, n):
+#             if nums[min_index] > nums[j]:
+#                 min_index = j
+#         nums[i], nums[min_index] = nums[min_index], nums[i]
+#     return nums
+
+# def select_sort(nums: List[int]) -> List[int]:
+#     for i, num in enumerate(nums[:-1]):
+#         min_num = num
+#         idx = i
+#         for j in range(i, len(nums)):
+#             if min_num > nums[j]:
+#                 min_num = nums[j]
+#                 idx = j
+#         nums[i], nums[idx] = min_num, num
+#     return nums
+
 def select_sort(nums: List[int]) -> List[int]:
-    n = len(nums)
-    for i in range(n-1):
-        min_index = i
-        for j in range(i+1, n):
-            if nums[min_index] > nums[j]:
-                min_index = j
-        nums[i], nums[min_index] = nums[min_index], nums[i]
+    for i, num in enumerate(nums[:-1]):
+        idx = i
+        for j in range(i+1, len(nums)):
+            if nums[idx] > nums[j]:
+                idx = j
+        nums[i], nums[idx] = nums[idx], num
     return nums
 
 

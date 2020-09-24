@@ -53,20 +53,28 @@ class Solution:
     #     return i
 
     # 维护一个大小为 k 的小顶堆。
+    # def findKthLargest(self, nums: List[int], k: int) -> int:
+    #     queue = nums[:k]
+    #     heapq.heapify(queue)
+    #     for num in nums[k:]:
+    #         heapq.heappushpop(queue, num)
+    #     return queue[0]
+    #
+    # # 数组中的第 K 个最小元素
+    # def findKthSmallest(self, nums: List[int], k: int) -> int:
+    #     queue = nums[:]
+    #     heapq.heapify(queue)
+    #     for _ in range(k-1):
+    #         heapq.heappop(queue)
+    #     return heapq.heappop(queue)
+
     def findKthLargest(self, nums: List[int], k: int) -> int:
         queue = nums[:k]
         heapq.heapify(queue)
         for num in nums[k:]:
             heapq.heappushpop(queue, num)
-        return queue[0]
-
-    # 数组中的第 K 个最小元素
-    def findKthSmallest(self, nums: List[int], k: int) -> int:
-        queue = nums[:]
-        heapq.heapify(queue)
-        for _ in range(k-1):
-            heapq.heappop(queue)
         return heapq.heappop(queue)
+
 
 
 s = Solution()

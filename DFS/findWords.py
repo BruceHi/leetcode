@@ -58,7 +58,7 @@ class Solution:
     #
     #         if 'end' in cur_dict and cur_dict['end'] == 1:
     #             res.append(cur_word)
-    #             cur_dict['end'] = 0  # 防止重复数组加入 res，res 也可以使用 set
+    #             cur_dict['end'] = 0  # 防止重复单词加入 res，res 也可以使用 set
     #
     #         tmp, board[i][j] = board[i][j], '@'
     #         for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
@@ -75,64 +75,96 @@ class Solution:
     #
     #     return res
 
-    # 使用 set
+    # # 使用 set
+    # def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+    #
+    #     root = {}
+    #     for word in words:
+    #         node = root
+    #         for char in word:
+    #             node = node.setdefault(char, {})
+    #         node['#'] = '#'
+    #
+    #     res = set()
+    #     m, n = len(board), len(board[0])
+    #
+    #     def DFS(i, j, cur_word, cur_dict):
+    #         cur_word += board[i][j]
+    #         cur_dict = cur_dict[board[i][j]]
+    #
+    #         if '#' in cur_dict:
+    #             res.add(cur_word)
+    #
+    #         tmp, board[i][j] = board[i][j], '@'
+    #         for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] != '@' and board[x][y] in cur_dict:
+    #                 DFS(x, y, cur_word, cur_dict)
+    #         board[i][j] = tmp
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] in root:
+    #                 DFS(i, j, '', root)
+    #
+    #     return list(res)
+
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        res = []
+        m, n = len(board), len(board[0])
 
         root = {}
         for word in words:
-            node = root
-            for char in word:
-                node = node.setdefault(char, {})
-            node['#'] = '#'
+            cur = root
+            for c in word:
+                cur = cur.setdefault(c, {})
+            cur['end'] = 1
 
-        res = set()
-        m, n = len(board), len(board[0])
-
-        def DFS(i, j, cur_word, cur_dict):
+        def dfs(i, j, cur_word, cur_dic):
             cur_word += board[i][j]
-            cur_dict = cur_dict[board[i][j]]
+            cur_dic = cur_dic[board[i][j]]
 
-            if '#' in cur_dict:
-                res.add(cur_word)
+            if cur_dic.get('end', 0):
+                res.append(cur_word)
+                cur_dic['end'] = 0
 
             tmp, board[i][j] = board[i][j], '@'
-            for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
-                x, y = i + dx, j + dy
-                if 0 <= x < m and 0 <= y < n and board[x][y] != '@' and board[x][y] in cur_dict:
-                    DFS(x, y, cur_word, cur_dict)
+            for idx, idy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+                x, y = i + idx, j + idy
+                if 0 <= x < m and 0 <= y < n and board[x][y] in cur_dic:
+                    dfs(x, y, cur_word, cur_dic)
             board[i][j] = tmp
 
         for i in range(m):
             for j in range(n):
                 if board[i][j] in root:
-                    DFS(i, j, '', root)
+                    dfs(i, j, '', root)
 
-        return list(res)
+        return res
 
 
 s = Solution()
-words = ["a","b"]
-board = [["a","b"]]
+words = ["a", "b"]
+board = [["a", "b"]]
 print(s.findWords(board, words))
 
-words = ["oath","pea","eat","rain"]
+words = ["oath", "pea", "eat", "rain"]
 board = [
-          ['o','a','a','n'],
-          ['e','t','a','e'],
-          ['i','h','k','r'],
-          ['i','f','l','v']
-        ]
+    ['o', 'a', 'a', 'n'],
+    ['e', 't', 'a', 'e'],
+    ['i', 'h', 'k', 'r'],
+    ['i', 'f', 'l', 'v']
+]
 print(s.findWords(board, words))
 
 words = ["a"]
-board = [["a","a"]]
+board = [["a", "a"]]
 print(s.findWords(board, words))
-
 
 words = ["aaa"]
-board = [["a","a"]]
+board = [["a", "a"]]
 print(s.findWords(board, words))
 
-words = ["ab","cb","ad","bd","ac","ca","da","bc","db","adcb","dabc","abb","acb"]
-board = [["a","b"],["c","d"]]
+words = ["ab", "cb", "ad", "bd", "ac", "ca", "da", "bc", "db", "adcb", "dabc", "abb", "acb"]
+board = [["a", "b"], ["c", "d"]]
 print(s.findWords(board, words))
