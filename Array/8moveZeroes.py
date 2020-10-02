@@ -69,12 +69,22 @@
 #             j += 1
 
 
-def moveZeroes(nums):
+# def moveZeroes(nums):
+#     i = 0
+#     for j, val in enumerate(nums):
+#         if val:
+#             nums[i], nums[j] = val, nums[i]
+#             i += 1
+
+from typing import List
+
+def moveZeroes(nums: List[int]) -> None:
     i = 0
-    for j, val in enumerate(nums):
-        if val:
-            nums[i], nums[j] = val, nums[i]
+    for j, num in enumerate(nums):
+        if num:
+            nums[i], nums[j] = nums[j], nums[i]
             i += 1
+
 
 
 list1 = [1,1,0,3,0,12]

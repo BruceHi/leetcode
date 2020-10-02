@@ -59,30 +59,54 @@ class Codec:
     #         T
 
     # 使用 DFS
+    # def serialize(self, root):
+    #
+    #     # 前序遍历
+    #     def dfs(root):
+    #         if not root:
+    #             return 'None,'  # 不会有空字符串产生
+    #         return str(root.val) + ',' + dfs(root.left) + dfs(root.right)
+    #     return dfs(root)
+    #
+    #
+    #
+    # def deserialize(self, data):
+    #     def dfs(data):
+    #         val = data.pop(0)
+    #         if val == 'None':
+    #             return
+    #         node = TreeNode(val)
+    #         node.left = dfs(data)
+    #         node.right = dfs(data)
+    #         return node
+    #
+    #     data = data.split(',')
+    #     data.pop()
+    #     return dfs(data)
+
     def serialize(self, root):
-
-        # 前序遍历
-        def dfs(root):
+        def inorder(root):
             if not root:
-                return 'None,'  # 不会有空字符串产生
-            return str(root.val) + ',' + dfs(root.left) + dfs(root.right)
-        return dfs(root)
-
+                return 'None,'
+            return str(root.val) + ',' + inorder(root.left) + inorder(root.right)
+        return inorder(root)
 
     def deserialize(self, data):
 
         def dfs(data):
-            val = data.pop(0)
+            if not data:
+                return
+            val = data.popleft()
             if val == 'None':
                 return
-            node = TreeNode(val)
-            node.left = dfs(data)
-            node.right = dfs(data)
-            return node
+            root = TreeNode(val)
+            root.left = dfs(data)
+            root.right = dfs(data)
+            return root
 
         data = data.split(',')
         data.pop()
-        return dfs(data)
+        return dfs(deque(data))
 
 
 

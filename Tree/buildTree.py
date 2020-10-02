@@ -31,11 +31,21 @@ class Solution:
     #     root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
     #     return root
 
+    # def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+    #     if not inorder:
+    #         return
+    #     root = TreeNode(postorder[-1])
+    #     i = inorder.index(postorder[-1])
+    #     root.left = self.buildTree(inorder[:i], postorder[:i])
+    #     root.right = self.buildTree(inorder[i+1:], postorder[i:-1])
+    #     return root
+
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         if not inorder:
             return
-        root = TreeNode(postorder[-1])
-        i = inorder.index(postorder[-1])
-        root.left = self.buildTree(inorder[:i], postorder[:i])
-        root.right = self.buildTree(inorder[i+1:], postorder[i:-1])
+        val = postorder[-1]
+        root = TreeNode(val)
+        idx = inorder.index(val)
+        root.left = self.buildTree(inorder[:idx], postorder[:idx])
+        root.right = self.buildTree(inorder[idx+1:], postorder[idx:-1])
         return root

@@ -40,21 +40,44 @@ class ListNode:
     #     return True
 
 class Solution:
+    # def isPalindrome(self, head: ListNode) -> bool:
+    #     pre, slow, fast = None, head, head
+    #     while fast and fast.next:
+    #         fast = fast.next.next  # 必须放在前面，因为后面的语句会改变指向。
+    #         slow.next, pre, slow = pre, slow, slow.next
+    #
+    #     left = pre
+    #     right = slow.next if fast else slow
+    #
+    #     while left:
+    #         if left.val != right.val:
+    #             return False
+    #         left, right = left.next, right.next
+    #
+    #     return True
+
+    # # 翻转部分链表
+    # def isPalindrome(self, head: ListNode) -> bool:
+    #     pre, cur = None, head
+    #     fast = head
+    #     while fast and fast.next:
+    #         fast = fast.next.next
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     if fast:  # 奇数链表
+    #         cur = cur.next
+    #     while pre:
+    #         if pre.val != cur.val:
+    #             return False
+    #         pre, cur = pre.next, cur.next
+    #     return True
+
     def isPalindrome(self, head: ListNode) -> bool:
-        pre, slow, fast = None, head, head
-        while fast and fast.next:
-            fast = fast.next.next  # 必须放在前面，因为后面的语句会改变指向。
-            slow.next, pre, slow = pre, slow, slow.next
-
-        left = pre
-        right = slow.next if fast else slow
-
-        while left:
-            if left.val != right.val:
-                return False
-            left, right = left.next, right.next
-
-        return True
+        nums = []
+        while head:
+            nums.append(head.val)
+            head = head.next
+        return nums == nums[::-1]
 
 
 def generate_link(nums: List[int]) -> ListNode:
@@ -66,8 +89,12 @@ def generate_link(nums: List[int]) -> ListNode:
     return head.next
 
 
-x = generate_link([1, 2, 2, 1])
 s = Solution()
+x = generate_link([1, 2, 2, 1])
 print(s.isPalindrome(x))
 
+x = generate_link([1, 2, 3, 2, 1])
+print(s.isPalindrome(x))
 
+x = generate_link([1, 2, 3, 2, 4])
+print(s.isPalindrome(x))

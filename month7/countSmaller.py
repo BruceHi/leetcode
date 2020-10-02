@@ -40,6 +40,20 @@ class Solution:
             res.append(idx)
         return res[::-1]
 
+    # def countSmaller(self, nums: List[int]) -> List[int]:
+    #     if not nums:
+    #         return []
+    #     n = len(nums)
+    #     res = []
+    #     for i, num in enumerate(nums[:-1]):
+    #         count = 0
+    #         for j in range(i, n):
+    #             if nums[j] < num:
+    #                 count += 1
+    #         res.append(count)
+    #     res.append(0)
+    #     return res
+
 
 
 s = Solution()
@@ -48,3 +62,6 @@ print(s.countSmaller(nums))
 
 nums = [2,0,1]
 print(s.countSmaller(nums))  # [2, 0, 0]
+
+nums = []
+print(s.countSmaller(nums))

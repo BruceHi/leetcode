@@ -1,6 +1,7 @@
 # 滑动窗口最大值，需要自己进行移动
 from typing import List
 from collections import deque
+import heapq
 
 
 class Solution:
@@ -84,21 +85,42 @@ class Solution:
     #             res.append(queue[0])
     #     return res
 
-    # 队列里面存的值是索引值，而非数据。上面存的都是数据。
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        if k >= len(nums):
-            return [max(nums)]
-        queue, res = deque(), []
-        for i, v in enumerate(nums):
+    # # 队列里面存的值是索引值，而非数据。上面存的都是数据。太慢了，412ms
+    # def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    #     if k >= len(nums):
+    #         return [max(nums)]
+    #     queue, res = deque(), []
+    #     for i, v in enumerate(nums):
+    #
+    #         if i >= k and queue[0] == i - k:  # 移动窗口（或更新到正常窗口）
+    #             queue.popleft()
+    #
+    #         while queue and v >= nums[queue[-1]]:  # 清理，注意可以包括等号
+    #             queue.pop()
+    #
+    #         queue.append(i)  # 添加元素的索引
+    #
+    #         if i >= k - 1:
+    #             res.append(nums[queue[0]])
+    #     return res
 
-            if i >= k and queue[0] == i - k:  # 移动窗口（或更新到正常窗口）
+    # 更慢
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        if len(nums) <= k:
+            return [max(nums)]
+
+        res, queue = [], deque()
+        for i, num in enumerate(nums):
+            if i >= k and queue[0] == i - k:
                 queue.popleft()
 
-            while queue and v >= nums[queue[-1]]:  # 清理，注意可以包括等号
-                queue.pop()
+            if queue and num > nums[queue[0]]:
+                queue.clear()
+            else:
+                while queue and num >= nums[queue[-1]]:  # 判断 queue 必须要用，因为后面要用到 queue
+                    queue.pop()
 
-            queue.append(i)  # 添加元素的索引
-
+            queue.append(i)
             if i >= k - 1:
                 res.append(nums[queue[0]])
         return res

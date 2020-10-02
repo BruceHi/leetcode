@@ -114,20 +114,20 @@ class Solution:
     #         tmp.left = new
     #     return root
 
-    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
-        cur = root
-        while cur:
-            if cur.val > val:
-                if not cur.left:
-                    cur.left = TreeNode(val)
-                    return root
-                cur = cur.left
-            else:
-                if not cur.right:
-                    cur.right = TreeNode(val)
-                    return root
-                cur = cur.right
-        return TreeNode(val)  # cur 为 None 时，返回这个。
+    # def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    #     cur = root
+    #     while cur:
+    #         if cur.val > val:
+    #             if not cur.left:
+    #                 cur.left = TreeNode(val)
+    #                 return root
+    #             cur = cur.left
+    #         else:
+    #             if not cur.right:
+    #                 cur.right = TreeNode(val)
+    #                 return root
+    #             cur = cur.right
+    #     return TreeNode(val)  # cur 为 None 时，返回这个。
 
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
 
@@ -163,5 +163,12 @@ class Solution:
 
         return root
 
-
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return TreeNode(val)
+        if val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+        if val > root.val:
+            root.right = self.insertIntoBST(root.right, val)
+        return root
 

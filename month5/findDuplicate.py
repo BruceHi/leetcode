@@ -5,11 +5,15 @@ from collections import Counter
 
 
 class Solution:
+
+    # 空间复杂度为 O(n)
     # def findDuplicate(self, nums: List[int]) -> int:
     #     count = Counter(nums)
-    #     for key, val in count.items():
-    #         if val > 1:
-    #             return key
+    #     key, = [key for key in count if count[key] > 1]
+    #     return key
+    #     # for key, val in count.items():
+    #     #     if val > 1:
+    #     #         return key
 
     # def findDuplicate(self, nums: List[int]) -> int:
     #     hash_map = {}
@@ -19,6 +23,7 @@ class Solution:
     #             return num
     #
 
+    # 时间复杂度为 O(n^2)
     # def findDuplicate(self, nums: List[int]) -> int:
     #     n = len(nums)
     #     for i in range(1, n):
@@ -37,16 +42,27 @@ class Solution:
     #         find, slow = nums[find], nums[slow]
     #     return find
 
+    # def findDuplicate(self, nums: List[int]) -> int:
+    #     slow, fast = nums[0], nums[nums[0]]
+    #     while slow != fast:
+    #         slow = nums[slow]
+    #         fast = nums[nums[fast]]
+    #
+    #     find = 0
+    #     while find != slow:
+    #         find = nums[find]
+    #         slow = nums[slow]
+    #     return find
+
     def findDuplicate(self, nums: List[int]) -> int:
         slow, fast = nums[0], nums[nums[0]]
         while slow != fast:
             slow = nums[slow]
             fast = nums[nums[fast]]
 
-        find = 0
+        find = 0  # 从 0 开始
         while find != slow:
-            find = nums[find]
-            slow = nums[slow]
+            find, slow = nums[find], nums[slow]
         return find
 
 
