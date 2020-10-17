@@ -75,17 +75,48 @@ class Solution:
     #     return ''.join(stack)
 
     # 入栈将字符串与前面数字绑定在一起
+    # def decodeString(self, s: str) -> str:
+    #     stack, num, res = [], 0, ''
+    #     for c in s:
+    #         if c.isnumeric():
+    #             num = num * 10 + int(c)  # 不能写成：num *= 10 + int(c)，会将后面视作整体与前面乘
+    #         elif c == '[':
+    #             stack.append([num, res])
+    #             num, res = 0, ''
+    #         elif c == ']':
+    #             count, last_res = stack.pop()
+    #             res = last_res + count * res
+    #         else:
+    #             res += c
+    #     return res
+
+    # def decodeString(self, s: str) -> str:
+    #     stack = []
+    #     for c in s:
+    #         if c != ']':
+    #             stack.append(c)
+    #         else:
+    #             tmp = stack.pop()
+    #             while stack[-1] != '[':
+    #                 tmp = stack.pop() + tmp
+    #             stack.pop()
+    #             num = stack.pop()
+    #             while stack and stack[-1].isdigit():
+    #                 num = stack.pop() + num
+    #             stack.append(tmp * int(num))
+    #     return ''.join(stack)
+
     def decodeString(self, s: str) -> str:
-        stack, num, res = [], 0, ''
+        num, res, stack = 0, '', []
         for c in s:
             if c.isnumeric():
-                num = num * 10 + int(c)  # 不能写成：num *= 10 + int(c)，会将后面视作整体与前面乘
+                num = num * 10 + int(c)
             elif c == '[':
-                stack.append([num, res])
-                num, res = 0, ''
+                stack.append((res, num))
+                res, num = '', 0
             elif c == ']':
-                count, last_res = stack.pop()
-                res = last_res + count * res
+                last_res, count = stack.pop()
+                res = last_res + res * count
             else:
                 res += c
         return res

@@ -11,8 +11,8 @@ class Solution:
     #     res = 0
     #     for i in range(len(nums)):
     #         tmp = 0
-    #         for j in nums[i:]:
-    #             tmp += j
+    #         for num in nums[i:]:
+    #             tmp += num
     #             if tmp == k:
     #                 res += 1
     #     return res
@@ -21,16 +21,26 @@ class Solution:
     #     sum_nums = [sum(nums[i:]) for i in range(len(nums))]
     #     # print(sum_nums)
 
+    # def subarraySum(self, nums: List[int], k: int) -> int:
+    #     nums_times = defaultdict(int)
+    #     nums_times[0] = 1
+    #     pre, res = 0, 0
+    #     for num in nums:
+    #         pre += num
+    #         # if pre_sum - k in nums_times:
+    #         #    res += nums_times[pre_sum - k]
+    #         res += nums_times[pre - k]
+    #         nums_times[pre] += 1
+    #     return res
+
     def subarraySum(self, nums: List[int], k: int) -> int:
-        nums_times = defaultdict(int)
-        nums_times[0] = 1
-        pre, res = 0, 0
+        dic = defaultdict(int)
+        dic[0] = 1
+        res, pre_sum = 0, 0
         for num in nums:
-            pre += num
-            # if pre_sum - k in nums_times:
-            #    res += nums_times[pre_sum - k]
-            res += nums_times[pre - k]
-            nums_times[pre] += 1
+            pre_sum += num
+            res += dic[pre_sum-k]
+            dic[pre_sum] += 1
         return res
 
 

@@ -10,6 +10,7 @@ class TreeNode:
 
 
 class Solution:
+    # f：偷，g：不偷，left, right
     # def rob(self, root: TreeNode) -> int:
     #     f, g = defaultdict(int), defaultdict(int)
     #
@@ -24,7 +25,19 @@ class Solution:
     #     dfs(root)
     #     return max(f[root], g[root])
 
+    # def rob(self, root: TreeNode) -> int:
+    #     def dfs(root):
+    #         if not root:
+    #             return 0, 0
+    #         left_rob, left_not = dfs(root.left)
+    #         right_rob, right_not = dfs(root.right)
+    #         return root.val + left_not + right_not, \
+    #             max(left_rob, left_not) + max(right_rob, right_not)
+    #
+    #     return max(dfs(root))
+
     def rob(self, root: TreeNode) -> int:
+
         def dfs(root):
             if not root:
                 return 0, 0

@@ -3,36 +3,35 @@ from typing import List
 
 
 class Solution:
-    def thirdMax(self, nums: List[int]) -> int:
-        nums = list(set(nums))
-        n = len(nums)
-        if n < 3:
-            return max(nums)
-        self.partition(nums, 0, n-1, 3)
-        return nums[2]
-
-    def partition(self, nums, left, right, k):
-        if left > right:
-            return
-        pivot, i = nums[right], left
-        for j in range(left, right):
-            if nums[j] > pivot:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
-        nums[i], nums[right] = pivot, nums[i]
-        if i+1 < k:
-            return self.partition(nums, i+1, right, k)
-        elif i+1 > k:
-            return self.partition(nums, left, i-1, k)
-        return i
-
-
     # def thirdMax(self, nums: List[int]) -> int:
     #     nums = list(set(nums))
     #     n = len(nums)
     #     if n < 3:
     #         return max(nums)
-    #     return sorted(nums, reverse=True)[2]
+    #     self.partition(nums, 0, n-1, 3)
+    #     return nums[2]
+    #
+    # def partition(self, nums, left, right, k):
+    #     if left > right:
+    #         return
+    #     pivot, i = nums[right], left
+    #     for j in range(left, right):
+    #         if nums[j] > pivot:
+    #             nums[i], nums[j] = nums[j], nums[i]
+    #             i += 1
+    #     nums[i], nums[right] = pivot, nums[i]
+    #     if i+1 < k:
+    #         return self.partition(nums, i+1, right, k)
+    #     elif i+1 > k:
+    #         return self.partition(nums, left, i-1, k)
+    #     return i
+
+
+    def thirdMax(self, nums: List[int]) -> int:
+        nums = set(nums)
+        if len(nums) < 3:
+            return max(nums)
+        return sorted(nums, reverse=True)[2]
 
 
 s = Solution()

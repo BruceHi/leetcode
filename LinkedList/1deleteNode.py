@@ -10,8 +10,8 @@ class ListNode:
 #         node.val, node.next = node.next.val, node.next.next
 
 class Solution:
-    # def deleteNode(self, node):
-    #     node.val, node.next = node.next.val, node.next.next
+    def deleteNode(self, node):
+        node.val, node.next = node.next.val, node.next.next
 
 
 

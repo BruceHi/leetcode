@@ -20,6 +20,20 @@ class Solution:
     #                 count += v1 * v2
     #     return count
 
+    # def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
+    #     dic = defaultdict(int)
+    #     for a in A:
+    #         for b in B:
+    #             dic[a+b] += 1
+    #
+    #     count = 0
+    #     for c in C:
+    #         for d in D:
+    #             count += dic[-(c+d)]
+    #             # if -(c + d) in dic:
+    #             #     count += dic[-(c + d)]
+    #     return count
+
     def fourSumCount(self, A: List[int], B: List[int], C: List[int], D: List[int]) -> int:
         dic = defaultdict(int)
         for a in A:
@@ -29,14 +43,12 @@ class Solution:
         count = 0
         for c in C:
             for d in D:
-                count += dic[-(c+d)]
-                # if -(c + d) in dic:
-                #     count += dic[-(c + d)]
+                count += dic[-(c + d)]
         return count
 
 
 s = Solution()
-A = [ 1, 2]
+A = [1, 2]
 B = [-2,-1]
 C = [-1, 2]
 D = [ 0, 2]

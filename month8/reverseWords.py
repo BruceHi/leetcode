@@ -9,11 +9,14 @@ class Solution:
     #             i = j + 1
     #     return res + s[i:][::-1]
 
-    def reverseWords(self, s: str) -> str:
-        return ' '.join(a[::-1] for a in s.split())
+    # def reverseWords(self, s: str) -> str:
+    #     return ' '.join(a[::-1] for a in s.split())
 
     # def reverseWords(self, s: str) -> str:
     #     return ' '.join(s[::-1].split()[::-1])
+
+    def reverseWords(self, s: str) -> str:
+        return ' '.join(map(lambda x: x[::-1], s.split()))
 
 
 obj = Solution()

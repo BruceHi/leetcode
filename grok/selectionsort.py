@@ -53,14 +53,31 @@ from typing import List
 #         nums[i], nums[idx] = min_num, num
 #     return nums
 
-def select_sort(nums: List[int]) -> List[int]:
-    for i, num in enumerate(nums[:-1]):
+# def select_sort(nums: List[int]) -> List[int]:
+#     for i, num in enumerate(nums[:-1]):
+#         idx = i
+#         for j in range(i+1, len(nums)):
+#             if nums[idx] > nums[j]:
+#                 idx = j
+#         nums[i], nums[idx] = nums[idx], num
+#     return nums
+
+# def select_sort(nums):
+#     n = len(nums)
+#     for i in range(n-1):
+#         min_idx = i
+#         for j in range(i+1, n):
+#             if nums[j] < nums[min_idx]:
+#                 min_idx = j
+#         nums[i], nums[min_idx] = nums[min_idx], nums[i]
+
+def select_sort(nums):
+    for i, num in enumerate(nums):
         idx = i
         for j in range(i+1, len(nums)):
-            if nums[idx] > nums[j]:
+            if nums[j] < nums[idx]:
                 idx = j
         nums[i], nums[idx] = nums[idx], num
-    return nums
 
 
 nums = [7, 5, 9, 6, 2]

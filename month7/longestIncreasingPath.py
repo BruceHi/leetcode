@@ -1,4 +1,5 @@
 # 矩阵中的最长递增路径
+# 有向图中的最长路径
 from typing import List
 from functools import lru_cache
 
@@ -86,27 +87,72 @@ class Solution:
     #
     #     return res
 
+    # # 记忆化
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     if not matrix:
+    #         return 0
+    #     m, n = len(matrix), len(matrix[0])
+    #     memo = [[0] * n for _ in range(m)]
+    #
+    #     def dfs(i, j):  # memo[i][j] 里面存储的就是 dfs(i, j) 的值
+    #         if memo[i][j]:
+    #             return memo[i][j]
+    #         memo[i][j] = 1
+    #         for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 memo[i][j] = max(memo[i][j], dfs(x, y)+1)
+    #         return memo[i][j]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     if not matrix:
+    #         return 0
+    #     m, n = len(matrix), len(matrix[0])
+    #     memo = [[0] * n for _ in range(m)]
+    #
+    #     def dfs(i, j):
+    #         if memo[i][j]:
+    #             return memo[i][j]
+    #         memo[i][j] = 1
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
+    #         return memo[i][j]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         if not matrix:
             return 0
         m, n = len(matrix), len(matrix[0])
-        memo = [[0] * n for _ in range(m)]
+        res = 0
 
-        def dfs(i, j):  # memo[i][j] 里面存储的就是 dfs(i, j) 的值
-            if memo[i][j]:
-                return memo[i][j]
-            memo[i][j] = 1
-            for dx, dy in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+        @lru_cache(None)
+        def dfs(i, j):
+            best = 1
+            nonlocal res
+            for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
                 x, y = i + dx, j + dy
                 if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
-                    memo[i][j] = max(memo[i][j], dfs(x, y)+1)
-            return memo[i][j]
+                    best = max(best, dfs(x, y) + 1)
+            res = max(res, best)
+            return best
 
-        res = 0
         for i in range(m):
             for j in range(n):
-                res = max(res, dfs(i, j))
-
+                dfs(i, j)
         return res
 
 
@@ -133,4 +179,7 @@ nums = [[6,8],[7,2]]
 print(s.longestIncreasingPath(nums))
 
 nums = [[7,7,5],[2,4,6],[8,2,0]]
+print(s.longestIncreasingPath(nums))
+
+nums = []
 print(s.longestIncreasingPath(nums))

@@ -37,7 +37,7 @@ class Solution:
                 stack.append(c)
             else:
                 a, b = stack.pop(), stack.pop()
-                stack.append(str(int(eval(b + c + a))))
+                stack.append(str(int(eval(b + c + a))))  # int 是为了处理 ‘/’ 的。
         return int(stack.pop())
 
 

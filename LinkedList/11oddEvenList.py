@@ -25,6 +25,16 @@ class Solution:
     #             cur = None
     #     return head
 
+    # def oddEvenList(self, head: ListNode) -> ListNode:
+    #     if not head:
+    #         return head
+    #     odd, even, even_head = head, head.next, head.next
+    #     while even and even.next:
+    #         odd.next, even.next = even.next, even.next.next
+    #         odd, even = odd.next, even.next
+    #     odd.next = even_head
+    #     return head
+
     def oddEvenList(self, head: ListNode) -> ListNode:
         if not head:
             return head
@@ -34,6 +44,7 @@ class Solution:
             odd, even = odd.next, even.next
         odd.next = even_head
         return head
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

@@ -84,32 +84,68 @@ class Solution:
     #     return res
 
     # 使用位运算
+    # def totalNQueens(self, n: int) -> int:
+    #
+    #     count = 0
+    #
+    #     def DFS(row, col, pie, na):
+    #         if row == n:
+    #             nonlocal count
+    #             count += 1
+    #             return
+    #
+    #         # 与号前面部分是让 1 的位置是变成可以放 Q 的。后面部分是为了让 32 位左边部分的全部变成 0.
+    #         # 结果：得到当前所有空位
+    #         bits = ~ (col | pie | na) & (1 << n) - 1
+    #         # 相当于从右到左开始循环
+    #         while bits:
+    #             p = bits & -bits  # 得到最低位的 1
+    #             DFS(row+1, col | p, (pie | p) << 1, (na | p) >> 1)  # 也是生产新对象，结束调用销毁。
+    #             bits &= bits - 1  # 抹掉最低位的 1
+    #
+    #     DFS(0, 0, 0, 0)
+    #     return count
+    #
+
+# s = Solution()
+# n = 4
+# print(s.solveNQueens(n))
+
+
+    # def totalNQueens(self, n: int) -> int:
+    #     count = 0
+    #
+    #     def dfs(x, col, xy_sum, xy_diff):
+    #         if len(col) == n:
+    #             nonlocal count
+    #             count += 1
+    #             return
+    #         i = x + 1
+    #         for j in range(n):
+    #             if j not in col and i + j not in xy_sum and i - j not in xy_diff:
+    #                 dfs(i, col + [j], xy_sum + [i+j], xy_diff + [i-j])
+    #
+    #     for y in range(n):
+    #         dfs(0, [y], [y], [-y])
+    #     return count
+
+
     def totalNQueens(self, n: int) -> int:
+        res = 0
 
-        count = 0
-
-        def DFS(row, col, pie, na):
-            if row == n:
-                nonlocal count
-                count += 1
+        def dfs(queens, xy_sum, xy_diff):
+            p = len(queens)
+            if p == n:
+                nonlocal res
+                res += 1
                 return
+            for q in range(n):
+                if q not in queens and p + q not in xy_sum and p - q not in xy_diff:
+                    dfs(queens + [q], xy_sum + [p+q], xy_diff + [p-q])
 
-            # 与号前面部分是让 1 的位置是变成可以放 Q 的。后面部分是为了让 32 位左边部分的全部变成 0.
-            # 结果：得到当前所有空位
-            bits = ~ (col | pie | na) & (1 << n) - 1
-            # 相当于从右到左开始循环
-            while bits:
-                p = bits & -bits  # 得到最低位的 1
-                DFS(row+1, col | p, (pie | p) << 1, (na | p) >> 1)  # 也是生产新对象，结束调用销毁。
-                bits &= bits - 1  # 抹掉最低位的 1
+        dfs([], [], [])
+        return res
 
-        DFS(0, 0, 0, 0)
-        return count
- 
-
-s = Solution()
-n = 4
-print(s.solveNQueens(n))
 
 s = Solution()
 n = 4

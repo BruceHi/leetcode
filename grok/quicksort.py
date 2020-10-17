@@ -128,6 +128,7 @@ def quick_sort(nums: List[int], left=None, right=None) -> List[int]:
         quick_sort(nums, p+1, right)
     return nums
 
+
 def partition(nums: List[int], left: int, right: int) -> int:
     pivot, i = nums[right], left
     for j in range(left, right):

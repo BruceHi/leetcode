@@ -43,17 +43,17 @@ from collections import Counter
 #
 #     return nums1[:k]
 
-def intersect(nums1, nums2):
-    if len(nums1) > len(nums2):
-        nums1, nums2 = nums2, nums1
-    dic = Counter(nums1)  # 统计词频
-    res = []
-    for i in nums2:
-        if dic.get(i):
-            dic[i] -= 1
-            res.append(i)
-
-    return res
+# def intersect(nums1, nums2):
+#     if len(nums1) > len(nums2):
+#         nums1, nums2 = nums2, nums1
+#     dic = Counter(nums1)  # 统计词频
+#     res = []
+#     for i in nums2:
+#         if dic.get(i):
+#             dic[i] -= 1
+#             res.append(i)
+#
+#     return res
 
 
 # 排序
@@ -84,18 +84,22 @@ def intersect(nums1, nums2):
 #     return list((Counter(nums1) & Counter(nums2)).elements())
 
 
+# def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+#     inter = set(nums1) & set(nums2)
+#     res = []
+#     for i in inter:
+#         res += [i] * min(nums1.count(i), nums2.count(i))
+#     return res
+
 def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
-    inter = set(nums1) & set(nums2)
-    res = []
-    for i in inter:
-        res += [i] * min(nums1.count(i), nums2.count(i))
-    return res
+    count1, count2 = Counter(nums1), Counter(nums2)
+    return list((count1 & count2).elements())
 
 
-list1 = [1,2,2,1]
-list2 = [2,2]
-print(intersect(list1, list2))
+nums1 = [1,2,2,1]
+nums2 = [2,2]
+print(intersect(nums1, nums2))
 
-list1 = [4,9,5]
-list2 = [9,4,9,8,4]
-print(intersect(list1, list2))
+nums1 = [4,9,5]
+nums2 = [9,4,9,8,4]
+print(intersect(nums1, nums2))

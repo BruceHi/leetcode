@@ -24,17 +24,28 @@ from typing import List
 #             break
 #     return nums
 
-def bubule_sort(nums: List[int]) -> List[int]:
+# def bubule_sort(nums: List[int]) -> List[int]:
+#     n = len(nums)
+#     for j in range(n-1):
+#         swap = False
+#         for i in range(n-1-j):
+#             if nums[i] > nums[i+1]:
+#                 nums[i], nums[i+1] = nums[i+1], nums[i]
+#                 swap = True
+#         if not swap:
+#             break
+#     return nums
+
+def bubule_sort(nums):
     n = len(nums)
-    for j in range(n-1):
+    for i in range(n-1):
         swap = False
-        for i in range(n-1-j):
-            if nums[i] > nums[i+1]:
-                nums[i], nums[i+1] = nums[i+1], nums[i]
+        for j in range(n-i-1):
+            if nums[j] > nums[j+1]:
+                nums[j], nums[j+1] = nums[j+1], nums[j]
                 swap = True
         if not swap:
             break
-    return nums
 
 
 nums = [7, 5, 9, 6, 2]

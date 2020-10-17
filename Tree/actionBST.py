@@ -128,40 +128,40 @@ class Solution:
     #                 return root
     #             cur = cur.right
     #     return TreeNode(val)  # cur 为 None 时，返回这个。
-
-    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
-
-        # 返回前驱结点和后继结点的值
-        def successor(root):
-            cur = root.right
-            while cur.left:
-                cur = cur.left
-            return cur.val
-
-        def predecessor(root):
-            cur = root.left
-            while cur.right:
-                cur = cur.right
-            return cur.val
-
-        if not root:
-            return
-
-        if key < root.val:
-            root.left = self.deleteNode(root.left, key)
-        elif key > root.val:
-            root.right = self.deleteNode(root.right, key)
-        else:
-            if not root.right and not root.left:
-                root = None
-            elif root.right:
-                root.val = successor(root)
-                root.right = self.deleteNode(root.right, root.val)
-            else:
-                root.val = predecessor(root)
-                root.left = self.deleteNode(root.left, root.val)
-
-        return root
+    #
+    # def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+    #
+    #     # 返回前驱结点和后继结点的值
+    #     def successor(root):
+    #         cur = root.right
+    #         while cur.left:
+    #             cur = cur.left
+    #         return cur.val
+    #
+    #     def predecessor(root):
+    #         cur = root.left
+    #         while cur.right:
+    #             cur = cur.right
+    #         return cur.val
+    #
+    #     if not root:
+    #         return
+    #
+    #     if key < root.val:
+    #         root.left = self.deleteNode(root.left, key)
+    #     elif key > root.val:
+    #         root.right = self.deleteNode(root.right, key)
+    #     else:
+    #         if not root.right and not root.left:
+    #             root = None
+    #         elif root.right:
+    #             root.val = successor(root)
+    #             root.right = self.deleteNode(root.right, root.val)
+    #         else:
+    #             root.val = predecessor(root)
+    #             root.left = self.deleteNode(root.left, root.val)
+    #
+    #     return root
 
     def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
         if not root:
@@ -172,3 +172,37 @@ class Solution:
             root.right = self.insertIntoBST(root.right, val)
         return root
 
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+
+        def predecessor(root):
+            cur = root.left
+            while cur.right:
+                cur = cur.right
+            return cur.val
+
+        def successor(root):
+            cur = root.right
+            while cur.left:
+                cur = cur.left
+            return cur.val
+
+        def delete(root, key):
+            if not root:
+                return
+
+            if key < root.val:
+                root.left = self.deleteNode(root.left, key)
+            elif key > root.val:
+                root.right = self.deleteNode(root.right, key)
+            else:
+                if not root.left and not root.right:
+                    root = None
+                elif root.right:
+                    root.val = successor(root)
+                    root.right = self.deleteNode(root.right, root.val)
+                else:
+                    root.val = predecessor(root)
+                    root.left = self.deleteNode(root.left, root.val)
+            return root
+
+        return delete(root, key)

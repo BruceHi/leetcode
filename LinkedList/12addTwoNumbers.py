@@ -1,4 +1,5 @@
 # 两数相加
+# 与 415 题相似
 from typing import List
 
 
@@ -100,6 +101,18 @@ class Solution:
     #         l2 = l2.next if l2 else None
     #     return dummy.next
 
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     cur = dummy = ListNode(0)
+    #     s = 0  # 每一轮循环过后 s 都是进位
+    #     while l1 or l2 or s:
+    #         s += (l1.val if l1 else 0) + (l2.val if l2 else 0)  # 和
+    #         cur.next = ListNode(s % 10)
+    #         cur = cur.next
+    #         s //= 10
+    #         l1 = l1.next if l1 else None
+    #         l2 = l2.next if l2 else None
+    #     return dummy.next
+
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         cur = dummy = ListNode(0)
         s = 0
@@ -111,6 +124,8 @@ class Solution:
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
         return dummy.next
+
+
 
 
 def generate_link(nums: List[int]) -> ListNode:
