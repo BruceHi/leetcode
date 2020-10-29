@@ -163,14 +163,14 @@ class Solution:
     #
     #     return root
 
-    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
-        if not root:
-            return TreeNode(val)
-        if val < root.val:
-            root.left = self.insertIntoBST(root.left, val)
-        if val > root.val:
-            root.right = self.insertIntoBST(root.right, val)
-        return root
+    # def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    #     if not root:
+    #         return TreeNode(val)
+    #     if val < root.val:
+    #         root.left = self.insertIntoBST(root.left, val)
+    #     if val > root.val:
+    #         root.right = self.insertIntoBST(root.right, val)
+    #     return root
 
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
 
@@ -206,3 +206,28 @@ class Solution:
             return root
 
         return delete(root, key)
+
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return
+        if root.val == val:
+            return root
+        if val < root.val:
+            return self.searchBST(root.left, val)
+        return self.searchBST(root.right, val)
+
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return TreeNode(val)
+        if val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+        else:
+            root.right = self.insertIntoBST(root.right, val)
+        return root
+
+
+
+
+
+
+

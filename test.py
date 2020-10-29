@@ -47,3 +47,5 @@ print(a)
 import random
 print(random.randrange(1, 5))
 
+a = [1, 2, 2, 3]
+print(a.index(2))

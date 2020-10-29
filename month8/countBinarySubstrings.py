@@ -91,18 +91,32 @@ class Solution:
     #     res += min(count, len(s)-i)
     #     return res
 
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     nums = []
+    #     i = 0
+    #     for j, c in enumerate(s):
+    #         if c != s[i]:
+    #             nums.append(j-i)
+    #             i = j
+    #     nums.append(len(s) - i)
+    #     res = 0
+    #     for i in range(1, len(nums)):
+    #         res += min(nums[i-1], nums[i])
+    #     return res
+
     def countBinarySubstrings(self, s: str) -> int:
-        nums = []
+        count = 0
+        res = 0
         i = 0
         for j, c in enumerate(s):
             if c != s[i]:
-                nums.append(j-i)
+                res += min(count, j - i)
+                count = j - i
                 i = j
-        nums.append(len(s) - i)
-        res = 0
-        for i in range(1, len(nums)):
-            res += min(nums[i-1], nums[i])
+        res += min(count, len(s)-i)
         return res
+
+
 
 
 obj = Solution()

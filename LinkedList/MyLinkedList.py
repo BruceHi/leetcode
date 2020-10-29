@@ -222,6 +222,81 @@
 # linkedList.deleteAtIndex(1)  # //现在链表是1-> 3
 # print(linkedList.get(1))            # 返回3
 
+# 双链表
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.prev, self.next = None, None
+#
+#
+# class MyLinkedList:
+#
+#     def __init__(self):
+#         self.size = 0
+#         self.head, self.tail = ListNode(0), ListNode(0)
+#         self.head.next, self.tail.prev = self.tail, self.head
+#
+#     def get(self, index: int) -> int:
+#         if index < 0 or index >= self.size:
+#             return -1
+#
+#         if index + 1 < self.size - index:
+#             cur = self.head
+#             for _ in range(index+1):
+#                 cur = cur.next
+#         else:
+#             cur = self.tail
+#             for _ in range(self.size - index):
+#                 cur = cur.prev
+#
+#         return cur.val
+#
+#     def addAtHead(self, val: int) -> None:
+#         return self.addAtIndex(0, val)
+#
+#     def addAtTail(self, val: int) -> None:
+#         return self.addAtIndex(self.size, val)
+#
+#     def addAtIndex(self, index: int, val: int) -> None:
+#         if index > self.size:
+#             return
+#         if index < 0:
+#             index = 0
+#
+#         if index < self.size - index:
+#             pre = self.head
+#             for _ in range(index):
+#                 pre = pre.next
+#             suc = pre.next
+#         else:
+#             suc = self.tail
+#             for _ in range(self.size-index):
+#                 suc = suc.prev
+#             pre = suc.prev
+#
+#         self.size += 1
+#         new = ListNode(val)
+#         new.prev, new.next = pre, suc
+#         pre.next, suc.prev = new, new
+#
+#     def deleteAtIndex(self, index: int) -> None:
+#         if index < 0 or index >= self.size:
+#             return
+#
+#         if index < self.size - index - 1:
+#             pre = self.head
+#             for _ in range(index):
+#                 pre = pre.next
+#             suc = pre.next.next
+#         else:
+#             suc = self.tail
+#             for _ in range(self.size-index-1):
+#                 suc = suc.prev
+#             pre = suc.prev.prev
+#
+#         self.size -= 1
+#         pre.next, suc.prev = suc, pre
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -231,32 +306,47 @@ class ListNode:
 class MyLinkedList:
 
     def __init__(self):
+        """
+        Initialize your data structure here.
+        """
         self.size = 0
         self.head, self.tail = ListNode(0), ListNode(0)
         self.head.next, self.tail.prev = self.tail, self.head
 
     def get(self, index: int) -> int:
+        """
+        Get the value of the index-th node in the linked list. If the index is invalid, return -1.
+        """
         if index < 0 or index >= self.size:
             return -1
 
-        if index + 1 < self.size - index:
+        if index+1 < self.size-index:
             cur = self.head
             for _ in range(index+1):
                 cur = cur.next
         else:
             cur = self.tail
-            for _ in range(self.size - index):
+            for _ in range(self.size-index):
                 cur = cur.prev
 
         return cur.val
 
     def addAtHead(self, val: int) -> None:
-        return self.addAtIndex(0, val)
+        """
+        Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
+        """
+        self.addAtIndex(0, val)
 
     def addAtTail(self, val: int) -> None:
-        return self.addAtIndex(self.size, val)
+        """
+        Append a node of value val to the last element of the linked list.
+        """
+        self.addAtIndex(self.size, val)
 
     def addAtIndex(self, index: int, val: int) -> None:
+        """
+        Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
+        """
         if index > self.size:
             return
         if index < 0:
@@ -279,10 +369,13 @@ class MyLinkedList:
         pre.next, suc.prev = new, new
 
     def deleteAtIndex(self, index: int) -> None:
+        """
+        Delete the index-th node in the linked list, if the index is valid.
+        """
         if index < 0 or index >= self.size:
             return
 
-        if index < self.size - index - 1:
+        if index < self.size-index-1:
             pre = self.head
             for _ in range(index):
                 pre = pre.next
@@ -295,3 +388,12 @@ class MyLinkedList:
 
         self.size -= 1
         pre.next, suc.prev = suc, pre
+
+
+linkedList = MyLinkedList()
+linkedList.addAtHead(1)
+linkedList.addAtTail(3)
+linkedList.addAtIndex(1, 2)   # //链表变为1-> 2-> 3
+print(linkedList.get(1))     # //返回2
+linkedList.deleteAtIndex(1)  # //现在链表是1-> 3
+print(linkedList.get(1))

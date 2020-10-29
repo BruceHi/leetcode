@@ -11,14 +11,27 @@ class Solution:
     #         dp_i0_pre = dp_i0_old
     #     return dp_i0
 
-    # 有手续费
+    # # 有手续费
+    # def maxProfit(self, prices, fee):
+    #     dp_i0, dp_i1 = 0, float('-inf')
+    #     for price in prices:
+    #         dp_i0_old = dp_i0
+    #         dp_i0 = max(dp_i0, dp_i1+price)
+    #         dp_i1 = max(dp_i1, dp_i0_old-price-fee)
+    #     return dp_i0
+
+    # 有手续费 i0：第 i 天没有，i1 第 i 天持有。买入的时候扣手续费。
+    # def maxProfit(self, prices, fee):
+    #     dp_i0, dp_i1 = 0, float('-inf')
+    #     for price in prices:
+    #         dp_i0, dp_i1 = max(dp_i0, dp_i1+price), max(dp_i1, dp_i0-price-fee)
+    #     return dp_i0
+
     def maxProfit(self, prices, fee):
-        dp_i0, dp_i1 = 0, float('-inf')
+        cash, hold = 0, float('-inf')
         for price in prices:
-            dp_i0_old = dp_i0
-            dp_i0 = max(dp_i0, dp_i1+price)
-            dp_i1 = max(dp_i1, dp_i0_old-price-fee)
-        return dp_i0
+            cash, hold = max(cash, hold+price), max(hold, cash-price-fee)
+        return cash
 
 
 s = Solution()

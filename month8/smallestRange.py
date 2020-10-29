@@ -43,22 +43,39 @@ class Solution:
     #     return res
 
     # 再优化，比之前快了大约 40倍。
+    # def smallestRange(self, nums: List[List[int]]) -> List[int]:
+    #     queue = [(num[0], i, 0) for i, num in enumerate(nums)]
+    #     heapq.heapify(queue)
+    #     start, end = float('-inf'), float('inf')
+    #     max_val = max(queue)[0]
+    #
+    #     while True:
+    #         min_val, row, idx = heapq.heappop(queue)  # 最小值
+    #         if max_val - min_val < end - start:
+    #             start, end = min_val, max_val
+    #         if idx + 1 == len(nums[row]):
+    #             break
+    #         max_val = max(max_val, nums[row][idx+1])  # 观察是否更新最小值
+    #         heapq.heappush(queue, (nums[row][idx+1], row, idx+1))
+    #
+    #     return [start, end]
+
     def smallestRange(self, nums: List[List[int]]) -> List[int]:
-        queue = [(num[0], i, 0) for i, num in enumerate(nums)]
+        queue = [(x[0], i, 0) for i, x in enumerate(nums)]  # 横纵坐标都要填写
         heapq.heapify(queue)
         start, end = float('-inf'), float('inf')
         max_val = max(queue)[0]
 
-        while True:
-            min_val, row, idx = heapq.heappop(queue)
+        while queue:
+            min_val, i, j = heapq.heappop(queue)
             if max_val - min_val < end - start:
                 start, end = min_val, max_val
-            if idx + 1 == len(nums[row]):
+            if j + 1 == len(nums[i]):
                 break
-            max_val = max(max_val, nums[row][idx+1])
-            heapq.heappush(queue, (nums[row][idx+1], row, idx+1))
-
+            max_val = max(max_val, nums[i][j+1])
+            heapq.heappush(queue, (nums[i][j+1], i, j+1))
         return [start, end]
+
 
 
 s = Solution()
