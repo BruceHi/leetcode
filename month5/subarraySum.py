@@ -6,7 +6,7 @@ from collections import defaultdict
 
 class Solution:
 
-    # # 暴力法,超出时间限制
+    # # # 暴力法,超出时间限制
     # def subarraySum(self, nums: List[int], k: int) -> int:
     #     res = 0
     #     for i in range(len(nums)):
@@ -14,6 +14,7 @@ class Solution:
     #         for num in nums[i:]:
     #             tmp += num
     #             if tmp == k:
+    #                 print(i, num)
     #                 res += 1
     #     return res
 
@@ -33,14 +34,24 @@ class Solution:
     #         nums_times[pre] += 1
     #     return res
 
+    # def subarraySum(self, nums: List[int], k: int) -> int:
+    #     dic = defaultdict(int)
+    #     dic[0] = 1
+    #     res, pre_sum = 0, 0
+    #     for num in nums:
+    #         pre_sum += num
+    #         res += dic[pre_sum-k]
+    #         dic[pre_sum] += 1
+    #     return res
+
     def subarraySum(self, nums: List[int], k: int) -> int:
         dic = defaultdict(int)
         dic[0] = 1
-        res, pre_sum = 0, 0
+        res, pre = 0, 0
         for num in nums:
-            pre_sum += num
-            res += dic[pre_sum-k]
-            dic[pre_sum] += 1
+            pre += num
+            res += dic[pre-k]
+            dic[pre] += 1
         return res
 
 
@@ -57,4 +68,8 @@ print(s.subarraySum(nums, k))
 
 nums = [1, 1, 0, 1, 2]
 k = 2
-print(s.subarraySum(nums, k))
+print(s.subarraySum(nums, k))  # 4：[1, 1], [1, 1, 0], [1, 0, 1], [2]
+
+nums = [1, 1, 1, 1, 2]
+k = 2
+print(s.subarraySum(nums, k))  # 4: [1, 1], [1, 1], [1, 1], [2]

@@ -26,9 +26,6 @@ class Solution:
 
     # 开头和末尾无法做为山顶，但可以做为山脚。
     def longestMountain(self, A: List[int]) -> int:
-        if not A:
-            return 0
-
         n = len(A)
         left = [0] * n
         for i in range(1, n):
@@ -43,7 +40,7 @@ class Solution:
         res = 0
         for i in range(n):
             if left[i] and right[i]:
-                res = max(res, left[i] + right[i] + 1)
+                res = max(res, left[i] + right[i] + 1)  # 末尾莫忘加 1.
         return res
 
 

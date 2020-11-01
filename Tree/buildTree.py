@@ -40,12 +40,32 @@ class Solution:
     #     root.right = self.buildTree(inorder[i+1:], postorder[i:-1])
     #     return root
 
+    # def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+    #     if not inorder:
+    #         return
+    #     val = postorder[-1]
+    #     root = TreeNode(val)
+    #     idx = inorder.index(val)
+    #     root.left = self.buildTree(inorder[:idx], postorder[:idx])
+    #     root.right = self.buildTree(inorder[idx+1:], postorder[idx:-1])
+    #     return root
+
+    # def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+    #     if not preorder:
+    #         return
+    #     val = preorder[0]
+    #     root = TreeNode(val)
+    #     i = inorder.index(val)
+    #     root.left = self.buildTree(preorder[1:i+1], inorder[:i])
+    #     root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
+    #     return root
+
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         if not inorder:
             return
         val = postorder[-1]
         root = TreeNode(val)
-        idx = inorder.index(val)
-        root.left = self.buildTree(inorder[:idx], postorder[:idx])
-        root.right = self.buildTree(inorder[idx+1:], postorder[idx:-1])
+        i = inorder.index(val)
+        root.left = self.buildTree(inorder[:i], postorder[:i])
+        root.right = self.buildTree(inorder[i+1:], postorder[i:-1])
         return root

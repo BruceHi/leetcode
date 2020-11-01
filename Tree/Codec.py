@@ -108,7 +108,6 @@ class Codec:
     #     data.pop()
     #     return dfs(deque(data))
 
-
     def serialize(self, root):
         def inorder(root):
             if not root:
@@ -131,4 +130,3 @@ class Codec:
 
         data = data.split(',')
         return dfs(deque(data))
-

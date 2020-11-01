@@ -64,33 +64,63 @@ from typing import List
 #                     return False
 #         return True
 
+# class UnionFind:
+#     def __init__(self):
+#         self.parent = list(range(26))
+#
+#     def find(self, i):
+#         if i != self.parent[i]:
+#             self.parent[i] = self.find(self.parent[i])
+#         return self.parent[i]
+#
+#     def union(self, x, y):
+#         self.parent[self.find(x)] = self.find(y)
+#
+#
+# class Solution:
+#     def equationsPossible(self, equations: List[str]) -> bool:
+#         uf = UnionFind()
+#         idx = ord('a')
+#
+#         for s in equations:
+#             if s[1] == '=':
+#                 uf.union(ord(s[0]) - idx, ord(s[3]) - idx)
+#
+#         for s in equations:
+#             if s[1] == '!':
+#                 if uf.find(ord(s[0]) - idx) == uf.find(ord(s[3]) - idx):
+#                     return False
+#
+#         return True
+
 class UnionFind:
     def __init__(self):
         self.parent = list(range(26))
 
-    def find(self, i):
-        if i != self.parent[i]:
-            self.parent[i] = self.find(self.parent[i])
-        return self.parent[i]
+    def find(self, x):
+        if x != self.parent[x]:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
-    def union(self, x, y):
-        self.parent[self.find(x)] = self.find(y)
+    def union(self, i, j):
+        x, y = self.find(i), self.find(j)
+        if x != y:
+            self.parent[x] = y
 
 
 class Solution:
     def equationsPossible(self, equations: List[str]) -> bool:
         uf = UnionFind()
-        idx = ord('a')
+        i = ord('a')
 
-        for s in equations:
-            if s[1] == '=':
-                uf.union(ord(s[0]) - idx, ord(s[3]) - idx)
+        for e in equations:
+            if e[1] == '=':
+                uf.union(ord(e[0]) - i, ord(e[3]) - i)
 
-        for s in equations:
-            if s[1] == '!':
-                if uf.find(ord(s[0]) - idx) == uf.find(ord(s[3]) - idx):
+        for e in equations:
+            if e[1] == '!':
+                if uf.find(ord(e[0]) - i) == uf.find(ord(e[3]) - i):
                     return False
-
         return True
 
 
