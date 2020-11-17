@@ -3,12 +3,17 @@ from typing import List
 
 
 class Solution:
+    # def findMagicIndex(self, nums: List[int]) -> int:
+    #     for i, num in enumerate(nums):
+    #         if i == num:
+    #             return i
+    #     return -1
+
     def findMagicIndex(self, nums: List[int]) -> int:
         for i, num in enumerate(nums):
             if i == num:
                 return i
         return -1
-
 
 s = Solution()
 nums = [0, 2, 3, 4, 5]

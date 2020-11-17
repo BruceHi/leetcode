@@ -44,6 +44,24 @@ class Solution:
                 res[i] = count[num-1]
         return res
 
+    # 时间复杂度为 O(nlogn)
+    # def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+    #     count = Counter(nums)
+    #     arrs = list(count)
+    #     arrs.sort()
+    #
+    #     dic = {}
+    #     total = 0
+    #     for num in arrs:
+    #         dic[num] = total
+    #         total += count[num]
+    #
+    #     res = []
+    #     for num in nums:
+    #         res.append(dic[num])
+    #     return res
+
+
 
 s = Solution()
 nums = [8,1,2,2,3]

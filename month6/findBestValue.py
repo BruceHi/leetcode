@@ -58,19 +58,34 @@ class Solution:
     #             res = num
     #     return res
 
+    # def findBestValue(self, arr: List[int], target: int) -> int:
+    #     n = len(arr)
+    #     arr.sort()
+    #     prefix = [0]  # 前缀和，并在前面补 [0]
+    #     for num in arr:
+    #         prefix.append(prefix[-1] + num)
+    #
+    #     res, diff = 0, float('inf')
+    #     for num in range(0, arr[-1]+1):  # 枚举
+    #         idx = bisect_left(arr, num)
+    #         cur = prefix[idx] + (n-idx) * num
+    #         if abs(cur - target) < diff:
+    #             res, diff = num, abs(cur - target)
+    #     return res
+
     def findBestValue(self, arr: List[int], target: int) -> int:
         n = len(arr)
         arr.sort()
-        prefix = [0]  # 前缀和，并在前面补 [0]
+        pre = [0]
         for num in arr:
-            prefix.append(prefix[-1] + num)
+            pre.append(pre[-1] + num)
 
         res, diff = 0, float('inf')
-        for num in range(0, arr[-1]+1):  # 枚举
-            idx = bisect_left(arr, num)
-            cur = prefix[idx] + (n-idx) * num
-            if abs(cur - target) < diff:
-                res, diff = num, abs(cur - target)
+        for num in range(arr[-1] + 1):
+            i = bisect_left(arr, num)
+            cur = abs(pre[i] + num * (n - i) - target)
+            if cur < diff:
+                res, diff = num, cur
         return res
 
 

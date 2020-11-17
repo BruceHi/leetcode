@@ -7,13 +7,15 @@ class Solution:
     #         n = n & n-1
     #     return count
 
-    def hammingWeight(self, n: int) -> int:
-        count = 0
-        while n:
-            n &= n-1
-            count += 1
-        return count
+    # def hammingWeight(self, n: int) -> int:
+    #     count = 0
+    #     while n:
+    #         n &= n-1
+    #         count += 1
+    #     return count
 
+    def hammingWeight(self, n: int) -> int:
+        return bin(n).count('1')
 
 
 s = Solution()
@@ -26,3 +28,14 @@ print(s.hammingWeight(a))
 a = 0b11111111111111111111111111111101
 print(s.hammingWeight(a))
 
+a = 0o7
+print(bin(a))
+print(type(a))
+
+a = 0o7
+print(int(a))
+print(type(a))
+
+a = 0b10101
+print(int(a))
+print(type(a))

@@ -3,8 +3,16 @@ from typing import List
 
 
 class Solution:
+    # def rotate(self, matrix: List[List[int]]) -> None:
+    #     # matrix.reverse()
+    #     matrix[:] = map(list, zip(*matrix[::-1]))
+
     def rotate(self, matrix: List[List[int]]) -> None:
-        # matrix.reverse()
+        # matrix[::] = zip(*matrix[::-1])
+        a = list(zip(matrix[::-1]))  # 结果：[([7, 8, 9],), ([4, 5, 6],), ([1, 2, 3],)]
+        print(a)
+        b = list(zip(*matrix[::-1]))  # 结果：[(7, 4, 1), (8, 5, 2), (9, 6, 3)]
+        print(b)
         matrix[:] = map(list, zip(*matrix[::-1]))
 
 
@@ -26,7 +34,11 @@ matrix = [
 s.rotate(matrix)
 print(matrix)
 
-a = {1, 2, 4}
-a += {5, 6, 7}
-a += 8, 9
+# a = {1, 2, 4}
+# # a += {5, 6, 7}
+# a += 8, 9
+# print(a)
+
+a = map(list, ['1', [2], '0'])
 print(a)
+print(list(a))

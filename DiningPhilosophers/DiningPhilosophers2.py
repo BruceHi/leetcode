@@ -36,6 +36,7 @@ def putRightFork(i):
     print(f'{i}放下左边叉子')
     time.sleep(0.2)
 
+# https://leetcode-cn.com/problems/the-dining-philosophers/solution/pythonliang-chong-jie-fa-by-yuhan-huang/
 class DiningPhilosophers:
 
     # def __init__(self):

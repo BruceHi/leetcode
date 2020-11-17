@@ -12,9 +12,13 @@ class Solution:
     #             res.append(True)
     #     return res
 
+    # def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+    #     max_val = max(candies)
+    #     return [max_val - c <= extraCandies for c in candies]
+
     def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
-        max_val = max(candies)
-        return [max_val - c <= extraCandies for c in candies]
+        max_v = max(candies)
+        return [x+extraCandies >= max_v for x in candies]
 
 
 s = Solution()

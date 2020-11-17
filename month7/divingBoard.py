@@ -14,6 +14,13 @@ class Solution:
     #     return list(set(res1+res2))
 
     # 通过
+    # def divingBoard(self, shorter: int, longer: int, k: int) -> List[int]:
+    #     if not k:
+    #         return []
+    #     if shorter == longer:
+    #         return [shorter*k]
+    #     return list(range(shorter*k, longer*k+1, longer-shorter))
+
     def divingBoard(self, shorter: int, longer: int, k: int) -> List[int]:
         if not k:
             return []
@@ -31,4 +38,9 @@ print(s.divingBoard(shorter, longer, k))
 shorter = 2
 longer = 2
 k = 3
+print(s.divingBoard(shorter, longer, k))
+
+shorter = 1
+longer = 1
+k = 0
 print(s.divingBoard(shorter, longer, k))

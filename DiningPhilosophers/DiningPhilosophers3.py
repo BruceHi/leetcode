@@ -29,6 +29,7 @@ def putRightFork():
     print('放下左边叉子')
 
 
+
 class DiningPhilosophers:
 
     def __init__(self, philosopher=None):

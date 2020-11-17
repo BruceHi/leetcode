@@ -28,3 +28,33 @@ print(s.split(','))
 
 s = '1,2,None,None,3,4,None,None,5,None,None,'
 print(s.split(','))
+
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+print(list(zip(*matrix)))
+
+print(list(map(list, zip(*matrix))))
+
+print(list(map(list, zip(*matrix)))[::-1])
+
+print(list(zip(*matrix))[::-1])
+
+a = '123'
+
+print(type(a[1:]))
+
+a = []
+print(a[0:0])
+
+# a[:] = 1, 2
+
+a[0:3] = [2]
+print(a)
+
+# 赋值要可迭代对象
+a[0:0] = [3]
+
+a[2:2] = [4]
+print(a)
+a.insert(10, [45])
+print(a)
+

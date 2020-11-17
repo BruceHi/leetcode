@@ -37,17 +37,45 @@ class Solution:
     #     return dummy.next
 
     # 构建哈希表，在原有链表上操作
+    # def removeDuplicateNodes(self, head: ListNode) -> ListNode:
+    #     if not head:
+    #         return head
+    #     record, pre = {head.val}, head
+    #     while pre.next:  # 遍历前驱结点
+    #         cur = pre.next
+    #         if cur.val not in record:
+    #             record.add(cur.val)
+    #             pre = pre.next
+    #         else:
+    #             pre.next = cur.next
+    #     return head
+
+    # def removeDuplicateNodes(self, head: ListNode) -> ListNode:
+    #     if not head:
+    #         return
+    #     pre = dummy = ListNode(0)
+    #     record = set()
+    #     dummy.next = head
+    #     while pre.next:
+    #         cur = pre.next
+    #         if cur.val in record:
+    #             pre.next = cur.next
+    #         else:
+    #             record.add(cur.val)
+    #             pre = cur
+    #     return dummy.next
+
     def removeDuplicateNodes(self, head: ListNode) -> ListNode:
         if not head:
-            return head
+            return
         record, pre = {head.val}, head
-        while pre.next:  # 遍历前驱结点
+        while pre.next:
             cur = pre.next
-            if cur.val not in record:
-                record.add(cur.val)
-                pre = pre.next
-            else:
+            if cur.val in record:
                 pre.next = cur.next
+            else:
+                pre = cur
+                record.add(cur.val)
         return head
 
 
