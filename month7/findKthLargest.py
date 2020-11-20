@@ -60,44 +60,54 @@ class Solution:
     #         heapq.heappushpop(queue, num)
     #     return queue[0]
     #
-    # # 数组中的第 K 个最小元素
+    # # 数组中的第 K 个最小元素，使用堆
     # def findKthSmallest(self, nums: List[int], k: int) -> int:
     #     queue = nums[:]
     #     heapq.heapify(queue)
     #     for _ in range(k-1):
     #         heapq.heappop(queue)
-    #     return heapq.heappop(queue)
-
-    # def findKthLargest(self, nums: List[int], k: int) -> int:
-    #     queue = nums[:k]
-    #     heapq.heapify(queue)
-    #     for num in nums[k:]:
-    #         heapq.heappushpop(queue, num)
-    #     return heapq.heappop(queue)
+    #     return queue[0]
 
     def findKthLargest(self, nums: List[int], k: int) -> int:
+        queue = nums[:k]
+        heapq.heapify(queue)
+        for num in nums[k:]:
+            if num > queue[0]:  # 加上这一句，不用每次都进行堆排序。
+                heapq.heappushpop(queue, num)
+        return queue[0]
 
-        def partition(nums, left, right):
-            ran_idx = randint(left, right)
-            nums[ran_idx], nums[right] = nums[right], nums[ran_idx]
+    # def findKthLargest(self, nums: List[int], k: int) -> int:
+    #
+    #     def partition(nums, left, right):
+    #         ran_idx = randint(left, right)
+    #         nums[ran_idx], nums[right] = nums[right], nums[ran_idx]
+    #
+    #         pivot, i = nums[right], left
+    #         for j in range(left, right):
+    #             if nums[j] > pivot:
+    #                 nums[i], nums[j] = nums[j], nums[i]
+    #                 i += 1
+    #         nums[i], nums[right] = pivot, nums[i]
+    #         return i
+    #
+    #     left, right = 0, len(nums) - 1
+    #     while True:
+    #         p = partition(nums, left, right)
+    #         if p + 1 == k:
+    #             return nums[p]
+    #         if p + 1 > k:
+    #             right = p - 1
+    #         else:
+    #             left = p + 1
 
-            pivot, i = nums[right], left
-            for j in range(left, right):
-                if nums[j] > pivot:
-                    nums[i], nums[j] = nums[j], nums[i]
-                    i += 1
-            nums[i], nums[right] = pivot, nums[i]
-            return i
-
-        left, right = 0, len(nums) - 1
-        while True:
-            p = partition(nums, left, right)
-            if p + 1 == k:
-                return nums[p]
-            if p + 1 > k:
-                right = p - 1
-            else:
-                left = p + 1
+    def findKthSmallest(self, nums: List[int], k: int) -> int:
+        arr = [-num for num in nums]
+        queue = arr[:k]
+        heapq.heapify(queue)
+        for num in arr[k:]:
+            if num > queue[0]:
+                heapq.heappushpop(queue, num)
+        return -queue[0]
 
 
 s = Solution()
@@ -108,3 +118,8 @@ print(s.findKthLargest(nums, k))
 nums = [3,2,3,1,2,4,5,5,6]
 k = 4
 print(s.findKthLargest(nums, k))
+
+
+nums = [3,2,1,5,6,4]
+k = 2
+print(s.findKthSmallest(nums, k))

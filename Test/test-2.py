@@ -58,3 +58,22 @@ print(a)
 a.insert(10, [45])
 print(a)
 
+a = list(range(1, 11))
+print(a)
+
+res = []
+for num in a[:-1]:
+    res.append([num, num+0.9])
+print(res)
+
+res = [[1, 1.9]]
+for _ in range(9):
+    res.append([res[-1][-1], res[-1][-1]+0.9])
+print(res)
+
+print((2-1) // 0.8)
+print(int((2-1)/0.8))
+
+# // 是地板除，
+print(6/2)
+print(6//2.7)

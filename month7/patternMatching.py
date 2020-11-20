@@ -25,16 +25,30 @@ class Solution:
     #             return False
     #     return True
 
+    # def patternMatching(self, pattern: str, value: str) -> bool:
+    #     if len(pattern) == 1:
+    #         return True
+    #     if not len(value) and len(pattern) > 1:
+    #         return False
+    #     # reg_a = '\\1' if pattern[0] == 'a' else '\\2'
+    #     # reg_b = '\\1' if pattern[0] == 'b' else '\\2'
+    #     reg_a, reg_b = ('\\1', '\\2') if pattern[0] == 'a' else ('\\2', '\\1')
+    #     p = '^' + pattern.replace('a', '(\\w*)', 1).replace('b', '(\\w*)', 1) \
+    #         .replace('a', reg_a).replace('b', reg_b) + '$'  # 使用 \\，防止转义
+    #     p = re.compile(p)
+    #     if p.match(value):
+    #         return True
+    #     return False
+
     def patternMatching(self, pattern: str, value: str) -> bool:
         if len(pattern) == 1:
             return True
         if not len(value) and len(pattern) > 1:
             return False
-        # reg_a = '\\1' if pattern[0] == 'a' else '\\2'
-        # reg_b = '\\1' if pattern[0] == 'b' else '\\2'
-        reg_a, reg_b = ('\\1', '\\2') if pattern[0] == 'a' else ('\\2', '\\1')
-        p = '^' + pattern.replace('a', '(\\w*)', 1).replace('b', '(\\w*)', 1) \
-            .replace('a', reg_a).replace('b', reg_b) + '$'  # 使用 \\，防止转义
+        reg_a, reg_b = (r'\1', r'\2') if pattern[0] == 'a' else (r'\2', r'\1')
+        # 正则表达式 * 号不能去掉，首尾标志符不能忘，在字符串前面加 r 变为原始字符串
+        p = '^' + pattern.replace('a', r'(\w*)', 1).replace('b', r'(\w*)', 1)\
+            .replace('a', reg_a).replace('b', reg_b) + '$'
         p = re.compile(p)
         if p.match(value):
             return True
@@ -56,15 +70,15 @@ print(s.patternMatching(pattern, value))
 
 pattern = "abba"
 value = "dogdogdogdog"
-print(s.patternMatching(pattern, value))
+print(s.patternMatching(pattern, value))  # "a"="dogdog",b=""，
 
 pattern = "a"
 value = ""
-print(s.patternMatching(pattern, value)) # 应该为 True
+print(s.patternMatching(pattern, value))  # 应该为 True
 
 pattern = "ab"
 value = ""
-print(s.patternMatching(pattern, value))  # 应该为 False
+print(s.patternMatching(pattern, value))  # 应该为 False "a"和"b"不能同时表示相同的字符串。
 
 pattern = "bbbaa"
 value = "xxxxxxy"
