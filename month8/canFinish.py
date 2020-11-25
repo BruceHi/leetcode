@@ -67,23 +67,44 @@ class Solution:
     #             return False
     #     return True
 
-    # 拓扑排序，使用广度优先搜索，更为直观
+    # # 拓扑排序，使用广度优先搜索，更为直观
+    # def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    #     edges = defaultdict(list)
+    #     in_degree = [0] * numCourses  # 入度
+    #
+    #     for cur, pre in prerequisites:
+    #         edges[pre].append(cur)
+    #         in_degree[cur] += 1
+    #
+    #     queue = deque([cur for cur in range(numCourses) if not in_degree[cur]])
+    #     visited = 0  # 访问的节点个数，以便后续判断
+    #
+    #     while queue:
+    #         visited += 1
+    #         u = queue.popleft()
+    #         for v in edges[u]:
+    #             in_degree[v] -= 1  # 修改当前节点的入度
+    #             if not in_degree[v]:
+    #                 queue.append(v)
+    #     return visited == numCourses
+
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         edges = defaultdict(list)
-        in_degree = [0] * numCourses  # 入度
+        in_degree = [0] * numCourses
 
         for cur, pre in prerequisites:
             edges[pre].append(cur)
             in_degree[cur] += 1
 
+        # range(numCourses) 不能改成 edges，因为可能有些点是孤立的，并不在 prerequisites 记录中，但是入度为 0
         queue = deque([cur for cur in range(numCourses) if not in_degree[cur]])
-        visited = 0  # 访问的节点个数，以便后续判断
+        visited = 0
 
         while queue:
             visited += 1
             u = queue.popleft()
             for v in edges[u]:
-                in_degree[v] -= 1  # 修改当前节点的入度
+                in_degree[v] -= 1
                 if not in_degree[v]:
                     queue.append(v)
         return visited == numCourses
@@ -101,3 +122,5 @@ print(s.canFinish(3, [[0, 1], [1, 2], [2, 0]]))
 print(s.canFinish(3, [[2, 1], [2, 0], [1, 0]]))
 
 print(s.canFinish(4, [[2, 1], [2, 0], [1, 0], [3, 0], [3, 2]]))
+
+print(s.canFinish(1, []))

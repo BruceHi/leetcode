@@ -1,4 +1,4 @@
-# 归并排序
+# 归并排序，空间复杂度 O(n)，非原地排序
 from typing import List
 
 
@@ -55,7 +55,32 @@ from typing import List
 #     return res
 
 
-def merge_sort(nums: List[int]) -> List[int]:
+# def merge_sort(nums: List[int]) -> List[int]:
+#     n = len(nums)
+#     if n < 2:
+#         return nums
+#     mid = n >> 1
+#     return merge(merge_sort(nums[:mid]), merge_sort(nums[mid:]))
+#
+# #
+# def merge(left: List[int], right: List[int]):
+#     m, n = len(left), len(right)
+#     i, j = 0, 0
+#     res = []
+#     while i < m and j < n:
+#         if left[i] < right[j]:
+#             res.append(left[i])
+#             i += 1
+#         else:
+#             res.append(right[j])
+#             j += 1
+#     if i < m:
+#         res.extend(left[i:])
+#     if j < n:
+#         res.extend(right[j:])
+#     return res
+
+def merge_sort(nums):
     n = len(nums)
     if n < 2:
         return nums
@@ -63,24 +88,22 @@ def merge_sort(nums: List[int]) -> List[int]:
     return merge(merge_sort(nums[:mid]), merge_sort(nums[mid:]))
 
 
-def merge(left: List[int], right: List[int]):
-    m, n = len(left), len(right)
+def merge(nums1, nums2):
+    m, n = len(nums1), len(nums2)
     i, j = 0, 0
     res = []
     while i < m and j < n:
-        if left[i] < right[j]:
-            res.append(left[i])
+        if nums1[i] < nums2[j]:
+            res.append(nums1[i])
             i += 1
         else:
-            res.append(right[j])
+            res.append(nums2[j])
             j += 1
     if i < m:
-        res.extend(left[i:])
+        res.extend(nums1[i:])
     if j < n:
-        res.extend(right[j:])
+        res.extend(nums2[j:])
     return res
-
-
 
 
 num = [5, 8, 9, 1, 2]
