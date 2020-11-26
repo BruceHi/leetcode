@@ -1,4 +1,6 @@
-# 缺失的第一个正整数
+# 41.缺失的第一个正整数
+# 原地修改，标记负数
+# 1 标记到位置 0
 from typing import List
 
 
@@ -29,6 +31,30 @@ class Solution:
     #         if i not in nums:
     #             return i
 
+    # def firstMissingPositive(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     for i, num in enumerate(nums):
+    #         if num <= 0:
+    #             nums[i] = n + 1
+    #
+    #     for i in range(n):
+    #         num = abs(nums[i])
+    #         if num <= n:
+    #             nums[num-1] = -abs(nums[num-1])
+    #
+    #     for i in range(n):
+    #         if nums[i] > 0:
+    #             return i + 1
+    #
+    #     return n + 1
+
+    # def firstMissingPositive(self, nums: List[int]) -> int:
+    #     nums = set(nums)  # 顺便过滤重复数组
+    #     n = len(nums)
+    #     for i in range(1, n+2):
+    #         if i not in nums:
+    #             return i
+
     def firstMissingPositive(self, nums: List[int]) -> int:
         n = len(nums)
         for i, num in enumerate(nums):
@@ -40,13 +66,10 @@ class Solution:
             if num <= n:
                 nums[num-1] = -abs(nums[num-1])
 
-        for i in range(n):
-            if nums[i] > 0:
+        for i, num in enumerate(nums):
+            if num > 0:
                 return i + 1
-
         return n + 1
-
-
 
 
 s = Solution()
