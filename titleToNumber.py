@@ -20,6 +20,7 @@ class Solution:
             res += ord(c) - base + 1
         return res
 
+
 s = Solution()
 print(s.titleToNumber('A'))
 
