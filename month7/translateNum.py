@@ -1,4 +1,5 @@
-# 把数字翻译成字符串
+# 剑指 Offer 46.：把数字翻译成字符串
+# 相似题：91.解码方法 numDecodings
 class Solution:
 
     # def translateNum(self, num: int) -> int:
