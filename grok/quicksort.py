@@ -138,17 +138,17 @@ from typing import List
 #     nums[i], nums[right] = pivot, nums[i]
 #     return i
 
-def quick_sort(nums, left=None, right=None):
+def quick_sort(nums: List[int], left: int = None, right: int = None):
     if left is None and right is None:
         left, right = 0, len(nums) - 1
     if left < right:
         p = partition(nums, left, right)
-        quick_sort(nums, left, p-1)
-        quick_sort(nums, p+1, right)
+        quick_sort(nums, left, p - 1)
+        quick_sort(nums, p + 1, right)
     return nums
 
 
-def partition(nums, left, right):
+def partition(nums: List[int], left: int, right: int):
     i, pivot = left, nums[right]
     for j in range(left, right):
         if nums[j] < pivot:
