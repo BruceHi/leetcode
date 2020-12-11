@@ -1,9 +1,11 @@
 # 190.颠倒二进制位
 class Solution:
     def reverseBits(self, n: int) -> int:
-        print(str(int(n)))
-        print(int(''.join(reversed(str(int(n))))))
-        return bin(int(''.join(reversed(str(int(n))))))
+        res = 0
+        for i in range(32):
+            bit = n >> i & 1
+            res = res * 2 + bit
+        return res
 
 
 s = Solution()
