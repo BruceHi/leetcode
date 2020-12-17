@@ -59,16 +59,26 @@ class Solution:
     #         res = max(res, count)
     #     return res
 
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     dic = {}
+    #     res, left = 0, 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #         res = max(res, i - left + 1)
+    #     return res
+
     def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        left = 0
         dic = {}
-        res, left = 0, 0
         for i, c in enumerate(s):
             if c in dic:
                 left = max(left, dic[c])
+            res = max(res, i-left+1)
             dic[c] = i + 1
-            res = max(res, i - left + 1)
         return res
-
 
 
 
@@ -84,9 +94,10 @@ s = Solution()
 # 此时哈希表中的值是
 
 # left 为什么要定义 max，这里可以解释。
-# 遍历到最后一个 a时 a：6。left 是全局的，然而 map(b)还是 2，
+# 遍历到最后一个 a时 a：6。
+# left 是全局的。map(b)还是 2，
 # 当遍历完最后一个 a 时，left 是 5。
-# 由于 b 在哈希表里面已经存在了，取出 left 的值却变为了 2。所以计算结果错误。
+# 紧接着遍历 b 时，由于 b 在哈希表里面已经存在了，不加 max 时，取出 left 的值却变为了 2。所以计算结果错误。
 string = "abaaaab"
 print(s.lengthOfLongestSubstring(string))
 
