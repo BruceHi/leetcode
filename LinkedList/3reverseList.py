@@ -1,3 +1,4 @@
+# 剑指 offer 24.反转链表
 from typing import List
 
 
@@ -21,13 +22,19 @@ class Solution:
     #         cur.next, pre, cur = pre, cur, cur.next
     #     return pre
 
+    # def reverseList(self, head: ListNode) -> ListNode:
+    #     if not head or not head.next:
+    #         return head
+    #     a = head.next
+    #     p = self.reverseList(a)
+    #     a.next, head.next = head, None
+    #     return p
+
     def reverseList(self, head: ListNode) -> ListNode:
-        if not head or not head.next:
-            return head
-        a = head.next
-        p = self.reverseList(a)
-        a.next, head.next = head, None
-        return p
+        pre, cur = None, head
+        while cur:
+            cur.next, pre, cur = pre, cur, cur.next
+        return pre
 
 
 def generate_link(nums: List[int]) -> ListNode:
@@ -47,11 +54,7 @@ def print_link(head: ListNode) -> None:
     print(res)
 
 
-# x = ListNode(1)
-# x.next = ListNode(2)
-# x.next.next = ListNode(3)
 x = generate_link([1, 2, 3])
 S = Solution()
 y = S.reverseList(x)
-# print(y.val, y.next.val, y.next.next.val)
 print_link(y)
