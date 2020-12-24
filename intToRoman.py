@@ -1,10 +1,18 @@
 # 12. 整数转罗马数字
+# 范围是 1-3999
+# 贪心算法
 class Solution:
     def intToRoman(self, num: int) -> str:
-        dic = {1: 'I', 5: 'V', 10: 'X', 50: 'L', 100: 'C', 500: 'D', 1000: 'M',
-               4: 'IV', 9: 'IX', 40: 'XL', 90: 'XC', 400: 'CD', 900: 'CM'}
+        int_list = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        romans = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
         res = ''
-        while num:
+        for i, val in enumerate(int_list):
+            while num >= val:
+                res += romans[i]
+                num -= val
+            if not num:
+                break
+        return res
 
 
 
