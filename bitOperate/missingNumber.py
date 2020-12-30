@@ -39,6 +39,7 @@ class Solution:
         return res
 
 
+
 s = Solution()
 nums = [3,0,1]
 print(s.missingNumber(nums))
