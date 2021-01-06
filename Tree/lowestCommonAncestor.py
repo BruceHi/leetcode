@@ -62,8 +62,22 @@ class Solution:
     #     return root
 
     # 二叉树
+    # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    #     if not root:  # 退出条件
+    #         return
+    #     if root.val == p.val or root.val == q.val:
+    #         return root
+    #     left = self.lowestCommonAncestor(root.left, p, q)
+    #     right = self.lowestCommonAncestor(root.right, p, q)
+    #     if left and right:
+    #         return root
+    #     if left:
+    #         return left
+    #     if root:
+    #         return right
+
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if not root:  # 退出条件
+        if not root:
             return
         if root.val == p.val or root.val == q.val:
             return root
@@ -73,5 +87,5 @@ class Solution:
             return root
         if left:
             return left
-        if root:
+        if right:
             return right
