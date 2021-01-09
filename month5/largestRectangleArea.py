@@ -29,11 +29,22 @@ class Solution:
     #     return res
 
     # 栈：里面放的是单调递增(单调非递减)数据的索引
+    # def largestRectangleArea(self, heights: List[int]) -> int:
+    #     res, stack = 0, []
+    #     heights = [0] + heights + [0]
+    #     for i, val in enumerate(heights):
+    #         while stack and heights[stack[-1]] > val:
+    #             idx = stack.pop()
+    #             res = max(res, (i-stack[-1]-1) * heights[idx])
+    #         stack.append(i)
+    #     return res
+
+    # 递增（非单调）栈
     def largestRectangleArea(self, heights: List[int]) -> int:
         res, stack = 0, []
         heights = [0] + heights + [0]
-        for i, val in enumerate(heights):
-            while stack and heights[stack[-1]] > val:
+        for i, num in enumerate(heights):
+            while stack and num < heights[stack[-1]]:
                 idx = stack.pop()
                 res = max(res, (i-stack[-1]-1) * heights[idx])
             stack.append(i)
@@ -55,4 +66,3 @@ print(s.largestRectangleArea(nums))
 
 nums = [2,1,2]
 print(s.largestRectangleArea(nums))
-
