@@ -1,192 +1,101 @@
-s = "3[a]2[bc]"
-for char in s:
-    print(type(char))
+import heapq
+from itertools import product, permutations, combinations, combinations_with_replacement
 
-from collections import deque
-s = deque()
-s.append('d')
-print(s)
-print(list(s))
+a = [4, 8, 3, 7, 3, 6, 3, 4]
+heapq.heapify(a)
+print(a)
 
-print('b'.isalpha())
-print('3'.isnumeric())
+print(list(product('ABCD', 'xy')))
 
-n = 3
-n *= 3 + 4
-print(n)
+# print(list(product('AD', 'xy','12', repeat=2)))
+# print(len(list(product('AD', 'xxy', repeat=2))))
 
-import re
-s = re.split(r'\W+', 'runoob, runoob, runoob.')
-print(s)
+def product2(*args, repeat=1):
+    # product('ABCD', 'xy') --> Ax Ay Bx By Cx Cy Dx Dy
+    # product(range(2), repeat=3) --> 000 001 010 011 100 101 110 111
+    pools = [tuple(pool) for pool in args] * repeat
+    result = [[]]
+    for pool in pools:
+        result = [x+[y] for x in result for y in pool]
+    for prod in result:
+        yield tuple(prod)
 
-# 首尾处若有 \W 捕获到的，则分割的时候会有空字符‘’
-# 如果在模式中使用了捕获括号，则模式中所有组的文本也将作为结果列表的一部分返回。
+print(list(product2('abc', 'xy')))
 
+a = list(product(range(2), repeat=2))
+print(list(product(range(2), repeat=2)))
 
-s = re.split(r'(\W+)', 'runoob, runoob, runoob.')
-print(s)
+print(type(a[0][0]))
 
-s = re.split(r'(\W+)', 'runoob, runoob, runoob.')
-print(s)
+a = list(product('ab', range(2), 'd'))
+print(a)
 
-s = re.split('\W', ' runoob, runoob, runoob.', 1)
-print(s)
+a = list(permutations('ABCD', 2))
+print(a)
 
-# ValueError: split() requires a non-empty pattern match.
-# 所以不要使用 *， 用 + 来替代
-# s = re.split(r'd*', 'hello, world')
-# c = re.compile('dd')
+a = list(permutations([1, 2, 1]))
+print(a)
 
+a = list(permutations([1, 2, 'c']))
+print(a)
 
-print(s)
-
-from collections import deque
-s = 'ddd'
-queue = deque(s[0])
-print(queue)
-
-a = [{1:2}, {'d':2}]
-print(a[0][1])
-
-# 改正与进入是两回事，改正不影响顺序
-from collections import OrderedDict
-b = OrderedDict()
-b[1] = 2
-b[-1] = 3
-print(b)
-b[1] = 4
-print(b)
-
-print('abc' == 'bac')
-print(sorted('abc') == sorted('bac'))
-
-print({1:2, 3:4} == {3:4, 1:2})
-from collections import Counter
-
-a = '12'
-print('dd')
+a = list(combinations([1, 2, 3], 2))
+print(a)
+a = list(combinations_with_replacement([1, 2, 3], 2))
+print(a)
 
 
-b = Counter(a)
-print(b)
-print(dict(b))
-print({'1':1, '2':1} == b)
+a = [1, 2, 3]
+print(2 * a)
 
-p = "abc"
-s = dict((i, p.count(i)) for i in p)
-print(s)
+# print(-a)
+#
+# a = {1, 2}
+# b = a.__new__()
+# print(b)
 
-print(type(str(123)))
+matrix = [
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+print(matrix[2])
+for i in range(len(matrix)):
+    print(matrix[i][2])
 
-print(-123 // 10)
-
-print(-123 % 10)
+res = [matrix[i][2] for i in range(len(matrix))]
+print(res)
 
 a = []
-print(int(-85))
-print(int(*a))
-
-
-print(int(8.2))
-print(int(0xf))
-print(int(0b100))
-
-a = [(1, 2), (3, 4)]
-# print(a.pop())
-
-# res = []
-# res = res + (1, 2, 4)
-# print(res)
-#
-# res.extend((1, 2, 4))
-# print(res)
-
-d = (2, 2)
-c = set(d)
-print(c)
-
-s = {'1': 2}
-w = ''
-w += str(*s)
-print(w)
-
-import bisect
-
-L = [1,3,3,6,8,12,15]
-x = 3
-
-print(bisect.bisect_left(L, x))
-
-queue = [3, 4, 5]
-for _ in range(len(queue)):
-    queue.append(1)
-print(queue)
-
-a = '1,2,3,None,3,None,1,'
-b = list(a)
+b = [num for num in a].append('e')
+d = [num for num in a]
 print(b)
+print(d)
 
-c = a.split()
-# c.pop()
-# c[0] = c[0][1]
-# c[-1] = c[-1][1]
-# d = list(map(int, c))
-print(c)
-print(id(None))
-a = [3, 4, 4, 4, 5]
-for i in a:
-    print(i, end='\t')
+e = []
+c = e.append('s')
+print(e)
 
-print(id(None))
-
-s = 'leetcode'
-t = 'code'
-print(s.find(t))
-s = s.replace(t, '')
-print(s)
-
-a = {4, 2, 6}
-# a.add(1)
-# a.add(3)
-print(a)
-
-print((1, 2) == (2, 1))
-
-row = [set()] * 2
-row[0].add(1)
-print(row)
-
-row = [set() for _ in range(2)]
-row[0].add(1)
-print(row)
-
-from collections import defaultdict
-from collections import Counter
-# count = Counter()
-count = defaultdict(int)
-count['a'] = 3
-count['b'] = 4
-count['c'] += 2
-print(count)
-
-a = 2
-a += 4 + 4
-print(a)
-
-print([1, None, 2])
-
-a = [[0] * 3] * 3
-print(a)
-
-a[0][0] = 1
-print(a)
-
-print([1, 2, 3] == [3, 2, 1])
-
-# b = input()dd
-# print(type(b))
-# s, t = [input()] * 2
-# print(s, t)
+print([1, 2, 1].count(1))
 
 
 
+a = [1, 2, 3]
+b = [2, 3, 4, 5]
+c = [6, 7, 7, 9, 10]
+
+print(list(zip(a, b, c)))
+
+from math import sqrt
+
+print(sqrt(5))
+
+def greet_all(names: list[str]) -> None:
+    for name in names:
+        print("Hello", name)
+
+
+res = [''] * 5
+print(res)

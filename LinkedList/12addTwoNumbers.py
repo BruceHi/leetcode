@@ -113,19 +113,32 @@ class Solution:
     #         l2 = l2.next if l2 else None
     #     return dummy.next
 
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     cur = dummy = ListNode(0)
+    #     s = 0
+    #     while l1 or l2 or s:
+    #         s += (l1.val if l1 else 0) + (l2.val if l2 else 0)
+    #         cur.next = ListNode(s % 10)
+    #         cur = cur.next
+    #         s //= 10
+    #         l1 = l1.next if l1 else None
+    #         l2 = l2.next if l2 else None
+    #     return dummy.next
+
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        carry = 0
         cur = dummy = ListNode(0)
-        s = 0
-        while l1 or l2 or s:
-            s += (l1.val if l1 else 0) + (l2.val if l2 else 0)
-            cur.next = ListNode(s % 10)
+        while l1 or l2 or carry:
+            num = (l1.val if l1 else 0) + (l2.val if l2 else 0) + carry
+            carry = num // 10
+            val = num % 10
+            cur.next = ListNode(val)
             cur = cur.next
-            s //= 10
-            l1 = l1.next if l1 else None
-            l2 = l2.next if l2 else None
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
         return dummy.next
-
-
 
 
 def generate_link(nums: List[int]) -> ListNode:
