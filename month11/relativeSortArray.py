@@ -15,6 +15,8 @@ class Solution:
     #     return res
 
     # 自定义排序，排序规则一：在 arr2 里面的先排序，二：按照对应索引进行排序
+    # 先按照出现的排序 第一个关键字 01，再按 arr2 中索引排序，
+    # 剩余的按照升序排序
     # def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
     #     rank = {x: i for i, x in enumerate(arr2)}
     #
@@ -36,24 +38,28 @@ class Solution:
     #     return arr1
 
     # 计数排序
+    # def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
+    #     m = max(arr1)
+    #     count = [0] * (m+1)
+    #
+    #     for num in arr1:
+    #         count[num] += 1
+    #
+    #     res = []
+    #     for num in arr2:
+    #         res.extend([num] * count[num])
+    #         count[num] = 0
+    #
+    #     for i in range(m+1):
+    #         if count[i]:
+    #             res.extend([i] * count[i])
+    #     return res
+
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        m = max(arr1)
-        count = [0] * (m+1)
 
-        for num in arr1:
-            count[num] += 1
-
-        res = []
-        for num in arr2:
-            res.extend([num] * count[num])
-            count[num] = 0
-
-        for i in range(m+1):
-            if count[i]:
-                res.extend([i] * count[i])
-        return res
-
-
+        def cmp(x):
+            return (0, arr2.index(x)) if x in arr2 else (1, x)
+        return sorted(arr1, key=cmp)
 
 
 s = Solution()
