@@ -4,10 +4,18 @@ from typing import List
 
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:
-        n = len(S)
-        i = 0
+        dic = {}
+        for i, c in enumerate(S):
+            dic[c] = i
+
         res = []
-        while i < n:
+        start = end = 0
+        for i, c in enumerate(S):
+            end = max(end, dic[c])
+            if i == end:
+                res.append(end - start + 1)
+                start = end + 1
+        return res
 
 
 obj = Solution()

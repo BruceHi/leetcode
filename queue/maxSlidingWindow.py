@@ -125,26 +125,41 @@ class Solution:
     #             res.append(nums[queue[0]])
     #     return res
 
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        if len(nums) <= k:
-            return [max(nums)]
-        queue = deque()
-        res = []
-        for i, num in enumerate(nums):
+    # def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    #     if len(nums) <= k:
+    #         return [max(nums)]
+    #     queue = deque()
+    #     res = []
+    #     for i, num in enumerate(nums):
+    #
+    #         if i >= k and queue[0] == i - k:
+    #             queue.popleft()
+    #
+    #         while queue and num >= nums[queue[-1]]:
+    #             queue.pop()
+    #
+    #         queue.append(i)
+    #
+    #         if i >= k-1:
+    #             res.append(nums[queue[0]])
+    #
+    #     return res
 
-            if i >= k and queue[0] == i - k:
+    # 战胜 93%
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        queue = deque()
+        for i, num in enumerate(nums):
+            if i >= k and i - queue[0] == k:  # 比较索引
                 queue.popleft()
 
-            while queue and num >= nums[queue[-1]]:
+            while queue and num >= nums[queue[-1]]:  # 比较值
                 queue.pop()
 
             queue.append(i)
-
             if i >= k-1:
                 res.append(nums[queue[0]])
-
         return res
-
 
 
 
