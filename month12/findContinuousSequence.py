@@ -13,31 +13,42 @@ class Solution:
     #     while True:
 
     # 滑动窗口
-    # https://leetcode-cn.com/problems/
-    # he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/
-    def findContinuousSequence(self, target: int) -> List[List[int]]:
-        i = 1
-        j = 1
-        count = 0
-        res = []
+    # https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/
+    # def findContinuousSequence(self, target: int) -> List[List[int]]:
+    #     i = 1
+    #     j = 1
+    #     count = 0
+    #     res = []
+    #
+    #     while i <= target // 2:
+    #         if count < target:  # 右边界向右移动
+    #             count += j
+    #             j += 1
+    #         elif count > target:  # 左边界向右移动
+    #             count -= i
+    #             i += 1
+    #         else:
+    #             res.append(list(range(i, j)))
+    #             count -= i  # 左边界向右移动
+    #             i += 1
+    #     return res
 
+    def findContinuousSequence(self, target: int) -> List[List[int]]:
+        i, j = 1, 1
+        res = []
+        count = 0
         while i <= target // 2:
-            if count < target:  # 右边界向右移动
+            if count < target:
                 count += j
                 j += 1
-            elif count > target:  # 左边界向右移动
+            elif count > target:
                 count -= i
                 i += 1
             else:
                 res.append(list(range(i, j)))
-                count -= i  # 左边界向右移动
+                count -= i
                 i += 1
         return res
-
-
-
-
-
 
 
 s = Solution()

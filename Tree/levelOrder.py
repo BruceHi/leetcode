@@ -91,20 +91,43 @@ class Solution:
     #         res.append(cur)
     #     return res
 
+    # def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue = deque([root])
+    #     res = []
+    #
+    #     while queue:
+    #         level = []
+    #         for _ in range(len(queue)):
+    #             cur = queue.popleft()
+    #             level.append(cur.val)
+    #             if cur.left:
+    #                 queue.append(cur.left)
+    #             if cur.right:
+    #                 queue.append(cur.right)
+    #         res.append(level)
+    #     return res
+
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
-        queue = deque([root])
         res = []
-
+        queue = deque([root])
         while queue:
-            level = []
+            cur = []
             for _ in range(len(queue)):
-                cur = queue.popleft()
-                level.append(cur.val)
-                if cur.left:
-                    queue.append(cur.left)
-                if cur.right:
-                    queue.append(cur.right)
-            res.append(level)
+                top = queue.popleft()
+                cur.append(top.val)
+                if top.left:
+                    queue.append(top.left)
+                if top.right:
+                    queue.append(top.right)
+            res.append(cur)
         return res
+
+
+
+
+
+

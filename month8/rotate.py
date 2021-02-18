@@ -7,12 +7,16 @@ class Solution:
     #     # matrix.reverse()
     #     matrix[:] = map(list, zip(*matrix[::-1]))
 
+    # def rotate(self, matrix: List[List[int]]) -> None:
+    #     # matrix[::] = zip(*matrix[::-1])
+    #     a = list(zip(matrix[::-1]))  # 结果：[([7, 8, 9],), ([4, 5, 6],), ([1, 2, 3],)]
+    #     print(a)
+    #     b = list(zip(*matrix[::-1]))  # 结果：[(7, 4, 1), (8, 5, 2), (9, 6, 3)]
+    #     print(b)
+    #     matrix[:] = map(list, zip(*matrix[::-1]))
+
     def rotate(self, matrix: List[List[int]]) -> None:
-        # matrix[::] = zip(*matrix[::-1])
-        a = list(zip(matrix[::-1]))  # 结果：[([7, 8, 9],), ([4, 5, 6],), ([1, 2, 3],)]
-        print(a)
-        b = list(zip(*matrix[::-1]))  # 结果：[(7, 4, 1), (8, 5, 2), (9, 6, 3)]
-        print(b)
+        # matrix[:] = [x[::-1] for x in list(map(list, zip(*matrix)))]
         matrix[:] = map(list, zip(*matrix[::-1]))
 
 

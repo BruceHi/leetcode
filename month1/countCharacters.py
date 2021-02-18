@@ -12,13 +12,24 @@ class Solution:
     #             res += len(word)
     #     return res
 
+    # def countCharacters(self, words: List[str], chars: str) -> int:
+    #     count = Counter(chars)
+    #     res = 0
+    #     for word in words:
+    #         if not Counter(word) - count:
+    #             res += len(word)
+    #     return res
+
+    # def countCharacters(self, words: List[str], chars: str) -> int:
+    #     count = Counter(chars)
+    #     res = 0
+    #     for word in words:
+    #         if not Counter(word) - count:
+    #             res += len(word)
+    #     return res
+
     def countCharacters(self, words: List[str], chars: str) -> int:
-        count = Counter(chars)
-        res = 0
-        for word in words:
-            if not Counter(word) - count:
-                res += len(word)
-        return res
+        chars.s
 
 
 s = Solution()

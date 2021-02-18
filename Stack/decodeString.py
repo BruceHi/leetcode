@@ -106,17 +106,32 @@ class Solution:
     #             stack.append(tmp * int(num))
     #     return ''.join(stack)
 
+    # def decodeString(self, s: str) -> str:
+    #     num, res, stack = 0, '', []
+    #     for c in s:
+    #         if c.isnumeric():
+    #             num = num * 10 + int(c)
+    #         elif c == '[':
+    #             stack.append((res, num))
+    #             res, num = '', 0
+    #         elif c == ']':
+    #             last_res, count = stack.pop()
+    #             res = last_res + res * count
+    #         else:
+    #             res += c
+    #     return res
+
     def decodeString(self, s: str) -> str:
-        num, res, stack = 0, '', []
+        stack, num, res = [], 0, ''
         for c in s:
             if c.isnumeric():
                 num = num * 10 + int(c)
             elif c == '[':
-                stack.append((res, num))
-                res, num = '', 0
+                stack.append([num, res])
+                num, res = 0, ''
             elif c == ']':
-                last_res, count = stack.pop()
-                res = last_res + res * count
+                count, last_res = stack.pop()
+                res = last_res + count * res
             else:
                 res += c
         return res
