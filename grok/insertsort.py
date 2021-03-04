@@ -22,14 +22,43 @@ from typing import List
 #         nums[j+1] = tmp
 #     return nums
 
+# def insert_sort(nums):
+#     for i in range(1, len(nums)):
+#         num = nums[i]
+#         j = i - 1
+#         while j >= 0 and nums[j] > num:
+#             nums[j+1] = nums[j]
+#             j -= 1
+#         nums[j+1] = num
+
+# def insert_sort(nums):
+#     n = len(nums)
+#     for i in range(1, n):
+#         j = i
+#         while j-1 >= 0 and nums[j] < nums[j-1]:
+#             nums[j], nums[j-1] = nums[j-1], nums[j]
+#             j -= 1
+#     return nums
+
+# def insert_sort(nums):
+#     for i in range(1, len(nums)):
+#         num = nums[i]
+#         j = i - 1
+#         while j >= 0 and nums[j] > num:
+#             nums[j+1] = nums[j]
+#             j -= 1
+#         nums[j+1] = num
+#     return nums
+
 def insert_sort(nums):
     for i in range(1, len(nums)):
         num = nums[i]
-        j = i - 1
-        while j >= 0 and nums[j] > num:
-            nums[j+1] = nums[j]
+        j = i
+        while j-1 >= 0 and nums[j-1] > num:
+            nums[j] = nums[j-1]
             j -= 1
-        nums[j+1] = num
+        nums[j] = num
+    return nums
 
 
 nums = [7, 5, 9, 6, 2]

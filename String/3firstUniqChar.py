@@ -46,12 +46,18 @@ from collections import OrderedDict
 from collections import Counter
 
 
-def firstUniqChar(s: str) -> int:
-    dic = Counter(s)
-    for i, c in enumerate(s):
-        if dic[c] == 1:
-            return i
-    return -1
+# def firstUniqChar(s: str) -> int:
+#     dic = Counter(s)
+#     for i, c in enumerate(s):
+#         if dic[c] == 1:
+#             return i
+#     return -1
+
+def firstUniqChar(s: str) -> str:
+    counter = Counter(s)
+    for c in s:
+        if counter[c] == 1:
+            return c
 
 
 s = "aadadaad"  # 最后一个重复

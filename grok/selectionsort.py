@@ -71,8 +71,25 @@ from typing import List
 #                 min_idx = j
 #         nums[i], nums[min_idx] = nums[min_idx], nums[i]
 
+# def select_sort(nums):
+#     for i, num in enumerate(nums):
+#         idx = i
+#         for j in range(i+1, len(nums)):
+#             if nums[j] < nums[idx]:
+#                 idx = j
+#         nums[i], nums[idx] = nums[idx], num
+
+# def select_sort(nums):
+#     n = len(nums)
+#     for i in range(n-1):
+#         idx, min_val = i, nums[i]
+#         for j in range(i, n):
+#             if nums[j] < min_val:
+#                 idx = j
+#         nums[i], nums[idx] = nums[idx], nums[i]
+
 def select_sort(nums):
-    for i, num in enumerate(nums):
+    for i, num in enumerate(nums[:-1]):
         idx = i
         for j in range(i+1, len(nums)):
             if nums[j] < nums[idx]:

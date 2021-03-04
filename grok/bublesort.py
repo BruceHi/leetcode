@@ -36,16 +36,29 @@ from typing import List
 #             break
 #     return nums
 
+# def bubule_sort(nums):
+#     n = len(nums)
+#     for i in range(n-1):
+#         swap = False
+#         for j in range(n-i-1):
+#             if nums[j] > nums[j+1]:
+#                 nums[j], nums[j+1] = nums[j+1], nums[j]
+#                 swap = True
+#         if not swap:
+#             break
+
 def bubule_sort(nums):
     n = len(nums)
-    for i in range(n-1):
-        swap = False
-        for j in range(n-i-1):
+    for i in range(n-1):  # 轮次
+        change = False
+        for j in range(n-1-i):  # 元素比较
             if nums[j] > nums[j+1]:
                 nums[j], nums[j+1] = nums[j+1], nums[j]
-                swap = True
-        if not swap:
+                change = True
+        if not change:
             break
+    return nums
+
 
 
 nums = [7, 5, 9, 6, 2]
