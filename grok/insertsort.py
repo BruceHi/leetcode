@@ -50,15 +50,24 @@ from typing import List
 #         nums[j+1] = num
 #     return nums
 
+# def insert_sort(nums):
+#     for i in range(1, len(nums)):
+#         num = nums[i]
+#         j = i
+#         while j-1 >= 0 and nums[j-1] > num:
+#             nums[j] = nums[j-1]
+#             j -= 1
+#         nums[j] = num
+#     return nums
+
 def insert_sort(nums):
-    for i in range(1, len(nums)):
-        num = nums[i]
+    n = len(nums)
+    for i, num in enumerate(nums):
         j = i
-        while j-1 >= 0 and nums[j-1] > num:
+        while j-1 >= 0 and num < nums[j-1]:
             nums[j] = nums[j-1]
             j -= 1
         nums[j] = num
-    return nums
 
 
 nums = [7, 5, 9, 6, 2]
