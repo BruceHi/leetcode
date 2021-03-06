@@ -19,6 +19,7 @@ class Solution:
     #     return ' '.join(reversed(s.split()))  # 若是 split 里面不传参数，则是以任意空格字符串（一个或多个空格）分隔的。
 
     def reverseWords(self, s: str) -> str:
+        print(s.split())
         return ' '.join(s.split()[::-1])
 
 

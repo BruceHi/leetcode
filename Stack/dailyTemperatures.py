@@ -69,6 +69,15 @@ class Solution:
     #
     #     return res
 
+    # def dailyTemperatures(self, T: List[int]) -> List[int]:
+    #     stack, res = [], [0] * len(T)
+    #     for i, t in enumerate(T):
+    #         while stack and t > T[stack[-1]]:
+    #             tmp = stack.pop()
+    #             res[tmp] = i - tmp
+    #         stack.append(i)
+    #     return res
+
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         stack, res = [], [0] * len(T)
         for i, t in enumerate(T):
@@ -79,6 +88,6 @@ class Solution:
         return res
 
 
-temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
 s = Solution()
+temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
 print(s.dailyTemperatures(temperatures))
