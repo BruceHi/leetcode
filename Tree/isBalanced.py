@@ -81,15 +81,51 @@ class Solution:
     #         and self.isBalanced(root.left) and self.isBalanced(root.right)
 
 
-    def isBalanced(self, root: TreeNode) -> bool:
+    # -1 表示该二叉树非平衡二叉树，是人为规定的
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #
+    #     def height(root):
+    #         if not root:
+    #             return 0
+    #         left = height(root.left)
+    #         right = height(root.right)
+    #         if left == -1 or right == -1 or abs(left - right) > 1:
+    #             return -1
+    #         return 1 + max(left, right)
+    #
+    #     return height(root) != -1
 
-        def height(root):
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #     def depth(root):
+    #         if not root:
+    #             return 0
+    #         return 1 + max(depth(root.left), depth(root.right))
+    #
+    #     if not root:
+    #         return True
+    #     left = depth(root.left)
+    #     right = depth(root.right)
+    #     if abs(left-right) > 1:
+    #         return False
+    #     return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+    def isBalanced(self, root: TreeNode) -> bool:
+        def dfs(root):
             if not root:
                 return 0
-            left = height(root.left)
-            right = height(root.right)
-            if left == -1 or right == -1 or abs(left - right) > 1:
+            left = dfs(root.left)
+            if left == -1:
+                return -1
+            right = dfs(root.right)
+            if right == -1 or abs(right-left) > 1:
                 return -1
             return 1 + max(left, right)
+        return dfs(root) != -1
 
-        return height(root) != -1
+
+
+
+
+
+
+
