@@ -126,6 +126,21 @@ class Solution:
             res.append(cur)
         return res
 
+    # 所有元素写在列表里面
+    def levelOrder2(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        queue = deque([root])
+        res = []
+        while queue:
+            # for _ in range(len(queue)):  # 可以不加外循环的
+            node = queue.popleft()
+            res.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        return res
 
 
 
