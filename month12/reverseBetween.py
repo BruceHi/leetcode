@@ -21,18 +21,40 @@ class Solution:
     #     return dummy.next
 
     # 采用像 swapPairs 那种的交换方式
-    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+    # def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     for _ in range(m-1):
+    #         pre = pre.next
+    #     a = pre.next
+    #     for _ in range(n-m):
+    #         b = a.next
+    #         pre.next, b.next, a.next = b, pre.next, b.next   # 注意这里 b.next 是连到 pre 之后的
+    #     return dummy.next
+
+    # def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     for _ in range(left-1):
+    #         pre = pre.next
+    #     cur = pre.next
+    #     a, b = None, pre.next
+    #     for _ in range(right-left+1):
+    #         b.next, a, b = a, b, b.next
+    #     pre.next = a
+    #     cur.next = b
+    #     return dummy.next
+
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         pre = dummy = ListNode(0)
         dummy.next = head
-        for _ in range(m-1):
+        for _ in range(left-1):
             pre = pre.next
         a = pre.next
-        for _ in range(n-m):
+        for _ in range(right-left):
             b = a.next
-            pre.next, b.next, a.next = b, pre.next, b.next   # 注意这里 b.next 是连到 pre 之后的
+            pre.next, b.next, a.next = b, pre.next, b.next
         return dummy.next
-
-
 
 
 def generate_link(nums):
@@ -50,6 +72,10 @@ def print_link(head):
         cur = cur.next
     print(res)
 
+
 s = Solution()
 head = generate_link([1, 2, 3, 4, 5])
 print_link(s.reverseBetween(head, 2, 4))
+
+head = generate_link([5])
+print_link(s.reverseBetween(head, 1, 1))
