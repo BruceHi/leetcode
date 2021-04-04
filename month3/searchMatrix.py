@@ -17,15 +17,29 @@ class Solution:
     #     return False
 
     # 二分搜索
+    # def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    #     m, n = len(matrix), len(matrix[0])
+    #     left, right = 0, m*n - 1
+    #     while left <= right:
+    #         mid = left + right >> 1
+    #         val = matrix[mid // n][mid % n]
+    #         if val == target:
+    #             return True
+    #         if val < target:
+    #             left = mid + 1
+    #         else:
+    #             right = mid - 1
+    #     return False
+
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m, n = len(matrix), len(matrix[0])
-        left, right = 0, m*n - 1
+        left, right = 0, m * n - 1
         while left <= right:
             mid = left + right >> 1
-            val = matrix[mid // n][mid % n]
-            if val == target:
+            num = matrix[mid // n][mid % n]
+            if num == target:
                 return True
-            if val < target:
+            if num < target:
                 left = mid + 1
             else:
                 right = mid - 1
@@ -39,4 +53,8 @@ print(s.searchMatrix(matrix, target))
 
 matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]]
 target = 13
+print(s.searchMatrix(matrix, target))
+
+matrix = [[1]]
+target = 0
 print(s.searchMatrix(matrix, target))

@@ -26,23 +26,73 @@ class Solution:
     #             pre = a
     #     return dummy.next
 
+    # def deleteDuplicates(self, head: ListNode) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         a = pre.next
+    #         val = a.val
+    #
+    #         # 前两种是不存在重复的
+    #         if not a.next:
+    #             pre = a
+    #         elif a.next.val != val:
+    #             pre = a
+    #         else:
+    #             b = a.next
+    #             while b and b.val == val:
+    #                 b = b.next
+    #             pre.next = b
+    #     return dummy.next
+
+    # def deleteDuplicates(self, head: ListNode) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         a = pre.next
+    #         val = a.val
+    #
+    #         b = a.next
+    #         if not b or b.val != val:
+    #             pre = a  # 移动指针
+    #         else:
+    #             while b and b.val == val:
+    #                 b = b.next
+    #             pre.next = b
+    #     return dummy.next
+
+    # def deleteDuplicates(self, head: ListNode) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         a = pre.next
+    #         val = a.val
+    #
+    #         b = a.next
+    #         if not b or b.val != val:
+    #             pre = a  # 移动指针
+    #         else:
+    #             while b and b.val == val:
+    #                 b = b.next
+    #             pre.next = b
+    #     return dummy.next
+
+    # 官方题解没我自己写得好
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         pre = dummy = ListNode(0)
         dummy.next = head
-        while pre.next:
-            a = pre.next
+        while pre.next and pre.next.next:
+            a, b = pre.next, pre.next.next
             val = a.val
-
-            if not a.next:
-                pre = a
-            elif a.next.val != val:
+            if b.val != val:
                 pre = a
             else:
-                b = a.next
                 while b and b.val == val:
                     b = b.next
                 pre.next = b
+
         return dummy.next
+
 
 
 def generate_link(nums):

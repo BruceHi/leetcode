@@ -1,4 +1,5 @@
 # 逆波兰式
+# 整数除法只保留整数部分。是 int(a / b)，而不是 a // b
 import operator
 from typing import List
 
@@ -30,15 +31,26 @@ class Solution:
     #             stack.append(op[c](b, a))
     #     return stack.pop()
 
+    # def evalRPN(self, tokens: List[str]) -> int:
+    #     stack = []
+    #     for c in tokens:
+    #         if c not in '+-*/':
+    #             stack.append(c)
+    #         else:
+    #             a, b = stack.pop(), stack.pop()
+    #             stack.append(str(int(eval(b + c + a))))  # int 是为了处理 ‘/’ 的。
+    #     return int(stack.pop())
+
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
-        for c in tokens:
-            if c not in '+-*/':
-                stack.append(c)
+        op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+        for token in tokens:
+            if token not in op:
+                stack.append(int(token))
             else:
                 a, b = stack.pop(), stack.pop()
-                stack.append(str(int(eval(b + c + a))))  # int 是为了处理 ‘/’ 的。
-        return int(stack.pop())
+                stack.append(int(op[token](b, a)))
+        return stack[0]
 
 
 s = Solution()

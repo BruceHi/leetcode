@@ -4,22 +4,36 @@ from typing import List
 
 
 class Solution:
-    def longestOnes(self, A: List[int], K: int) -> int:
-        n = len(A)
-        res = 0
-        left, right = 0, 0
-        zeros = 0
-        while right < n:
-            if A[right] == 0:
-                zeros += 1
-            while zeros > K:
-                if A[left] == 0:
-                    zeros -= 1
-                left += 1
-            res = max(res, right-left+1)
-            right += 1
-        return res
+    # def longestOnes(self, A: List[int], K: int) -> int:
+    #     n = len(A)
+    #     res = 0
+    #     left, right = 0, 0
+    #     zeros = 0
+    #     while right < n:
+    #         if A[right] == 0:
+    #             zeros += 1
+    #         while zeros > K:
+    #             if A[left] == 0:
+    #                 zeros -= 1
+    #             left += 1
+    #         res = max(res, right-left+1)
+    #         right += 1
+    #     return res
 
+    def longestOnes(self, A: List[int], K: int) -> int:
+        i = 0
+        res = 0
+        zeros = 0
+        for j, a in enumerate(A):
+            if a == 0:
+                zeros += 1
+            if zeros > K:
+                while A[i] != 0:
+                    i += 1
+                i += 1
+                zeros -= 1
+            res = max(res, j-i+1)
+        return res
 
 
 s = Solution()
