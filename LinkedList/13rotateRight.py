@@ -50,23 +50,91 @@ class Solution:
     #     return new_head
 
     # 推荐使用连成环
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if not head or not head.next:
+    #         return head
+    #
+    #     n = 1
+    #     cur = head
+    #     while cur.next:
+    #         n += 1
+    #         cur = cur.next
+    #     cur.next = head
+    #
+    #     cur = head
+    #     for _ in range(n - k % n - 1):
+    #         cur = cur.next
+    #     new = cur.next
+    #     cur.next = None
+    #
+    #     return new
+
+    # 找到断开的位置
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if not k:
+    #         return head
+    #     if not head:
+    #         return
+    #     dummy = ListNode(0)
+    #     dummy.next = head
+    #
+    #     end = cur = head
+    #     n = 0
+    #     while cur:
+    #         n += 1
+    #         end = cur
+    #         cur = cur.next
+    #
+    #     k %= n
+    #     if k == 0:
+    #         return head
+    #     slow = fast = dummy
+    #     for _ in range(k+1):
+    #         fast = fast.next
+    #
+    #     while fast:
+    #         slow, fast = slow.next, fast.next
+    #     dummy.next, end.next = slow.next, dummy.next
+    #     slow.next = None
+    #     return dummy.next
+
+    # # 转换为列表，旋转一下，再转换回去。
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if not k or not head:
+    #         return head
+    #     nodes, cur = [], head
+    #     while cur:
+    #         nodes.append(cur)
+    #         cur = cur.next
+    #
+    #     n = len(nodes)
+    #     k %= n
+    #     nodes[:] = nodes[::-1]
+    #     nodes[:] = nodes[:k][::-1] + nodes[k:][::-1]
+    #
+    #     cur = dummy = ListNode(0)
+    #     for node in nodes:
+    #         cur.next = node
+    #         cur = cur.next
+    #     cur.next = None
+    #     return dummy.next
+
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if not head or not head.next:
+        if k == 0 or not head or not head.next:
             return head
 
-        n = 1
         cur = head
+        n = 1
         while cur.next:
             n += 1
             cur = cur.next
         cur.next = head
 
-        cur = head
-        for _ in range(n - k % n - 1):
+        # 定位到前驱节点，跟上面代码不同的是没有 cur = head这一步，下面循环步数也不用减一
+        for _ in range(n - k % n):
             cur = cur.next
         new = cur.next
         cur.next = None
-
         return new
 
 
@@ -98,3 +166,12 @@ print_link(s.rotateRight(a, 0))
 
 a = generate_link([1])
 print_link(s.rotateRight(a, 0))
+
+a = generate_link([])
+print_link(s.rotateRight(a, 1))
+
+a = generate_link([1])
+print_link(s.rotateRight(a, 1))
+
+a = generate_link([1, 2])
+print_link(s.rotateRight(a, 2))
