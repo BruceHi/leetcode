@@ -43,6 +43,39 @@ class Solution:
     #     DFS('', 0, 0)
     #     return res
 
+    # def generateParenthesis(self, n: int) -> List[str]:
+    #     res = []
+    #
+    #     def dfs(cur, left, right):
+    #         if len(cur) == 2 * n:
+    #             res.append(cur)
+    #             return
+    #
+    #         if right < left:
+    #             dfs(cur + ')', left, right + 1)
+    #         if left < n:
+    #             dfs(cur + '(', left + 1, right)
+    #
+    #     dfs('(', 1, 0)
+    #     return res
+
+    # def generateParenthesis(self, n: int) -> List[str]:
+    #     res = []
+    #
+    #     def dfs(cur, left, right):
+    #         if right > left:
+    #             return
+    #         if len(cur) == n * 2:
+    #             if left == right:
+    #                 res.append(cur)
+    #             return
+    #         dfs(cur+'(', left+1, right)
+    #         dfs(cur+')', left, right+1)
+    #
+    #     dfs('', 0, 0)
+    #     return res
+
+
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
 
@@ -50,22 +83,13 @@ class Solution:
             if len(cur) == 2 * n:
                 res.append(cur)
                 return
-
-            if right < left:
-                dfs(cur + ')', left, right + 1)
+            if left > right:
+                dfs(cur+')', left, right+1)
             if left < n:
-                dfs(cur + '(', left + 1, right)
+                dfs(cur+'(', left+1, right)
 
-        dfs('(', 1, 0)
+        dfs('', 0, 0)
         return res
-
-
-
-
-
-
-
-
 
 
 s = Solution()

@@ -59,16 +59,25 @@ from typing import List
 #     return i + 1
 
 
+# def removeDuplicates(nums: List[int]) -> int:
+#     if not nums:
+#         return 0
+#     i = 0
+#     for j, num in enumerate(nums):
+#         if num != nums[i]:
+#             i += 1
+#             nums[i] = num
+#     return i + 1
+
 def removeDuplicates(nums: List[int]) -> int:
     if not nums:
         return 0
     i = 0
-    for j, num in enumerate(nums):
+    for num in nums:
         if num != nums[i]:
             i += 1
             nums[i] = num
     return i + 1
-
 
 
 list1 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]

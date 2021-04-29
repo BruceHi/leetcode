@@ -16,12 +16,21 @@ class Solution:
     #             return False
         # return True
 
+    # def canJump(self, nums: List[int]) -> bool:
+    #     jump = 0
+    #     for i, num in enumerate(nums):
+    #         if jump < i:
+    #             return False
+    #         jump = max(jump, i + num)
+    #     return True
+
+
     def canJump(self, nums: List[int]) -> bool:
         jump = 0
         for i, num in enumerate(nums):
             if jump < i:
                 return False
-            jump = max(jump, i + num)
+            jump = max(jump, i+num)
         return True
 
 

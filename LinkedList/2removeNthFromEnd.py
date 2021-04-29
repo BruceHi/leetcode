@@ -66,18 +66,33 @@ class Solution:
 #         print(res.val)
 #         res = res.next
 
+    # def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+    #     cur = pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #
+    #     for _ in range(n+1):
+    #         cur = cur.next
+    #
+    #     while cur:
+    #         pre, cur = pre.next, cur.next
+    #     pre.next = pre.next.next
+    #
+    #     return dummy.next
+
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        cur = pre = dummy = ListNode(0)
+        fast = dummy = ListNode(0)
         dummy.next = head
-
         for _ in range(n+1):
-            cur = cur.next
+            fast = fast.next
 
-        while cur:
-            pre, cur = pre.next, cur.next
+        pre = dummy
+        while fast:
+            pre, fast = pre.next, fast.next
+
         pre.next = pre.next.next
-
         return dummy.next
+
+
 
 
 def print_link(head: ListNode):  # 打印链表
@@ -120,4 +135,8 @@ s = Solution()
 # a = generate_link([1, 2, 3, 4, 5])
 a = generate_link(1, 2, 3, 4, 5)
 new = s.removeNthFromEnd(a, 2)
+print_link(new)
+
+a = generate_link(1)
+new = s.removeNthFromEnd(a, 1)
 print_link(new)

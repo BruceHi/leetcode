@@ -28,17 +28,30 @@ from typing import List
 #         res = max(area, res)
 #     return res
 
+# def maxArea(height: List[int]) -> int:
+#     left, right = 0, len(height) - 1
+#     res = 0
+#     while left < right:
+#         area = (right - left) * min(height[left], height[right])
+#         res = max(area, res)
+#         if height[left] < height[right]:
+#             left += 1
+#         else:
+#             right -= 1
+#     return res
+
 def maxArea(height: List[int]) -> int:
     left, right = 0, len(height) - 1
     res = 0
     while left < right:
-        area = (right - left) * min(height[left], height[right])
-        res = max(area, res)
+        res = max(res, (right-left)*min(height[left], height[right]))
         if height[left] < height[right]:
             left += 1
         else:
             right -= 1
     return res
+
+
 
 
 h = [1,8,6,2,5,4,8,3,7]

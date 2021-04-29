@@ -25,6 +25,25 @@ class Solution:
     # # 前两种方法，dp 表示前 i 个字符串可以解码的总个数
     # 都说前 i 个已经可以解码了，还要判断前 i 个能不能解码，感觉有些不合适。
     # 更正确的表述是：若前 i 个字符串可以解码，dp 表示前 i 个字符串可以解码的总个数
+    # def numDecodings(self, s: str) -> int:
+    #     if s.startswith('0'):
+    #         return 0
+    #
+    #     n = len(s)
+    #     dp = [1] * (n+1)
+    #
+    #     for i in range(2, n+1):
+    #         if s[i-1] == '0' and s[i-2] not in '12':  # 还真不能用 not
+    #             return 0
+    #         if s[i-2:i] in ['10', '20']:  # 只有组合在一起才行
+    #             dp[i] = dp[i-2]
+    #         elif '10' < s[i-2:i] <= '26':
+    #             dp[i] = dp[i-1] + dp[i-2]
+    #         else:  # '01'到 ‘09’ 或 > '26'
+    #             dp[i] = dp[i-1]
+    #     return dp[n]
+
+
     def numDecodings(self, s: str) -> int:
         if s.startswith('0'):
             return 0
@@ -33,13 +52,13 @@ class Solution:
         dp = [1] * (n+1)
 
         for i in range(2, n+1):
-            if s[i-1] == '0' and s[i-2] not in '12':  # 还真不能用 not
+            if s[i-1] == '0' and s[i-2] not in '12':
                 return 0
-            if s[i-2:i] in ['10', '20']:  # 只有组合在一起才行
+            if s[i-2:i] in ['10', '20']:
                 dp[i] = dp[i-2]
-            elif '10' < s[i-2:i] <= '26':
+            elif '10' < s[i-2:i] <= '26':  # 已经剔除了 '20'
                 dp[i] = dp[i-1] + dp[i-2]
-            else:  # '01'到 ‘09’ 或 > '26'
+            else:
                 dp[i] = dp[i-1]
         return dp[n]
 

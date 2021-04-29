@@ -60,14 +60,25 @@ from typing import List
 #         nums[j] = num
 #     return nums
 
+# def insert_sort(nums):
+#     n = len(nums)
+#     for i, num in enumerate(nums):
+#         j = i
+#         while j-1 >= 0 and num < nums[j-1]:
+#             nums[j] = nums[j-1]
+#             j -= 1
+#         nums[j] = num
+
 def insert_sort(nums):
     n = len(nums)
-    for i, num in enumerate(nums):
-        j = i
-        while j-1 >= 0 and num < nums[j-1]:
-            nums[j] = nums[j-1]
+    for i in range(1, n):
+        num = nums[i]
+        j = i - 1
+        while j >= 0 and num < nums[j]:
+            nums[j+1] = nums[j]
             j -= 1
-        nums[j] = num
+        nums[j+1] = num
+    return nums
 
 
 nums = [7, 5, 9, 6, 2]

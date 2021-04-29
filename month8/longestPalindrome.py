@@ -40,39 +40,96 @@ class Solution:
     #                 ans = s[i:j + 1]
     #     return len(ans)
 
+    # 动态规划
+    # def longestPalindrome(self, s: str) -> str:
+    #     n = len(s)
+    #     if n == 1:
+    #         return s
+    #     dp = [[False] * n for _ in range(n)]
+    #
+    #     max_len = 1
+    #     start = 0
+    #
+    #     for i in range(n):
+    #         dp[i][i] = True
+    #
+    #     for j in range(1, n):
+    #         for i in range(j):
+    #             if s[i] == s[j]:
+    #                 if j - i < 3:  # 出现 aa 或 aba 这两种情况时
+    #                     dp[i][j] = True
+    #                 else:
+    #                     dp[i][j] = dp[i+1][j-1]
+    #             else:
+    #                 dp[i][j] = False
+    #
+    #             if dp[i][j]:
+    #                 cur_len = j - i + 1
+    #                 if cur_len > max_len:
+    #                     max_len, start = cur_len, i
+    #
+    #     return s[start:start+max_len]
+
+    # 扩展中心
+    # def longestPalindrome(self, s: str) -> str:
+    #     n = len(s)
+    #     if n <= 1:
+    #         return s
+    #     max_len = 1
+    #     res = s[0]  # 至少第一个是回文的
+    #
+    #     def center(left, right):
+    #         while left >= 0 and right < n and s[left] == s[right]:
+    #             left, right = left - 1, right + 1
+    #         return s[left+1:right], right-left-1
+    #
+    #     for i in range(n):
+    #         s1, len1 = center(i, i)
+    #         s2, len2 = center(i, i+1)
+    #         # s_max, s_len = s1, len1 if len1 > len2 else s2, len2
+    #
+    #         if len1 > len2:
+    #             s_max, s_len = s1, len1
+    #         else:
+    #             s_max, s_len = s2, len2
+    #         if s_len > max_len:
+    #             max_len = s_len
+    #             res = s_max
+    #
+    #     return res
+
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        if n == 1:
+        if n <= 1:
             return s
-        dp = [[False] * n for _ in range(n)]
+        max_len = 0
+        res = ''  # 至少第一个是回文的
 
-        max_len = 1
-        start = 0
+        def center(left, right):
+            while left >= 0 and right < n and s[left] == s[right]:
+                left, right = left - 1, right + 1
+            return s[left+1:right], right-left-1
 
         for i in range(n):
-            dp[i][i] = True
+            s1, len1 = center(i, i)
+            s2, len2 = center(i, i+1)
+            # s_max, s_len = s1, len1 if len1 > len2 else s2, len2
 
-        for j in range(1, n):
-            for i in range(j):
-                if s[i] == s[j]:
-                    if j - i < 3:  # 出现 aa 或 aba 这两种情况时
-                        dp[i][j] = True
-                    else:
-                        dp[i][j] = dp[i+1][j-1]
-                else:
-                    dp[i][j] = False
+            if len1 > len2:
+                s_max, s_len = s1, len1
+            else:
+                s_max, s_len = s2, len2
+            if s_len > max_len:
+                max_len = s_len
+                res = s_max
 
-                if dp[i][j]:
-                    cur_len = j - i + 1
-                    if cur_len > max_len:
-                        max_len, start = cur_len, i
-
-        return s[start:start+max_len]
-
+        return res
 
 obj = Solution()
 print(obj.longestPalindrome("babad"))
 
 print(obj.longestPalindrome("cbbd"))
+
+print(obj.longestPalindrome("ac"))
 
 print(obj.longestPalindrome("adccccbd"))

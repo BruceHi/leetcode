@@ -109,22 +109,22 @@ class Solution:
     #         res.append(level)
     #     return res
 
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        if not root:
-            return []
-        res = []
-        queue = deque([root])
-        while queue:
-            cur = []
-            for _ in range(len(queue)):
-                top = queue.popleft()
-                cur.append(top.val)
-                if top.left:
-                    queue.append(top.left)
-                if top.right:
-                    queue.append(top.right)
-            res.append(cur)
-        return res
+    # def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     res = []
+    #     queue = deque([root])
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             top = queue.popleft()
+    #             cur.append(top.val)
+    #             if top.left:
+    #                 queue.append(top.left)
+    #             if top.right:
+    #                 queue.append(top.right)
+    #         res.append(cur)
+    #     return res
 
     # 所有元素写在列表里面
     def levelOrder2(self, root: TreeNode) -> List[int]:
@@ -143,6 +143,22 @@ class Solution:
         return res
 
 
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        queue = deque([root])
+        res = []
+        while queue:
+            cur = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                cur.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(cur)
+        return res
 
 
 

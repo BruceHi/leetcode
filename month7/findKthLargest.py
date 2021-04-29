@@ -68,13 +68,13 @@ class Solution:
     #         heapq.heappop(queue)
     #     return queue[0]
 
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        queue = nums[:k]
-        heapq.heapify(queue)
-        for num in nums[k:]:
-            if num > queue[0]:  # 加上这一句，不用每次都进行堆排序。
-                heapq.heappushpop(queue, num)
-        return queue[0]
+    # def findKthLargest(self, nums: List[int], k: int) -> int:
+    #     queue = nums[:k]
+    #     heapq.heapify(queue)
+    #     for num in nums[k:]:
+    #         if num > queue[0]:  # 加上这一句，不用每次都进行堆排序。
+    #             heapq.heappushpop(queue, num)
+    #     return queue[0]
 
     # def findKthLargest(self, nums: List[int], k: int) -> int:
     #
@@ -108,6 +108,14 @@ class Solution:
             if num > queue[0]:
                 heapq.heappushpop(queue, num)
         return -queue[0]
+
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        queue = nums[:k]
+        heapq.heapify(queue)
+        for num in nums[k:]:
+            if num > queue[0]:
+                heapq.heapreplace(queue, num)
+        return queue[0]
 
 
 s = Solution()

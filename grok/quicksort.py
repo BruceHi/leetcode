@@ -138,25 +138,43 @@ from typing import List
 #     nums[i], nums[right] = pivot, nums[i]
 #     return i
 
-def quick_sort(nums: List[int], left: int = None, right: int = None):
+# def quick_sort(nums: List[int], left: int = None, right: int = None):
+#     if left is None and right is None:
+#         left, right = 0, len(nums) - 1
+#     if left < right:
+#         p = partition(nums, left, right)
+#         quick_sort(nums, left, p - 1)
+#         quick_sort(nums, p + 1, right)
+#     return nums
+#
+#
+# def partition(nums: List[int], left: int, right: int):
+#     i, pivot = left, nums[right]
+#     for j in range(left, right):
+#         if nums[j] < pivot:
+#             nums[i], nums[j] = nums[j], nums[i]
+#             i += 1
+#     nums[i], nums[right] = pivot, nums[i]
+#     return i
+
+def quick_sort(nums, left=None, right=None):
     if left is None and right is None:
         left, right = 0, len(nums) - 1
     if left < right:
         p = partition(nums, left, right)
-        quick_sort(nums, left, p - 1)
-        quick_sort(nums, p + 1, right)
+        quick_sort(nums, left, p-1)
+        quick_sort(nums, p+1, right)
     return nums
 
 
-def partition(nums: List[int], left: int, right: int):
+def partition(nums, left, right):
     i, pivot = left, nums[right]
-    for j in range(left, right):
+    for j in range(left, right):  # left 也要算在内
         if nums[j] < pivot:
             nums[i], nums[j] = nums[j], nums[i]
             i += 1
     nums[i], nums[right] = pivot, nums[i]
     return i
-
 
 num = [5, 8, 9, 1, 2]
 print(quick_sort(num))

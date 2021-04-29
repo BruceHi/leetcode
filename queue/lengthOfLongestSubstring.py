@@ -80,17 +80,27 @@ class Solution:
     #         dic[c] = i + 1
     #     return res
 
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     res = 0
+    #     dic = {}
+    #     start = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             start = max(dic[c], start)
+    #         res = max(res, i-start+1)
+    #         dic[c] = i + 1
+    #     return res
+
     def lengthOfLongestSubstring(self, s: str) -> int:
-        res = 0
         dic = {}
-        start = 0
+        left = 0
+        res = 0
         for i, c in enumerate(s):
             if c in dic:
-                start = max(dic[c], start)
-            res = max(res, i-start+1)
+                left = max(left, dic[c])
+            res = max(res, i-left+1)
             dic[c] = i + 1
         return res
-
 
 
 

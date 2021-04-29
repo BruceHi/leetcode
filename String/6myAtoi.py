@@ -34,18 +34,47 @@ import re
 #     return int(num)
 
 
-def myAtoi(str: str) -> int:
-    p = r'^\s*[+-]?\d+'
+# def myAtoi(str: str) -> int:
+#     p = r'^\s*[+-]?\d+'
+#     pattern = re.compile(p)
+#     res_list = pattern.findall(str)
+#     res = int(*res_list)
+#
+#     if res < -2**31:
+#         return -2**31
+#     if res > 2**31 - 1:
+#         return 2**31 - 1
+#     return res
+
+# def myAtoi(s: str) -> int:
+#     p = r'\s*[+-]?\d+'
+#     p = re.compile(p)
+#     res = p.match(s)
+#     if res:
+#         num = int(res.group())
+#         if num < -2**31:
+#             return -2**31
+#         if num > 2**31-1:
+#             return 2**31-1
+#         return num
+#     else:
+#         return 0
+
+
+def myAtoi(s: str) -> int:
+    p = r'\s*[+-]?\d+'
     pattern = re.compile(p)
-    res_list = pattern.findall(str)
-    res = int(*res_list)
+    res = pattern.match(s)
 
-    if res < -2**31:
-        return -2**31
-    if res > 2**31 - 1:
-        return 2**31 - 1
-    return res
-
+    if res:
+        num = int(res.group())
+        if num < -2**31:
+            return -2**31
+        if num > 2**31-1:
+            return 2**31-1
+        return num
+    else:
+        return 0
 
 
 s = " "
@@ -61,6 +90,9 @@ s = "   2-4c2"
 print(myAtoi(s))
 
 s = "   -4c2"
+print(myAtoi(s))
+
+s = "+-12"
 print(myAtoi(s))
 
 s = "   -42"

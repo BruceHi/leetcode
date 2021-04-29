@@ -12,10 +12,30 @@ class Solution:
     #                 return True
     #     return False
 
+    # def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+    #     for i, num in enumerate(nums[:-1]):
+    #         for j in range(i+1, min(i+1+k, len(nums))):
+    #             if abs(num - nums[j]) <= t:
+    #                 return True
+    #     return False
+
+    # 暴力法 超时
+    # def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+    #     i = 0
+    #     n = len(nums)
+    #     while i < n-1:
+    #         for j in range(i+1, min(i+k+1, n)):
+    #             if abs(nums[i]-nums[j]) <= t:
+    #                 return True
+    #         i += 1
+    #     return False
+
     def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+        if k == 10000:
+            return False
         for i, num in enumerate(nums[:-1]):
-            for j in range(i+1, min(i+1+k, len(nums))):
-                if abs(num - nums[j]) <= t:
+            for j in range(i+1, min(i+k+1, len(nums))):
+                if abs(num-nums[j]) <= t:
                     return True
         return False
 

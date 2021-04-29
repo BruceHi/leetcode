@@ -88,13 +88,32 @@ from typing import List
 #                 idx = j
 #         nums[i], nums[idx] = nums[idx], nums[i]
 
+# def select_sort(nums):
+#     for i, num in enumerate(nums[:-1]):
+#         idx = i
+#         for j in range(i+1, len(nums)):
+#             if nums[j] < nums[idx]:
+#                 idx = j
+#         nums[i], nums[idx] = nums[idx], num
+
+# def select_sort(nums):
+#     n = len(nums)
+#     for i in range(n-1):
+#         min_val, min_idx = nums[i], i
+#         for j in range(i+1, n):
+#             if nums[j] < nums[min_idx]:
+#                 min_idx, min_val = j, nums[j]
+#         nums[i], nums[min_idx] = min_val, nums[i]
+
+
 def select_sort(nums):
     for i, num in enumerate(nums[:-1]):
-        idx = i
-        for j in range(i+1, len(nums)):
+        idx = i  # idx 记录最小值的索引，刚开始为 i
+        for j in range(i, len(nums)):
             if nums[j] < nums[idx]:
                 idx = j
         nums[i], nums[idx] = nums[idx], num
+    return nums
 
 
 nums = [7, 5, 9, 6, 2]

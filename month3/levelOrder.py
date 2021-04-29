@@ -34,13 +34,31 @@ class Solution:
     #         i += 1
     #     return res
 
+    # def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue = deque([root])
+    #     res = []
+    #
+    #     # 使用 res 确定奇偶层
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             if node.left:
+    #                 queue.append(node.left)
+    #             if node.right:
+    #                 queue.append(node.right)
+    #         res.append(cur[::-1] if len(res) & 1 else cur)
+    #     return res
+
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
-        queue = deque([root])
         res = []
-
-        # 使用 res 确定奇偶层
+        queue = deque([root])
+        i = 0
         while queue:
             cur = []
             for _ in range(len(queue)):
@@ -50,5 +68,9 @@ class Solution:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            res.append(cur[::-1] if len(res) & 1 else cur)
+            if i & 1:
+                cur.reverse()
+            res.append(cur)
+            i += 1
         return res
+

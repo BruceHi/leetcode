@@ -38,36 +38,66 @@ class Solution:
     #     return [left, right]
 
 
+    # def searchRange(self, nums: List[int], target: int) -> List[int]:
+    #     if not nums:
+    #         return [-1, -1]
+    #
+    #     # 寻找左边界
+    #     left, right = 0, len(nums) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] < target:
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #
+    #     if nums[left] != target:
+    #         return [-1, -1]
+    #     res = [left]
+    #
+    #     # 寻找右边界，注意此时的 left 是左边界的索引值
+    #     right = len(nums) - 1
+    #     while left < right:
+    #         mid = left + right + 1 >> 1
+    #         if nums[mid] > target:
+    #             right = mid - 1
+    #         else:
+    #             left = mid
+    #
+    #     res.append(left)
+    #     return res
+
+    # def searchRange(self, nums: List[int], target: int) -> List[int]:
+    #     if not nums or target < nums[0] or target > nums[-1]:
+    #         return [-1, -1]
+    #     left = bisect.bisect_left(nums, target)
+    #     if nums[left] != target:
+    #         return [-1, -1]
+    #     right = bisect.bisect(nums, target)
+    #     return [left, right-1]
+
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         if not nums:
             return [-1, -1]
-
-        # 寻找左边界
-        left, right = 0, len(nums) - 1
+        n = len(nums)
+        left, right = 0, n-1
         while left < right:
             mid = left + right >> 1
             if nums[mid] < target:
                 left = mid + 1
             else:
                 right = mid
-
         if nums[left] != target:
             return [-1, -1]
-        res = [left]
-
-        # 寻找右边界，注意此时的 left 是左边界的索引值
-        right = len(nums) - 1
+        i = left
+        right = n-1
         while left < right:
             mid = left + right + 1 >> 1
             if nums[mid] > target:
                 right = mid - 1
             else:
                 left = mid
-
-        res.append(left)
-        return res
-
-
+        return [i, left]
 
 
 
