@@ -45,15 +45,27 @@ class Solution:
     #     cur.next = b
     #     return dummy.next
 
+    # def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     for _ in range(left-1):
+    #         pre = pre.next
+    #     a = pre.next
+    #     for _ in range(right-left):
+    #         b = a.next
+    #         pre.next, b.next, a.next = b, pre.next, b.next
+    #     return dummy.next
+
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         pre = dummy = ListNode(0)
         dummy.next = head
         for _ in range(left-1):
             pre = pre.next
-        a = pre.next
+
+        cur = pre.next
         for _ in range(right-left):
-            b = a.next
-            pre.next, b.next, a.next = b, pre.next, b.next
+            a, b = pre.next, cur.next
+            pre.next, b.next, cur.next = b, a, b.next
         return dummy.next
 
 
