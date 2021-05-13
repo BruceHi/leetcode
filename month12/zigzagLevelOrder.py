@@ -34,30 +34,50 @@ class Solution:
     #             res[i].reverse()
     #     return res
 
+    # def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue, res = deque([root]), []
+    #     level = 0
+    #
+    #     while queue:
+    #         tmp = []
+    #         for _ in range(len(queue)):
+    #             cur = queue.popleft()
+    #             tmp.append(cur.val)
+    #             if cur.left:
+    #                 queue.append(cur.left)
+    #             if cur.right:
+    #                 queue.append(cur.right)
+    #         if level & 1:
+    #             res.append(list(reversed(tmp)))
+    #         else:
+    #             res.append(tmp)
+    #         level += 1
+    #
+    #     return res
+
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
-        queue, res = deque([root]), []
-        level = 0
+
+        queue = deque([root])
+        res = []
 
         while queue:
-            tmp = []
+            cur = []
             for _ in range(len(queue)):
-                cur = queue.popleft()
-                tmp.append(cur.val)
-                if cur.left:
-                    queue.append(cur.left)
-                if cur.right:
-                    queue.append(cur.right)
-            if level & 1:
-                res.append(reversed(tmp))
+                node = queue.popleft()
+                cur.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            if len(res) & 1:
+                res.append(cur[::-1])
             else:
-                res.append(tmp)
-            level += 1
-
+                res.append(cur)
         return res
-
-
 
 
 

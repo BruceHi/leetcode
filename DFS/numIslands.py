@@ -120,21 +120,42 @@ class UnionFind:
 
 
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
+    # def numIslands(self, grid: List[List[str]]) -> int:
+    #     if not grid:
+    #         return 0
+    #
+    #     uf = UnionFind(grid)
+    #     m, n = len(grid), len(grid[0])
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if grid[i][j] == '1':
+    #                 grid[i][j] = '0'
+    #                 for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #                     x, y = i + dx, j + dy
+    #                     if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
+    #                         uf.union(i * n + j, x * n + y)
+    #     return uf.count
 
-        uf = UnionFind(grid)
+    def numIslands(self, grid: List[List[str]]) -> int:
         m, n = len(grid), len(grid[0])
+
+        def dfs(i, j):
+            grid[i][j] = '0'
+
+            for dx, dy in zip([1, -1, 0, 0],[0, 0, 1, -1]):
+                x, y = i + dx, j + dy
+                if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
+                    dfs(x, y)
+
+        res = 0
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
-                    grid[i][j] = '0'
-                    for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
-                        x, y = i + dx, j + dy
-                        if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
-                            uf.union(i * n + j, x * n + y)
-        return uf.count
+                    dfs(i, j)
+                    res += 1
+        return res
+
+
 
 
 s = Solution()
@@ -144,8 +165,8 @@ print(s.numIslands(a))
 a = [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]
 print(s.numIslands(a))
 
-a = []
-print(s.numIslands(a))
+# a = []
+# print(s.numIslands(a))
 
 a = [["1"], ["1"]]
 print(s.numIslands(a))

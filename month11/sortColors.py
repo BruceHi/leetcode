@@ -1,4 +1,5 @@
 # 75. 颜色分类
+# 双指针不会
 from typing import List
 from collections import Counter
 
@@ -10,11 +11,12 @@ class Solution:
     #     """
     #     nums.sort()
 
-    # # 单指针，把 0 放前面，把 1 放前面
+    # # 单指针，
+    # 扫描两遍，第一遍把 0 放前面，第二遍把 1 放前面
     # def sortColors(self, nums: List[int]) -> None:
     #     i = 0
     #     for j, num in enumerate(nums):
-    #         if not num:
+    #         if num == 0:
     #             nums[i], nums[j] = num, nums[i]
     #             i += 1
     #
@@ -37,19 +39,29 @@ class Solution:
     #             p0, p1 = p0 + 1, p1 + 1
 
     # 双指针，使用 Partition
-    def sortColors(self, nums: List[int]) -> None:
-        p0, p2 = 0, len(nums) - 1
-        i = 0
-        while i <= p2:
-            while i <= p2 and nums[i] == 2:
-                nums[i], nums[p2] = nums[p2], nums[i]
-                p2 -= 1
-            if not nums[i]:
-                nums[i], nums[p0] = nums[p0], nums[i]
-                p0 += 1
-            i += 1
+    # def sortColors(self, nums: List[int]) -> None:
+    #     p0, p2 = 0, len(nums) - 1
+    #     i = 0
+    #     while i <= p2:
+    #         while i <= p2 and nums[i] == 2:
+    #             nums[i], nums[p2] = nums[p2], nums[i]
+    #             p2 -= 1
+    #         if not nums[i]:
+    #             nums[i], nums[p0] = nums[p0], nums[i]
+    #             p0 += 1
+    #         i += 1
 
-
+    # def sortColors(self, nums: List[int]) -> None:
+    #     i = 0
+    #     for j, num in enumerate(nums):
+    #         if num == 0:
+    #             nums[i], nums[j] = num, nums[i]
+    #             i += 1
+    #
+    #     for j in range(i, len(nums)):
+    #         if nums[j] == 1:
+    #             nums[i], nums[j] = nums[j], nums[i]
+    #             i += 1
 
 s = Solution()
 nums = [2,0,2,1,1,0]
