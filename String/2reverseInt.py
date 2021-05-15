@@ -118,13 +118,13 @@
 #     return 0
 
 # # 字符串转换
-def reverse(x: int) -> int:
-    sign = 1 if x > 0 else -1
-    x = x if x > 0 else -x
-    res = sign * int(str(x)[::-1])
-    if - 2 ** 31 < res < 2 ** 31 - 1:
-        return res
-    return 0
+# def reverse(x: int) -> int:
+#     sign = 1 if x > 0 else -1
+#     x = x if x > 0 else -x
+#     res = sign * int(str(x)[::-1])
+#     if - 2 ** 31 < res < 2 ** 31 - 1:
+#         return res
+#     return 0
 
 # # 数学方法
 # def reverse(x: int) -> int:
@@ -139,7 +139,18 @@ def reverse(x: int) -> int:
 #         return res
 #     return 0
 
-
+def reverse(x: int) -> int:
+    sign = -1 if x < 0 else 1
+    if x < 0:
+        x = -x
+    res = 0
+    while x:
+        res = res * 10 + x % 10
+        x //= 10
+    res *= sign
+    if res < -2**31 or res > 2**31-1:
+        return 0
+    return res
 
 a = -123
 print(reverse(a))
