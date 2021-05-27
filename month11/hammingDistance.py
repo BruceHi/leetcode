@@ -8,9 +8,11 @@ class Solution:
     #         dist &= dist - 1
     #     return res
 
+    # def hammingDistance(self, x: int, y: int) -> int:
+    #     return bin(x ^ y).count('1')
+
     def hammingDistance(self, x: int, y: int) -> int:
         return bin(x ^ y).count('1')
-
 
 s = Solution()
 x = 1

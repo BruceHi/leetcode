@@ -27,13 +27,22 @@ class Solution:
     #                 dp[i] = max(dp[i], dp[j] + 1)
     #     return max(dp)
 
+    # def lengthOfLIS(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     dp = [1] * n
+    #     for i in range(1, n):
+    #         for j in range(i):
+    #             if nums[i] > nums[j]:
+    #                 dp[i] = max(dp[i], dp[j]+1)
+    #     return max(dp)
+
     def lengthOfLIS(self, nums: List[int]) -> int:
         n = len(nums)
         dp = [1] * n
         for i in range(1, n):
             for j in range(i):
                 if nums[i] > nums[j]:
-                    dp[i] = max(dp[i], dp[j]+1)
+                    dp[i] = max(dp[i], dp[j] + 1)
         return max(dp)
 
 
@@ -45,9 +54,6 @@ print(s.lengthOfLIS(c))
 
 c = [10,9,2,5,3,7,101,18]
 print(s.lengthOfLIS(c))
-
-# c = []
-# print(s.lengthOfLIS(c))
 
 c = [1,3,6,7,9,4,10,5,6]
 print(s.lengthOfLIS(c))

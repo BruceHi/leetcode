@@ -1,5 +1,7 @@
 # x 的平方根
 from math import sqrt
+
+
 class Solution:
     # def mySqrt(self, x: int) -> int:
     #     return int(sqrt(x))
@@ -39,7 +41,7 @@ class Solution:
     #         else:
     #             left = mid
     #
-    #     return right
+    #     return right * 1.0
 
     # def mySqrt(self, x: int) -> int:
     #     left, right = 0, x
@@ -54,18 +56,44 @@ class Solution:
     #             right = mid - 1
     #     return right
 
-    def mySqrt(self, x: int) -> int:
-        left, right = 1, x
-        while left <= right:
-            mid = left + right >> 1
+    # def mySqrt(self, x: int) -> int:
+    #     left, right = 1, x
+    #     while left <= right:
+    #         mid = left + right >> 1
+    #         tmp = mid * mid
+    #         if tmp == x:
+    #             return mid
+    #         elif tmp > x:
+    #             right = mid - 1
+    #         else:
+    #             left = mid + 1
+    #     return right
+
+    # def mySqrt(self, x):
+    #     left, right = 1, x
+    #     while left <= right:
+    #         mid = left + right >> 1
+    #         tmp = mid * mid
+    #         if tmp == x:
+    #             return mid
+    #         elif tmp > x:
+    #             right = mid - 1
+    #         else:
+    #             left = mid + 1
+    #     return right
+
+    def mySqrt(self, x):
+        left, right = 0, x
+        while right - left > 1e-6:
+            mid = (left + right) / 2
             tmp = mid * mid
             if tmp == x:
                 return mid
             elif tmp > x:
-                right = mid - 1
+                right = mid
             else:
-                left = mid + 1
-        return right
+                left = mid
+        return right * 1.0
 
 
 s = Solution()

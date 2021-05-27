@@ -49,19 +49,27 @@ from typing import List
 
 
 # 真·原地算法
+# def rotate(nums: List[int], k: int) -> None:
+#
+#     def swap(nums, left, right):
+#         while left < right:
+#             nums[left], nums[right] = nums[right], nums[left]
+#             left += 1
+#             right -= 1
+#
+#     nums.reverse()
+#     k %= len(nums)
+#     swap(nums, 0, k-1)
+#     swap(nums, k, len(nums)-1)
+
 def rotate(nums: List[int], k: int) -> None:
-
-    def swap(nums, left, right):
-        while left < right:
-            nums[left], nums[right] = nums[right], nums[left]
-            left += 1
-            right -= 1
-
-    nums.reverse()
-    k %= len(nums)
-    swap(nums, 0, k-1)
-    swap(nums, k, len(nums)-1)
-
+    n = len(nums)
+    k %= n
+    if not k:
+        return
+    nums[:n-k] = reversed(nums[:n-k])
+    nums[-k:] = reversed(nums[-k:])
+    nums[:] = reversed(nums)
 
 list1 = [1,2,3,4,5,6,7]
 rotate(list1, 3)
@@ -81,4 +89,8 @@ print(list1)
 
 list1 = [1, 2, 3]
 rotate(list1, 4)
+print(list1)
+
+list1 = [1, 2]
+rotate(list1, 0)
 print(list1)
