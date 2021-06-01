@@ -119,23 +119,65 @@ class Solution:
     #     cur.next = None
     #     return dummy.next
 
-    def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if k == 0 or not head or not head.next:
-            return head
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if k == 0 or not head or not head.next:
+    #         return head
+    #
+    #     cur = head
+    #     n = 1
+    #     while cur.next:
+    #         n += 1
+    #         cur = cur.next
+    #     cur.next = head
+    #
+    #     # 定位到前驱节点，跟上面代码不同的是没有 cur = head这一步，下面循环步数也不用减一
+    #     for _ in range(n - k % n):
+    #         cur = cur.next
+    #     new = cur.next
+    #     cur.next = None
+    #     return new
 
-        cur = head
+    # def rotateRight(self, head: ListNode, k: int) -> ListNode:
+    #     if not head or not k:
+    #         return head
+    #     cur = head
+    #     n = 0
+    #     while cur:
+    #         end = cur
+    #         cur = cur.next
+    #         n += 1
+    #
+    #     k = k % n
+    #     if k == 0:
+    #         return head
+    #     cur = pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     for _ in range(k + 1):
+    #         cur = cur.next
+    #     while cur:
+    #         pre, cur = pre.next, cur.next
+    #     dummy.next, end.next = pre.next, dummy.next
+    #     pre.next = None
+    #     return dummy.next
+
+    # 成环
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if not k or not head or not head.next:
+            return head
         n = 1
+        cur = head
         while cur.next:
-            n += 1
             cur = cur.next
+            n += 1
         cur.next = head
 
-        # 定位到前驱节点，跟上面代码不同的是没有 cur = head这一步，下面循环步数也不用减一
-        for _ in range(n - k % n):
+        for _ in range(n-k%n):
             cur = cur.next
-        new = cur.next
+        head = cur.next
         cur.next = None
-        return new
+        return head
+
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

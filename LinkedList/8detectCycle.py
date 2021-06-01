@@ -41,8 +41,18 @@ class Solution:
     #                 pre, slow = pre.next, slow.next
     #             return slow
 
+    # def detectCycle(self, head: ListNode) -> ListNode:
+    #     slow = fast = head
+    #     while fast and fast.next:
+    #         slow, fast = slow.next, fast.next.next
+    #         if slow is fast:
+    #             find = head
+    #             while slow != find:
+    #                 slow, find = slow.next, find.next
+    #             return find
+
     def detectCycle(self, head: ListNode) -> ListNode:
-        slow = fast = head
+        slow, fast = head, head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
             if slow is fast:
@@ -50,7 +60,5 @@ class Solution:
                 while slow != find:
                     slow, find = slow.next, find.next
                 return find
-
-
 
 

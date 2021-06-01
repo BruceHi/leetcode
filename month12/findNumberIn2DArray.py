@@ -4,17 +4,31 @@ from typing import List
 
 
 class Solution:
+    # def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
+    #     if not matrix:
+    #         return False
+    #     m, n = len(matrix), len(matrix[0])
+    #     i, j = m-1, 0
+    #     # while 0 <= i < m and 0 <= j < n:
+    #     while i >= 0 and j < n:  # 不用完整的判定
+    #         if matrix[i][j] < target:
+    #             j += 1
+    #         elif matrix[i][j] > target:
+    #             i -= 1
+    #         else:
+    #             return True
+    #     return False
+
     def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
-        if not matrix:
+        if not matrix or not matrix[0]:
             return False
         m, n = len(matrix), len(matrix[0])
         i, j = m-1, 0
-        # while 0 <= i < m and 0 <= j < n:
-        while i >= 0 and j < n:  # 不用完整的判定
-            if matrix[i][j] < target:
-                j += 1
-            elif matrix[i][j] > target:
+        while i >= 0 and j < n:
+            if target < matrix[i][j]:
                 i -= 1
+            elif target > matrix[i][j]:
+                j += 1
             else:
                 return True
         return False
@@ -30,3 +44,5 @@ matrix = [
 ]
 print(s.findNumberIn2DArray(matrix, target=5))
 print(s.findNumberIn2DArray(matrix, target=20))
+
+print(s.findNumberIn2DArray([[]], target=20))

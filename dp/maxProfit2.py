@@ -1,4 +1,4 @@
-# 股票交易
+# 股票交易 有冷冻期、附加费
 class Solution:
     # 有冷冻期，即卖出股票后第二天无法买入股票。
     # def maxProfit(self, prices):

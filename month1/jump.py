@@ -16,17 +16,29 @@ class Solution:
     #                 break
     #     return res
 
-    # 正向贪心，时间复杂度为 O(n)
+    # # 正向贪心，时间复杂度为 O(n)
+    # def jump(self, nums: List[int]) -> int:
+    #     res = 0
+    #     end = 0
+    #     max_pos = 0
+    #     for i, num in enumerate(nums[:-1]):
+    #         if max_pos >= i:
+    #             max_pos = max(max_pos, num + i)  # 下次位置
+    #             if i == end:
+    #                 end = max_pos
+    #                 res += 1
+    #     return res
+
+    # 不要判断也行
     def jump(self, nums: List[int]) -> int:
         res = 0
         end = 0
         max_pos = 0
         for i, num in enumerate(nums[:-1]):
-            if max_pos >= i:
-                max_pos = max(max_pos, num + i)  # 下次位置
-                if i == end:
-                    end = max_pos
-                    res += 1
+            max_pos = max(max_pos, num + i)  # 下次位置
+            if i == end:
+                end = max_pos
+                res += 1
         return res
 
 

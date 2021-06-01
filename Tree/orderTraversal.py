@@ -71,17 +71,17 @@ class Solution:
     #     return res[::-1]
 
     # 迭代
-    def preorderTraversal(self, root: TreeNode) -> list[int]:
-        res, stack = [], []
-        cur = root
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                res.append(cur.val)
-                cur = cur.left
-            top = stack.pop()
-            cur = top.right
-        return res
+    # def preorderTraversal(self, root: TreeNode) -> list[int]:
+    #     res, stack = [], []
+    #     cur = root
+    #     while cur or stack:
+    #         while cur:
+    #             stack.append(cur)
+    #             res.append(cur.val)
+    #             cur = cur.left
+    #         top = stack.pop()
+    #         cur = top.right
+    #     return res
 
 
     def postorderTraversal(self, root: TreeNode) -> List[int]:
@@ -120,4 +120,18 @@ class Solution:
             res.append(top.val)
             cur = top.right
         return res
+
+
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        cur, stack = root, []
+        res = []
+        while cur or stack:
+            while cur:
+                res.append(cur.val)
+                stack.append(cur)
+                cur = cur.left
+            top = stack.pop()
+            cur = top.right
+        return res
+
 

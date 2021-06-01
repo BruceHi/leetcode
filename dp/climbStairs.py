@@ -70,6 +70,12 @@ class Solution:
             a, b = b, a+b
         return b
 
+    # def climbStairs(self, n):
+    #     x, y = 0, 1
+    #     for _ in range(n):
+    #         x, y = y, x+y
+    #     return y
+
 
 s = Solution()
 print(s.climbStairs(1))

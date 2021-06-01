@@ -15,10 +15,13 @@ class Solution:
     #     print(b)
     #     matrix[:] = map(list, zip(*matrix[::-1]))
 
-    def rotate(self, matrix: List[List[int]]) -> None:
-        # matrix[:] = [x[::-1] for x in list(map(list, zip(*matrix)))]
-        matrix[:] = map(list, zip(*matrix[::-1]))
+    # def rotate(self, matrix: List[List[int]]) -> None:
+    #     # matrix[:] = [x[::-1] for x in list(map(list, zip(*matrix)))]
+    #     matrix[:] = map(list, zip(*matrix[::-1]))
 
+    def rotate(self, matrix: List[List[int]]) -> None:
+        # matrix[:] = list(map(list, zip(*matrix[::-1])))
+        matrix[:] = map(list, zip(*matrix[::-1]))
 
 s = Solution()
 matrix = [

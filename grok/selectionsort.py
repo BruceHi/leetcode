@@ -42,26 +42,6 @@ from typing import List
 #         nums[i], nums[min_index] = nums[min_index], nums[i]
 #     return nums
 
-# def select_sort(nums: List[int]) -> List[int]:
-#     for i, num in enumerate(nums[:-1]):
-#         min_num = num
-#         idx = i
-#         for j in range(i, len(nums)):
-#             if min_num > nums[j]:
-#                 min_num = nums[j]
-#                 idx = j
-#         nums[i], nums[idx] = min_num, num
-#     return nums
-
-# def select_sort(nums: List[int]) -> List[int]:
-#     for i, num in enumerate(nums[:-1]):
-#         idx = i
-#         for j in range(i+1, len(nums)):
-#             if nums[idx] > nums[j]:
-#                 idx = j
-#         nums[i], nums[idx] = nums[idx], num
-#     return nums
-
 # def select_sort(nums):
 #     n = len(nums)
 #     for i in range(n-1):
@@ -71,8 +51,9 @@ from typing import List
 #                 min_idx = j
 #         nums[i], nums[min_idx] = nums[min_idx], nums[i]
 
+
 # def select_sort(nums):
-#     for i, num in enumerate(nums):
+#     for i, num in enumerate(nums):  # 多遍历了最后一位，但是保留了变化的 nums
 #         idx = i
 #         for j in range(i+1, len(nums)):
 #             if nums[j] < nums[idx]:
@@ -89,14 +70,6 @@ from typing import List
 #         nums[i], nums[idx] = nums[idx], nums[i]
 
 # def select_sort(nums):
-#     for i, num in enumerate(nums[:-1]):
-#         idx = i
-#         for j in range(i+1, len(nums)):
-#             if nums[j] < nums[idx]:
-#                 idx = j
-#         nums[i], nums[idx] = nums[idx], num
-
-# def select_sort(nums):
 #     n = len(nums)
 #     for i in range(n-1):
 #         min_val, min_idx = nums[i], i
@@ -106,14 +79,34 @@ from typing import List
 #         nums[i], nums[min_idx] = min_val, nums[i]
 
 
+# 下面是错误的做法
+# 因为我们修改的是 nums 的值，而 nums[:-1] 只是一个复制品，修改不影响 nums[:-1]的遍历。
+# 若有修改的，还按照 nums[:-1] 来遍历，可能会出错
+# def select_sort(nums):
+#     for i, num in enumerate(nums[:-1]):
+#         min_idx = i
+#         for j in range(i+1, len(nums)):
+#             if nums[j] < nums[min_idx]:
+#                 min_idx = j
+#         nums[i], nums[min_idx] = nums[min_idx], num
+
+
+# def select_sort(nums):
+#     for i, num in enumerate(nums):
+#         min_idx = i
+#         for j in range(i+1, len(nums)):
+#             if nums[j] < nums[min_idx]:
+#                 min_idx = j
+#         nums[i], nums[min_idx] = nums[min_idx], num
+
 def select_sort(nums):
-    for i, num in enumerate(nums[:-1]):
-        idx = i  # idx 记录最小值的索引，刚开始为 i
-        for j in range(i, len(nums)):
-            if nums[j] < nums[idx]:
-                idx = j
-        nums[i], nums[idx] = nums[idx], num
-    return nums
+    n = len(nums)
+    for i in range(n-1):
+        min_idx = i
+        for j in range(i+1, n):
+            if nums[j] < nums[min_idx]:
+                min_idx = j
+        nums[i], nums[min_idx] = nums[min_idx], nums[i]
 
 
 nums = [7, 5, 9, 6, 2]
@@ -127,5 +120,3 @@ print(nums)
 nums = [1, 4, 5, 6, 5, 6]
 select_sort(nums)
 print(nums)
-
-

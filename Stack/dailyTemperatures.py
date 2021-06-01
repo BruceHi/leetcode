@@ -78,10 +78,19 @@ class Solution:
     #         stack.append(i)
     #     return res
 
-    def dailyTemperatures(self, T: List[int]) -> List[int]:
-        stack, res = [], [0] * len(T)
-        for i, t in enumerate(T):
-            while stack and t > T[stack[-1]]:
+    # def dailyTemperatures(self, T: List[int]) -> List[int]:
+    #     stack, res = [], [0] * len(T)
+    #     for i, t in enumerate(T):
+    #         while stack and t > T[stack[-1]]:
+    #             tmp = stack.pop()
+    #             res[tmp] = i - tmp
+    #         stack.append(i)
+    #     return res
+
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack, res = [], [0] * len(temperatures)
+        for i, t in enumerate(temperatures):
+            while stack and t > temperatures[stack[-1]]:
                 tmp = stack.pop()
                 res[tmp] = i - tmp
             stack.append(i)

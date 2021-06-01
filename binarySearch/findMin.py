@@ -1,17 +1,17 @@
-# 寻找旋转排序数组中的最小值
+# 153.寻找旋转排序数组中的最小值
 from typing import List
 
 
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        left, right = 0, len(nums) - 1
-        while left < right:
-            mid = left + right >> 1
-            if nums[mid] > nums[right]:
-                left = mid + 1
-            else:
-                right = mid
-        return nums[right]
+    # def findMin(self, nums: List[int]) -> int:
+    #     left, right = 0, len(nums) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] > nums[right]:
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #     return nums[right]
 
     # # # 找到最大值
     # def findMin(self, nums: List[int]) -> int:
@@ -24,6 +24,15 @@ class Solution:
     #             left = mid
     #     return nums[right]
 
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = left + right >> 1
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]
 
 
 s = Solution()

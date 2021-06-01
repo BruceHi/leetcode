@@ -18,6 +18,14 @@ class Solution:
     #     res = max(res, count)
     #     return res
 
+    # def findLengthOfLCIS(self, nums: List[int]) -> int:
+    #     start, res = 0, 0
+    #     for i, num in enumerate(nums):
+    #         if i > 0 and nums[i-1] >= num:
+    #             start = i
+    #         res = max(res, i-start+1)
+    #     return res
+
     def findLengthOfLCIS(self, nums: List[int]) -> int:
         start, res = 0, 0
         for i, num in enumerate(nums):

@@ -26,20 +26,51 @@ class Solution:
     #     return res
 
     # 顺序搜索判重，利用题目强调的 无重复元素
+    # def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    #     res = []
+    #     n = len(candidates)
+    #
+    #     def dfs(nums, idx, cur, remain):  # idx 开始搜索的位置
+    #         if remain == 0:
+    #             res.append(cur)
+    #             return
+    #         if remain < 0:  # 和上面我的思想差不多，只是这次和 0 比较。比我上面的多回溯了一遍。这种方法更简洁。
+    #             return
+    #         for i in range(idx, n):
+    #             dfs(nums, i, cur + [nums[i]], remain-nums[i])
+    #
+    #     dfs(candidates, 0, [], target)
+    #     return res
+
+    # def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    #     res = []
+    #
+    #     def dfs(cur, target):
+    #         if target == 0:
+    #             if sorted(cur) not in res:
+    #                 res.append(sorted(cur))
+    #             return
+    #         if min(candidates) > target:
+    #             return
+    #         for num in candidates:
+    #             dfs(cur+[num], target-num)
+    #
+    #     dfs([], target)
+    #     return res
+
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
-        n = len(candidates)
 
-        def dfs(nums, idx, cur, remain):  # idx 开始搜索的位置
-            if remain == 0:
+        def dfs(idx, cur, target):
+            if target == 0:
                 res.append(cur)
                 return
-            if remain < 0:  # 和上面我的思想差不多，只是这次和 0 比较。比我上面的多回溯了一遍。这种方法更简洁。
+            if min(candidates) > target:
                 return
-            for i in range(idx, n):
-                dfs(nums, i, cur + [nums[i]], remain-nums[i])
+            for i in range(idx, len(candidates)):
+                dfs(i, cur+[candidates[i]], target-candidates[i])
 
-        dfs(candidates, 0, [], target)
+        dfs(0, [], target)
         return res
 
 

@@ -4,6 +4,24 @@ from collections import deque
 
 
 class Solution:
+    # def movingCount(self, m: int, n: int, k: int) -> int:
+    #     def digit_sum(n):
+    #         res = 0
+    #         while n:
+    #             res += n % 10
+    #             n //= 10
+    #         return res
+    #
+    #     queue = deque([(0, 0)])
+    #     visited = set()
+    #     while queue:
+    #         x, y = queue.popleft()
+    #         if (x, y) not in visited and 0 <= x < m and 0 <= y < n and digit_sum(x) + digit_sum(y) <= k:
+    #             visited.add((x, y))
+    #             queue.append((x+1, y))
+    #             queue.append((x, y+1))
+    #     return len(visited)
+
     def movingCount(self, m: int, n: int, k: int) -> int:
         def digit_sum(n):
             res = 0
@@ -13,14 +31,14 @@ class Solution:
             return res
 
         queue = deque([(0, 0)])
-        visited = set()
+        record = set()
         while queue:
             x, y = queue.popleft()
-            if (x, y) not in visited and 0 <= x < m and 0 <= y < n and digit_sum(x) + digit_sum(y) <= k:
-                visited.add((x, y))
+            if 0 <= x < m and 0 <= y < n and (x, y) not in record and digit_sum(x) + digit_sum(y) <= k:
+                record.add((x, y))
                 queue.append((x+1, y))
                 queue.append((x, y+1))
-        return len(visited)
+        return len(record)
 
 
 

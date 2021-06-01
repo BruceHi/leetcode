@@ -18,15 +18,29 @@ class Solution:
     #     return [x for x, _ in count.most_common(k)]
 
     # 时间复杂度为 O(n log k)，超过 95%
+    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    #     count = Counter(nums)
+    #     arr = [(val, key) for key, val in count.items()]  # 次数，实际值
+    #     queue = arr[:k]
+    #     heapq.heapify(queue)
+    #     for x, y in arr[k:]:
+    #         if x > queue[0][0]:
+    #             heapq.heappushpop(queue, (x, y))
+    #     return [x[1] for x in queue]
+
+    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    #     count = Counter(nums)
+    #     return [x for x, _ in count.most_common(k)]
+
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
-        arr = [(val, key) for key, val in count.items()]  # 次数，实际值
+        arr = [(v, key) for key, v in count.items()]
         queue = arr[:k]
         heapq.heapify(queue)
-        for x, y in arr[k:]:
-            if x > queue[0][0]:
-                heapq.heappushpop(queue, (x, y))
-        return [x[1] for x in queue]
+        for key, val in arr[k:]:
+            if key > queue[0][0]:
+                heapq.heappushpop(queue, (key, val))
+        return [x for _, x in queue]
 
 
 s = Solution()
