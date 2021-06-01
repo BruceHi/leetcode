@@ -208,3 +208,6 @@ print(quick_sort(nums))
 
 nums = [1, 4, 5, 6, 5, 6]
 print(quick_sort(nums))
+
+nums = [2, 7, 4, 1, 0]
+print(quick_sort(nums))
