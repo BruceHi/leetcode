@@ -46,15 +46,26 @@ class Solution:
     #             dp[i] = dp[i-1]
     #     return dp[n]
 
+    # def translateNum(self, num: int) -> int:
+    #     x, y = 1, 1
+    #     s = str(num)
+    #     for i in range(2, len(s)+1):
+    #         if '10' <= s[i-2] + s[i-1] < '26':
+    #             y, x = x+y, y
+    #         else:
+    #             x = y
+    #     return y
+
     def translateNum(self, num: int) -> int:
-        x, y = 1, 1
-        s = str(num)
-        for i in range(2, len(s)+1):
-            if '10' <= s[i-2] + s[i-1] < '26':
-                y, x = x+y, y
+        nums = str(num)
+        n = len(nums)
+        dp = [1] * (n+1)
+        for i in range(2, n+1):
+            if '10' <= nums[i-2:i] <= '25':
+                dp[i] = dp[i-1] + dp[i-2]
             else:
-                x = y
-        return y
+                dp[i] = dp[i-1]
+        return dp[n]
 
 
 s = Solution()
@@ -67,3 +78,5 @@ print(s.translateNum(num))  # 结果：1种
 num = 18822
 print(s.translateNum(num))
 
+num = 0
+print(s.translateNum(num))
