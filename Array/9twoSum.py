@@ -50,6 +50,3 @@ print(twoSum(list1, target))
 list1 = [2, 7, 11, 15]
 target = 9
 print(twoSum(list1, target))
-
-
-

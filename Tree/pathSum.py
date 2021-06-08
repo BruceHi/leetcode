@@ -11,18 +11,35 @@ class TreeNode:
 
 
 class Solution:
-    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+    # def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+    #     res = []
+    #
+    #     def dfs(root, sum, cur):
+    #         if not root:
+    #             return
+    #         if not root.left and not root.right:  # 叶子节点
+    #             if root.val == sum:
+    #                 res.append(cur+[sum])
+    #             return
+    #         dfs(root.left, sum - root.val, cur + [root.val])
+    #         dfs(root.right, sum - root.val, cur + [root.val])
+    #
+    #     dfs(root, sum, [])
+    #     return res
+
+
+    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
         res = []
 
-        def dfs(root, sum, cur):
+        def path(root, target, cur):
             if not root:
                 return
-            if not root.left and not root.right:  # 叶子节点
-                if root.val == sum:
-                    res.append(cur+[sum])
+            if not root.left and not root.right:
+                if root.val == target:
+                    res.append(cur+[target])
                 return
-            dfs(root.left, sum - root.val, cur + [root.val])
-            dfs(root.right, sum - root.val, cur + [root.val])
+            path(root.left, target-root.val, cur+[root.val])
+            path(root.right, target-root.val, cur+[root.val])
 
-        dfs(root, sum, [])
+        path(root, target, [])
         return res
