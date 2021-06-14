@@ -1,4 +1,4 @@
-# 幂
+# 剑指 offer 16. 数值的整数次方
 class Solution:
     # def myPow(self, x: float, n: int) -> float:
         # return pow(x, n)
@@ -60,16 +60,29 @@ class Solution:
     #         n >>= 1
     #     return res if sign == 1 else 1 / res
 
+    # def myPow(self, x: float, n: int) -> float:
+    #     sign = 1 if n > 0 else -1
+    #     n = n if n > 0 else -n
+    #     res = 1.0
+    #     while n:
+    #         if n & 1:
+    #             res *= x
+    #         x *= x
+    #         n >>= 1
+    #     return res if sign == 1 else 1 / res
+
     def myPow(self, x: float, n: int) -> float:
-        sign = 1 if n > 0 else -1
-        n = n if n > 0 else -n
-        res = 1.0
-        while n:
-            if n & 1:
-                res *= x
-            x *= x
-            n >>= 1
-        return res if sign == 1 else 1 / res
+        if n == 0:
+            return 1.0
+        if n == 1:
+            return x
+        if n == -1:
+            return 1/x
+        m = n >> 1
+        y = self.myPow(x, m)
+        if n & 1:
+            return y * y * x
+        return y * y
 
 
 s = Solution()

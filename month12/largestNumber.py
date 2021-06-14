@@ -5,24 +5,6 @@ from typing import List
 
 
 class Solution:
-    # 错误
-    # def largestNumber(self, nums: list[int]) -> str:
-    #     nums_str = [str(num) for num in nums]
-    #     n = max(len(c) for c in nums_str)
-    #     # print(n)
-    #     nums_str.sort(key=lambda x: x + (n - len(x)) * x[-1], reverse=True)
-    #     # a = list(map(lambda x: x + (n - len(x)) * x[-1], nums_str))
-    #     # print(a)
-    #     # print(nums_str)
-    #     return ''.join(nums_str)
-
-    # 错误
-    # def largestNumber(self, nums: list[int]) -> str:
-    #     nums_str = [str(num) for num in nums]
-    #     n = max(len(c) for c in nums_str)
-    #     nums_str.sort(key=lambda x: x + (n - len(x)) * x[-1], reverse=True)
-    #     return ''.join(nums_str)
-
     # def largestNumber(self, nums: list[int]) -> str:
     #     # 全部都是 0
     #     if not any(nums):
@@ -48,15 +30,20 @@ class Solution:
 #     def __lt__(x, y):
 #         return x+y > y+x
 
+    # def largestNumber(self, nums: List[int]) -> str:
+    #     # >= 1个数为 0，反面 所有数为0
+    #     if not any(nums):
+    #         return '0'
+    #
+    #     cmp = lambda x, y: int(x+y) - int(y+x)
+    #     return ''.join(sorted(map(str, nums), key=cmp_to_key(cmp), reverse=True))
+
     def largestNumber(self, nums: List[int]) -> str:
-        # >= 1个数为 0，反面 所有数为0
+        # 至少 1 个 1，反面：全部为 0
         if not any(nums):
             return '0'
-
         cmp = lambda x, y: int(x+y) - int(y+x)
         return ''.join(sorted(map(str, nums), key=cmp_to_key(cmp), reverse=True))
-
-
 
 
 s = Solution()

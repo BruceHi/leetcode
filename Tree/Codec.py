@@ -108,12 +108,37 @@ class Codec:
     #     data.pop()
     #     return dfs(deque(data))
 
+    # def serialize(self, root):
+    #     def inorder(root):
+    #         if not root:
+    #             return ''
+    #         return str(root.val) + ',' + inorder(root.left) + ',' + inorder(root.right)
+    #     return inorder(root)
+    #
+    # def deserialize(self, data):
+    #
+    #     def dfs(data):
+    #         if not data:
+    #             return
+    #         val = data.popleft()
+    #         if not val:
+    #             return
+    #         root = TreeNode(val)
+    #         root.left = dfs(data)
+    #         root.right = dfs(data)
+    #         return root
+    #
+    #     data = data.split(',')
+    #     return dfs(deque(data))
+
     def serialize(self, root):
-        def inorder(root):
+
+        def preorder(root):
             if not root:
                 return ''
-            return str(root.val) + ',' + inorder(root.left) + ',' + inorder(root.right)
-        return inorder(root)
+            return str(root.val) + ',' + preorder(root.left) + ',' + preorder(root.right)
+
+        return preorder(root)
 
     def deserialize(self, data):
 
@@ -123,10 +148,14 @@ class Codec:
             val = data.popleft()
             if not val:
                 return
-            root = TreeNode(val)
+            root = TreeNode(int(val))
             root.left = dfs(data)
             root.right = dfs(data)
             return root
 
         data = data.split(',')
         return dfs(deque(data))
+
+
+a = '1,2,,,3,4,,,5,,'
+print(a.split(','))

@@ -105,31 +105,53 @@ class Solution:
     #     return False
 
     # 超时
+    # def exist(self, board: List[List[str]], word: str) -> bool:
+    #     m, n = len(board), len(board[0])
+    #
+    #     def dfs(board, i, j, cur):
+    #         if not cur:
+    #             return True
+    #
+    #         res = False
+    #         tmp = board[i][j]
+    #         board[i][j] = 1  # 染色
+    #         res = []
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i+dx, j+dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] == cur[0]:
+    #                 if dfs(board, x, y, cur[1:]):
+    #                     res = True
+    #                     break
+    #         board[i][j] = tmp  # 还原
+    #         return res
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] == word[0] and dfs(board, i, j, word[1:]):
+    #                 return True
+    #     return False
+
     def exist(self, board: List[List[str]], word: str) -> bool:
         m, n = len(board), len(board[0])
 
-        def dfs(board, i, j, cur):
-            if not cur:
+        # cur:存入搜索过的索引
+        def dfs(i, j, cur, word):
+            if not word:
                 return True
 
-            res = False
-            tmp = board[i][j]
-            board[i][j] = 1  # 染色
-            res = []
             for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
                 x, y = i+dx, j+dy
-                if 0 <= x < m and 0 <= y < n and board[x][y] == cur[0]:
-                    if dfs(board, x, y, cur[1:]):
-                        res = True
-                        break
-            board[i][j] = tmp  # 还原
-            return res
+                if 0 <= x < m and 0 <= y < n and (x, y) not in cur and word[0] == board[x][y]:
+                    if dfs(x, y, cur | {(x, y)}, word[1:]):
+                        return True
 
         for i in range(m):
             for j in range(n):
-                if board[i][j] == word[0] and dfs(board, i, j, word[1:]):
-                    return True
+                if board[i][j] == word[0]:
+                    if dfs(i, j, {(i, j)}, word[1:]):
+                        return True
         return False
+
 
 s = Solution()
 board = [

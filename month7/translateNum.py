@@ -56,11 +56,22 @@ class Solution:
     #             x = y
     #     return y
 
+    # def translateNum(self, num: int) -> int:
+    #     nums = str(num)
+    #     n = len(nums)
+    #     dp = [1] * (n+1)
+    #     for i in range(2, n+1):
+    #         if '10' <= nums[i-2:i] <= '25':
+    #             dp[i] = dp[i-1] + dp[i-2]
+    #         else:
+    #             dp[i] = dp[i-1]
+    #     return dp[n]
+
     def translateNum(self, num: int) -> int:
         nums = str(num)
         n = len(nums)
         dp = [1] * (n+1)
-        for i in range(2, n+1):
+        for i in range(1, n+1):
             if '10' <= nums[i-2:i] <= '25':
                 dp[i] = dp[i-1] + dp[i-2]
             else:

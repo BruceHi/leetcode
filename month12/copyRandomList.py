@@ -1,5 +1,6 @@
 # 138.复制带随机指针的链表
 from typing import List
+from copy import deepcopy
 
 
 class Node:
@@ -13,21 +14,38 @@ class Solution:
     # 创建一个哈希表，key是原节点，value是新节点
     # 第一次遍历，将原节点和新节点放入哈希表中，顺便把 next 给连好
     # 第二次遍历，将 random 连好
+    # def copyRandomList(self, head: 'Node') -> 'Node':
+    #     dic = {}
+    #     p = head
+    #     cur = dummy = Node(0)
+    #     while p:
+    #         new = Node(p.val)
+    #         dic[p] = new
+    #         cur.next = new
+    #         cur = cur.next
+    #         p = p.next
+    #
+    #     while head:
+    #         if head.random:
+    #             dic[head].random = dic[head.random]
+    #         head = head.next
+    #     return dummy.next
+
     def copyRandomList(self, head: 'Node') -> 'Node':
         dic = {}
-        p = head
-        cur = dummy = Node(0)
-        while p:
-            new = Node(p.val)
-            dic[p] = new
-            cur.next = new
-            cur = cur.next
+        p = dummy = Node(0)
+        cur = head
+        while cur:
+            p.next = Node(cur.val)
             p = p.next
+            dic[cur] = p
+            cur = cur.next
 
-        while head:
-            if head.random:
-                dic[head].random = dic[head.random]
-            head = head.next
+        cur = head
+        while cur:
+            if cur.random:
+                dic[cur].random = dic[cur.random]
+            cur = cur.next
         return dummy.next
 
 

@@ -20,8 +20,13 @@ class Solution:
     #     res, = [key for key, val in count.items() if val == 1]
     #     return res
 
-    def singleNumber(self, nums) -> int:
-        return (sum(set(nums)) * 3 - sum(nums)) // 2
+    # def singleNumber(self, nums) -> int:
+    #     return (sum(set(nums)) * 3 - sum(nums)) // 2
+
+    def singleNumber(self, nums: List[int]) -> int:
+        count = Counter(nums)
+        a, = [x for x in count if count[x] == 1]
+        return a
 
 
 s = Solution()

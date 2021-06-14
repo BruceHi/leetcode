@@ -80,13 +80,21 @@ class Solution:
     #     root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
     #     return root
 
+    # def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+    #     if not preorder:
+    #         return
+    #     val = preorder[0]
+    #     root = TreeNode(val)
+    #     idx = inorder.index(val)
+    #     root.left = self.buildTree(preorder[1:idx+1], inorder[:idx])
+    #     root.right = self.buildTree(preorder[idx+1:], inorder[idx+1:])
+    #     return root
+
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
         if not preorder:
             return
-        val = preorder[0]
-        root = TreeNode(val)
-        idx = inorder.index(val)
-        root.left = self.buildTree(preorder[1:idx+1], inorder[:idx])
-        root.right = self.buildTree(preorder[idx+1:], inorder[idx+1:])
+        root = TreeNode(preorder[0])
+        i = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:i+1], inorder[:i])
+        root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
         return root
-

@@ -10,6 +10,20 @@ def isBadVersion(version):
 
 
 class Solution:
+    # def firstBadVersion(self, n):
+    #     """
+    #     :type n: int
+    #     :rtype: int
+    #     """
+    #     left, right = 1, n
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if isBadVersion(mid):
+    #             right = mid
+    #         else:
+    #             left = mid + 1
+    #     return right
+
     def firstBadVersion(self, n):
         """
         :type n: int
@@ -18,10 +32,9 @@ class Solution:
         left, right = 1, n
         while left < right:
             mid = left + right >> 1
-            if isBadVersion(mid):
-                right = mid
-            else:
+            if not isBadVersion(mid):
                 left = mid + 1
-        return right
-
+            else:
+                right = mid
+        return left
 
