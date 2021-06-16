@@ -4,13 +4,22 @@ from typing import List
 
 
 class Solution:
+    # def maxProfit(self, prices: List[int]) -> int:
+    #     res = 0
+    #     min_price = float('inf')
+    #     for p in prices:
+    #         if p < min_price:
+    #             min_price = p
+    #         res = max(res, p-min_price)
+    #     return res
+
     def maxProfit(self, prices: List[int]) -> int:
         res = 0
         min_price = float('inf')
-        for p in prices:
-            if p < min_price:
-                min_price = p
-            res = max(res, p-min_price)
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            res = max(res, price-min_price)
         return res
 
 

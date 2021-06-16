@@ -80,15 +80,25 @@ from typing import List
 #         nums[j+1] = num
 #     return nums
 
+# def insert_sort(nums):
+#     n = len(nums)
+#     for i in range(1, n):
+#         j = i
+#         val = nums[i]
+#         while j-1 >= 0 and nums[j-1] > val:
+#             nums[j] = nums[j-1]
+#             j -= 1
+#         nums[j] = val
+
 def insert_sort(nums):
     n = len(nums)
     for i in range(1, n):
         j = i
-        val = nums[i]
-        while j-1 >= 0 and nums[j-1] > val:
+        tmp = nums[i]
+        while j-1 >= 0 and nums[j-1] > tmp:
             nums[j] = nums[j-1]
             j -= 1
-        nums[j] = val
+        nums[j] = tmp
 
 
 nums = [7, 5, 9, 6, 2]

@@ -130,6 +130,31 @@ from typing import List
 #         res.extend(nums2[j:])
 #     return res
 
+# def merge_sort(nums):
+#     n = len(nums)
+#     if n <= 1:
+#         return nums
+#     mid = n >> 1
+#     return merge(merge_sort(nums[:mid]), merge_sort(nums[mid:]))
+#
+#
+# def merge(nums1, nums2):
+#     m, n = len(nums1), len(nums2)
+#     i, j = 0, 0
+#     res = []
+#     while i < m and j < n:
+#         if nums1[i] < nums2[j]:
+#             res.append(nums1[i])
+#             i += 1
+#         else:
+#             res.append(nums2[j])
+#             j += 1
+#     if i < m:
+#         res.extend(nums1[i:])
+#     if j < n:
+#         res.extend(nums2[j:])
+#     return res
+
 def merge_sort(nums):
     n = len(nums)
     if n <= 1:
@@ -139,8 +164,8 @@ def merge_sort(nums):
 
 
 def merge(nums1, nums2):
-    m, n = len(nums1), len(nums2)
     i, j = 0, 0
+    m, n = len(nums1), len(nums2)
     res = []
     while i < m and j < n:
         if nums1[i] < nums2[j]:
@@ -151,9 +176,12 @@ def merge(nums1, nums2):
             j += 1
     if i < m:
         res.extend(nums1[i:])
-    if j < n:
+    else:
         res.extend(nums2[j:])
     return res
+
+
+
 
 
 num = [5, 8, 9, 1, 2]
