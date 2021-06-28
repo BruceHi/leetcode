@@ -1,4 +1,5 @@
 # 剑指 offer20. 表示数值的字符串
+# 65. 有效数字
 import re
 
 
@@ -21,12 +22,17 @@ class Solution:
     #     pattern = re.compile(p)
     #     return pattern.match(s.strip()) is not None
 
+    # def isNumber(self, s: str) -> bool:
+    #     try:
+    #         float(s)
+    #     except:
+    #         return False
+    #     return True
+
     def isNumber(self, s: str) -> bool:
-        try:
-            float(s)
-        except:
-            return False
-        return True
+        p = r'^[+-]?((\d+)|(\.\d+)|(\d+\.\d*))([eE][+-]?\d+)?$'
+        pattern = re.compile(p)
+        return pattern.match(s.strip()) is not None
 
 
 obj = Solution()

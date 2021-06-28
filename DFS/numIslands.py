@@ -139,7 +139,7 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         m, n = len(grid), len(grid[0])
 
-        def dfs(i, j):
+        def dfs(i, j):  # 只进行染色操作
             grid[i][j] = '0'
 
             for dx, dy in zip([1, -1, 0, 0],[0, 0, 1, -1]):

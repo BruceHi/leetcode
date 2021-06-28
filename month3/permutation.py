@@ -8,6 +8,9 @@ class Solution:
     #     return list(set(''.join(x) for x in permutations(s)))
     #     # return list(combinations_with_replacement(s))
 
+    # def permutation(self, s: str) -> List[str]:
+    #     return list(set(''.join(x) for x in permutations(s)))
+
     def permutation(self, s: str) -> List[str]:
         return list(set(''.join(x) for x in permutations(s)))
 
