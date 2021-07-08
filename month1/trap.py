@@ -16,6 +16,17 @@ class Solution:
     #         stack.append(i)
     #     return res
 
+    # def trap(self, height: List[int]) -> int:
+    #     res = 0
+    #     stack = []
+    #     for i, h in enumerate(height):
+    #         while stack and height[stack[-1]] < h:
+    #             val = height[stack.pop()]
+    #             if stack:
+    #                 res += (i-stack[-1]-1) * (min(height[stack[-1]], h) - val)
+    #         stack.append(i)
+    #     return res
+
     def trap(self, height: List[int]) -> int:
         res = 0
         stack = []
@@ -23,9 +34,10 @@ class Solution:
             while stack and height[stack[-1]] < h:
                 val = height[stack.pop()]
                 if stack:
-                    res += (i-stack[-1]-1) * (min(height[stack[-1]], h) - val)
+                    res += (i-stack[-1]-1) * (min(height[stack[-1]], h)-val)
             stack.append(i)
         return res
+
 
 
 s = Solution()

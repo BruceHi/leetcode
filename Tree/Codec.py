@@ -131,17 +131,47 @@ class Codec:
     #     data = data.split(',')
     #     return dfs(deque(data))
 
+    # def serialize(self, root):
+    #
+    #     def preorder(root):
+    #         if not root:
+    #             return ''
+    #         return str(root.val) + ',' + preorder(root.left) + ',' + preorder(root.right)
+    #
+    #     return preorder(root)
+    #
+    # def deserialize(self, data):
+    #
+    #     def dfs(data):
+    #         if not data:
+    #             return
+    #         val = data.popleft()
+    #         if not val:
+    #             return
+    #         root = TreeNode(int(val))
+    #         root.left = dfs(data)
+    #         root.right = dfs(data)
+    #         return root
+    #
+    #     data = data.split(',')
+    #     return dfs(deque(data))
+
     def serialize(self, root):
+        """Encodes a tree to a single string.
 
-        def preorder(root):
-            if not root:
-                return ''
-            return str(root.val) + ',' + preorder(root.left) + ',' + preorder(root.right)
-
-        return preorder(root)
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root:
+            return ''
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
 
     def deserialize(self, data):
+        """Decodes your encoded data to tree.
 
+        :type data: str
+        :rtype: TreeNode
+        """
         def dfs(data):
             if not data:
                 return
@@ -154,8 +184,10 @@ class Codec:
             return root
 
         data = data.split(',')
-        return dfs(deque(data))
+        queue = deque(data)
+        return dfs(queue)
 
 
 a = '1,2,,,3,4,,,5,,'
 print(a.split(','))
+
