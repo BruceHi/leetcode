@@ -25,9 +25,22 @@ class Solution:
     #     res, = [key for key in count if count[key] > len(nums) // 2]
     #     return res
 
+    # def majorityElement(self, nums: List[int]) -> int:
+    #     count = Counter(nums)
+    #     return max(count, key=count.get)
+
+    # 剑指 offer 要求返回-1
+    # def majorityElement(self, nums: List[int]) -> int:
+    #     count = Counter(nums)
+    #     res = [key for key in count if count[key] > len(nums) // 2]
+    #     return res[0] if res else -1
+
     def majorityElement(self, nums: List[int]) -> int:
         count = Counter(nums)
-        return max(count, key=count.get)
+        for k, v in count.items():
+            if v > len(nums) // 2:
+                return k
+        return -1
 
 
 s = Solution()
@@ -38,4 +51,5 @@ nums = [2,2,1,1,1,2,2]
 print(s.majorityElement(nums))
 
 #
-
+nums = [3, 2]
+print(s.majorityElement(nums))

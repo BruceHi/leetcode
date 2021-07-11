@@ -86,12 +86,15 @@ from typing import List
 #             i += 1
 
 
+# def moveZeroes(nums: List[int]) -> None:
+#     i = 0
+#     for j, num in enumerate(nums):
+#         if num:
+#             nums[i], nums[j] = num, nums[i]
+#             i += 1
+
 def moveZeroes(nums: List[int]) -> None:
-    i = 0
-    for j, num in enumerate(nums):
-        if num:
-            nums[i], nums[j] = num, nums[i]
-            i += 1
+    nums.sort(key=bool, reverse=True)
 
 
 list1 = [1,1,0,3,0,12]

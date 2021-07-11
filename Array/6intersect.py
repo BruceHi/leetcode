@@ -2,29 +2,7 @@
 from typing import List
 from collections import Counter
 
-
-# 列表方法，统计一个，删除一个数据
-# def intersect(nums1, nums2):
-#
-#     aide_list = []
-#
-#     # 使nums1始终都是短的列表
-#     if len(nums1) > len(nums2):
-#         nums1, nums2 = nums2, nums1
-#
-#     # 从nums1中取出一个数，放到nums2中遍历，若出现相同的，立马记录该数值，然后删除nums2中数值。然后结束内层循环。
-#     # 防止nums1后面再出现一样的数值，不删除就不好办了。
-#     for i in range(len(nums1)):
-#         for j in range(len(nums2)):
-#             if nums2[j] == nums1[i]:
-#                 aide_list.append(nums1[i])
-#                 nums2.pop(j)
-#                 break
-#
-#     return aide_list
-
-
-# hash表
+# hash表，统计出一个词频的用法
 # def intersect(nums1, nums2):
 #
 #     if len(nums1) > len(nums2):
@@ -72,6 +50,7 @@ from collections import Counter
 #             i += 1
 #     return res
 
+# 统计两个词频的用法
 # def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
 #     dic1, dic2 = Counter(nums1), Counter(nums2)
 #     res = []
@@ -79,6 +58,14 @@ from collections import Counter
 #         if num in dic2:
 #             res += [num] * min(dic1[num], dic2[num])
 #     return res
+
+def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+    dic1, dic2 = Counter(nums1), Counter(nums2)
+    res = []
+    for k1, v1 in dic1.items():
+        if k1 in dic2:
+            res += [k1] * min(v1, dic2[k1])
+    return res
 
 # def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
 #     return list((Counter(nums1) & Counter(nums2)).elements())
@@ -91,9 +78,9 @@ from collections import Counter
 #         res += [i] * min(nums1.count(i), nums2.count(i))
 #     return res
 
-def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
-    count1, count2 = Counter(nums1), Counter(nums2)
-    return list((count1 & count2).elements())
+# def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+#     count1, count2 = Counter(nums1), Counter(nums2)
+#     return list((count1 & count2).elements())
 
 
 nums1 = [1,2,2,1]

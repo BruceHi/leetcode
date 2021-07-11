@@ -1,36 +1,12 @@
 # 只出现一次的数字
 
-## 在原有数组上删除，难度太大
-# def singleNumber(nums):
-#     i = 0
-#     while i < len(nums) - 1:
-#         for j in nums[i + 1:]:
-#             if nums[i] == j:
-#                 nums.remove(nums[i])
-#                 nums.remove(j)
-#                 i = 0
-#                 break
-#         if i == 0:
-#             break
-#         i = 1
-#      return nus[0]
-#
+
 #  数学方法
 # def singleNumber(nums):
 #
 #     return 2 * sum(set(nums)) - sum(nums)
 
 
-# 列表操作
-# def singleNumber(nums):
-#
-#     new_list = []
-#     for i in nums:
-#         if i not in new_list:
-#             new_list.append(i)
-#         else:
-#             new_list.remove(i)
-#     return new_list[0]
 
 # 异或方法
 # def singleNumber(nums):

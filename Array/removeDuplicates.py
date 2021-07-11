@@ -80,6 +80,8 @@ from typing import List
 #     return i + 1
 
 def removeDuplicates(nums: List[int]) -> int:
+    if not nums:
+        return 0
     i = 0
     for num in nums:
         if num != nums[i]:
@@ -89,5 +91,9 @@ def removeDuplicates(nums: List[int]) -> int:
 
 
 list1 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+print(removeDuplicates(list1))
+print(list1)
+
+list1 = []
 print(removeDuplicates(list1))
 print(list1)

@@ -76,13 +76,23 @@ from typing import List
 
 
 # 由于每次加上 1，所以最大结果是 10
+# def plusOne(digits: List[int]) -> List[int]:
+#     for i in range(len(digits) - 1, -1, -1):
+#         digits[i] += 1
+#         if digits[i] < 10:
+#             return digits
+#         else:
+#             digits[i] = 0
+#     return [1] + digits
+
 def plusOne(digits: List[int]) -> List[int]:
+    carry = 1
     for i in range(len(digits) - 1, -1, -1):
-        digits[i] += 1
-        if digits[i] < 10:
+        re = (digits[i] + carry) % 10
+        carry = (digits[i] + carry) // 10
+        digits[i] = re
+        if not carry:
             return digits
-        else:
-            digits[i] = 0
     return [1] + digits
 
 

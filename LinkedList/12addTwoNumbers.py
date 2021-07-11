@@ -140,7 +140,24 @@ class Solution:
     #             l2 = l2.next
     #     return dummy.next
 
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     cur = dummy = ListNode(0)
+    #     carry = 0
+    #     while l1 or l2 or carry:
+    #         val = carry + (l1.val if l1 else 0) + (l2.val if l2 else 0)
+    #         carry = val // 10
+    #         cur.next = ListNode(val % 10)
+    #         cur = cur.next
+    #         if l1:
+    #             l1 = l1.next
+    #         if l2:
+    #             l2 = l2.next
+    #     return dummy.next
+
+
+
+    def addTwoNumbers(self, l1, l2):
+        l1, l2 = reverse(l1), reverse(l2)
         cur = dummy = ListNode(0)
         carry = 0
         while l1 or l2 or carry:
@@ -152,8 +169,15 @@ class Solution:
                 l1 = l1.next
             if l2:
                 l2 = l2.next
-        return dummy.next
+        a = dummy.next
+        return reverse(dummy.next)
 
+
+def reverse(head):
+    pre, cur = None, head
+    while cur:
+        cur.next, pre, cur = pre, cur, cur.next
+    return pre
 
 def generate_link(nums: List[int]) -> ListNode:
     head = ListNode(0)
@@ -180,4 +204,8 @@ print_link(s.addTwoNumbers(a, b))
 
 a = generate_link([9, 9, 9])
 b = generate_link([2, 1])
+print_link(s.addTwoNumbers(a, b))
+
+a = generate_link([1, 2, 5, 6])
+b = generate_link([1, 5, 6])
 print_link(s.addTwoNumbers(a, b))
