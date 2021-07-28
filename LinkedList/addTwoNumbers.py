@@ -1,5 +1,5 @@
-# 两数相加
-# 与 415 题相似
+# 2. 两数相加 逆向存储
+# 与 445 题相似，那是正向存储
 from typing import List
 
 
@@ -154,30 +154,60 @@ class Solution:
     #             l2 = l2.next
     #     return dummy.next
 
+#     def addTwoNumbers(self, l1, l2):
+#         l1, l2 = reverse(l1), reverse(l2)
+#         cur = dummy = ListNode(0)
+#         carry = 0
+#         while l1 or l2 or carry:
+#             val = carry + (l1.val if l1 else 0) + (l2.val if l2 else 0)
+#             carry = val // 10
+#             cur.next = ListNode(val % 10)
+#             cur = cur.next
+#             if l1:
+#                 l1 = l1.next
+#             if l2:
+#                 l2 = l2.next
+#         a = dummy.next
+#         return reverse(dummy.next)
+#
+#
+# def reverse(head):
+#     pre, cur = None, head
+#     while cur:
+#         cur.next, pre, cur = pre, cur, cur.next
+#     return pre
 
 
-    def addTwoNumbers(self, l1, l2):
-        l1, l2 = reverse(l1), reverse(l2)
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     cur = dummy = ListNode(0)
+    #     carry = 0
+    #     while l1 or l2 or carry:
+    #         num = (l1.val if l1 else 0) + (l2.val if l2 else 0) + carry
+    #         cur.next = ListNode(num % 10)
+    #         cur = cur.next
+    #         carry = num // 10
+    #         if l1:
+    #             l1 = l1.next
+    #         if l2:
+    #             l2 = l2.next
+    #     return dummy.next
+
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         cur = dummy = ListNode(0)
         carry = 0
         while l1 or l2 or carry:
-            val = carry + (l1.val if l1 else 0) + (l2.val if l2 else 0)
-            carry = val // 10
-            cur.next = ListNode(val % 10)
-            cur = cur.next
+            num = carry
             if l1:
+                num += l1.val
                 l1 = l1.next
             if l2:
+                num += l2.val
                 l2 = l2.next
-        a = dummy.next
-        return reverse(dummy.next)
+            cur.next = ListNode(num % 10)
+            carry = num // 10
+            cur = cur.next
+        return dummy.next
 
-
-def reverse(head):
-    pre, cur = None, head
-    while cur:
-        cur.next, pre, cur = pre, cur, cur.next
-    return pre
 
 def generate_link(nums: List[int]) -> ListNode:
     head = ListNode(0)
@@ -201,6 +231,13 @@ a = generate_link([2, 4, 3])
 b = generate_link([5, 6, 4])
 print_link(s.addTwoNumbers(a, b))
 
+a = generate_link([0])
+b = generate_link([0])
+print_link(s.addTwoNumbers(a, b))
+
+a = generate_link([9,9,9,9,9,9,9])
+b = generate_link( [9,9,9,9])
+print_link(s.addTwoNumbers(a, b))
 
 a = generate_link([9, 9, 9])
 b = generate_link([2, 1])
@@ -208,4 +245,8 @@ print_link(s.addTwoNumbers(a, b))
 
 a = generate_link([1, 2, 5, 6])
 b = generate_link([1, 5, 6])
+print_link(s.addTwoNumbers(a, b))
+
+a = generate_link([7, 1, 6])
+b = generate_link([5, 9, 2])
 print_link(s.addTwoNumbers(a, b))

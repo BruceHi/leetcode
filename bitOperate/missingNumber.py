@@ -32,12 +32,27 @@ class Solution:
     #         if i not in nums:
     #             return i
 
+    # def missingNumber(self, nums: List[int]) -> int:
+    #     res = len(nums)
+    #     for i, num in enumerate(nums):
+    #         res ^= i ^ num
+    #     return res
+
+    # def missingNumber(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     return (n+1) * n // 2 - sum(nums)
+
+    # def missingNumber(self, nums: List[int]) -> int:
+    #     nums = set(nums)
+    #     for i in range(len(nums)+1):
+    #         if i not in nums:
+    #             return i
+
     def missingNumber(self, nums: List[int]) -> int:
         res = len(nums)
         for i, num in enumerate(nums):
             res ^= i ^ num
         return res
-
 
 
 s = Solution()

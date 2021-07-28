@@ -40,7 +40,7 @@ from typing import List
 #                 boxes[box_index].add(val)
 #     return True
 
-# class Solution:
+# class Solution，使用 list[set]
 def isValidSudoku(board: List[List[str]]) -> bool:
     row = [set() for _ in range(9)]
     col = [set() for _ in range(9)]

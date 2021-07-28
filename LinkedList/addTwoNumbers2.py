@@ -1,4 +1,4 @@
-# 445. 两数相加2
+# 445. 两数相加2，正向存储
 # 与 2.两数相加 比，这里是顺序的，而第二题是逆序的。
 from typing import List
 
@@ -54,6 +54,26 @@ class Solution:
     #     return dummy.next
 
     # 不需要哑节点，只需要一个指针永远指向第一位即可
+    # def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    #     stack1, stack2 = [], []
+    #     while l1:
+    #         stack1.append(l1.val)
+    #         l1 = l1.next
+    #     while l2:
+    #         stack2.append(l2.val)
+    #         l2 = l2.next
+    #     carry = 0
+    #     res = None
+    #     while stack1 or stack2 or carry:
+    #         num = (stack1.pop() if stack1 else 0) + (stack2.pop() if stack2 else 0) + carry
+    #         carry = num // 10
+    #         val = num % 10
+    #         new = ListNode(val)
+    #         new.next = res
+    #         res = new
+    #     return res
+
+    # 使用栈的方式，模拟数字的形成
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         stack1, stack2 = [], []
         while l1:
@@ -62,16 +82,18 @@ class Solution:
         while l2:
             stack2.append(l2.val)
             l2 = l2.next
+
+        cur = None
         carry = 0
-        res = None
         while stack1 or stack2 or carry:
             num = (stack1.pop() if stack1 else 0) + (stack2.pop() if stack2 else 0) + carry
+            new = ListNode(num % 10)
             carry = num // 10
-            val = num % 10
-            new = ListNode(val)
-            new.next = res
-            res = new
-        return res
+            new.next = cur
+            cur = new
+        return cur
+
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

@@ -62,7 +62,7 @@ import re
 
 
 def myAtoi(s: str) -> int:
-    p = r'\s*[+-]?\d+'
+    p = r'^\s*[+-]?\d+'
     pattern = re.compile(p)
     res = pattern.match(s)
 

@@ -29,3 +29,13 @@ print(a)
 
 a = 1
 print('%t'.format(a))
+
+print(ord('c')-ord('a'))
+
+from itertools import permutations
+a = [1, 2, 3]
+print(list(permutations(a)))
+
+a = [[1,1],[1,1]]
+print(list(permutations(a)))
+print(len(list(permutations(a))))

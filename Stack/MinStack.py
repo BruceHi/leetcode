@@ -75,6 +75,8 @@
 #
 #     def getMin(self) -> int:
 #         return self.min_stack[-1]
+import math
+
 
 class MinStack:
 
@@ -83,7 +85,7 @@ class MinStack:
         initialize your data structure here.
         """
         self.stack = []
-        self.min_stack = []
+        self.min_stack = [math.inf]
 
 
     def push(self, x: int) -> None:

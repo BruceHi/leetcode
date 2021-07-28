@@ -6,8 +6,8 @@ def isAnagram(s, t):
 
 
 # 排序
-def isAnagram(s, t):
-    return sorted(s) == sorted(t)
+# def isAnagram(s, t):
+#     return sorted(s) == sorted(t)
 
 s = "anagram"
 t = "nagaram"

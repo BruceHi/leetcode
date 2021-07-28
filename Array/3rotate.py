@@ -34,6 +34,7 @@
 #     # nums[:] = nums[k - 1::-1] + nums[: k - 1: -1]  # 前k个元素反转+剩余的元素反转。
 #     nums[:] = nums[:k][::-1] + nums[k:][::-1]
 
+# 推荐写法
 # def rotate(nums, k):
 #     k %= len(nums)
 #     nums = nums[::-1]
@@ -62,14 +63,22 @@ from typing import List
 #     swap(nums, 0, k-1)
 #     swap(nums, k, len(nums)-1)
 
+# def rotate(nums: List[int], k: int) -> None:
+#     n = len(nums)
+#     k %= n
+#     if not k:
+#         return
+#     nums[:n-k] = reversed(nums[:n-k])
+#     nums[-k:] = reversed(nums[-k:])
+#     nums[:] = reversed(nums)
+
 def rotate(nums: List[int], k: int) -> None:
     n = len(nums)
-    k %= n
-    if not k:
-        return
-    nums[:n-k] = reversed(nums[:n-k])
-    nums[-k:] = reversed(nums[-k:])
-    nums[:] = reversed(nums)
+    new = [0] * n
+    for i, num in enumerate(nums):
+        new[(i+k) % n] = num
+    nums[:] = new
+
 
 list1 = [1,2,3,4,5,6,7]
 rotate(list1, 3)
@@ -79,9 +88,9 @@ list1 = [-1,-100,3,99]
 rotate(list1, 2)
 print(list1)
 
-# list1 = [-1]
-# rotate(list1, 2)
-# print(list1)
+list1 = [-1]
+rotate(list1, 2)
+print(list1)
 
 list1 = [1, 2]
 rotate(list1, 3)

@@ -45,22 +45,22 @@ class Solution:
     #     return [['.'*i + 'Q' + '.'*(n-1-i) for i in sol] for sol in res]
 
     # 使用集合试试
-    def solveNQueens(self, n: int) -> List[List[str]]:
-        res = []
-
-        def DFS(queens, xy_diff, xy_sum):
-            p = len(queens)
-
-            if n == p:
-                res.append(queens)
-                return
-
-            for q in range(n):
-                if q not in queens and p-q not in xy_diff and p+q not in xy_sum:
-                    DFS(queens+[q], xy_diff | {p-q}, xy_sum | {p+q})  # 集合并集相当于列表 + 。
-
-        DFS([], set(), set())
-        return [['.'*i + 'Q' + '.'*(n-1-i) for i in tmp] for tmp in res]
+    # def solveNQueens(self, n: int) -> List[List[str]]:
+    #     res = []
+    #
+    #     def DFS(queens, xy_diff, xy_sum):
+    #         p = len(queens)
+    #
+    #         if n == p:
+    #             res.append(queens)
+    #             return
+    #
+    #         for q in range(n):
+    #             if q not in queens and p-q not in xy_diff and p+q not in xy_sum:
+    #                 DFS(queens+[q], xy_diff | {p-q}, xy_sum | {p+q})  # 集合并集相当于列表 + 。
+    #
+    #     DFS([], set(), set())
+    #     return [['.'*i + 'Q' + '.'*(n-1-i) for i in tmp] for tmp in res]
 
     # 问题二，有多少种解法
     # def totalNQueens(self, n: int) -> int:
@@ -146,7 +146,27 @@ class Solution:
         dfs([], [], [])
         return res
 
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res = []
+
+        def dfs(queens, xy_sum, xy_diff):
+            p = len(queens)
+
+            if p == n:
+                res.append(queens)
+                return
+
+            for q in range(n):
+                if q not in queens and p+q not in xy_sum and p-q not in xy_diff:
+                    dfs(queens + [q], xy_sum + [p + q], xy_diff + [p - q])
+
+        dfs([], [], [])
+        return [[i * '.' + 'Q' + (n-1-i) * '.' for i in rows] for rows in res]
+
+
+
 
 s = Solution()
 n = 4
 print(s.totalNQueens(n))
+print(s.solveNQueens(n))

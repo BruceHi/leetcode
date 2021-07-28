@@ -162,4 +162,3 @@ print(longestCommonPrefix(list1))
 
 list1 = ['']
 print(longestCommonPrefix(list1))
-

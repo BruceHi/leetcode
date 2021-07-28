@@ -4,12 +4,19 @@ import bisect
 
 
 class Solution:
+    # def search(self, nums: List[int], target: int) -> int:
+    #     left = bisect.bisect_left(nums, target)
+    #     if left == len(nums) or nums[left] != target:
+    #         return 0
+    #     right = bisect.bisect(nums, target)
+    #     return right - left
+
     def search(self, nums: List[int], target: int) -> int:
         left = bisect.bisect_left(nums, target)
         if left == len(nums) or nums[left] != target:
             return 0
         right = bisect.bisect(nums, target)
-        return right - left
+        return right-left
 
 
 s = Solution()

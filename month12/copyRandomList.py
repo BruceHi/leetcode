@@ -1,6 +1,7 @@
 # 138.复制带随机指针的链表
 from typing import List
 from copy import deepcopy
+from collections import defaultdict
 
 
 class Node:
@@ -31,22 +32,74 @@ class Solution:
     #         head = head.next
     #     return dummy.next
 
+    # def copyRandomList(self, head: 'Node') -> 'Node':
+    #     dic = {}
+    #     p = dummy = Node(0)
+    #     cur = head
+    #     while cur:
+    #         p.next = Node(cur.val)
+    #         p = p.next
+    #         dic[cur] = p
+    #         cur = cur.next
+    #
+    #     cur = head
+    #     while cur:
+    #         if cur.random:
+    #             dic[cur].random = dic[cur.random]
+    #         cur = cur.next
+    #     return dummy.next
+
+    # # 1. 哈希表，旧：新
+    # # 第一遍扫描时，记录映射关系，顺便将 next 给连接了
+    # def copyRandomList(self, head: 'Node') -> 'Node':
+    #     record = {}
+    #     cur = dummy = Node(0)
+    #     while head:
+    #         cur.next = Node(head.val)
+    #         cur = cur.next
+    #         record[head] = cur
+    #         head = head.next
+    #
+    #     for a, b in record.items():
+    #         if a.random:
+    #             b.random = record[a.random]
+    #     return dummy.next
+
+    # 2. 哈希表，旧：新
+    # 第一遍扫描，只记录映射关系
+    # 第二遍扫描，连接关系
     def copyRandomList(self, head: 'Node') -> 'Node':
-        dic = {}
-        p = dummy = Node(0)
+        if not head:
+            return head
+        record = {}
         cur = head
         while cur:
-            p.next = Node(cur.val)
-            p = p.next
-            dic[cur] = p
+            record[cur] = Node(cur.val)
             cur = cur.next
 
-        cur = head
-        while cur:
-            if cur.random:
-                dic[cur].random = dic[cur.random]
-            cur = cur.next
-        return dummy.next
+        for old, new in record.items():
+            if old.next:  # 排除 key 为空的情况
+                new.next = record[old.next]
+            if old.random:
+                new.random = record[old.random]
+
+        return record[head]
+
+    # 2. 另一种写法，使用defalut dict 根本不可能
+    # def copyRandomList(self, head: 'Node') -> 'Node':
+    #     record = defaultdict(Node)
+    #     # cur = head
+    #     # while cur:
+    #     #     record[cur] = Node(cur.val)
+    #     #     cur = cur.next
+    #     #
+    #     # for old, new in record.items():
+    #     #     new.next = record[old.next]
+    #     #     new.random = record[old.random]
+    #     #
+    #     # return record[head]
+    #     # print(record[1] = Node())
+    #     # return head
 
 
 def generate_Nodes(nums) -> Node:

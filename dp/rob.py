@@ -85,7 +85,7 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         pre, cur = 0, 0
         for num in nums:
-            pre, cur = pre, max(cur, pre + num)
+            pre, cur = cur, max(cur, pre + num)
         return cur
 
 
