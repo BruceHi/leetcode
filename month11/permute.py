@@ -41,11 +41,43 @@ class Solution:
     #     # return list(permutations(nums))
     #     return list(map(list, permutations(nums)))
 
+    # def permute(self, nums: List[int]) -> List[List[int]]:
+    #     return list(map(list, permutations(nums)))
+
+    # def permute(self, nums: List[int]) -> List[List[int]]:
+    #     res = []
+    #     n = len(nums)
+    #
+    #     def dfs(cur, cur_idx):
+    #         if len(cur) == n:
+    #             res.append(cur)
+    #             return
+    #         for i, num in enumerate(nums):
+    #             if i not in cur_idx:
+    #                 dfs(cur+[num], cur_idx | {i})
+    #
+    #     dfs([], set())
+    #     return res
+
     def permute(self, nums: List[int]) -> List[List[int]]:
-        return list(map(list, permutations(nums)))
+        res = []
+
+        def dfs(nums, cur):
+            if not nums:
+                res.append(cur)
+                return
+            for i, num in enumerate(nums):
+                dfs(nums[:i] + nums[i+1:], cur+[num])
+
+        dfs(nums, [])
+        return res
+
 
 s = Solution()
 print(s.permute([1,2,3]))
+print(s.permute([0, 1]))
+print(s.permute([1]))
+
 
 a = [1]
 b = a + [2]

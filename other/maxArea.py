@@ -40,9 +40,20 @@ from typing import List
 #             right -= 1
 #     return res
 
+# def maxArea(height: List[int]) -> int:
+#     left, right = 0, len(height) - 1
+#     res = 0
+#     while left < right:
+#         res = max(res, (right-left)*min(height[left], height[right]))
+#         if height[left] < height[right]:
+#             left += 1
+#         else:
+#             right -= 1
+#     return res
+
 def maxArea(height: List[int]) -> int:
-    left, right = 0, len(height) - 1
-    res = 0
+    res = float('-inf')
+    left, right = 0, len(height)-1
     while left < right:
         res = max(res, (right-left)*min(height[left], height[right]))
         if height[left] < height[right]:
@@ -50,8 +61,6 @@ def maxArea(height: List[int]) -> int:
         else:
             right -= 1
     return res
-
-
 
 
 h = [1,8,6,2,5,4,8,3,7]

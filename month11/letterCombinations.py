@@ -58,16 +58,17 @@ class Solution:
     #            '9': 'wxyz',
     #            }
     #     # 注意区别，前者 iterable 数量为 1，后者有两个
-    #     # print(list(product(['abc', 'bd'])))
-    #     # print(list(product('abc', 'bd')))
+    #     print(list(product(['abc', 'bd'])))
+    #     print(list(product('abc', 'bd')))
+    #     print(list(product('abc', 'bd', 'efg')))
     #     #
     #     #
-    #     # print(list(product(dic[x] for x in digits)))
+    #     print("ha", list(product(dic[x] for x in digits)))
     #     # # print((dic[x] for x in digits))
     #     # # for a in (dic[x] for x in digits):
     #     # #     print(a)
-    #     # print(*(dic[x] for x in digits))  # 对元素进行解包，比如对 （‘abc’，）解包就得到了 abc。
-    #     # print(list(product(*(dic[x] for x in digits))))
+    #     print('ok', *(dic[x] for x in digits))  # 对元素进行解包，比如对 （‘abc’，）解包就得到了 abc。
+    #     print(list(product(*(dic[x] for x in digits))))
     #     return [''.join(item) for item in product(*(dic[x] for x in digits))]
 
     # def letterCombinations(self, digits: str) -> List[str]:
@@ -83,20 +84,60 @@ class Solution:
     #            '9': 'wxyz'}
     #     return [''.join(tmp) for tmp in product(*(dic[x] for x in digits))]
 
+    # def letterCombinations(self, digits: str) -> List[str]:
+    #     if not digits:
+    #         return []
+    #     dic = {'2': 'abc',
+    #            '3': 'def',
+    #            '4': 'ghi',
+    #            '5': 'jkl',
+    #            '6': 'mno',
+    #            '7': 'pqrs',
+    #            '8': 'tuv',
+    #            '9': 'wxyz'}
+    #     res = ['']
+    #     for digit in digits:
+    #         res = [tmp + x for tmp in res for x in dic[digit]]
+    #     return res
+
+    # def letterCombinations(self, digits: str) -> List[str]:
+    #     dic = {
+    #         '2': 'abc',
+    #         '3': 'def',
+    #         '4': 'ghi',
+    #         '5': 'jkl',
+    #         '6': 'mno',
+    #         '7': 'pqrs',
+    #         '8': 'tuv',
+    #         '9': 'wxyz'
+    #     }
+    #     if not digits:
+    #         return []
+    #     return [''.join(tmp) for tmp in product(*(dic[x] for x in digits))]
+
+    # 使用递归的形式
     def letterCombinations(self, digits: str) -> List[str]:
+        dic = {
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
         if not digits:
             return []
-        dic = {'2': 'abc',
-               '3': 'def',
-               '4': 'ghi',
-               '5': 'jkl',
-               '6': 'mno',
-               '7': 'pqrs',
-               '8': 'tuv',
-               '9': 'wxyz'}
-        res = ['']
-        for digit in digits:
-            res = [tmp + x for tmp in res for x in dic[digit]]
+        res = []
+
+        def dfs(s, cur):
+            if not s:
+                res.append(cur)
+                return
+            for c in dic[s[0]]:
+                dfs(s[1:], cur+c)
+        dfs(digits, '')
         return res
 
 

@@ -97,14 +97,28 @@ from typing import List
 
 
 class UnionFind:
+    # def __init__(self, grid):
+    #     m, n = len(grid), len(grid[0])
+    #     # 若赋值为 0 , 则默认第0位的父节点为 0 了。
+    #     # 赋值为 0 也可以，只是后面遍历时要重新赋值，所有节点都要 self.parent[i * n + j] = i * n + j。
+    #     # 赋值为 -1，表明某些节点没有父节点。
+    #     self.parent = [-1] * (m * n)
+    #     self.count = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if grid[i][j] == '1':
+    #                 self.parent[i * n + j] = i * n + j
+    #                 self.count += 1
+
+    # 另一种写法，注意区别，推荐这个
     def __init__(self, grid):
         m, n = len(grid), len(grid[0])
-        self.parent = [-1] * (m * n)  # 若赋值为 0 , 则默认第0位的父节点为 0 了。
+        self.parent = [0] * (m * n)
         self.count = 0
         for i in range(m):
             for j in range(n):
+                self.parent[i * n + j] = i * n + j
                 if grid[i][j] == '1':
-                    self.parent[i * n + j] = i * n + j
                     self.count += 1
 
     def find(self, i):
@@ -113,13 +127,14 @@ class UnionFind:
         return self.parent[i]
 
     def union(self, x, y):
-        if self.find(x) != self.find(y):
-            rootx, rooty = self.find(x), self.find(y)
+        rootx, rooty = self.find(x), self.find(y)
+        if rootx != rooty:
             self.parent[rootx] = rooty
             self.count -= 1
 
 
 class Solution:
+    # 四周判定
     # def numIslands(self, grid: List[List[str]]) -> int:
     #     if not grid:
     #         return 0
@@ -136,26 +151,59 @@ class Solution:
     #                         uf.union(i * n + j, x * n + y)
     #     return uf.count
 
+    # 只需判定下方和右边
     def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+
+        uf = UnionFind(grid)
         m, n = len(grid), len(grid[0])
-
-        def dfs(i, j):  # 只进行染色操作
-            grid[i][j] = '0'
-
-            for dx, dy in zip([1, -1, 0, 0],[0, 0, 1, -1]):
-                x, y = i + dx, j + dy
-                if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
-                    dfs(x, y)
-
-        res = 0
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
-                    dfs(i, j)
-                    res += 1
-        return res
+                    grid[i][j] = '0'
+                    for x, y in [[i, j+1], [i+1, j]]:
+                        if x < m and y < n and grid[x][y] == '1':
+                            uf.union(i * n + j, x * n + y)
+        return uf.count
 
+    # def numIslands(self, grid: List[List[str]]) -> int:
+    #     m, n = len(grid), len(grid[0])
+    #
+    #     def dfs(i, j):  # 只进行染色操作
+    #         grid[i][j] = '0'
+    #
+    #         for dx, dy in zip([1, -1, 0, 0],[0, 0, 1, -1]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
+    #                 dfs(x, y)
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if grid[i][j] == '1':
+    #                 dfs(i, j)
+    #                 res += 1
+    #     return res
 
+    # def numIslands(self, grid: List[List[str]]) -> int:
+    #     m, n = len(grid), len(grid[0])
+    #
+    #     def dfs(i, j):
+    #         grid[i][j] = '0'
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i+dx, j+dy
+    #             if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
+    #                 dfs(x, y)
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if grid[i][j] == '1':
+    #                 res += 1
+    #                 dfs(i, j)
+    #     return res
 
 
 s = Solution()
@@ -164,9 +212,6 @@ print(s.numIslands(a))
 
 a = [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]
 print(s.numIslands(a))
-
-# a = []
-# print(s.numIslands(a))
 
 a = [["1"], ["1"]]
 print(s.numIslands(a))

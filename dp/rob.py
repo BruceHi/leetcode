@@ -82,11 +82,19 @@ class Solution:
     #         dp_i, dp_j = dp_j, max(dp_j, dp_i + num)
     #     return dp_j
 
+    # def rob(self, nums: List[int]) -> int:
+    #     pre, cur = 0, 0
+    #     for num in nums:
+    #         pre, cur = cur, max(cur, pre + num)
+    #     return cur
+
     def rob(self, nums: List[int]) -> int:
-        pre, cur = 0, 0
-        for num in nums:
-            pre, cur = cur, max(cur, pre + num)
-        return cur
+        n = len(nums)
+        dp = [0] * (n+1)
+        dp[1] = nums[0]
+        for i in range(2, n+1):
+            dp[i] = max(dp[i-1], dp[i-2]+nums[i-1])
+        return dp[n]
 
 
 s = Solution()
@@ -94,9 +102,6 @@ a = [1,2,3,1]
 print(s.rob(a))
 
 a = [2,7,9,3,1]
-print(s.rob(a))
-
-a = []
 print(s.rob(a))
 
 a = [2]

@@ -113,16 +113,28 @@ class Solution:
     #         dic[c] = i + 1
     #     return res
 
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     dic = {}
+    #     res = 0
+    #     left = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             left = max(left, dic[c])
+    #         res = max(res, i-left+1)
+    #         dic[c] = i + 1
+    #     return res
+
     def lengthOfLongestSubstring(self, s: str) -> int:
-        dic = {}
         res = 0
         left = 0
+        dic = {}
         for i, c in enumerate(s):
             if c in dic:
                 left = max(left, dic[c])
             res = max(res, i-left+1)
             dic[c] = i + 1
         return res
+
 
 s = Solution()
 

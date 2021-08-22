@@ -76,29 +76,47 @@ class Solution:
     #     right = bisect.bisect(nums, target)
     #     return [left, right-1]
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if not nums:
-            return [-1, -1]
-        n = len(nums)
-        left, right = 0, n-1
-        while left < right:
-            mid = left + right >> 1
-            if nums[mid] < target:
-                left = mid + 1
-            else:
-                right = mid
-        if nums[left] != target:
-            return [-1, -1]
-        i = left
-        right = n-1
-        while left < right:
-            mid = left + right + 1 >> 1
-            if nums[mid] > target:
-                right = mid - 1
-            else:
-                left = mid
-        return [i, left]
+    # def searchRange(self, nums: List[int], target: int) -> List[int]:
+    #     if not nums:
+    #         return [-1, -1]
+    #     n = len(nums)
+    #     left, right = 0, n-1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if nums[mid] < target:
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #     if nums[left] != target:
+    #         return [-1, -1]
+    #     i = left
+    #     right = n-1
+    #     while left < right:
+    #         mid = left + right + 1 >> 1
+    #         if nums[mid] > target:
+    #             right = mid - 1
+    #         else:
+    #             left = mid
+    #     return [i, left]
 
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+
+        # 若找不到，返回插入点， right 应该 等于 len(nums)
+        def search_left(nums, target):
+            left, right = 0, len(nums)
+            while left < right:
+                mid = left + right >> 1
+                if nums[mid] < target:
+                    left = mid + 1
+                else:
+                    right = mid
+            return left
+
+        left = search_left(nums, target)
+        if left == len(nums) or nums[left] != target:
+            return [-1, -1]
+        right = search_left(nums, target+1) - 1
+        return [left, right]
 
 
 s = Solution()

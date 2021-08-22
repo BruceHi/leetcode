@@ -34,14 +34,31 @@ class Solution:
     #         pre, cur = cur, cur.next
     #     return dummy.next
 
+    # def swapPairs(self, head: ListNode) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next and pre.next.next:
+    #         a, b = pre.next, pre.next.next
+    #         pre.next, b.next, a.next = b, a, b.next
+    #         pre = a
+    #     return dummy.next
+
+    # def swapPairs(self, head: ListNode) -> ListNode:
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #
+    #     while pre.next and pre.next.next:
+    #         a, b = pre.next, pre.next.next
+    #         pre.next, b.next, a.next = b, a, b.next
+    #         pre = a
+    #     return dummy.next
+
     def swapPairs(self, head: ListNode) -> ListNode:
-        pre = dummy = ListNode(0)
-        dummy.next = head
-        while pre.next and pre.next.next:
-            a, b = pre.next, pre.next.next
-            pre.next, b.next, a.next = b, a, b.next
-            pre = a
-        return dummy.next
+        if not head or not head.next:
+            return head
+        a, b = head, head.next
+        b.next, a.next = a, self.swapPairs(b.next)
+        return b
 
 
 def generate_link(nums: List[int]) -> ListNode:
@@ -61,9 +78,15 @@ def print_link(head: ListNode) -> None:
     print(res)
 
 
-x = generate_link([1, 2, 3, 4])
 s = Solution()
+x = generate_link([1, 2, 3, 4])
 print_link(s.swapPairs(x))
 
 x = generate_link([1, 2, 3])
+print_link(s.swapPairs(x))
+
+x = generate_link([])
+print_link(s.swapPairs(x))
+
+x = generate_link([1])
 print_link(s.swapPairs(x))

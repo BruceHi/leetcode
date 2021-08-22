@@ -220,18 +220,63 @@ class Solution:
     #                 left, right = left + 1, right - 1
     #     return res
 
+    # def threeSum(self, nums: List[int]) -> List[List[int]]:
+    #     nums.sort()
+    #     res = set()
+    #     for i, num in enumerate(nums[:-2]):
+    #         if i > 0 and num == nums[i-1]:
+    #             continue
+    #         record = set()
+    #         for j in range(i+1, len(nums)):
+    #             if -num-nums[j] in record:
+    #                 res.add((num, nums[j], -num-nums[j]))
+    #             record.add(nums[j])
+    #     return list(map(list, res))
+
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        res = set()
+        n = len(nums)
+        res = []
         for i, num in enumerate(nums[:-2]):
+            if num > 0:
+                break
+            if num + nums[i+1] + nums[i+2] > 0:
+                break
             if i > 0 and num == nums[i-1]:
                 continue
-            record = set()
-            for j in range(i+1, len(nums)):
-                if -num-nums[j] in record:
-                    res.add((num, nums[j], -num-nums[j]))
-                record.add(nums[j])
-        return list(map(list, res))
+            if num + nums[-1] + nums[-2] < 0:
+                continue
+            left, right = i+1, n-1
+            while left < right:
+                val = num + nums[left] + nums[right]
+                if val == 0:
+                    res.append([num, nums[left], nums[right]])
+                    while left < right and nums[left] == nums[left+1]:
+                        left += 1
+                    left += 1
+                    while left < right and nums[right] == nums[right-1]:
+                        right -= 1
+                    right -= 1
+                elif val > 0:
+                    right -= 1
+                else:
+                    left += 1
+        return res
+
+    # def threeSum(self, nums: List[int]) -> List[List[int]]:
+    #     res = set()
+    #     nums.sort()
+    #     for i, num in enumerate(nums[:-2]):
+    #         if i > 0 and num == nums[i-1]:
+    #             continue
+    #         record = set()
+    #         for j in range(i+1, len(nums)):
+    #             if -num-nums[j] in record:
+    #                 res.add((num, -num-nums[j], nums[j]))
+    #             record.add(nums[j])
+    #     return list(map(list, res))
+
+
 
 
 s = Solution()
@@ -251,4 +296,7 @@ nums = [0,0]
 print(s.threeSum(nums))
 
 nums = [3,0,-2,-1,1,2]
+print(s.threeSum(nums))
+
+nums = []
 print(s.threeSum(nums))

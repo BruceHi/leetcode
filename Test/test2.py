@@ -105,3 +105,5 @@ if Counter('111'):
 
 print([] is True)
 print([] is False)
+
+print(list(range(0, 6, 2)))

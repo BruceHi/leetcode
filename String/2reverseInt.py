@@ -140,7 +140,7 @@
 #     return 0
 
 def reverse(x: int) -> int:
-    sign = -1 if x < 0 else 1
+    sign = -1 if x < 0 else 1  # 判断必不可少，这是因为与其他语言的 % 所表示方式不同
     if x < 0:
         x = -x
     res = 0
@@ -151,6 +151,7 @@ def reverse(x: int) -> int:
     if res < -2**31 or res > 2**31-1:
         return 0
     return res
+
 
 a = -123
 print(reverse(a))
@@ -163,3 +164,5 @@ print(reverse(a))
 
 a = 1534236469
 print(reverse(a))
+
+print(-123 % 10)

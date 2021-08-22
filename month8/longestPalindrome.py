@@ -98,32 +98,52 @@ class Solution:
     #
     #     return res
 
+    # def longestPalindrome(self, s: str) -> str:
+    #     n = len(s)
+    #     if n <= 1:
+    #         return s
+    #     max_len = 0
+    #     res = ''  # 至少第一个是回文的
+    #
+    #     def center(left, right):
+    #         while left >= 0 and right < n and s[left] == s[right]:
+    #             left, right = left - 1, right + 1
+    #         return s[left+1:right], right-left-1
+    #
+    #     for i in range(n):
+    #         s1, len1 = center(i, i)
+    #         s2, len2 = center(i, i+1)
+    #         # s_max, s_len = s1, len1 if len1 > len2 else s2, len2
+    #
+    #         if len1 > len2:
+    #             s_max, s_len = s1, len1
+    #         else:
+    #             s_max, s_len = s2, len2
+    #         if s_len > max_len:
+    #             max_len = s_len
+    #             res = s_max
+    #
+    #     return res
+
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        if n <= 1:
-            return s
-        max_len = 0
-        res = ''  # 至少第一个是回文的
 
         def center(left, right):
             while left >= 0 and right < n and s[left] == s[right]:
-                left, right = left - 1, right + 1
-            return s[left+1:right], right-left-1
+                left, right = left-1, right+1
+            return left+1, right-1
 
+        start, end = 0, 0
         for i in range(n):
-            s1, len1 = center(i, i)
-            s2, len2 = center(i, i+1)
-            # s_max, s_len = s1, len1 if len1 > len2 else s2, len2
+            left1, right1 = center(i, i)
+            left2, right2 = center(i, i+1)
 
-            if len1 > len2:
-                s_max, s_len = s1, len1
-            else:
-                s_max, s_len = s2, len2
-            if s_len > max_len:
-                max_len = s_len
-                res = s_max
+            if right1 - left1 > end - start:
+                start, end = left1, right1
+            if right2 - left2 > end - start:
+                start, end = left2, right2
+        return s[start: end + 1]
 
-        return res
 
 obj = Solution()
 print(obj.longestPalindrome("babad"))
