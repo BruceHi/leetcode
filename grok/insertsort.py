@@ -90,16 +90,18 @@ from typing import List
 #             j -= 1
 #         nums[j] = val
 
-def insert_sort(nums):
-    n = len(nums)
-    for i in range(1, n):
-        j = i
-        tmp = nums[i]
-        while j-1 >= 0 and nums[j-1] > tmp:
-            nums[j] = nums[j-1]
-            j -= 1
-        nums[j] = tmp
+# def insert_sort(nums):
+#     n = len(nums)
+#     for i in range(1, n):
+#         j = i
+#         tmp = nums[i]
+#         while j-1 >= 0 and nums[j-1] > tmp:
+#             nums[j] = nums[j-1]
+#             j -= 1
+#         nums[j] = tmp
 
+def insert_sort(nums):
+    pass
 
 nums = [7, 5, 9, 6, 2]
 insert_sort(nums)

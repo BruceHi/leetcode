@@ -46,16 +46,63 @@ class Solution:
     #     return sum(stack)
 
     # pre_op 代表的是先前的运算符
+    # def calculate(self, s: str) -> int:
+    #     stack = []
+    #     pre_op = '+'
+    #     num = 0
+    #     for i, c in enumerate(s):
+    #         if c.isdigit():
+    #             num = num * 10 + int(c)
+    #         if i == len(s)-1 or c in '+-*/':
+    #             if pre_op == '*':
+    #                 stack.append(stack.pop() * num)
+    #             elif pre_op == '/':
+    #                 stack.append(int(stack.pop() / num))
+    #             elif pre_op == '-':
+    #                 stack.append(-num)
+    #             else:
+    #                 stack.append(num)
+    #             pre_op = c
+    #             num = 0
+    #     return sum(stack)
+
+    # def calculate(self, s: str) -> int:
+    #     return eval(s.replace('/', '//'))
+
+    # def calculate(self, s: str) -> int:
+    #     stack = []
+    #     pre_op = "+"
+    #     num = 0
+    #     for i, c in enumerate(s):
+    #         if c.isdigit():
+    #             num = num * 10 + int(c)
+    #         # if i == len(s) - 1 or not c.isdigit():  # 错误
+    #         if i == len(s) - 1 or c in '+-*/':  # 排除空格的影响
+    #             if pre_op == '*':
+    #                 # stack.append(stack.pop() * num)
+    #                 stack[-1] *= num
+    #             elif pre_op == '/':
+    #                 stack.append(int(stack.pop() / num))
+    #             elif pre_op == '-':
+    #                 stack.append(-num)
+    #             else:
+    #                 stack.append(num)
+    #             pre_op = c
+    #             num = 0
+    #     return sum(stack)
+
     def calculate(self, s: str) -> int:
         stack = []
-        pre_op = '+'
+        pre_op = "+"
         num = 0
         for i, c in enumerate(s):
             if c.isdigit():
                 num = num * 10 + int(c)
-            if i == len(s)-1 or c in '+-*/':
+            # if i == len(s) - 1 or not c.isdigit():  # 错误
+            if i == len(s) - 1 or c in '+-*/':  # 排除空格的影响
                 if pre_op == '*':
-                    stack.append(stack.pop() * num)
+                    # stack.append(stack.pop() * num)
+                    stack[-1] *= num
                 elif pre_op == '/':
                     stack.append(int(stack.pop() / num))
                 elif pre_op == '-':
@@ -65,6 +112,30 @@ class Solution:
                 pre_op = c
                 num = 0
         return sum(stack)
+
+    # def calculate(self, s: str) -> int:
+    #     stack = []
+    #     s += '$'
+    #     pre_flag = '+'
+    #     num = 0
+    #
+    #     for c in s:
+    #         if c.isdigit():
+    #             num = num * 10 + int(c)
+    #         elif c == ' ':
+    #             continue
+    #         else:
+    #             if pre_flag == '+':
+    #                 stack.append(num)
+    #             elif pre_flag == '-':
+    #                 stack.append(-num)
+    #             elif pre_flag == '*':
+    #                 stack.append(stack.pop() * num)
+    #             elif pre_flag == '/':
+    #                 stack.append(int(stack.pop() / num))
+    #             pre_flag = c
+    #             num = 0
+    #     return sum(stack)
 
 
 obj = Solution()

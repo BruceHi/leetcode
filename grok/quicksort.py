@@ -195,14 +195,31 @@ from typing import List
 #     nums[i], nums[right] = pivot, nums[i]
 #     return i
 
+# def quick_sort(nums, left=None, right=None):
+#     if left is None and right is None:
+#         left, right = 0, len(nums) - 1
+#     if left < right:
+#         p = partition(nums, left, right)
+#         quick_sort(nums, left, p-1)
+#         quick_sort(nums, p+1, right)
+#     return nums
+#
+# def partition(nums, left, right):
+#     i, pivot = left, nums[right]
+#     for j in range(left, right):
+#         if nums[j] < pivot:
+#             nums[i], nums[j] = nums[j], nums[i]
+#             i += 1
+#     nums[i], nums[right] = pivot, nums[i]
+#     return i
+
 def quick_sort(nums, left=None, right=None):
     if left is None and right is None:
-        left, right = 0, len(nums) - 1
+        left, right = 0, len(nums)-1
     if left < right:
         p = partition(nums, left, right)
         quick_sort(nums, left, p-1)
         quick_sort(nums, p+1, right)
-    return nums
 
 
 def partition(nums, left, right):
@@ -215,19 +232,22 @@ def partition(nums, left, right):
     return i
 
 
-
 num = [5, 8, 9, 1, 2]
-print(quick_sort(num))
+quick_sort(num)
 print(num)
 
 nums = []
-print(quick_sort(nums))
+quick_sort(nums)
+print(nums)
 
 nums = [1]
-print(quick_sort(nums))
+quick_sort(nums)
+print(nums)
 
 nums = [1, 4, 5, 6, 5, 6]
-print(quick_sort(nums))
+quick_sort(nums)
+print(nums)
 
 nums = [2, 7, 4, 1, 0]
-print(quick_sort(nums))
+quick_sort(nums)
+print(nums)
