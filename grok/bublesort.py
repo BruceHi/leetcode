@@ -82,16 +82,27 @@ from typing import List
 #         if not swap:
 #             break
 
+# def bubule_sort(nums):
+#     n = len(nums)
+#     for i in range(n-1):
+#         swap = False
+#         for j in range(n-1-i):
+#             if nums[j] > nums[j+1]:
+#                 swap = True
+#                 nums[j], nums[j+1] = nums[j+1], nums[j]
+#         if not swap:
+#             break
+
 def bubule_sort(nums):
     n = len(nums)
     for i in range(n-1):
         swap = False
         for j in range(n-1-i):
             if nums[j] > nums[j+1]:
-                swap = True
                 nums[j], nums[j+1] = nums[j+1], nums[j]
-        if not swap:
-            break
+                swap = True
+            if not swap:
+                return
 
 
 nums = [7, 5, 9, 6, 2]
