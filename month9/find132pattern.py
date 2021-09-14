@@ -47,6 +47,7 @@ class Solution:
 
         return False
 
+
 s = Solution()
 nums = [1,2,3,4]
 print(s.find132pattern(nums))

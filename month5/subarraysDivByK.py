@@ -18,13 +18,25 @@ class Solution:
     #         pre_mod[modulus] += 1
     #     return res
 
-    def subarraysDivByK(self, A: List[int], K: int) -> int:
+    # def subarraysDivByK(self, A: List[int], K: int) -> int:
+    #     dic = defaultdict(int)
+    #     dic[0] = 1
+    #     res, total = 0, 0
+    #     for a in A:
+    #         total += a
+    #         mod = total % K
+    #         res += dic[mod]
+    #         dic[mod] += 1
+    #     return res
+
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
         dic = defaultdict(int)
         dic[0] = 1
-        res, total = 0, 0
-        for a in A:
-            total += a
-            mod = total % K
+        prefix = 0
+        res = 0
+        for num in nums:
+            prefix += num
+            mod = prefix % k
             res += dic[mod]
             dic[mod] += 1
         return res

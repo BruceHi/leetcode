@@ -1,4 +1,4 @@
-# 和为 k 的子数组
+# 和为 k 的连续子数组个数
 # 要求数组是连续的
 from typing import List
 from collections import defaultdict
@@ -44,14 +44,25 @@ class Solution:
     #         dic[pre_sum] += 1
     #     return res
 
+    # def subarraySum(self, nums: List[int], k: int) -> int:
+    #     dic = defaultdict(int)
+    #     dic[0] = 1
+    #     res, pre = 0, 0
+    #     for num in nums:
+    #         pre += num
+    #         res += dic[pre-k]
+    #         dic[pre] += 1
+    #     return res
+
     def subarraySum(self, nums: List[int], k: int) -> int:
         dic = defaultdict(int)
         dic[0] = 1
-        res, pre = 0, 0
+        prefix = 0
+        res = 0
         for num in nums:
-            pre += num
-            res += dic[pre-k]
-            dic[pre] += 1
+            prefix += num
+            res += dic[prefix-k]
+            dic[prefix] += 1
         return res
 
 
@@ -73,3 +84,8 @@ print(s.subarraySum(nums, k))  # 4：[1, 1], [1, 1, 0], [1, 0, 1], [2]
 nums = [1, 1, 1, 1, 2]
 k = 2
 print(s.subarraySum(nums, k))  # 4: [1, 1], [1, 1], [1, 1], [2]
+
+nums = [1,2,3]
+k = 2
+print(s.subarraySum(nums, k))
+

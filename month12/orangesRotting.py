@@ -110,8 +110,7 @@ class Solution:
             if 1 in row:
                 return -1
 
-        # res = 0, 表示 queue 为 空，即一开始就没有烂橘子。
-        # 此时 res = 0 表示数组里面只有 0
+        # res = 0 时，表示数组里面只有 0。表示 queue 为 空，即一开始就没有烂橘子，同时也没有好橘子，所以返回 0。
         return res-1 if res else 0
 
 
@@ -126,7 +125,7 @@ grid = [[0,2]]
 print(s.orangesRotting(grid))  # 返回 res-1
 
 grid = [[0]]
-print(s.orangesRotting(grid))  # 返回 res
+print(s.orangesRotting(grid))  # 0， 0 分钟就没新鲜橘子了
 
 grid = [[1]]
-print(s.orangesRotting(grid))
+print(s.orangesRotting(grid)) # -1 永远不会腐烂

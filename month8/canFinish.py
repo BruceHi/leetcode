@@ -1,4 +1,4 @@
-# 课程表
+# 207.课程表
 from typing import List
 from functools import lru_cache
 from collections import defaultdict
@@ -88,16 +88,36 @@ class Solution:
     #                 queue.append(v)
     #     return visited == numCourses
 
+    # def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    #     edges = defaultdict(list)
+    #     in_degree = [0] * numCourses
+    #
+    #     for cur, pre in prerequisites:
+    #         edges[pre].append(cur)
+    #         in_degree[cur] += 1
+    #
+    #     # range(numCourses) 不能改成 edges，因为可能有些点是孤立的，并不在 prerequisites 记录中，但是入度为 0
+    #     queue = deque([cur for cur in range(numCourses) if not in_degree[cur]])
+    #     visited = 0
+    #
+    #     while queue:
+    #         visited += 1
+    #         u = queue.popleft()
+    #         for v in edges[u]:
+    #             in_degree[v] -= 1
+    #             if not in_degree[v]:
+    #                 queue.append(v)
+    #     return visited == numCourses
+
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         edges = defaultdict(list)
         in_degree = [0] * numCourses
 
-        for cur, pre in prerequisites:
-            edges[pre].append(cur)
-            in_degree[cur] += 1
+        for a, b in prerequisites:
+            edges[b].append(a)
+            in_degree[a] += 1
 
-        # range(numCourses) 不能改成 edges，因为可能有些点是孤立的，并不在 prerequisites 记录中，但是入度为 0
-        queue = deque([cur for cur in range(numCourses) if not in_degree[cur]])
+        queue = deque([b for b in range(numCourses) if in_degree[b] == 0])
         visited = 0
 
         while queue:
@@ -105,7 +125,7 @@ class Solution:
             u = queue.popleft()
             for v in edges[u]:
                 in_degree[v] -= 1
-                if not in_degree[v]:
+                if in_degree[v] == 0:
                     queue.append(v)
         return visited == numCourses
 
@@ -124,3 +144,11 @@ print(s.canFinish(3, [[2, 1], [2, 0], [1, 0]]))
 print(s.canFinish(4, [[2, 1], [2, 0], [1, 0], [3, 0], [3, 2]]))
 
 print(s.canFinish(1, []))
+
+# True
+# False
+# True
+# False
+# True
+# True
+# True
