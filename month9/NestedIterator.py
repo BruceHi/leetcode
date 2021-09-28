@@ -24,8 +24,28 @@ class NestedInteger:
        """
        return []
 
+
+# class NestedIterator:
+#     def __init__(self, nestedList: NestedInteger):
+#         self.queue = deque()
+#         self.dfs(nestedList)
+#
+#     def dfs(self, nests):
+#         for nest in nests:
+#             if nest.isInteger():
+#                 self.queue.append(nest.getInteger())
+#             else:
+#                 self.dfs(nest.getList())
+#
+#     def next(self) -> int:
+#         return self.queue.popleft()
+#
+#     # 非空返回 true
+#     def hasNext(self) -> bool:
+#         return len(self.queue)
+
 class NestedIterator:
-    def __init__(self, nestedList: NestedInteger):
+    def __init__(self, nestedList: [NestedInteger]):
         self.queue = deque()
         self.dfs(nestedList)
 
@@ -39,7 +59,6 @@ class NestedIterator:
     def next(self) -> int:
         return self.queue.popleft()
 
-    # 非空返回 true
     def hasNext(self) -> bool:
         return len(self.queue)
 
@@ -49,6 +68,7 @@ def test(n: NestedIterator):
     while n.hasNext():
         res.append(n.next())
     return res
+
 
 s = NestedIterator([[1,1],2,[1,1]])
 print(test(s))

@@ -30,21 +30,35 @@ class Solution:
 
     # 递减栈，比 nums[j]元素小的都弹了出去，所以是递减栈
     # numsk 是比 nums[j]小的最大元素
+    # leftmin 是1， stack（numsk） 是 2， nums[j]是 3
+    # def find132pattern(self, nums: List[int]) -> bool:
+    #     n = len(nums)
+    #     leftmin = [float('inf')] * n
+    #     for i in range(1, n):
+    #         leftmin[i] = min(leftmin[i-1], nums[i-1])
+    #
+    #     stack = []
+    #     for j in range(n-1, -1, -1):
+    #         numsk = float('-inf')
+    #         while stack and stack[-1] < nums[j]:
+    #             numsk = stack.pop()
+    #         if leftmin[j] < numsk:
+    #             return True
+    #         stack.append(nums[j])
+    #
+    #     return False
+
+    # 单调栈，k是小于 nums[i] 的最大值。
+    # stack 维护的是 3， k 是 2，供下次使用，遍历的是 1。
     def find132pattern(self, nums: List[int]) -> bool:
-        n = len(nums)
-        leftmin = [float('inf')] * n
-        for i in range(1, n):
-            leftmin[i] = min(leftmin[i-1], nums[i-1])
-
         stack = []
-        for j in range(n-1, -1, -1):
-            numsk = float('-inf')
-            while stack and stack[-1] < nums[j]:
-                numsk = stack.pop()
-            if leftmin[j] < numsk:
+        k = float('-inf')
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] < k:
                 return True
-            stack.append(nums[j])
-
+            while stack and stack[-1] < nums[i]:
+                k = max(k, stack.pop())
+            stack.append(nums[i])
         return False
 
 

@@ -1,4 +1,4 @@
-# 不使用运算符 + 和 -，计算两整数​a、b 之和。
+# 不使用运算符 + 和 -，计算两整数 a、b 之和。
 # https://leetcode-cn.com/problems/sum-of-two-integers/solution/python-wei-yun-suan-yi-xie-keng-by-lih/
 class Solution:
     # 其他语言描述，自动判别溢出

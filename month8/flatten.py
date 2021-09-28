@@ -1,3 +1,4 @@
+# 114. 二叉树展开为链表
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -50,6 +51,36 @@ class Solution:
     #         pre = pre.right
 
     # 4、整体使用迭代
+    # def flatten(self, root: TreeNode) -> None:
+    #     if not root:
+    #         return
+    #     self.flatten(root.left)
+    #     self.flatten(root.right)
+    #
+    #     cur = root.left
+    #     if cur:
+    #         while cur.right:  # cur 要找到左子树的最末一位
+    #             cur = cur.right
+    #         cur.right = root.right
+    #         root.left, root.right = None, root.left
+
+    # 写得不太好，没有注意这个是没有返回值的
+    # def flatten(self, root: TreeNode) -> None:
+    #     if not root:
+    #         return
+    #     a, b = self.flatten(root.left), self.flatten(root.right)
+    #
+    #     root.left = None
+    #     cur = a
+    #     if cur:
+    #         while cur.right:
+    #             cur = cur.right
+    #         root.right = a
+    #         cur.right = b
+    #     else:
+    #         root.right = b
+
+    # 递归方法思路比较简单
     def flatten(self, root: TreeNode) -> None:
         if not root:
             return
@@ -58,8 +89,7 @@ class Solution:
 
         cur = root.left
         if cur:
-            while cur.right:  # cur 要找到左子树的最末一位
+            while cur.right:
                 cur = cur.right
             cur.right = root.right
             root.left, root.right = None, root.left
-

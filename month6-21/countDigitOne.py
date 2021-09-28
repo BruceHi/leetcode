@@ -43,6 +43,7 @@ class Solution:
             digit *= 10
         return res
 
+
 s = Solution()
 n = 12
 print(s.countDigitOne(n))

@@ -44,18 +44,34 @@ class Solution:
     #     path(root, target, [])
     #     return res
 
-    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
+    # def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
+    #     res = []
+    #
+    #     def path(root, cur, target):
+    #         if not root:
+    #             return
+    #         if not root.left and not root.right:
+    #             if root.val == target:
+    #                 res.append(cur+[target])
+    #             return
+    #         path(root.left, cur+[root.val], target-root.val)
+    #         path(root.right, cur+[root.val], target-root.val)
+    #
+    #     path(root, [], target)
+    #     return res
+
+    def pathSum(self, root, targetSum: int) -> List[List[int]]:
         res = []
 
-        def path(root, cur, target):
+        def dfs(root, cur, targetSum):
             if not root:
                 return
             if not root.left and not root.right:
-                if root.val == target:
-                    res.append(cur+[target])
+                if root.val == targetSum:
+                    res.append(cur+[root.val])
                 return
-            path(root.left, cur+[root.val], target-root.val)
-            path(root.right, cur+[root.val], target-root.val)
+            dfs(root.left, cur+[root.val], targetSum-root.val)
+            dfs(root.right, cur+[root.val], targetSum-root.val)
 
-        path(root, [], target)
+        dfs(root, [], targetSum)
         return res
