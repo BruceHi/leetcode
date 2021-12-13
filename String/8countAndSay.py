@@ -133,12 +133,25 @@ class Solution:
     #     res = pattern.sub(lambda x: str(len(x.group())) + x.group(1), s)
     #     return res
 
+    # def countAndSay(self, n: int) -> str:
+    #     res = '1'
+    #     p = r'(\d)\1*'
+    #     pattern = re.compile(p)
+    #     for _ in range(n-1):
+    #         res = pattern.sub(lambda x: str(len(x.group())) + x.group(1), res)
+    #     return res
+
     def countAndSay(self, n: int) -> str:
-        res = '1'
-        p = r'(\d)\1*'
-        pattern = re.compile(p)
-        for _ in range(n-1):
-            res = pattern.sub(lambda x: str(len(x.group())) + x.group(1), res)
+        if n == 1:
+            return '1'
+        nums = self.countAndSay(n-1)
+        res = ''
+        i = 0
+        for j, num in enumerate(nums):
+            if num != nums[i]:
+                res += str(j-i) + nums[i]
+                i = j
+        res += str(len(nums)-i) + nums[-1]
         return res
 
 

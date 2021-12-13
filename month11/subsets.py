@@ -21,12 +21,17 @@ class Solution:
     #         res += [[num] + tmp for tmp in res]
     #     return res
 
+    # def subsets(self, nums: List[int]) -> List[List[int]]:
+    #     res = []
+    #     for i in range(len(nums)+1):
+    #         res.extend(map(list, combinations(nums, i)))
+    #     return res
+
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
         for i in range(len(nums)+1):
             res.extend(map(list, combinations(nums, i)))
         return res
-
 
 
 s = Solution()

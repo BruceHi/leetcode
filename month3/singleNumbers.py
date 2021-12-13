@@ -1,4 +1,5 @@
 # 剑指offer 56-1. 数组中数字出现的次数
+# 260. 只出现一次的数字3
 from typing import List
 from collections import Counter
 
@@ -26,6 +27,26 @@ class Solution:
     #             y ^= num
     #     return [x, y]
 
+    # def singleNumbers(self, nums: List[int]) -> List[int]:
+    #     n = 0
+    #     for num in nums:
+    #         n ^= num
+    #     m = n & -n
+    #
+    #     x, y = 0, 0
+    #     for num in nums:
+    #         if m & num:
+    #             x ^= num
+    #         else:
+    #             y ^= num
+    #     return [x, y]
+
+    # def singleNumbers(self, nums: List[int]) -> List[int]:
+    #     count = Counter(nums)
+    #     res = sorted(count, key=lambda x: count[x])
+    #     return res[:2]
+
+    # 异或，取反求与，再异或
     def singleNumbers(self, nums: List[int]) -> List[int]:
         n = 0
         for num in nums:
@@ -34,7 +55,7 @@ class Solution:
 
         x, y = 0, 0
         for num in nums:
-            if m & num:
+            if num & m:
                 x ^= num
             else:
                 y ^= num

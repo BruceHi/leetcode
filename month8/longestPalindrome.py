@@ -1,23 +1,5 @@
-#  最长回文子串
+#  5. 最长回文子串
 class Solution:
-
-    # 错误
-    # def longestPalindrome(self, s: str) -> str:
-    #     def isPalindrom(a):
-    #         return a[::-1] == a
-    #
-    #     length, res = 0, ''
-    #     i = j = 0
-    #     while j < len(s):
-    #         if isPalindrom(s[i:j+1]):
-    #             length += 1
-    #             if length > len(res):
-    #                 res = s[i:j+1]
-    #             j += 1
-    #         else:
-    #             length = 0
-    #             i = j
-    #     return res
 
     # def longestPalindrome(self, s):
     #     n = len(s)
@@ -125,12 +107,31 @@ class Solution:
     #
     #     return res
 
+    # def longestPalindrome(self, s: str) -> str:
+    #     n = len(s)
+    #
+    #     def center(left, right):
+    #         while left >= 0 and right < n and s[left] == s[right]:
+    #             left, right = left-1, right+1
+    #         return left+1, right-1
+    #
+    #     start, end = 0, 0
+    #     for i in range(n):
+    #         left1, right1 = center(i, i)
+    #         left2, right2 = center(i, i+1)
+    #
+    #         if right1 - left1 > end - start:
+    #             start, end = left1, right1
+    #         if right2 - left2 > end - start:
+    #             start, end = left2, right2
+    #     return s[start: end + 1]
+
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
 
         def center(left, right):
             while left >= 0 and right < n and s[left] == s[right]:
-                left, right = left-1, right+1
+                left, right = left - 1, right + 1
             return left+1, right-1
 
         start, end = 0, 0
@@ -138,11 +139,11 @@ class Solution:
             left1, right1 = center(i, i)
             left2, right2 = center(i, i+1)
 
-            if right1 - left1 > end - start:
+            if right1-left1 > end-start:
                 start, end = left1, right1
-            if right2 - left2 > end - start:
+            if right2-left2 > end-start:
                 start, end = left2, right2
-        return s[start: end + 1]
+        return s[start: end+1]
 
 
 obj = Solution()

@@ -1,3 +1,4 @@
+# 环路结点
 # 检测是否有环。若有环返回入环结点。
 
 # Definition for singly-linked list.
@@ -51,14 +52,24 @@ class Solution:
     #                 slow, find = slow.next, find.next
     #             return find
 
+    # def detectCycle(self, head: ListNode) -> ListNode:
+    #     slow, fast = head, head
+    #     while fast and fast.next:
+    #         slow, fast = slow.next, fast.next.next
+    #         if slow is fast:
+    #             find = head
+    #             while slow != find:
+    #                 slow, find = slow.next, find.next
+    #             return find
+
     def detectCycle(self, head: ListNode) -> ListNode:
         slow, fast = head, head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
             if slow is fast:
                 find = head
-                while slow != find:
-                    slow, find = slow.next, find.next
+                while find is not slow:
+                    find, slow = find.next, slow.next
                 return find
 
 

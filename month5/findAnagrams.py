@@ -56,9 +56,29 @@ class Solution:
     #                 left += 1
     #     return res
 
+    # def findAnagrams(self, s: str, p: str) -> List[int]:
+    #     count = Counter(p)
+    #     res, left = [], 0
+    #     dic = defaultdict(int)
+    #
+    #     for i, c in enumerate(s):
+    #         if c not in count:
+    #             left = i + 1
+    #             dic.clear()
+    #         else:
+    #             dic[c] += 1
+    #             if i - left + 1 == len(p):
+    #                 if dic == count:
+    #                     res.append(left)
+    #                 dic[s[left]] -= 1
+    #                 if dic[s[left]] == 0:
+    #                     dic.pop(s[left])
+    #                 left += 1
+    #     return res
+
     def findAnagrams(self, s: str, p: str) -> List[int]:
         count = Counter(p)
-        res, left = [], 0
+        left, res = 0, []
         dic = defaultdict(int)
 
         for i, c in enumerate(s):
@@ -75,6 +95,7 @@ class Solution:
                         dic.pop(s[left])
                     left += 1
         return res
+
 
 
 obj = Solution()

@@ -67,23 +67,23 @@ class Trie:
 
 
 trie = Trie()
-trie.insert("apple")
-print(trie.dic)
-print(trie.search("apple"))  # True
-
-print(trie.search("app"))  # 返回 false
-print(trie.startsWith("app"))  # 返回 true
-
-trie.insert("app")
-print(trie.dic)
-print(trie.search("app"))
+# trie.insert("apple")
+# print(trie.dic)
+# print(trie.search("apple"))  # True
 #
+# print(trie.search("app"))  # 返回 false
+# print(trie.startsWith("app"))  # 返回 true
+#
+# trie.insert("app")
+# print(trie.dic)
+# print(trie.search("app"))
+# #
 # print(trie.root)
 
-# sym = ['how', 'hi', 'her', 'hello', 'so', 'see']
-# for s in sym:
-#     trie.insert(s)
-# print(trie.dic)
+sym = ['how', 'hi', 'her', 'hello', 'so', 'see']
+for s in sym:
+    trie.insert(s)
+print(trie.dic)
 #
 # import pprint
 # pprint.pprint(trie.dic)

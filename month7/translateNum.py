@@ -67,15 +67,27 @@ class Solution:
     #             dp[i] = dp[i-1]
     #     return dp[n]
 
+    # def translateNum(self, num: int) -> int:
+    #     nums = str(num)
+    #     n = len(nums)
+    #     dp = [1] * (n+1)
+    #     for i in range(1, n+1):
+    #         if '10' <= nums[i-2:i] <= '25':
+    #             dp[i] = dp[i-1] + dp[i-2]
+    #         else:
+    #             dp[i] = dp[i-1]
+    #     return dp[n]
+
+    # 注意这种写法的 dp 命名
+    # dp[i] = dp[i-1] + dp[i-2](if 能够组合，否则 0)
     def translateNum(self, num: int) -> int:
         nums = str(num)
         n = len(nums)
-        dp = [1] * (n+1)
+        dp = [1] + [0] * n
         for i in range(1, n+1):
-            if '10' <= nums[i-2:i] <= '25':
-                dp[i] = dp[i-1] + dp[i-2]
-            else:
-                dp[i] = dp[i-1]
+            dp[i] += dp[i-1]
+            if i > 1 and '10' <= nums[i-2:i] <= '25':
+                dp[i] += dp[i-2]
         return dp[n]
 
 

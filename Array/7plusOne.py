@@ -85,15 +85,26 @@ from typing import List
 #             digits[i] = 0
 #     return [1] + digits
 
+# def plusOne(digits: List[int]) -> List[int]:
+#     carry = 1
+#     for i in range(len(digits) - 1, -1, -1):
+#         re = (digits[i] + carry) % 10
+#         carry = (digits[i] + carry) // 10
+#         digits[i] = re
+#         if not carry:
+#             return digits
+#     return [1] + digits
+
 def plusOne(digits: List[int]) -> List[int]:
     carry = 1
-    for i in range(len(digits) - 1, -1, -1):
-        re = (digits[i] + carry) % 10
-        carry = (digits[i] + carry) // 10
-        digits[i] = re
-        if not carry:
-            return digits
-    return [1] + digits
+    res = []
+    for d in digits[::-1]:
+        num = d + carry
+        res = [num%10] + res
+        carry = num // 10
+    if carry:
+        res = [1] + res
+    return res
 
 
 list1 =[9, 9, 9]

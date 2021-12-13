@@ -27,11 +27,15 @@ class Solution:
     #     return i
 
 
+    # def thirdMax(self, nums: List[int]) -> int:
+    #     nums = set(nums)
+    #     if len(nums) < 3:
+    #         return max(nums)
+    #     return sorted(nums, reverse=True)[2]
+
     def thirdMax(self, nums: List[int]) -> int:
-        nums = set(nums)
-        if len(nums) < 3:
-            return max(nums)
-        return sorted(nums, reverse=True)[2]
+        new = sorted(set(nums), reverse=True)
+        return new[2] if len(new) >= 3 else new[0]
 
 
 s = Solution()

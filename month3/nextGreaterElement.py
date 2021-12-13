@@ -17,13 +17,21 @@ class Solution:
     #     return res
 
     # 使用栈, dailyTemperatures，时间复杂度 O(M+N)
+    # def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    #     dic, stack = {}, []
+    #     for num in nums2:
+    #         while stack and num > stack[-1]:
+    #             dic[stack.pop()] = num
+    #         stack.append(num)
+    #
+    #     return [dic.get(num, -1) for num in nums1]
+    #
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         dic, stack = {}, []
         for num in nums2:
             while stack and num > stack[-1]:
                 dic[stack.pop()] = num
             stack.append(num)
-
         return [dic.get(num, -1) for num in nums1]
 
 

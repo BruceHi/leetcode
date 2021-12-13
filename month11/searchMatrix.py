@@ -1,5 +1,6 @@
 # 240. 搜索二维矩阵 二
 from bisect import bisect_left
+from typing import List
 
 
 class Solution:
@@ -41,18 +42,30 @@ class Solution:
     #     return False
 
     # 从左下角开始搜索，时间复杂度为 O(m + n)
-    def searchMatrix(self, matrix, target):
-        if not matrix or not matrix[0]:
-            return False
+    # def searchMatrix(self, matrix, target):
+    #     if not matrix or not matrix[0]:
+    #         return False
+    #     m, n = len(matrix), len(matrix[0])
+    #     x, y = m - 1, 0
+    #     while x >= 0 and y < n:
+    #         if target < matrix[x][y]:
+    #             x -= 1
+    #         elif target > matrix[x][y]:
+    #             y += 1
+    #         else:
+    #             return True
+    #     return False
+
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m, n = len(matrix), len(matrix[0])
-        x, y = m - 1, 0
-        while x >= 0 and y < n:
-            if target < matrix[x][y]:
-                x -= 1
-            elif target > matrix[x][y]:
-                y += 1
-            else:
+        i, j = m-1, 0
+        while i >= 0 and j < n:
+            if target == matrix[i][j]:
                 return True
+            if target > matrix[i][j]:
+                j += 1
+            else:
+                i -= 1
         return False
 
 

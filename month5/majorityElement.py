@@ -1,4 +1,6 @@
 # 众数
+# 169. 多数元素
+# 剑指 Offer 39. 数组中出现次数超过一半的数字
 from typing import List
 from collections import Counter
 
@@ -35,12 +37,24 @@ class Solution:
     #     res = [key for key in count if count[key] > len(nums) // 2]
     #     return res[0] if res else -1
 
+    # def majorityElement(self, nums: List[int]) -> int:
+    #     count = Counter(nums)
+    #     for k, v in count.items():
+    #         if v > len(nums) // 2:
+    #             return k
+    #     return -1
+
     def majorityElement(self, nums: List[int]) -> int:
-        count = Counter(nums)
-        for k, v in count.items():
-            if v > len(nums) // 2:
-                return k
-        return -1
+        count, candidate = 1, nums[0]
+        for i in range(1, len(nums)):
+            if count == 0:
+                candidate = nums[i]
+            if nums[i] == candidate:
+                count += 1
+            else:
+                count -= 1
+        return candidate
+
 
 
 s = Solution()
@@ -50,6 +64,9 @@ print(s.majorityElement(nums))
 nums = [2,2,1,1,1,2,2]
 print(s.majorityElement(nums))
 
-#
-nums = [3, 2]
+nums = [2,2,1,1,1,2,2]
 print(s.majorityElement(nums))
+
+# 错误示例，不符号多数元素
+# nums = [3, 2]
+# print(s.majorityElement(nums))

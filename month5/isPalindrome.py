@@ -32,15 +32,23 @@ class Solution:
     #         x //= 10
     #     return x == res or x == res // 10
 
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x and not x % 10:
+    #         return False
+    #     n = 0
+    #     while x > n:
+    #         n = n * 10 + x % 10
+    #         x //= 10
+    #     return x == n or x == n // 10
+
     def isPalindrome(self, x: int) -> bool:
-        if x < 0 or x and not x % 10:
+        if x < 0 or x and x % 10 == 0:
             return False
         n = 0
         while x > n:
             n = n * 10 + x % 10
             x //= 10
         return x == n or x == n // 10
-
 
 s = Solution()
 num = 121

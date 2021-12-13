@@ -65,19 +65,32 @@ class Solution:
     #             pre = cur
     #     return dummy.next
 
+    # def removeDuplicateNodes(self, head: ListNode) -> ListNode:
+    #     if not head:
+    #         return
+    #     record, pre = {head.val}, head
+    #     while pre.next:
+    #         cur = pre.next
+    #         if cur.val in record:
+    #             pre.next = cur.next
+    #         else:
+    #             pre = cur
+    #             record.add(cur.val)
+    #     return head
+
     def removeDuplicateNodes(self, head: ListNode) -> ListNode:
-        if not head:
-            return
-        record, pre = {head.val}, head
+        record = set()
+        pre = dummy = ListNode(0)
+        dummy.next = head
+
         while pre.next:
             cur = pre.next
-            if cur.val in record:
-                pre.next = cur.next
-            else:
-                pre = cur
+            if cur.val not in record:
                 record.add(cur.val)
-        return head
-
+                pre = pre.next
+            else:
+                pre.next = cur.next
+        return dummy.next
 
 def generate_link(nums: List[int]) -> ListNode:
     head = ListNode(0)
@@ -101,4 +114,7 @@ a = generate_link([1, 2, 3, 3, 2, 1])
 print_link(s.removeDuplicateNodes(a))
 
 a = generate_link([1, 1, 1, 1, 2])
+print_link(s.removeDuplicateNodes(a))
+
+a = generate_link([])
 print_link(s.removeDuplicateNodes(a))
