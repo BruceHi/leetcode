@@ -11,8 +11,12 @@ class Solution:
     # def permutation(self, s: str) -> List[str]:
     #     return list(set(''.join(x) for x in permutations(s)))
 
-    def permutation(self, s: str) -> List[str]:
-        return list(set(''.join(x) for x in permutations(s)))
+    # def permutation(self, s: str) -> List[str]:
+    #     return list(set(''.join(x) for x in permutations(s)))
+
+    def permutation(self, S: str) -> List[str]:
+        return list(map(lambda x: ''.join(x), permutations(s)))
+
 
 obj = Solution()
 s = "abc"

@@ -19,14 +19,26 @@ class Solution:
     #     return '/'+'/'.join(stack)
 
     #
+    # def simplifyPath(self, path: str) -> str:
+    #     stack = []
+    #     for path in path.split('/'):
+    #         if path not in ['', '.', '..']:
+    #             stack.append(path)
+    #         elif path == '..' and stack:
+    #             stack.pop()
+    #     return '/' + '/'.join(stack)
+
+    # def simplifyPath(self, path: str) -> str:
+    #     stack = []
+    #     for p in path.split('/'):
+    #         if p not in ['', '.', '..']:
+    #             stack.append(p)
+    #         elif p == '..' and stack:
+    #             stack.pop()
+    #     return '/' + '/'.join(stack)
+
     def simplifyPath(self, path: str) -> str:
-        stack = []
-        for path in path.split('/'):
-            if path not in ['', '.', '..']:
-                stack.append(path)
-            elif path == '..' and stack:
-                stack.pop()
-        return '/' + '/'.join(stack)
+        return os.path.realpath(path)
 
 
 s = Solution()

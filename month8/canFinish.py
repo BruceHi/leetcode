@@ -117,7 +117,8 @@ class Solution:
             edges[b].append(a)
             in_degree[a] += 1
 
-        queue = deque([b for b in range(numCourses) if in_degree[b] == 0])
+        # queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
+        queue = deque([i for i, d in enumerate(in_degree) if d == 0])
         visited = 0
 
         while queue:
