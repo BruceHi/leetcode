@@ -24,21 +24,17 @@ class Solution:
     #     dfs('0'*n, [])
     #     return [int(x, base=2) for x in res[0] if x]
 
-    # def grayCode(self, n: int) -> List[int]:
-    #     start = '0' * n
-    #     visited = {}
-    #     for i in range(n):
-    #         tmp = start[:i] + str(int(start[i] == '0')) + start[i + 1:]
-    #         if tmp
-
     # 格雷姆等于 值异或（向右移位）
     # 1与空异或还是得 1，0 与 空异或为 0。空可以看成 0.
     # 移位的优先级大于与，或，异或
     # def grayCode(self, n: int) -> List[int]:
     #     return [i ^ i >> 1 for i in range(2**n)]
 
+    # def grayCode(self, n: int) -> List[int]:
+    #     return [i ^ (i >> 1) for i in range(1 << n)]
+
     def grayCode(self, n: int) -> List[int]:
-        return [i ^ i >> 1 for i in range(1 << n)]
+        return [i ^ (i >> 1) for i in range(1 << n)]
 
 
 s = Solution()

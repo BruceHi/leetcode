@@ -22,6 +22,20 @@ class Solution:
     #     return all([len(g) == groupSize for g in groups])
 
     # 注意一定要排序，从小牌开始拿起
+    # def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+    #     if len(hand) % groupSize:
+    #         return False
+    #     hand.sort()
+    #     count = Counter(hand)
+    #     for h in hand:
+    #         if count[h] == 0:
+    #             continue
+    #         for x in range(h, h+groupSize):
+    #             if count[x] == 0:
+    #                 return False
+    #             count[x] -= 1
+    #     return True
+
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
         if len(hand) % groupSize:
             return False

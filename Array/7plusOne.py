@@ -95,16 +95,24 @@ from typing import List
 #             return digits
 #     return [1] + digits
 
+# def plusOne(digits: List[int]) -> List[int]:
+#     carry = 1
+#     res = []
+#     for d in digits[::-1]:
+#         num = d + carry
+#         res = [num%10] + res
+#         carry = num // 10
+#     if carry:
+#         res = [1] + res
+#     return res
+
 def plusOne(digits: List[int]) -> List[int]:
-    carry = 1
-    res = []
-    for d in digits[::-1]:
-        num = d + carry
-        res = [num%10] + res
-        carry = num // 10
-    if carry:
-        res = [1] + res
-    return res
+    for i in range(len(digits)-1, -1, -1):
+        digits[i] += 1
+        digits[i] %= 10
+        if digits[i]:
+            return digits
+    return [1] + digits
 
 
 list1 =[9, 9, 9]
