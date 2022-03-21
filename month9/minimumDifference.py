@@ -12,11 +12,19 @@ class Solution:
     #     print(max(nums), min(nums), max(nums)-min(nums))
     #     return min(res)
 
+    # def minimumDifference(self, nums: List[int], k: int) -> int:
+    #     if k == 1:
+    #         return 0
+    #     res = float('inf')
+    #     nums.sort()
+    #     for i in range(len(nums)-k+1):
+    #         res = min(res, nums[i+k-1]-nums[i])
+    #     return res
     def minimumDifference(self, nums: List[int], k: int) -> int:
-        if k == 1:
-            return 0
-        res = float('inf')
+        # if k == 1:
+        #     return 0
         nums.sort()
+        res = float('inf')
         for i in range(len(nums)-k+1):
             res = min(res, nums[i+k-1]-nums[i])
         return res

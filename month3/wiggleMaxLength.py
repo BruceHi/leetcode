@@ -3,20 +3,37 @@ from typing import List
 
 
 class Solution:
-    # 暴力法
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
+    # 贪心法
+    # 去重，求所有的峰和谷的数量，即最大值
+    # def wiggleMaxLength(self, nums: List[int]) -> int:
+    #     if not nums:
+    #         return 0
+    #
+    #     new = []
+    #     for num in nums:
+    #         if not new or new[-1] != num:
+    #             new.append(num)
+    #     if len(new) == 1:
+    #         return 1
+    #
+    #     res = 2
+    #     n = len(new)
+    #     for i in range(1, n-1):
+    #         if new[i-1] < new[i] > new[i+1] or new[i-1] > new[i] < new[i+1]:
+    #             res += 1
+    #     return res
 
-        new = []
-        for num in nums:
-            if not new or new[-1] != num:
-                new.append(num)
-        if len(new) == 1:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        new = [nums[0]]
+        for i in range(1, len(nums)):
+            if nums[i] != new[-1]:
+                new.append(nums[i])
+
+        n = len(new)
+        if n == 1:
             return 1
 
         res = 2
-        n = len(new)
         for i in range(1, n-1):
             if new[i-1] < new[i] > new[i+1] or new[i-1] > new[i] < new[i+1]:
                 res += 1
@@ -45,6 +62,5 @@ print(s.wiggleMaxLength(nums))
 nums = [1, 2, 2, 1]
 print(s.wiggleMaxLength(nums))
 
-nums = []
+nums = [3,3,3,2,5]
 print(s.wiggleMaxLength(nums))
-

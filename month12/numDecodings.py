@@ -98,14 +98,47 @@ class Solution:
     # 官方题解，看起来更为简洁
     # 只分为 2 种情况，可以单独的，可以组合的
     # dp[i] = dp[i-1](单独，否则为 0) + dp[i-2](结合，否则为 0)
+    # def numDecodings(self, s: str) -> int:
+    #     n = len(s)
+    #     dp = [1] + [0] * n
+    #     for i in range(1, n+1):
+    #         if s[i-1] != '0':  # 至少 1 种解法
+    #             dp[i] += dp[i-1]
+    #         if i > 1 and s[i-2] != '0' and s[i-2:i] <= '26':
+    #             dp[i] += dp[i-2]
+    #     return dp[n]
+
+    # def numDecodings(self, s: str) -> int:
+    #     if s.startswith('0'):
+    #         return 0
+    #     n = len(s)
+    #     dp = [0] * (n+1)
+    #     dp[0] = dp[1] = 1
+    #     for i in range(2, n+1):
+    #         c = s[i-2:i]
+    #         if c[1] == '0':
+    #             if c in ['10', '20']:
+    #                 dp[i] = dp[i - 2]
+    #             else:
+    #                 return 0
+    #         elif '01' <= c <= '09' or c > '26':
+    #             dp[i] = dp[i-1]
+    #         else:
+    #             dp[i] = dp[i-1] + dp[i-2]
+    #     return dp[n]
+
     def numDecodings(self, s: str) -> int:
+        if s.startswith('0'):
+            return 0
+
         n = len(s)
-        dp = [1] + [0] * n
-        for i in range(1, n+1):
-            if s[i-1] != '0':  # 至少 1 种解法
-                dp[i] += dp[i-1]
-            if i > 1 and s[i-2] != '0' and s[i-2:i] <= '26':
-                dp[i] += dp[i-2]
+        dp = [0] * (n+1)
+        dp[0] = dp[1] = 1
+        for i in range(2, n+1):
+            if s[i-1] != '0':
+                dp[i] = dp[i-1]
+            if '10' <= s[i-2:i] <= '26':
+                dp[i] += dp[i-2]  # 注意这点
         return dp[n]
 
 

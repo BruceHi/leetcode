@@ -54,14 +54,14 @@ class Solution:
     #         res.append(tmp)
     #     return res
 
-    def generate(self, numRows: int) -> List[List[int]]:
-        if not numRows:
-            return []
-        res = [[1]]
-        for _ in range(numRows-1):  # 循环次数
-            tmp = [x + y for x, y in zip([0] + res[-1], res[-1] + [0])]
-            res.append(tmp)
-        return res
+    # def generate(self, numRows: int) -> List[List[int]]:
+    #     if not numRows:
+    #         return []
+    #     res = [[1]]
+    #     for _ in range(numRows-1):  # 循环次数
+    #         tmp = [x + y for x, y in zip([0] + res[-1], res[-1] + [0])]
+    #         res.append(tmp)
+    #     return res
 
     # def generate(self, numRows: int) -> List[List[int]]:
     #     triangle = []
@@ -72,6 +72,26 @@ class Solution:
     #         triangle.append(row)
     #     return triangle
 
+    # def generate(self, numRows: int) -> List[List[int]]:
+    #     if numRows == 1:
+    #         return [[1]]
+    #     res = [[1]]
+    #     for _ in range(numRows-1):
+    #         tmp = [x + y for x, y in zip([0] + res[-1], res[-1] + [0])]
+    #         res.append(tmp)
+    #     return res
+
+    def generate(self, numRows: int) -> List[List[int]]:
+        triangle = [[1]]
+        for i in range(1, numRows):
+            row = [1] * (i+1)
+            for j in range(1, i):
+                row[j] = triangle[i-1][j] + triangle[i-1][j-1]
+            triangle.append(row)
+        return triangle
+
 
 s = Solution()
 print(s.generate(5))
+
+print(s.generate(1))

@@ -37,13 +37,24 @@ class Solution:
     #             dp[i] = min(dp[i], dp[i-num]+1)
     #     return dp[n]
 
+    # def numSquares(self, n: int) -> int:
+    #     nums = [x*x for x in range(1, int(sqrt(n))+1)]
+    #     dp = [float('inf')] * (n+1)
+    #     dp[0] = 0
+    #     for num in nums:
+    #         for x in range(num, n+1):
+    #             dp[x] = min(dp[x], dp[x-num]+1)
+    #     return dp[n]
+
     def numSquares(self, n: int) -> int:
         nums = [x*x for x in range(1, int(sqrt(n))+1)]
         dp = [float('inf')] * (n+1)
         dp[0] = 0
+
         for num in nums:
-            for x in range(num, n+1):
-                dp[x] = min(dp[x], dp[x-num]+1)
+            for i in range(num, n+1):
+                dp[i] = min(dp[i], dp[i-num]+1)
+
         return dp[n]
 
 

@@ -9,10 +9,11 @@ class Solution:
 
     def getPermutation(self, n: int, k: int) -> str:
         nums = permutations(range(1, n+1))
-        for _ in range(k-1):
-            next(nums)
-        res = next(nums)
-        return ''.join(map(str, res))
+        print(list(nums))
+        # for _ in range(k-1):
+        #     next(nums)
+        # res = next(nums)
+        # return ''.join(map(str, res))
 
 
 s = Solution()

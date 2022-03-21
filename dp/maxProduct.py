@@ -32,12 +32,24 @@ class Solution:
 
     def maxProduct(self, nums: List[int]) -> int:
         n = len(nums)
-        dp = [0] * n
-        dp[0] = nums[0]
-
+        dp = [[0] * 2 for _ in range(n)]
+        dp[0][0], dp[0][1], res = nums[0], nums[0], nums[0]
         for i in range(1, n):
-            dp[i] = max(nums[i], dp[i-1] * nums[i])
-        return max(dp)
+            num = nums[i]
+            num1, num2 = dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i]
+            dp[i][0] = max(num1, num2, num)
+            dp[i][1] = min(num1, num2, num)
+            res = max(res, dp[i][0])
+        return res
+
+    # def maxProduct(self, nums: List[int]) -> int:
+    #     dp_0, dp_1, res = nums[0], nums[0], nums[0]
+    #     for i in range(1, len(nums)):
+    #         num = nums[i]
+    #         num1, num2 = dp_0 * num, dp_1 * num
+    #         dp_0, dp_1 = max(num1, num2, num), min(num1, num2, num)
+    #         res = max(res, dp_0)
+    #     return res
 
 
 s = Solution()
@@ -49,4 +61,7 @@ print(s.maxProduct(a))
 
 a = [-2,3,-4]
 print(s.maxProduct(a))  # 24
+
+a = [-2]
+print(s.maxProduct(a))
 

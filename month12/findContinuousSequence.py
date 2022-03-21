@@ -33,6 +33,23 @@ class Solution:
     #             i += 1
     #     return res
 
+    # def findContinuousSequence(self, target: int) -> List[List[int]]:
+    #     i, j = 1, 1
+    #     res = []
+    #     count = 0
+    #     while i <= target // 2:
+    #         if count < target:
+    #             count += j
+    #             j += 1
+    #         elif count > target:
+    #             count -= i
+    #             i += 1
+    #         else:
+    #             res.append(list(range(i, j)))
+    #             count -= i
+    #             i += 1
+    #     return res
+
     def findContinuousSequence(self, target: int) -> List[List[int]]:
         i, j = 1, 1
         res = []
@@ -40,7 +57,7 @@ class Solution:
         while i <= target // 2:
             if count < target:
                 count += j
-                j += 1
+                j += 1  # j 永远指向要取的下一位
             elif count > target:
                 count -= i
                 i += 1
@@ -57,3 +74,6 @@ print(s.findContinuousSequence(target))
 
 target = 15
 print(s.findContinuousSequence(target))
+
+target = 1
+print(s.findContinuousSequence(target))  # 结果 []

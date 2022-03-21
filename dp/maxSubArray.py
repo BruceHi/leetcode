@@ -1,4 +1,4 @@
-# **连续**子数组的最大和
+# 53. **连续**子数组的最大和
 from typing import List
 
 
@@ -48,21 +48,41 @@ class Solution:
     #         dp[i] = max(dp[i-1] + nums[i], nums[i])
     #     return max(dp)
 
+    # def maxSubArray(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     dp = [0] * n
+    #     dp[0] = nums[0]
+    #     for i in range(1, n):
+    #         dp[i] = max(dp[i-1]+nums[i], nums[i])
+    #     return max(dp)
+
+    # def maxSubArray(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     dp = [0] * n
+    #     dp[0] = nums[0]
+    #     for i in range(1, n):
+    #         dp[i] = max(dp[i-1]+nums[i], nums[i])
+    #     return max(dp)
+
+    # def maxSubArray(self, nums: List[int]) -> int:
+    #     max_v, dp = float('-inf'), float('-inf')
+    #     for num in nums:
+    #         dp = max(dp+num, num)
+    #         max_v = max(max_v, dp)
+    #     return max_v
+
     def maxSubArray(self, nums: List[int]) -> int:
         n = len(nums)
-        dp = [0] * n
-        dp[0] = nums[0]
-        for i in range(1, n):
-            dp[i] = max(dp[i-1]+nums[i], nums[i])
+        dp = [0] * (n+1)
+        dp[0] = float('-inf')
+        for i in range(1, n+1):
+            dp[i] = max(dp[i-1]+nums[i-1], nums[i-1])
         return max(dp)
 
 
 s = Solution()
 a = [-2,1,-3,4,-1,2,1,-5,4]
 print(s.maxSubArray(a))
-
-# a = []
-# print(s.maxSubArray(a))
 
 a = [-2]
 print(s.maxSubArray(a))

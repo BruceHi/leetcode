@@ -26,12 +26,22 @@ class Solution:
     #         res = max(res, i-start+1)
     #     return res
 
+    # def findLengthOfLCIS(self, nums: List[int]) -> int:
+    #     start, res = 0, 0
+    #     for i, num in enumerate(nums):
+    #         if i > 0 and nums[i-1] >= num:
+    #             start = i
+    #         res = max(res, i-start+1)
+    #     return res
+
     def findLengthOfLCIS(self, nums: List[int]) -> int:
-        start, res = 0, 0
-        for i, num in enumerate(nums):
-            if i > 0 and nums[i-1] >= num:
-                start = i
-            res = max(res, i-start+1)
+        res, length = 1, 1
+        for i in range(len(nums)-1):
+            if nums[i+1] > nums[i]:
+                length += 1
+            else:
+                length = 1
+            res = max(res, length)
         return res
 
 
@@ -45,9 +55,9 @@ print(s.findLengthOfLCIS(nums))
 nums = [1, 3, 5, 7]
 print(s.findLengthOfLCIS(nums))
 
-nums = []
+nums = [1,3,5,4,2,3,4,5]
 print(s.findLengthOfLCIS(nums))
 
-nums = [1,3,5,4,2,3,4,5]
+nums = [1]
 print(s.findLengthOfLCIS(nums))
 

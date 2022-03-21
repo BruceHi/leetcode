@@ -3,7 +3,7 @@ class Solution:
     # 有冷冻期，即卖出股票后第二天无法买入股票。
     # def maxProfit(self, prices):
     #     dp_i0, dp_i1 = 0, float('-inf')
-    #     dp_i0_pre = 0  # 相当于dp(i-1, 0)
+    #     dp_i0_pre = 0  # 相当于dp(i-2, 0)
     #     for price in prices:
     #         dp_i0_old = dp_i0  # 相当于 dp(i-1,0)
     #         dp_i0 = max(dp_i0, dp_i1+price)

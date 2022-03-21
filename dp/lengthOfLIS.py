@@ -46,26 +46,33 @@ class Solution:
     #     return max(dp)
 
     # dp[i]:到 i 为止的最长递增子序列长度，结果 max(dp)
+    # def lengthOfLIS(self, nums: List[int]) -> int:
+    #     n = len(nums)
+    #     dp = [1] * n
+    #     for i in range(1, n):
+    #         for j in range(i):
+    #             if nums[i] > nums[j]:
+    #                 dp[i] = max(dp[i], dp[j]+1)
+    #     return max(dp)
+
     def lengthOfLIS(self, nums: List[int]) -> int:
         n = len(nums)
         dp = [1] * n
         for i in range(1, n):
             for j in range(i):
-                if nums[i] > nums[j]:
+                if nums[j] < nums[i]:
                     dp[i] = max(dp[i], dp[j]+1)
         return max(dp)
 
 
 s = Solution()
-
-
 c = [4,10,4,3,8,9]
 print(s.lengthOfLIS(c))
 
 c = [10,9,2,5,3,7,101,18]
 print(s.lengthOfLIS(c))
 
-c = [1,3,6,7,9,4,10,5,6]
+c = [1,3,6,7,9,4,10,5,6]  # 6
 print(s.lengthOfLIS(c))
 
 nums = [10,9,2,5,3,7,101,18]

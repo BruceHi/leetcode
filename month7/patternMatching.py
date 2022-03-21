@@ -40,18 +40,37 @@ class Solution:
     #         return True
     #     return False
 
+    # 最后一条未通过
+    # def patternMatching(self, pattern: str, value: str) -> bool:
+    #     if len(pattern) == 1:
+    #         return True
+    #     if not len(value) and len(pattern) > 1:
+    #         return False
+    #     reg_a, reg_b = (r'\1', r'\2') if pattern[0] == 'a' else (r'\2', r'\1')
+    #     # 正则表达式 * 号不能去掉，首尾标志符不能忘，在字符串前面加 r 变为原始字符串
+    #     p = '^' + pattern.replace('a', r'(\w*)', 1).replace('b', r'(\w*)', 1)\
+    #         .replace('a', reg_a).replace('b', reg_b) + '$'
+    #     print(p)
+    #     p = re.compile(p)
+    #     if p.match(value):
+    #         return True
+    #     return False
+
     def patternMatching(self, pattern: str, value: str) -> bool:
         if len(pattern) == 1:
             return True
-        if not len(value) and len(pattern) > 1:
+        if not value and len(pattern) > 1:
             return False
         reg_a, reg_b = (r'\1', r'\2') if pattern[0] == 'a' else (r'\2', r'\1')
-        # 正则表达式 * 号不能去掉，首尾标志符不能忘，在字符串前面加 r 变为原始字符串
-        p = '^' + pattern.replace('a', r'(\w*)', 1).replace('b', r'(\w*)', 1)\
-            .replace('a', reg_a).replace('b', reg_b) + '$'
+        p = '^' + pattern.replace('a', r'(\w*)', 1).replace('b', r'(\w*)', 1).\
+            replace('a', reg_a).replace('b', reg_b) + '$'
         p = re.compile(p)
-        if p.match(value):
-            return True
+        res = p.match(value)
+
+        if res:
+            groups = res.groups()
+            if len(groups) == 1 or groups[0] != groups[1]:   # len(groups) == 1的情况比如 ‘aaaa’
+                return True
         return False
 
 
@@ -83,3 +102,15 @@ print(s.patternMatching(pattern, value))  # 应该为 False "a"和"b"不能同�
 pattern = "bbbaa"
 value = "xxxxxxy"
 print(s.patternMatching(pattern, value))  # 应该为 False
+
+pattern = "abbaa"
+value = "dogdogdogdogdog"
+print(s.patternMatching(pattern, value))  # False a 与 b 不能表示相同的字符串
+
+pattern = "ab"
+value = "big123"
+print(s.patternMatching(pattern, value))
+
+pattern = "bbb"
+value = "xxxxxx"
+print(s.patternMatching(pattern, value))

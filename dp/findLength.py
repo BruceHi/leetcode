@@ -1,4 +1,5 @@
-# 最长重复子数组, 连续的才叫子数组，不连续的叫子序列
+# 718. 最长重复子数组
+# 连续的才叫子数组，不连续的叫子序列
 from typing import List
 from collections import Counter
 
@@ -31,17 +32,30 @@ class Solution:
 
     # 令 dp[i][j] 表示 A[i:] 和 B[j:] 的最长公共前缀，那么答案即为所有 dp[i][j] 中的最大值。
     # 如果 A[i] == B[j]，那么 dp[i][j] = dp[i + 1][j + 1] + 1，否则 dp[i][j] = 0。
-    def findLength(self, A: List[int], B: List[int]) -> int:
-        m, n = len(A), len(B)
+    # def findLength(self, A: List[int], B: List[int]) -> int:
+    #     m, n = len(A), len(B)
+    #     dp = [[0] * (n+1) for _ in range(m+1)]
+    #
+    #     res = 0
+    #     for i in range(m-1, -1, -1):
+    #         for j in range(n-1, -1, -1):
+    #             if A[i] == B[j]:
+    #                 dp[i][j] = dp[i+1][j+1] + 1
+    #                 res = max(res, dp[i][j])
+    #     return res
+
+    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        m, n = len(nums1), len(nums2)
         dp = [[0] * (n+1) for _ in range(m+1)]
 
         res = 0
-        for i in range(m-1, -1, -1):
-            for j in range(n-1, -1, -1):
-                if A[i] == B[j]:
-                    dp[i][j] = dp[i+1][j+1] + 1
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                if nums1[i-1] == nums2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
                     res = max(res, dp[i][j])
         return res
+
 
 
 s = Solution()
@@ -55,4 +69,8 @@ print(s.findLength(A, B))
 
 A = [0,0,0,0,0]
 B = [0,0,0,0,0]
+print(s.findLength(A, B))
+
+A = [70,39,25,40,7]
+B = [52,20,67,5,31]
 print(s.findLength(A, B))

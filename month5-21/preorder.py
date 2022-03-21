@@ -40,12 +40,20 @@ class Solution:
     #             stack.append(child)
     #     return res
 
+    # def preorder(self, root: 'Node') -> List[int]:
+    #     if not root:
+    #         return []
+    #     stack, res = [root], []
+    #     while stack:
+    #         cur = stack.pop()
+    #         res.append(cur.val)
+    #         stack.extend(cur.children[::-1])
+    #     return res
+
     def preorder(self, root: 'Node') -> List[int]:
         if not root:
             return []
-        stack, res = [root], []
-        while stack:
-            cur = stack.pop()
-            res.append(cur.val)
-            stack.extend(cur.children[::-1])
+        res = [root.val]
+        for node in root.children:
+            res.extend(self.preorder(node))
         return res

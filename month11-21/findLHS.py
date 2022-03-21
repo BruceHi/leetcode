@@ -17,12 +17,29 @@ class Solution:
     #             res = max(res, len(v))
     #     return res
 
+    # def findLHS(self, nums: List[int]) -> int:
+    #     res = 0
+    #     count = Counter(nums)
+    #     for k, v in count.items():
+    #         if count[k+1] > 0:
+    #             res = max(res, v+count[k+1])
+    #     return res
+
+    # def findLHS(self, nums: List[int]) -> int:
+    #     count = Counter(nums)
+    #     res = 0
+    #     sort_nums = sorted(set(nums))
+    #     for num in sort_nums:
+    #         if num+1 in count:
+    #             res = max(res, count[num]+count[num+1])
+    #     return res
+
     def findLHS(self, nums: List[int]) -> int:
-        res = 0
         count = Counter(nums)
-        for k, v in count.items():
-            if count[k+1] > 0:
-                res = max(res, v+count[k+1])
+        res = 0
+        for k in count:
+            if k+1 in count:
+                res = max(res, count[k]+count[k+1])
         return res
 
 

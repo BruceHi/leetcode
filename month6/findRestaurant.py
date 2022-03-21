@@ -1,6 +1,6 @@
 # 两个列表的最小索引总和
 from typing import List
-
+from collections import defaultdict
 
 class Solution:
     # def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
@@ -34,9 +34,16 @@ class Solution:
     #             res.append(key)
     #     return res
 
+    # def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+    #     dic = {x: list1.index(x) + list2.index(x) for x in set(list1) & set(list2)}
+    #     return [x for x in dic if dic[x] == min(dic.values())]
+
     def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
-        dic = {x: list1.index(x) + list2.index(x) for x in set(list1) & set(list2)}
-        return [x for x in dic if dic[x] == min(dic.values())]
+        strs = set(list1) & set(list2)
+        dic = defaultdict(list)
+        for s in strs:
+            dic[list1.index(s)+list2.index(s)].append(s)
+        return dic[min(dic)]
 
 
 
