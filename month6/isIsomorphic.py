@@ -36,6 +36,17 @@ class Solution:
     #             return False
     #     return True
 
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         elif dic[a] != b:
+    #             return False
+    #     return True
+
     def isIsomorphic(self, s: str, t: str) -> bool:
         dic = {}
         for a, b in zip(s, t):

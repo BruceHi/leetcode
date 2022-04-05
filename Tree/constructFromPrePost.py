@@ -32,13 +32,24 @@ class Solution:
     #     root.right = self.constructFromPrePost(pre[i:], post[i-1:-1])
     #     return root
 
-    def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
-        if not pre:
+    # def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
+    #     if not pre:
+    #         return
+    #     root = TreeNode(pre[0])
+    #     if len(pre) == 1:
+    #         return root
+    #     i = post.index(pre[1])
+    #     root.left = self.constructFromPrePost(pre[1:i+2], post[:i+1])
+    #     root.right = self.constructFromPrePost(pre[i+2:], post[i+1:])
+    #     return root
+
+    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> TreeNode:
+        if not preorder:
             return
-        root = TreeNode(pre[0])
-        if len(pre) == 1:
+        root = TreeNode(preorder[0])
+        if len(preorder) == 1:
             return root
-        i = post.index(pre[1])
-        root.left = self.constructFromPrePost(pre[1:i+2], post[:i+1])
-        root.right = self.constructFromPrePost(pre[i+2:], post[i+1:])
+        idx = postorder.index(preorder[1])
+        root.left = self.constructFromPrePost(preorder[1:idx+2], postorder[:idx+1])
+        root.right = self.constructFromPrePost(preorder[idx+2:], postorder[idx+1:-1])
         return root

@@ -62,27 +62,38 @@
 #     s = list(map(str.lower, filter(str.isalnum, s)))
 #     return s == s[::-1]
 
-def isPalindrome(s: str) -> bool:
-    res = list(map(str.lower, filter(str.isalnum, s)))
-    return res == res[::-1]
+# def isPalindrome(s: str) -> bool:
+#     res = list(map(str.lower, filter(str.isalnum, s)))
+#     return res == res[::-1]
 
 
+class Solution:
+    # def isPalindrome(self, s: str) -> bool:
+    #     nums = list(filter(lambda x:x.isalnum(), map(lambda c:c.lower(), s)))
+    #     return nums == nums[::-1]
+
+    def isPalindrome(self, s: str) -> bool:
+        s = list(map(str.lower, filter(str.isalnum, s)))
+        return s == s[::-1]
+
+
+obj = Solution()
 s = "a."
-print(isPalindrome(s))
+print(obj.isPalindrome(s))
 
 s = ".,"
-print(isPalindrome(s))
+print(obj.isPalindrome(s))
 
 s = "A man, a plan, a canal: Panama"
 
-print(isPalindrome(s))
+print(obj.isPalindrome(s))
 
 s = "123ec321"
-print(isPalindrome(s))
+print(obj.isPalindrome(s))
 
 s = "race a car"
-print(isPalindrome(s))
+print(obj.isPalindrome(s))
 
 
 s = "0P"
-print(isPalindrome(s))
+print(obj.isPalindrome(s))

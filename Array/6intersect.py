@@ -59,13 +59,13 @@ from collections import Counter
 #             res += [num] * min(dic1[num], dic2[num])
 #     return res
 
-def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
-    dic1, dic2 = Counter(nums1), Counter(nums2)
-    res = []
-    for k1, v1 in dic1.items():
-        if k1 in dic2:
-            res += [k1] * min(v1, dic2[k1])
-    return res
+# def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
+#     dic1, dic2 = Counter(nums1), Counter(nums2)
+#     res = []
+#     for k1, v1 in dic1.items():
+#         if k1 in dic2:
+#             res += [k1] * min(v1, dic2[k1])
+#     return res
 
 # def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
 #     return list((Counter(nums1) & Counter(nums2)).elements())
@@ -82,11 +82,17 @@ def intersect(nums1: List[int], nums2: List[int]) -> List[int]:
 #     count1, count2 = Counter(nums1), Counter(nums2)
 #     return list((count1 & count2).elements())
 
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        count1, count2 = Counter(nums1), Counter(nums2)
+        return list((count1 & count2).elements())
 
+
+s = Solution()
 nums1 = [1,2,2,1]
 nums2 = [2,2]
-print(intersect(nums1, nums2))
+print(s.intersect(nums1, nums2))
 
 nums1 = [4,9,5]
 nums2 = [9,4,9,8,4]
-print(intersect(nums1, nums2))
+print(s.intersect(nums1, nums2))

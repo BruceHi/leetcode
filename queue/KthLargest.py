@@ -1,4 +1,5 @@
-# 数据流中第 k 大元素
+# 703. 数据流中第 k 大元素
+
 from typing import List
 import heapq
 
@@ -34,20 +35,65 @@ import heapq
 #             heapq.heapreplace(self.pool, val)
 #         return self.pool[0]
 
+# class KthLargest:
+#
+#     def __init__(self, k: int, nums: List[int]):
+#         self.pool = heapq.nlargest(k, nums)
+#         heapq.heapify(self.pool)
+#         self.k = k
+#
+#     def add(self, val: int) -> int:
+#         if len(self.pool) < self.k:
+#             heapq.heappush(self.pool, val)
+#         elif self.pool[0] < val:
+#             heapq.heapreplace(self.pool, val)
+#         return self.pool[0]
+
+
+# 超时
+# class KthLargest:
+#
+#     def __init__(self, k: int, nums: List[int]):
+#         self.nums = nums
+#         self.k = k
+#
+#     def add(self, val: int) -> int:
+#         self.nums.append(val)
+#         arr = self.nums[:self.k]
+#         heapq.heapify(arr)
+#         for num in self.nums[self.k:]:
+#             if num > arr[0]:
+#                 heapq.heappushpop(arr, num)
+#         return arr[0]
+
+# 始终维持一个大小为 k 的小顶堆
+# class KthLargest:
+#
+#     def __init__(self, k: int, nums: List[int]):
+#         self.pool = heapq.nlargest(k, nums)
+#         heapq.heapify(self.pool)
+#         self.k = k
+#
+#     def add(self, val: int) -> int:
+#         if len(self.pool) < self.k:
+#             heapq.heappush(self.pool, val)
+#         elif val > self.pool[0]:
+#             heapq.heappushpop(self.pool, val)
+#         return self.pool[0]
+
+
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
-        self.pool = heapq.nlargest(k, nums)
-        heapq.heapify(self.pool)
         self.k = k
+        self.queue = nums
+        heapq.heapify(self.queue)
 
     def add(self, val: int) -> int:
-        if len(self.pool) < self.k:
-            heapq.heappush(self.pool, val)
-        elif self.pool[0] < val:
-            heapq.heapreplace(self.pool, val)
-        return self.pool[0]
-
+        heapq.heappush(self.queue, val)
+        while len(self.queue) > self.k:
+            heapq.heappop(self.queue)
+        return self.queue[0]
 
 k = 3
 nums = [4,5,8,2]

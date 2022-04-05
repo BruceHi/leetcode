@@ -130,40 +130,70 @@ class Solution:
     #     return count
 
 
-    def totalNQueens(self, n: int) -> int:
-        res = 0
+    # def totalNQueens(self, n: int) -> int:
+    #     res = 0
+    #
+    #     def dfs(queens, xy_sum, xy_diff):
+    #         p = len(queens)
+    #         if p == n:
+    #             nonlocal res
+    #             res += 1
+    #             return
+    #         for q in range(n):
+    #             if q not in queens and p + q not in xy_sum and p - q not in xy_diff:
+    #                 dfs(queens + [q], xy_sum + [p+q], xy_diff + [p-q])
+    #
+    #     dfs([], [], [])
+    #     return res
 
-        def dfs(queens, xy_sum, xy_diff):
-            p = len(queens)
-            if p == n:
-                nonlocal res
-                res += 1
-                return
-            for q in range(n):
-                if q not in queens and p + q not in xy_sum and p - q not in xy_diff:
-                    dfs(queens + [q], xy_sum + [p+q], xy_diff + [p-q])
-
-        dfs([], [], [])
-        return res
+    # def solveNQueens(self, n: int) -> List[List[str]]:
+    #     res = []
+    #
+    #     def dfs(queens, xy_sum, xy_diff):
+    #         p = len(queens)
+    #
+    #         if p == n:
+    #             res.append(queens)
+    #             return
+    #
+    #         for q in range(n):
+    #             if q not in queens and p+q not in xy_sum and p-q not in xy_diff:
+    #                 dfs(queens + [q], xy_sum + [p + q], xy_diff + [p - q])
+    #
+    #     dfs([], [], [])
+    #     return [[i * '.' + 'Q' + (n-1-i) * '.' for i in rows] for rows in res]
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         res = []
 
-        def dfs(queens, xy_sum, xy_diff):
-            p = len(queens)
-
-            if p == n:
-                res.append(queens)
+        def dfs(cur, xy_sum, xy_diff):
+            if len(cur) == n:
+                res.append(cur)
                 return
-
-            for q in range(n):
-                if q not in queens and p+q not in xy_sum and p-q not in xy_diff:
-                    dfs(queens + [q], xy_sum + [p + q], xy_diff + [p - q])
+            x = len(cur)
+            for y in range(n):
+                if y not in cur and x+y not in xy_sum and x-y not in xy_diff:
+                    dfs(cur + [y], xy_sum + [x+y], xy_diff + [x-y])
 
         dfs([], [], [])
-        return [[i * '.' + 'Q' + (n-1-i) * '.' for i in rows] for rows in res]
 
+        return [[i * '.' + 'Q' + (n-i-1) * '.' for i in row] for row in res]
 
+    def totalNQueens(self, n: int) -> int:
+        res = 0
+
+        def dfs(cur, xy_sum, xy_diff):
+            x = len(cur)
+            if x == n:
+                nonlocal res
+                res += 1
+                return
+            for y in range(n):
+                if y not in cur and x+y not in xy_sum and x-y not in xy_diff:
+                    dfs(cur + [y], xy_sum + [x+y], xy_diff + [x-y])
+
+        dfs([], [], [])
+        return res
 
 
 s = Solution()

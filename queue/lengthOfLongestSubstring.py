@@ -135,11 +135,21 @@ class Solution:
             dic[c] = i + 1
         return res
 
+    # 这个要更快一些
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     res = 0
+    #     dic = {}
+    #     left = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             res = max(res, i-left)  # 遇见重复的需要统计一次 res
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #     res = max(res, len(s)-left)
+    #     return res
+
 
 s = Solution()
-
-
-
 
 # ...a...b....a...a....b... 举例应该是这样的例子吧，第二个遇见a会把start更新到第一个a之后，
 # 第三次遇见a会把start更新到第二个a之后，此时start=Idx(a2]+1
@@ -162,4 +172,13 @@ string = "bbbbb"
 print(s.lengthOfLongestSubstring(string))
 
 string = "pwwkew"
+print(s.lengthOfLongestSubstring(string))
+
+string = "p"
+print(s.lengthOfLongestSubstring(string))
+
+string = ""
+print(s.lengthOfLongestSubstring(string))
+
+string = "abc"
 print(s.lengthOfLongestSubstring(string))

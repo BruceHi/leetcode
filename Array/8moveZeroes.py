@@ -93,18 +93,30 @@ from typing import List
 #             nums[i], nums[j] = num, nums[i]
 #             i += 1
 
-def moveZeroes(nums: List[int]) -> None:
-    nums.sort(key=bool, reverse=True)
+# def moveZeroes(nums: List[int]) -> None:
+#     nums.sort(key=bool, reverse=True)
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        i = 0
+        for j, num in enumerate(nums):
+            if num != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
 
 
+s = Solution()
 list1 = [1,1,0,3,0,12]
-moveZeroes(list1)
+s.moveZeroes(list1)
 print(list1)
 
 list1 = [0,0,0,0,12]
-moveZeroes(list1)
+s.moveZeroes(list1)
 print(list1)
 
 list1 = [0,1,0,3,12]
-moveZeroes(list1)
+s.moveZeroes(list1)
 print(list1)

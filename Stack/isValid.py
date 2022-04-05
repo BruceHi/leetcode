@@ -28,16 +28,43 @@ class Solution:
     #         #     stack.pop()
     #     return not stack
 
+    # def isValid(self, s: str) -> bool:
+    #     if len(s) & 1:
+    #         return False
+    #     dic = {')': '(', ']': '[', '}': '{'}
+    #     stack = []
+    #     for c in s:
+    #         if c not in dic:
+    #             stack.append(c)
+    #         elif not stack or dic[c] != stack.pop():
+    #             return False
+    #     return not stack
+
+    # def isValid(self, s: str) -> bool:
+    #     stack = []
+    #     dic = {')': '(', ']': '[', '}': '{'}
+    #     for c in s:
+    #         if c not in dic:
+    #             stack.append(c)
+    #         else:
+    #             if stack and dic[c] == stack[-1]:
+    #                 stack.pop()
+    #             else:
+    #                 return False
+    #     return not stack
+
+
     def isValid(self, s: str) -> bool:
-        if len(s) & 1:
-            return False
-        dic = {')': '(', ']': '[', '}': '{'}
         stack = []
+        dic = {'(': ')', '[': ']', '{': '}'}
         for c in s:
-            if c not in dic:
+            if c in dic:
                 stack.append(c)
-            elif not stack or dic[c] != stack.pop():
-                return False
+            else:
+                if stack and dic[stack[-1]] == c:
+                    stack.pop()
+                else:
+                    return False
         return not stack
 
 

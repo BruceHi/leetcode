@@ -113,52 +113,69 @@ from typing import List
 #             return s1[:i]
 #     return s1
 
-def longestCommonPrefix(strs):
-    if not strs:
-        return ''
-    root = {}
-    for word in strs:
-        if not word:
-            return ''
-        node = root
-        for c in word:
-            node = node.setdefault(c, {})
-        node['#'] = '#'
+# def longestCommonPrefix(strs):
+#     if not strs:
+#         return ''
+#     root = {}
+#     for word in strs:
+#         if not word:
+#             return ''
+#         node = root
+#         for c in word:
+#             node = node.setdefault(c, {})
+#         node['#'] = '#'
+#
+#     res, node = '', root
+#     while node != {'#': '#'}:
+#         if len(node) == 1:
+#             c, = node
+#             res += c
+#             node = node[c]
+#         else:
+#             break
+#     return res
 
-    res, node = '', root
-    while node != {'#': '#'}:
-        if len(node) == 1:
-            c, = node
-            res += c
-            node = node[c]
-        else:
-            break
-    return res
+class Solution:
+    # def longestCommonPrefix(self, strs: List[str]) -> str:
+    #     prefix = strs[0]
+    #     for c in strs[1:]:
+    #         while not c.startswith(prefix):
+    #             prefix = prefix[:-1]
+    #         if not prefix:
+    #             return prefix
+    #     return prefix
+
+    def longestCommonPrefix(self, strs):
+        prefix = ''
+        for s in zip(*strs):
+            if len(set(s)) == 1:
+                prefix += s[0]
+            else:
+                break
+        return prefix
 
 
+s = Solution()
 list1 = ["abc","abc"]
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ["","b"]
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ["aca","cba"]
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ["flower","flow","flight"]
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ["a","b"]
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ["dog","racecar","caraaaaa"]
-print(longestCommonPrefix(list1))
-
-list1 = []
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ['a', 'ab']
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))
 
 list1 = ['']
-print(longestCommonPrefix(list1))
+print(s.longestCommonPrefix(list1))

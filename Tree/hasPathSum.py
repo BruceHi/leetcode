@@ -1,4 +1,7 @@
 # 112.路径总和
+from typing import Optional
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -31,13 +34,27 @@ class Solution:
     #
     #     return dfs(root, sum)
 
-    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+    # def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+    #     if not root:
+    #         return False
+    #     if not root.left and not root.right:
+    #         return root.val == sum
+    #     return self.hasPathSum(root.left, sum-root.val) or \
+    #         self.hasPathSum(root.right, sum-root.val)
+
+    # def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    #     if not root:
+    #         return False
+    #     if not root.left and not root.right and root.val == targetSum:
+    #         return True
+    #     return self.hasPathSum(root.left, targetSum-root.val) or self.hasPathSum(root.right, targetSum-root.val)
+
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
             return False
         if not root.left and not root.right:
-            return root.val == sum
-        return self.hasPathSum(root.left, sum-root.val) or \
-            self.hasPathSum(root.right, sum-root.val)
+            return root.val == targetSum
+        return self.hasPathSum(root.left, targetSum-root.val) or self.hasPathSum(root.right, targetSum-root.val)
 
 
 

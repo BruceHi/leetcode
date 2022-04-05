@@ -106,24 +106,34 @@ from typing import List
 #         res = [1] + res
 #     return res
 
-def plusOne(digits: List[int]) -> List[int]:
-    for i in range(len(digits)-1, -1, -1):
-        digits[i] += 1
-        digits[i] %= 10
-        if digits[i]:
-            return digits
-    return [1] + digits
+# def plusOne(digits: List[int]) -> List[int]:
+#     for i in range(len(digits)-1, -1, -1):
+#         digits[i] += 1
+#         digits[i] %= 10
+#         if digits[i]:
+#             return digits
+#     return [1] + digits
 
 
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        for i in range(len(digits)-1, -1, -1):
+            digits[i] += 1
+            if digits[i] < 10:
+                return digits
+            digits[i] = 0
+        return [1] + digits
+
+
+s = Solution()
 list1 =[9, 9, 9]
-print(plusOne(list1))
+print(s.plusOne(list1))
 
 list1 = [1, 2, 2, 1]
-print(plusOne(list1))
+print(s.plusOne(list1))
 
 list1 =[4,3,2,1]
-print(plusOne(list1))
+print(s.plusOne(list1))
 
 list1 =[0]
-print(plusOne(list1))
-
+print(s.plusOne(list1))

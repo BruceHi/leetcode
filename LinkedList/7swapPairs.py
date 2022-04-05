@@ -53,12 +53,24 @@ class Solution:
     #         pre = a
     #     return dummy.next
 
+    # def swapPairs(self, head: ListNode) -> ListNode:
+    #     if not head or not head.next:
+    #         return head
+    #     a, b = head, head.next
+    #     b.next, a.next = a, self.swapPairs(b.next)
+    #     return b
+
     def swapPairs(self, head: ListNode) -> ListNode:
-        if not head or not head.next:
-            return head
-        a, b = head, head.next
-        b.next, a.next = a, self.swapPairs(b.next)
-        return b
+        pre = dummy = ListNode(0)
+        dummy.next = head
+
+        while pre.next and pre.next.next:
+            a, b = pre.next, pre.next.next
+            pre.next, b.next, a.next = b, a, b.next
+            pre = a
+        return dummy.next
+
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

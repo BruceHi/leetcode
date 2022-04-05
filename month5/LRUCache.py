@@ -219,58 +219,79 @@ class ListNode:
 #         self.get(key)
 #         self.tail.prev.val = value
 
+# class LRUCache:
+#
+#     def __init__(self, capacity: int):
+#         self.dic = {}  # 用来判断是否存在 元素 key:node，用于查看 key 是否存在，顺便找到 node，不用再变量一遍
+#         self.head = ListNode()
+#         self.tail = ListNode()
+#         self.head.next, self.tail.prev = self.tail, self.head
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self.dic:
+#             return -1
+#         node = self.dic[key]
+#         self.move_to_tail(node)
+#         return node.val
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self.dic:
+#             node = self.dic[key]
+#             node.val = value
+#             self.move_to_tail(node)
+#         else:
+#             node = ListNode(key, value)
+#             self.dic[key] = node
+#             self.add_to_tail(node)
+#             if len(self.dic) > self.capacity:
+#                 removed = self.remove_head()
+#                 self.dic.pop(removed.key)
+#
+#     def move_to_tail(self, node):
+#         self.remove_node(node)
+#         self.add_to_tail(node)
+#
+#     def add_to_tail(self, node):
+#         first = self.tail.prev
+#         first.next, self.tail.prev = node, node
+#         node.prev, node.next = first, self.tail
+#
+#     def remove_head(self):
+#         node = self.head.next
+#         self.remove_node(node)
+#         return node
+#
+#     def remove_node(self, node):
+#         # 教训，双向链表 中的 perv 千万别写成 pre
+#         a, b = node.prev, node.next
+#         a.next, b.prev = b, a
+#
+#         # node.prev.next = node.next
+#         # node.next.prev = node.prev
+#
+#         # node.prev.next, node.next.prev = node.next, node.prev
+
+
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.dic = {}  # 用来判断是否存在 元素 key:node，用于查看 key 是否存在，顺便找到 node，不用再变量一遍
-        self.head = ListNode()
-        self.tail = ListNode()
-        self.head.next, self.tail.prev = self.tail, self.head
+        self.dic = OrderedDict()
         self.capacity = capacity
 
     def get(self, key: int) -> int:
         if key not in self.dic:
             return -1
-        node = self.dic[key]
-        self.move_to_tail(node)
-        return node.val
+        self.dic.move_to_end(key)
+        return self.dic[key]
+
 
     def put(self, key: int, value: int) -> None:
         if key in self.dic:
-            node = self.dic[key]
-            node.val = value
-            self.move_to_tail(node)
-        else:
-            node = ListNode(key, value)
-            self.dic[key] = node
-            self.add_to_tail(node)
-            if len(self.dic) > self.capacity:
-                removed = self.remove_head()
-                self.dic.pop(removed.key)
-
-    def move_to_tail(self, node):
-        self.remove_node(node)
-        self.add_to_tail(node)
-
-    def add_to_tail(self, node):
-        first = self.tail.prev
-        first.next, self.tail.prev = node, node
-        node.prev, node.next = first, self.tail
-
-    def remove_head(self):
-        node = self.head.next
-        self.remove_node(node)
-        return node
-
-    def remove_node(self, node):
-        # 教训，双向链表 中的 perv 千万别写成 pre
-        a, b = node.prev, node.next
-        a.next, b.prev = b, a
-
-        # node.prev.next = node.next
-        # node.next.prev = node.prev
-
-        # node.prev.next, node.next.prev = node.next, node.prev
+            self.dic.move_to_end(key)
+        self.dic[key] = value
+        if len(self.dic) > self.capacity:
+            self.dic.popitem(last=False)
 
 
 def print_link(head: ListNode) -> None:

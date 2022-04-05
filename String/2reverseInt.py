@@ -139,30 +139,48 @@
 #         return res
 #     return 0
 
-def reverse(x: int) -> int:
-    sign = -1 if x < 0 else 1  # 判断必不可少，这是因为与其他语言的 % 所表示方式不同
-    if x < 0:
-        x = -x
-    res = 0
-    while x:
-        res = res * 10 + x % 10
-        x //= 10
-    res *= sign
-    if res < -2**31 or res > 2**31-1:
-        return 0
-    return res
+# def reverse(x: int) -> int:
+#     sign = -1 if x < 0 else 1  # 判断必不可少，这是因为与其他语言的 % 所表示方式不同
+#     if x < 0:
+#         x = -x
+#     res = 0
+#     while x:
+#         res = res * 10 + x % 10
+#         x //= 10
+#     res *= sign
+#     if res < -2**31 or res > 2**31-1:
+#         return 0
+#     return res
 
 
+class Solution:
+    def reverse(self, x: int) -> int:
+        sign = 1
+        if x < 0:
+            sign, x = -1, -x
+
+        res = 0
+        while x:
+            res = res * 10 + x % 10
+            x //= 10
+        res *= sign
+
+        if res < -2**31 or res > 2**31 - 1:
+            return 0
+        return res
+
+
+s = Solution()
 a = -123
-print(reverse(a))
+print(s.reverse(a))
 
 a = 120
-print(reverse(a))
+print(s.reverse(a))
 
 a = 123
-print(reverse(a))
+print(s.reverse(a))
 
 a = 1534236469
-print(reverse(a))
+print(s.reverse(a))
 
 print(-123 % 10)

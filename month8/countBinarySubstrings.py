@@ -1,5 +1,6 @@
 # 计数二进制字串
 from functools import reduce
+from collections import defaultdict
 
 
 class Solution:
@@ -104,19 +105,58 @@ class Solution:
     #         res += min(nums[i-1], nums[i])
     #     return res
 
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     count = 0
+    #     res = 0
+    #     i = 0
+    #     for j, c in enumerate(s):
+    #         if c != s[i]:
+    #             res += min(count, j - i)
+    #             count = j - i
+    #             i = j
+    #     res += min(count, len(s)-i)
+    #     return res
+
+    # 理解错误
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     res = 0
+    #     dic = defaultdict(int)
+    #     dic[0] = 1
+    #     prefix = 0
+    #     for c in s:
+    #         if c == '0':
+    #             prefix -= 1
+    #         else:
+    #             prefix += 1
+    #         res += dic[prefix]
+    #         dic[prefix] += 1
+    #     return res
+
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     nums = []
+    #     i = 0
+    #     for j, c in enumerate(s):
+    #         if s[i] != c:
+    #             nums.append(j-i)
+    #             i = j
+    #     nums.append(len(s)-i)
+    #
+    #     res = 0
+    #     for i, num in enumerate(nums[:-1]):
+    #         res += min(num, nums[i+1])
+    #     return res
+
     def countBinarySubstrings(self, s: str) -> int:
-        count = 0
         res = 0
+        count = 0
         i = 0
         for j, c in enumerate(s):
-            if c != s[i]:
-                res += min(count, j - i)
-                count = j - i
+            if s[i] != c:
+                res += min(count, j-i)
+                count = j-i
                 i = j
         res += min(count, len(s)-i)
         return res
-
-
 
 
 obj = Solution()

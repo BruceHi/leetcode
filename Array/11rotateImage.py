@@ -18,11 +18,11 @@
 
 
 # 先转置再说
-def rotate(matrix):
-    matrix[:] = list(map(list, zip(*matrix)))
-
-    for lst in matrix:
-        lst.reverse()
+# def rotate(matrix):
+#     matrix[:] = list(map(list, zip(*matrix)))
+#
+#     for lst in matrix:
+#         lst.reverse()
 
 
 # def rotate(matrix):
@@ -36,13 +36,22 @@ def rotate(matrix):
 #     for i in range(n):  # 交换顺序
 #         matrix[i].reverse()
 
+from typing import List
 
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        matrix[:] = map(list, zip(*matrix[::-1]))
+
+s = Solution()
 matrix1 = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ]
-rotate(matrix1)
+s.rotate(matrix1)
 print(matrix1)
 #  [
 #   [1, 2, 3],
@@ -77,5 +86,5 @@ matrix1 = [
 #   [12, 6, 8, 9],
 #   [16, 7,10,11]
 # ]
-rotate(matrix1)
+s.rotate(matrix1)
 print(matrix1)

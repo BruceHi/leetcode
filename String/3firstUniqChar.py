@@ -46,28 +46,43 @@ from collections import OrderedDict
 from collections import Counter
 
 
-def firstUniqChar(s: str) -> int:
-    dic = Counter(s)
-    for i, c in enumerate(s):
-        if dic[c] == 1:
-            return i
-    return -1
+# def firstUniqChar(s: str) -> int:
+#     dic = Counter(s)
+#     for i, c in enumerate(s):
+#         if dic[c] == 1:
+#             return i
+#     return -1
+
+class Solution:
+    # def firstUniqChar(self, s: str) -> int:
+    #     for i, c in enumerate(s):
+    #         if c not in set(s[:i] + s[i+1:]):
+    #             return i
+    #     return -1
+
+    def firstUniqChar(self, s: str) -> int:
+        count = Counter(s)
+        for i, c in enumerate(s):
+            if count[c] == 1:
+                return i
+        return -1
 
 
+obj = Solution()
 s = "aadadaad"  # 最后一个重复
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))
 
 s = ""
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))
 
 s = "loveleetcode"
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))
 
 s = "leetcode"
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))
 
 s = "eeec"
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))
 
 s = 'eaabb'
-print(firstUniqChar(s))
+print(obj.firstUniqChar(s))

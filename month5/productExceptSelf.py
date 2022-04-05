@@ -50,6 +50,34 @@ class Solution:
     #         res[i] = pre[i] * suf[i]
     #     return res
 
+    # def productExceptSelf(self, nums: List[int]) -> List[int]:
+    #     n = len(nums)
+    #     res = [1] * n
+    #
+    #     for i in range(1, n):
+    #         res[i] = res[i-1] * nums[i-1]
+    #
+    #     r = 1
+    #     for i in range(n-1, -1, -1):
+    #         res[i] *= r
+    #         r *= nums[i]
+    #     return res
+
+    # def productExceptSelf(self, nums: List[int]) -> List[int]:
+    #     prefix, suffix = [1], [1]
+    #     n = len(nums)
+    #
+    #     for i in range(1, n):
+    #         prefix.append(prefix[-1] * nums[i-1])
+    #
+    #     for i in range(n-2, -1, -1):
+    #         suffix = [suffix[0] * nums[i+1]] + suffix
+    #
+    #     res = []
+    #     for i in range(n):
+    #         res.append(prefix[i] * suffix[i])
+    #     return res
+
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         n = len(nums)
         res = [1] * n
@@ -57,13 +85,17 @@ class Solution:
         for i in range(1, n):
             res[i] = res[i-1] * nums[i-1]
 
-        r = 1
+        suffix = 1
         for i in range(n-1, -1, -1):
-            res[i] *= r
-            r *= nums[i]
+            res[i] *= suffix
+            suffix *= nums[i]
         return res
 
 
 s = Solution()
 nums = [1,2,3,4]
 print(s.productExceptSelf(nums))
+
+nums = [-1,1,0,-3,3]
+print(s.productExceptSelf(nums))
+

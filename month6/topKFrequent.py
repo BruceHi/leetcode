@@ -32,15 +32,30 @@ class Solution:
     #     count = Counter(nums)
     #     return [x for x, _ in count.most_common(k)]
 
+    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    #     count = Counter(nums)
+    #     arr = [(v, key) for key, v in count.items()]
+    #     queue = arr[:k]
+    #     heapq.heapify(queue)
+    #     for key, val in arr[k:]:
+    #         if key > queue[0][0]:
+    #             heapq.heappushpop(queue, (key, val))
+    #     return [x for _, x in queue]
+
+    # def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    #     counter = Counter(nums)
+    #     return [x[0] for x in counter.most_common(k)]
+
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
         arr = [(v, key) for key, v in count.items()]
+
         queue = arr[:k]
         heapq.heapify(queue)
-        for key, val in arr[k:]:
-            if key > queue[0][0]:
-                heapq.heappushpop(queue, (key, val))
-        return [x for _, x in queue]
+        for v, key in arr[k:]:
+            if v > queue[0][0]:
+                heapq.heappushpop(queue, (v, key))
+        return [x[1] for x in queue]
 
 
 s = Solution()

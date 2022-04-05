@@ -106,19 +106,24 @@ class TreeNode:
 #     #     return True
 
 class Solution:
+    # def isSymmetric(self, root: TreeNode) -> bool:
+    #
+    #     def symmetirc(node1, node2):
+    #         if not node1 and not node2:
+    #             return True
+    #         if not node1 or not node2:
+    #             return False
+    #         return node1.val == node2.val and symmetirc(node1.left, node2.right) \
+    #             and symmetirc(node1.right, node2.left)
+    #
+    #     return symmetirc(root, root)
+
     def isSymmetric(self, root: TreeNode) -> bool:
-
-        def symmetirc(node1, node2):
-            if not node1 and not node2:
+        def symmetric(root1, root2):
+            if not root1 and not root2:
                 return True
-            if not node1 or not node2:
+            if not root1 or not root2:
                 return False
-            return node1.val == node2.val and symmetirc(node1.left, node2.right) \
-                and symmetirc(node1.right, node2.left)
-
-        return symmetirc(root, root)
-
-
-
-
-
+            return root1.val == root2.val and symmetric(root1.left, root2.right) \
+                and symmetric(root1.right, root2.left)
+        return symmetric(root, root)

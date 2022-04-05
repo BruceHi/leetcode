@@ -1,4 +1,4 @@
-# 有效的数独
+# 36. 有效的数独
 from typing import List
 
 # def isValidSudoku(board):
@@ -41,25 +41,44 @@ from typing import List
 #     return True
 
 # class Solution，使用 list[set]
-def isValidSudoku(board: List[List[str]]) -> bool:
-    row = [set() for _ in range(9)]
-    col = [set() for _ in range(9)]
-    box = [set() for _ in range(9)]
-    for i in range(9):
-        for j in range(9):
-            num = board[i][j]
-            if num != '.':
-                index = i//3*3 + j//3
-                if num in row[i] or num in col[j] or num in box[index]:
-                    return False
-                row[i].add(num)
-                col[j].add(num)
-                box[index].add(num)
-    return True
+# def isValidSudoku(board: List[List[str]]) -> bool:
+#     row = [set() for _ in range(9)]
+#     col = [set() for _ in range(9)]
+#     box = [set() for _ in range(9)]
+#     for i in range(9):
+#         for j in range(9):
+#             num = board[i][j]
+#             if num != '.':
+#                 index = i//3*3 + j//3
+#                 if num in row[i] or num in col[j] or num in box[index]:
+#                     return False
+#                 row[i].add(num)
+#                 col[j].add(num)
+#                 box[index].add(num)
+#     return True
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        boxes = [set() for _ in range(9)]
+        for i in range(9):
+            for j in range(9):
+                val = board[i][j]
+                if val != '.':
+                    idx = i // 3 * 3 + j // 3
+                    if val in rows[i] or val in cols[j] or val in boxes[idx]:
+                        return False
+                    rows[i].add(val)
+                    cols[j].add(val)
+                    boxes[idx].add(val)
+        return True
+
 
 
 if __name__ == '__main__':
 
+    s = Solution()
     board1 = [
       ["8","3",".",".","7",".",".",".","."],
       ["6",".",".","1","9","5",".",".","."],
@@ -96,7 +115,7 @@ if __name__ == '__main__':
     #         temp1 = []
     #
     # print(set(temp1))
-    print(isValidSudoku(board1))
+    print(s.isValidSudoku(board1))
 
     board1 = [
       ["5","3",".",".","7",".",".",".","."],
@@ -117,7 +136,7 @@ if __name__ == '__main__':
     # list3 = [1, 2, 6, '5']
     # print(set(list3))
     # print(type(board1))
-    print(isValidSudoku(board1))
+    print(s.isValidSudoku(board1))
 
 
     # list1 = ["5","3",".",".","7",".",".",".","."]

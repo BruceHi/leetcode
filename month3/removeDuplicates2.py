@@ -30,6 +30,14 @@ class Solution:
     #             i += 1
     #     return i
 
+    # def removeDuplicates(self, nums: List[int]) -> int:
+    #     i = 0
+    #     for num in nums:
+    #         if i < 2 or num != nums[i-2]:
+    #             nums[i] = num
+    #             i += 1
+    #     return i
+
     def removeDuplicates(self, nums: List[int]) -> int:
         i = 0
         for num in nums:
@@ -37,6 +45,7 @@ class Solution:
                 nums[i] = num
                 i += 1
         return i
+
 
 s = Solution()
 nums = [1,1,1,2,2,3]

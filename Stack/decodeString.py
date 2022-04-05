@@ -121,19 +121,97 @@ class Solution:
     #             res += c
     #     return res
 
+    # def decodeString(self, s: str) -> str:
+    #     stack, num, res = [], 0, ''
+    #     for c in s:
+    #         if c.isnumeric():
+    #             num = num * 10 + int(c)
+    #         elif c == '[':
+    #             stack.append([num, res])
+    #             num, res = 0, ''
+    #         elif c == ']':
+    #             count, last_res = stack.pop()
+    #             res = last_res + count * res
+    #         else:
+    #             res += c
+    #     return res
+
+    # def decodeString(self, s: str) -> str:
+    #     stack = []
+    #     for c in s:
+    #         if c.isnumeric():
+    #             if stack and isinstance(stack[-1], int):
+    #                 stack.append(stack.pop() * 10 + int(c))
+    #             else:
+    #                 stack.append(int(c))
+    #         elif c.islower():
+    #             if stack and stack[-1].islower():
+    #                 stack.append(stack.pop() + c)
+    #             else:
+    #                 stack.append(c)
+    #         elif c == ']':
+    #             t = stack.pop()
+    #             stack.pop()
+    #             n = stack.pop()
+    #             tmp = n * t
+    #             if stack and stack[-1] != '[':
+    #                 stack.append(stack.pop() + tmp)
+    #             else:
+    #                 stack.append(tmp)
+    #         else:
+    #             stack.append(c)
+    #     return stack[-1]
+
+
+    # def decodeString(self, s: str) -> str:
+    #     stack = []
+    #     for char in s:
+    #         tmp = ''
+    #         if char != ']':
+    #             stack.append(char)
+    #         else:
+    #             # 拼接字符，顺便把 [ 出栈了。
+    #             c = stack.pop()
+    #             while c != '[':
+    #                 tmp = c + tmp
+    #                 c = stack.pop()
+    #             # 拼接数字
+    #             count = ''
+    #             while stack and stack[-1].isnumeric():  # 判空，是为了应对栈里情况如 3[a 的条件。
+    #                 count = stack.pop() + count
+    #             stack.append(tmp * int(count))
+    #     return ''.join(stack)
+
+
+    # def decodeString(self, s: str) -> str:
+    #     stack = []
+    #     for c in s:
+    #         if c != ']':
+    #             stack.append(c)
+    #         else:
+    #             t = ''
+    #             while stack and stack[-1].isalpha():
+    #                 t = stack.pop() + t
+    #             stack.pop()
+    #             n = ''
+    #             while stack and stack[-1].isnumeric():
+    #                 n = stack.pop() + n
+    #             stack.append(t * int(n))
+    #     return ''.join(stack)
+
     def decodeString(self, s: str) -> str:
-        stack, num, res = [], 0, ''
+        num, stack, res = 0, [], ''
         for c in s:
             if c.isnumeric():
                 num = num * 10 + int(c)
-            elif c == '[':
-                stack.append([num, res])
-                num, res = 0, ''
-            elif c == ']':
-                count, last_res = stack.pop()
-                res = last_res + count * res
-            else:
+            elif c.isalpha():
                 res += c
+            elif c == '[':
+                stack.append((num, res))
+                num, res = 0, ''
+            else:
+                n, last_res = stack.pop()
+                res = last_res + n * res
         return res
 
 
@@ -152,4 +230,7 @@ s = "2[abc]3[cd]ef"
 print(obj.decodeString(s))
 
 s = "100[leetcode]"
+print(obj.decodeString(s))
+
+s = "3[z]2[2[y]pq4[2[jk]e1[f]]]ef"
 print(obj.decodeString(s))

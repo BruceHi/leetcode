@@ -73,19 +73,34 @@ class Solution:
     #             res, diff = num, abs(cur - target)
     #     return res
 
+    # def findBestValue(self, arr: List[int], target: int) -> int:
+    #     n = len(arr)
+    #     arr.sort()
+    #     pre = [0]
+    #     for num in arr:
+    #         pre.append(pre[-1] + num)
+    #
+    #     res, diff = 0, float('inf')
+    #     for num in range(arr[-1] + 1):
+    #         i = bisect_left(arr, num)
+    #         cur = abs(pre[i] + num * (n - i) - target)
+    #         if cur < diff:
+    #             res, diff = num, cur
+    #     return res
+
     def findBestValue(self, arr: List[int], target: int) -> int:
-        n = len(arr)
         arr.sort()
         pre = [0]
-        for num in arr:
-            pre.append(pre[-1] + num)
+        for a in arr:
+            pre.append(pre[-1]+a)
 
+        n = len(arr)
         res, diff = 0, float('inf')
-        for num in range(arr[-1] + 1):
-            i = bisect_left(arr, num)
-            cur = abs(pre[i] + num * (n - i) - target)
+        for v in range(arr[-1]+1):  # 这里应该是枚举到最大值 arr[-1]
+            idx = bisect_left(arr, v)
+            cur = abs(pre[idx] + v * (n-idx) - target)
             if cur < diff:
-                res, diff = num, cur
+                res, diff = v, cur
         return res
 
 
@@ -101,3 +116,7 @@ print(s.findBestValue(arr, target))
 arr = [60864,25176,27249,21296,20204]
 target = 56803
 print(s.findBestValue(arr, target))
+
+arr = [1, 1, 7, 9, 10]
+target = 2
+print(s.findBestValue(arr, target))  # 0

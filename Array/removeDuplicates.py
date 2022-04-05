@@ -79,21 +79,39 @@ from typing import List
 #             nums[i] = num
 #     return i + 1
 
-def removeDuplicates(nums: List[int]) -> int:
-    if not nums:
-        return 0
-    i = 0
-    for num in nums:
-        if num != nums[i]:
-            i += 1
-            nums[i] = num
-    return i + 1
+# def removeDuplicates(nums: List[int]) -> int:
+#     if not nums:
+#         return 0
+#     i = 0
+#     for num in nums:
+#         if num != nums[i]:
+#             i += 1
+#             nums[i] = num
+#     return i + 1
+
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        i = 0
+        for num in nums:
+            if num != nums[i]:
+                i += 1
+                nums[i] = num
+        return i + 1
+
+
+s = Solution()
+nums = [1,1,2]
+print(s.removeDuplicates(nums))
+print(nums)
 
 
 list1 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-print(removeDuplicates(list1))
+print(s.removeDuplicates(list1))
 print(list1)
 
 list1 = []
-print(removeDuplicates(list1))
+print(s.removeDuplicates(list1))
 print(list1)

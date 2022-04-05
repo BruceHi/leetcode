@@ -143,6 +143,24 @@ class Solution:
         return res
 
 
+    # def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue = deque([root])
+    #     res = []
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             if node.left:
+    #                 queue.append(node.left)
+    #             if node.right:
+    #                 queue.append(node.right)
+    #         res.append(cur)
+    #     return res
+
+
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
@@ -150,6 +168,7 @@ class Solution:
         res = []
         while queue:
             cur = []
+            # TypeError: deque 'type' object is not iterable，所以不能直接使用 for _ in queue.
             for _ in range(len(queue)):
                 node = queue.popleft()
                 cur.append(node.val)
@@ -159,6 +178,5 @@ class Solution:
                     queue.append(node.right)
             res.append(cur)
         return res
-
 
 

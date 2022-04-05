@@ -54,16 +54,29 @@ class Solution:
     #         slow = nums[slow]
     #     return find
 
+    # def findDuplicate(self, nums: List[int]) -> int:
+    #     slow, fast = nums[0], nums[nums[0]]
+    #     while slow != fast:
+    #         slow = nums[slow]
+    #         fast = nums[nums[fast]]
+    #
+    #     find = 0  # 从 0 开始
+    #     while find != slow:
+    #         find, slow = nums[find], nums[slow]
+    #     return find
+
     def findDuplicate(self, nums: List[int]) -> int:
-        slow, fast = nums[0], nums[nums[0]]
+        slow, fast = nums[0], nums[nums[0]]  # 初始值是 slow 已经走了一步，fast 已经走了两步。
         while slow != fast:
             slow = nums[slow]
             fast = nums[nums[fast]]
 
-        find = 0  # 从 0 开始
+        find = 0  # 注意开始的地方
         while find != slow:
             find, slow = nums[find], nums[slow]
         return find
+
+
 
 
 s = Solution()

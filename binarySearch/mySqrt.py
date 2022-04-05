@@ -82,18 +82,29 @@ class Solution:
     #             left = mid + 1
     #     return right
 
-    def mySqrt(self, x):
+    # def mySqrt(self, x):
+    #     left, right = 0, x
+    #     while right - left > 1e-6:
+    #         mid = (left + right) / 2
+    #         tmp = mid * mid
+    #         if tmp == x:
+    #             return mid
+    #         elif tmp > x:
+    #             right = mid
+    #         else:
+    #             left = mid
+    #     return right * 1.0
+
+    def mySqrt(self, x: int) -> int:
         left, right = 0, x
-        while right - left > 1e-6:
-            mid = (left + right) / 2
-            tmp = mid * mid
-            if tmp == x:
-                return mid
-            elif tmp > x:
-                right = mid
+        while left < right:
+            mid = left + right + 1 >> 1
+            val = mid ** 2
+            if val > x:
+                right = mid - 1
             else:
                 left = mid
-        return right * 1.0
+        return left
 
 
 s = Solution()
@@ -109,3 +120,5 @@ print(s.mySqrt(a))
 a = 2147395599
 print(s.mySqrt(a))
 
+a = 0
+print(s.mySqrt(a))

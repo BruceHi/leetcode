@@ -41,16 +41,27 @@ class Solution:
     #             stack.append(str(int(eval(b + c + a))))  # int 是为了处理 ‘/’ 的。
     #     return int(stack.pop())
 
+    # def evalRPN(self, tokens: List[str]) -> int:
+    #     stack = []
+    #     op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+    #     for token in tokens:
+    #         if token not in op:
+    #             stack.append(int(token))
+    #         else:
+    #             a, b = stack.pop(), stack.pop()
+    #             stack.append(int(op[token](b, a)))
+    #     return stack[0]
+
     def evalRPN(self, tokens: List[str]) -> int:
+        op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': lambda a, b: int(a / b)}
         stack = []
-        op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
-        for token in tokens:
-            if token not in op:
-                stack.append(int(token))
+        for t in tokens:
+            if t not in op:
+                stack.append(int(t))
             else:
-                a, b = stack.pop(), stack.pop()
-                stack.append(int(op[token](b, a)))
-        return stack[0]
+                b, a = stack.pop(), stack.pop()
+                stack.append(op[t](a, b))
+        return stack.pop()
 
 
 s = Solution()

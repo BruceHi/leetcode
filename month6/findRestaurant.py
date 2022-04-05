@@ -48,6 +48,7 @@ class Solution:
 
 
 
+
 s = Solution()
 a = ["Shogun", "Tapioca Express", "Burger King", "KFC"]
 b = ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"]

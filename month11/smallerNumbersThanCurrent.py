@@ -1,3 +1,4 @@
+# 1365. 有多少小于当前数字的数字
 from typing import List
 from collections import Counter
 from collections import defaultdict
@@ -23,26 +24,26 @@ class Solution:
     #     arrs = sorted(nums)
     #     dic = {}
     #     for i, num in enumerate(arrs):
-    #         if num not in dic:
+    #         if num not in dic:  # 排除重复的干扰-
     #             dic[num] = i
     #     return [dic[num] for num in nums]
 
     # 计数排序，时间复杂度 O(N + M)，空间复杂度 O(M)
-    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
-        count = [0] * 101
-        for num in nums:
-            count[num] += 1
-
-        for i in range(1, 101):
-            count[i] += count[i-1]
-
-        # # 当 num 为 0 时，出现错误
-        # return [count[num-1] for num in nums]
-        res = [0] * len(nums)
-        for i, num in enumerate(nums):
-            if num:
-                res[i] = count[num-1]
-        return res
+    # def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+    #     count = [0] * 101
+    #     for num in nums:
+    #         count[num] += 1
+    #
+    #     for i in range(1, 101):
+    #         count[i] += count[i-1]
+    #
+    #     # # 当 num 为 0 时，出现错误
+    #     # return [count[num-1] for num in nums]
+    #     res = [0] * len(nums)
+    #     for i, num in enumerate(nums):
+    #         if num:
+    #             res[i] = count[num-1]
+    #     return res
 
     # 时间复杂度为 O(nlogn)
     # def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
@@ -61,6 +62,14 @@ class Solution:
     #         res.append(dic[num])
     #     return res
 
+
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        arr = sorted(nums)
+        dic = {}
+        for i, num in enumerate(arr):
+            if num not in dic:
+                dic[num] = i
+        return [dic[num] for num in nums]
 
 
 s = Solution()

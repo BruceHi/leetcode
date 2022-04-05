@@ -30,12 +30,17 @@ class Solution:
     #     a.next, head.next = head, None
     #     return p
 
+    # def reverseList(self, head: ListNode) -> ListNode:
+    #     pre, cur = None, head
+    #     while cur:
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #     return pre
+
     def reverseList(self, head: ListNode) -> ListNode:
         pre, cur = None, head
         while cur:
             cur.next, pre, cur = pre, cur, cur.next
         return pre
-
 
 def generate_link(nums: List[int]) -> ListNode:
     head = ListNode(0)

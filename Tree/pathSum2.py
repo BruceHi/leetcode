@@ -44,6 +44,7 @@ class Solution:
     #
     #     return dfs(root, [])
 
+    # 前缀和
     # def pathSum(self, root: TreeNode, targetSum: int) -> int:
     #
     #     def dfs(root, cur):
@@ -55,17 +56,42 @@ class Solution:
 
     # 双重dfs，与第一个写的如初一辙
     # 不需要从根节点算起
+    # def pathSum(self, root: TreeNode, targetSum: int) -> int:
+    #
+    #     def dfs(root, targetSum):
+    #         if not root:
+    #             return 0
+    #         res = 0
+    #         if root.val == targetSum:
+    #             res += 1
+    #         return res + dfs(root.left, targetSum-root.val) + dfs(root.right, targetSum-root.val)
+    #
+    #     if not root:  # 因为后面用到了 root.left
+    #         return 0
+    #     # 注意下面的 dfs 写法
+    #     return dfs(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+
+    # def pathSum(self, root: TreeNode, targetSum: int) -> int:
+    #
+    #     def dfs(root, target):
+    #         if not root:
+    #             return 0
+    #         res = 0
+    #         if root.val == target:
+    #             res += 1
+    #         return res + dfs(root.left, target-root.val) + dfs(root.right, target-root.val)
+    #
+    #     if not root:
+    #         return 0
+    #     return dfs(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+
+
     def pathSum(self, root: TreeNode, targetSum: int) -> int:
 
-        def dfs(root, targetSum):
+        def dfs(root, cur):
             if not root:
                 return 0
-            res = 0
-            if root.val == targetSum:
-                res += 1
-            return res + dfs(root.left, targetSum-root.val) + dfs(root.right, targetSum-root.val)
+            nums = [v + root.val for v in cur] + [root.val]
+            return nums.count(targetSum) + dfs(root.left, nums) + dfs(root.right, nums)
 
-        if not root:  # 因为后面用到了 root.left
-            return 0
-        # 注意下面的 dfs 写法
-        return dfs(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+        return dfs(root, [])

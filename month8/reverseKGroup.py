@@ -1,5 +1,5 @@
-#  K 个一组翻转链表
-from typing import List
+#  25. K 个一组翻转链表
+from typing import List, Optional
 
 
 class ListNode:
@@ -22,25 +22,61 @@ class Solution:
     #     head.next = self.reverseKGroup(cur, k)
     #     return pre
 
-    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+    # def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+    #
+    #     def revrese(head, k):
+    #         pre, cur = None, head
+    #         for _ in range(k):
+    #             cur.next, pre, cur = pre, cur, cur.next
+    #         return pre, head
+    #
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         cur = pre.next
+    #         for _ in range(k):
+    #             if not cur:
+    #                 return dummy.next
+    #             cur = cur.next
+    #         pre.next, pre = revrese(pre.next, k)
+    #         pre.next = cur
+    #     return dummy.next
 
-        def revrese(head, k):
-            pre, cur = None, head
-            for _ in range(k):
-                cur.next, pre, cur = pre, cur, cur.next
-            return pre, head
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #
+    #     def reverse(head):
+    #         pre, cur = None, head
+    #         for _ in range(k):
+    #             cur.next, pre, cur = pre, cur, cur.next
+    #         return pre, head
+    #
+    #     pre = dummy = ListNode(0)
+    #     dummy.next = head
+    #     while pre.next:
+    #         cur = pre.next
+    #         for _ in range(k):
+    #             if not cur:
+    #                 return dummy.next
+    #             cur = cur.next
+    #
+    #         pre.next, pre = reverse(pre.next)
+    #         pre.next = cur
+    #     return dummy.next
 
-        pre = dummy = ListNode(0)
-        dummy.next = head
-        while pre.next:
-            cur = pre.next
-            for _ in range(k):
-                if not cur:
-                    return dummy.next
-                cur = cur.next
-            pre.next, pre = revrese(pre.next, k)
-            pre.next = cur
-        return dummy.next
+
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        cur = head
+        for _ in range(k):
+            if not cur:
+                return head
+            cur = cur.next
+
+        pre, cur = None, head
+        for _ in range(k):
+            cur.next, pre, cur = pre, cur, cur.next
+
+        head.next = self.reverseKGroup(cur, k)
+        return pre
 
 
 def generate_link(nums: List[int]) -> ListNode:

@@ -79,20 +79,32 @@ class Solution:
     #
     #     return dummy.next
 
+    # def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+    #     fast = dummy = ListNode(0)
+    #     dummy.next = head
+    #     for _ in range(n+1):
+    #         fast = fast.next
+    #
+    #     pre = dummy
+    #     while fast:
+    #         pre, fast = pre.next, fast.next
+    #
+    #     pre.next = pre.next.next
+    #     return dummy.next
+
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         fast = dummy = ListNode(0)
         dummy.next = head
+
         for _ in range(n+1):
             fast = fast.next
 
-        pre = dummy
+        slow = dummy
         while fast:
-            pre, fast = pre.next, fast.next
+            slow, fast = slow.next, fast.next
 
-        pre.next = pre.next.next
+        slow.next = slow.next.next
         return dummy.next
-
-
 
 
 def print_link(head: ListNode):  # 打印链表

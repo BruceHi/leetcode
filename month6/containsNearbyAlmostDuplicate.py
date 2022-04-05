@@ -1,5 +1,6 @@
 # 存在重复元素 III
 from typing import List
+from sortedcontainers import SortedList
 
 # k 索引号差值，实际包含了 k+1 个元素，t 数值，暴力法
 class Solution:
@@ -30,14 +31,27 @@ class Solution:
     #         i += 1
     #     return False
 
+    # def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+    #     if k == 10000:
+    #         return False
+    #     for i, num in enumerate(nums[:-1]):
+    #         for j in range(i+1, min(i+k+1, len(nums))):
+    #             if abs(num-nums[j]) <= t:
+    #                 return True
+    #     return False
+
     def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
-        if k == 10000:
+        n = len(nums)
+        if n <= 1:
             return False
-        for i, num in enumerate(nums[:-1]):
-            for j in range(i+1, min(i+k+1, len(nums))):
-                if abs(num-nums[j]) <= t:
-                    return True
-        return False
+        left = 0
+        diff = float('inf')
+        st = SortedList()
+        for i, num in enumerate(nums):
+            if i - left > k:
+                st.remove(nums[left])
+                left += 1
+
 
 
 s = Solution()

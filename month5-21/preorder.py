@@ -1,3 +1,4 @@
+# 589. N 叉树的前序遍历
 from typing import List
 
 
@@ -50,10 +51,30 @@ class Solution:
     #         stack.extend(cur.children[::-1])
     #     return res
 
+    # def preorder(self, root: 'Node') -> List[int]:
+    #     if not root:
+    #         return []
+    #     res = [root.val]
+    #     for node in root.children:
+    #         res.extend(self.preorder(node))
+    #     return res
+
+    # # 递归
+    # def preorder(self, root: 'Node') -> List[int]:
+    #     if not root:
+    #         return []
+    #     res = [root.val]
+    #     for child in root.children:
+    #         res.extend(self.preorder(child))
+    #     return res
+
+    # 迭代
     def preorder(self, root: 'Node') -> List[int]:
         if not root:
             return []
-        res = [root.val]
-        for node in root.children:
-            res.extend(self.preorder(node))
+        stack, res = [root], []
+        while stack:
+            cur = stack.pop()
+            res.append(cur.val)
+            stack.extend(cur.children[::-1])
         return res

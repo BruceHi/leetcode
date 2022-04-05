@@ -1,4 +1,4 @@
-# 翻转二叉树
+# 226. 翻转二叉树
 from typing import List
 
 
@@ -20,9 +20,15 @@ class Solution:
     #     root.right = self.invertTree(tmp1)
     #     return root
 
+    # def invertTree(self, root: TreeNode) -> TreeNode:
+    #     if not root:
+    #         return
+    #     # 不能拆开，否则起不到交换的目的了。
+    #     root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+    #     return root
+
     def invertTree(self, root: TreeNode) -> TreeNode:
         if not root:
             return
-        # 不能拆开，否则起不到交换的目的了。
         root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root

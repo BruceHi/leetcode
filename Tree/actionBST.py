@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -172,40 +175,40 @@ class Solution:
     #         root.right = self.insertIntoBST(root.right, val)
     #     return root
 
-    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
-
-        def predecessor(root):
-            cur = root.left
-            while cur.right:
-                cur = cur.right
-            return cur.val
-
-        def successor(root):
-            cur = root.right
-            while cur.left:
-                cur = cur.left
-            return cur.val
-
-        def delete(root, key):
-            if not root:
-                return
-
-            if key < root.val:
-                root.left = self.deleteNode(root.left, key)
-            elif key > root.val:
-                root.right = self.deleteNode(root.right, key)
-            else:
-                if not root.left and not root.right:
-                    root = None
-                elif root.right:
-                    root.val = successor(root)
-                    root.right = self.deleteNode(root.right, root.val)
-                else:
-                    root.val = predecessor(root)
-                    root.left = self.deleteNode(root.left, root.val)
-            return root
-
-        return delete(root, key)
+    # def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+    #
+    #     def predecessor(root):
+    #         cur = root.left
+    #         while cur.right:
+    #             cur = cur.right
+    #         return cur.val
+    #
+    #     def successor(root):
+    #         cur = root.right
+    #         while cur.left:
+    #             cur = cur.left
+    #         return cur.val
+    #
+    #     def delete(root, key):
+    #         if not root:
+    #             return
+    #
+    #         if key < root.val:
+    #             root.left = self.deleteNode(root.left, key)
+    #         elif key > root.val:
+    #             root.right = self.deleteNode(root.right, key)
+    #         else:
+    #             if not root.left and not root.right:
+    #                 root = None
+    #             elif root.right:
+    #                 root.val = successor(root)
+    #                 root.right = self.deleteNode(root.right, root.val)
+    #             else:
+    #                 root.val = predecessor(root)
+    #                 root.left = self.deleteNode(root.left, root.val)
+    #         return root
+    #
+    #     return delete(root, key)
 
     # def searchBST(self, root: TreeNode, val: int) -> TreeNode:
     #     if not root:
@@ -216,23 +219,74 @@ class Solution:
     #         return self.searchBST(root.left, val)
     #     return self.searchBST(root.right, val)
 
-    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
-        if not root:
-            return TreeNode(val)
-        if val < root.val:
-            root.left = self.insertIntoBST(root.left, val)
-        else:
-            root.right = self.insertIntoBST(root.right, val)
-        return root
+    # def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    #     if not root:
+    #         return TreeNode(val)
+    #     if val < root.val:
+    #         root.left = self.insertIntoBST(root.left, val)
+    #     else:
+    #         root.right = self.insertIntoBST(root.right, val)
+    #     return root
 
+
+    # def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+    #     if not root:
+    #         return
+    #     if root.val == val:
+    #         return root
+    #     if root.val < val:
+    #         return self.searchBST(root.right, val)
+    #     return self.searchBST(root.left, val)
 
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
         if not root:
             return
         if root.val == val:
             return root
-        if root.val < val:
-            return self.searchBST(root.right, val)
-        return self.searchBST(root.left, val)
+        if val < root.val:
+            return self.searchBST(root.left, val)
+        return self.searchBST(root.right, val)
 
 
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return TreeNode(val)
+        if val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+        elif val > root.val:
+            root.right = self.insertIntoBST(root.right, val)
+        return root
+
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+
+        def successor(root):
+            cur = root.right
+            while cur.left:
+                cur = cur.left
+            return cur.val
+
+        def predecessor(root):
+            cur = root.left
+            while cur.right:
+                cur = cur.right
+            return cur.val
+
+        def delete(root):
+            if not root:
+                return
+            if key < root.val:
+                root.left = self.deleteNode(root.left, key)
+            elif key > root.val:
+                root.right = self.deleteNode(root.right, key)
+            else:
+                if not root.left and not root.right:
+                    root = None
+                elif root.right:
+                    root.val = successor(root)
+                    root.right = self.deleteNode(root.right, root.val)
+                elif root.left:
+                    root.val = predecessor(root)
+                    root.left = self.deleteNode(root.left, root.val)
+            return root
+
+        return delete(root)

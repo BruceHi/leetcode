@@ -54,21 +54,29 @@
 from typing import List
 
 
-def singleNumber(nums: List[int]) -> int:
-    res = nums[0]
-    for num in nums[1:]:
-        res ^= num
-    return res
+# def singleNumber(nums: List[int]) -> int:
+#     res = nums[0]
+#     for num in nums[1:]:
+#         res ^= num
+#     return res
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
+        for num in nums:
+            res ^= num
+        return res
 
 
+s = Solution()
 list1 = [1,3,1,-1,3]
-print(singleNumber(list1))
+print(s.singleNumber(list1))
 
 list1 = [1,0,1]
-print(singleNumber(list1))
+print(s.singleNumber(list1))
 
 list1 = [2,2,1]
-print(singleNumber(list1))
+print(s.singleNumber(list1))
 
 list1 = [4,1,2,1,2]
-print(singleNumber(list1))
+print(s.singleNumber(list1))

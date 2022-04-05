@@ -59,6 +59,35 @@ class Solution:
     #     dfs([], set())
     #     return res
 
+    # def permute(self, nums: List[int]) -> List[List[int]]:
+    #     res = []
+    #
+    #     def dfs(nums, cur):
+    #         if not nums:
+    #             res.append(cur)
+    #             return
+    #         for i, num in enumerate(nums):
+    #             dfs(nums[:i] + nums[i+1:], cur+[num])
+    #
+    #     dfs(nums, [])
+    #     return res
+
+    # def permute(self, nums: List[int]) -> List[List[int]]:
+    #     res = []
+    #     n = len(nums)
+    #
+    #     def dfs(i, cur_idx):
+    #         if len(cur_idx) == n:
+    #             res.append([nums[i] for i in cur_idx])
+    #             return
+    #         for j in range(n):
+    #             if j != i and j not in cur_idx:
+    #                 dfs(j, cur_idx + [j])
+    #
+    #     dfs(n, [])
+    #     return res
+
+
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
 
@@ -67,8 +96,7 @@ class Solution:
                 res.append(cur)
                 return
             for i, num in enumerate(nums):
-                dfs(nums[:i] + nums[i+1:], cur+[num])
-
+                dfs(nums[:i] + nums[i+1:], cur + [num])
         dfs(nums, [])
         return res
 

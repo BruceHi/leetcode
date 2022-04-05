@@ -122,21 +122,39 @@ class Solution:
     #         return 1 + max(left, right)
     #     return dfs(root) != -1
 
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #
+    #     def height(root):
+    #         if not root:
+    #             return 0
+    #         return max(height(root.left), height(root.right)) + 1
+    #
+    #     if not root:
+    #         return True
+    #     return abs(height(root.left)-height(root.right)) <= 1 \
+    #         and self.isBalanced(root.left) and self.isBalanced(root.right)
+
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #     def height(root):
+    #         if not root:
+    #             return 0
+    #         return max(height(root.left), height(root.right)) + 1
+    #
+    #     if not root:
+    #         return True
+    #     return abs(height(root.left)-height(root.right)) <= 1 \
+    #         and self.isBalanced(root.left) and self.isBalanced(root.right)
+
+
     def isBalanced(self, root: TreeNode) -> bool:
 
         def height(root):
             if not root:
                 return 0
-            return max(height(root.left), height(root.right)) + 1
+            left = height(root.left)
+            right = height(root.right)
+            if left == -1 or right == -1 or abs(left - right) > 1:
+                return -1
+            return 1 + max(left, right)
 
-        if not root:
-            return True
-        return abs(height(root.left)-height(root.right)) <= 1 \
-            and self.isBalanced(root.left) and self.isBalanced(root.right)
-
-
-
-
-
-
-
+        return height(root) != -1

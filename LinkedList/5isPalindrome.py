@@ -79,6 +79,22 @@ class Solution:
     #         head = head.next
     #     return nums == nums[::-1]
 
+    # def isPalindrome(self, head: ListNode) -> bool:
+    #     pre = None
+    #     cur, fast = head, head
+    #     while fast and fast.next:
+    #         fast = fast.next.next
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     if fast:
+    #         cur = cur.next
+    #
+    #     while pre:
+    #         if pre.val != cur.val:
+    #             return False
+    #         pre, cur = pre.next, cur.next
+    #     return True
+
     def isPalindrome(self, head: ListNode) -> bool:
         pre = None
         cur, fast = head, head
@@ -88,8 +104,7 @@ class Solution:
 
         if fast:
             cur = cur.next
-
-        while pre:
+        while cur:
             if pre.val != cur.val:
                 return False
             pre, cur = pre.next, cur.next

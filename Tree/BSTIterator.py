@@ -50,28 +50,66 @@ class TreeNode:
 #     def hasNext(self) -> bool:
 #         return len(self.stack) > 0
 
+# class BSTIterator:
+#
+#     def __init__(self, root: TreeNode):
+#
+#         def inorder(root):
+#             if not root:
+#                 return []
+#             return inorder(root.left) + [root.val] + inorder(root.right)
+#         self.nums = deque(inorder(root))
+#
+#     def next(self) -> int:
+#         """
+#         @return the next smallest number
+#         """
+#         return self.nums.popleft()
+#
+#     def hasNext(self) -> bool:
+#         """
+#         @return whether we have a next smallest number
+#         """
+#         return self.nums != deque()
+#         # return len(self.nums) > 0
+
+# class BSTIterator:
+#
+#     def __init__(self, root: TreeNode):
+#         def inorder(root):
+#             if not root:
+#                 return []
+#             return inorder(root.left) + [root.val] + inorder(root.right)
+#         self.nums = inorder(root)
+#         self.i = 0
+#
+#     def next(self) -> int:
+#         idx = self.i
+#         self.i += 1
+#         return self.nums[idx]
+#
+#     def hasNext(self) -> bool:
+#         return self.i < len(self.nums)
+
+
 class BSTIterator:
 
     def __init__(self, root: TreeNode):
+        self.stack = []
+        self.inorder_left(root)
 
-        def inorder(root):
-            if not root:
-                return []
-            return inorder(root.left) + [root.val] + inorder(root.right)
-        self.nums = deque(inorder(root))
+    def inorder_left(self, root):
+        while root:
+            self.stack.append(root)
+            root = root.left
 
     def next(self) -> int:
-        """
-        @return the next smallest number
-        """
-        return self.nums.popleft()
+        top = self.stack.pop()
+        self.inorder_left(top.right)
+        return top.val
 
     def hasNext(self) -> bool:
-        """
-        @return whether we have a next smallest number
-        """
-        return self.nums != deque()
-        # return len(self.nums) > 0
+        return len(self.stack) > 0
 
 
 print(deque([]))

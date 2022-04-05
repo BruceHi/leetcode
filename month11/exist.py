@@ -131,26 +131,80 @@ class Solution:
     #                 return True
     #     return False
 
+    # def exist(self, board: List[List[str]], word: str) -> bool:
+    #     m, n = len(board), len(board[0])
+    #
+    #     # cur:存入搜索过的索引
+    #     def dfs(i, j, cur, word):
+    #         if not word:
+    #             return True
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i+dx, j+dy
+    #             if 0 <= x < m and 0 <= y < n and (x, y) not in cur and word[0] == board[x][y]:
+    #                 if dfs(x, y, cur | {(x, y)}, word[1:]):
+    #                     return True
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] == word[0]:
+    #                 if dfs(i, j, {(i, j)}, word[1:]):
+    #                     return True
+    #     return False
+
+    # ----新的测试----
+    # 记录使用情况
+    # def exist(self, board: List[List[str]], word: str) -> bool:
+    #     m, n = len(board), len(board[0])
+    #
+    #     def dfs(i, j, cur, used):
+    #         if not cur:
+    #             return True
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and (x, y) not in used and board[x][y] == cur[0]:
+    #                 if dfs(x, y, cur[1:], used + [(x, y)]):
+    #                     return True
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] == word[0]:
+    #                 if dfs(i, j, word[1:], [(i, j)]):
+    #                     return True
+    #     return False
+
+    # 染色法，这个比上面的要快一倍
     def exist(self, board: List[List[str]], word: str) -> bool:
         m, n = len(board), len(board[0])
 
-        # cur:存入搜索过的索引
-        def dfs(i, j, cur, word):
-            if not word:
+        def dfs(i, j, cur):
+            if not cur:
                 return True
 
+            tmp = board[i][j]
+            board[i][j] = ''
+            res = False
             for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
-                x, y = i+dx, j+dy
-                if 0 <= x < m and 0 <= y < n and (x, y) not in cur and word[0] == board[x][y]:
-                    if dfs(x, y, cur | {(x, y)}, word[1:]):
-                        return True
+                x, y = i + dx, j + dy
+                if 0 <= x < m and 0 <= y < n and board[x][y] == cur[0]:
+                    if dfs(x, y, cur[1:]):
+                        res = True
+                        break  # 只要有一个成功了，就不必再有其他的循环了，快了一百多秒
+            board[i][j] = tmp
+            return res
 
         for i in range(m):
             for j in range(n):
                 if board[i][j] == word[0]:
-                    if dfs(i, j, {(i, j)}, word[1:]):
+                    if dfs(i, j, word[1:]):
                         return True
         return False
+
+
+
+
+
 
 
 s = Solution()

@@ -1,5 +1,5 @@
 # 判断是否为环形链表
-from typing import List
+from typing import List, Optional
 
 
 class ListNode:
@@ -32,13 +32,22 @@ class ListNode:
 #         return False
 
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
-        slow, fast = head, head
+    # def hasCycle(self, head: ListNode) -> bool:
+    #     slow, fast = head, head
+    #     while fast and fast.next:
+    #         slow, fast = slow.next, fast.next.next
+    #         if slow is fast:
+    #             return True
+    #     return False
+
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
             if slow is fast:
                 return True
         return False
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

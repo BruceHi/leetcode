@@ -1,5 +1,5 @@
 # 寻找重复的子树
-from typing import List
+from typing import List, Optional
 from collections import Counter
 from collections import defaultdict
 
@@ -46,7 +46,22 @@ class Solution:
     #     serialize(root)
     #     return res
 
-    def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
+    # def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
+    #     dic = defaultdict(int)
+    #     res = []
+    #
+    #     def serialize(root):
+    #         if not root:
+    #             return ''
+    #         s = str(root.val) + ',' + serialize(root.left) + ',' + serialize(root.right)
+    #         dic[s] += 1
+    #         if dic[s] == 2:
+    #             res.append(root)
+    #         return s
+    #     serialize(root)
+    #     return res
+
+    def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         dic = defaultdict(int)
         res = []
 
@@ -58,6 +73,6 @@ class Solution:
             if dic[s] == 2:
                 res.append(root)
             return s
+
         serialize(root)
         return res
-

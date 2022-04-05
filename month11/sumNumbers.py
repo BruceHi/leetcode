@@ -1,4 +1,4 @@
-# 求根到叶子节点数字之和
+# 129. 求根到叶子节点数字之和
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -23,15 +23,28 @@ class Solution:
     #     dfs(root, 0)
     #     return sum(res) // 2
 
+    # def sumNumbers(self, root: TreeNode) -> int:
+    #
+    #     def dfs(root, pre):
+    #         if not root:
+    #             return 0
+    #         total = pre * 10 + root.val
+    #         if not root.left and not root.right:  # 真正遍历到叶子节点
+    #             return total
+    #         else:
+    #             return dfs(root.left, total) + dfs(root.right, total)  # 若没有左节点或没有右节点，返回 0.
+    #
+    #     return dfs(root, 0)
+
     def sumNumbers(self, root: TreeNode) -> int:
 
         def dfs(root, pre):
             if not root:
                 return 0
             total = pre * 10 + root.val
-            if not root.left and not root.right:  # 真正遍历到叶子节点
+            if not root.left and not root.right:
                 return total
-            else:
-                return dfs(root.left, total) + dfs(root.right, total)  # 若没有左节点或没有右节点，返回 0.
+            return dfs(root.left, total) + dfs(root.right, total)
 
         return dfs(root, 0)
+

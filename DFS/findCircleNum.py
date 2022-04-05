@@ -1,4 +1,5 @@
 # 朋友圈
+# 省份数量
 from typing import List
 
 
@@ -112,29 +113,59 @@ from typing import List
 #                     uf.unoion(i, j)
 #         return uf.count
 
-class Solution:
-    def findCircleNum(self, M: List[List[int]]) -> int:
-        n = len(M)
+# class Solution:
+#     def findCircleNum(self, M: List[List[int]]) -> int:
+#         n = len(M)
+#
+#         def dfs(i, j):
+#             M[i][j] = 0
+#             for y in range(n):
+#                 if M[j][y]:
+#                     dfs(j, y)
+#
+#         count = 0
+#         for i in range(n):
+#             for j in range(i, n):
+#                 if M[i][j]:
+#                     count += 1
+#                     dfs(i, j)
+#         return count
+#
+# class UnionFind:
+#     def __init__(self, M):
+#         n = len(M)
+#         self.parent = list(range(n))
+#         self.count = n
+#
+#     def find(self, i):
+#         if self.parent[i] != i:
+#             self.parent[i] = self.find(self.parent[i])
+#         return self.parent[i]
+#
+#     def union(self, x, y):
+#         rootx = self.find(x)
+#         rooty = self.find(y)
+#         if rootx != rooty:
+#             self.parent[rootx] = rooty
+#             self.count -= 1
+#
+#
+# class Solution:
+#     def findCircleNum(self, M: List[List[int]]) -> int:
+#         uf = UnionFind(M)
+#         n = len(M)
+#         for i in range(n):
+#             for j in range(n):
+#                 if M[i][j]:
+#                     uf.union(i, j)
+#         return uf.count
 
-        def dfs(i, j):
-            M[i][j] = 0
-            for y in range(n):
-                if M[j][y]:
-                    dfs(j, y)
-
-        count = 0
-        for i in range(n):
-            for j in range(i, n):
-                if M[i][j]:
-                    count += 1
-                    dfs(i, j)
-        return count
 
 class UnionFind:
-    def __init__(self, M):
-        n = len(M)
-        self.parent = list(range(n))
-        self.count = n
+
+    def __init__(self, isConnected):
+        self.count = len(isConnected)
+        self.parent = list(range(self.count))
 
     def find(self, i):
         if self.parent[i] != i:
@@ -142,24 +173,58 @@ class UnionFind:
         return self.parent[i]
 
     def union(self, x, y):
-        rootx = self.find(x)
-        rooty = self.find(y)
+        rootx, rooty = self.find(x), self.find(y)
         if rootx != rooty:
             self.parent[rootx] = rooty
             self.count -= 1
 
 
+
 class Solution:
-    def findCircleNum(self, M: List[List[int]]) -> int:
-        uf = UnionFind(M)
-        n = len(M)
-        for i in range(n):
-            for j in range(n):
-                if M[i][j]:
+
+    # def findCircleNum(self, isConnected: List[List[int]]) -> int:
+    #     n = len(isConnected)
+    #     visited = [0] * n
+    #
+    #     def dfs(i):
+    #         for j in range(n):
+    #             if isConnected[i][j] and not visited[j]:
+    #                 visited[j] = 1
+    #                 dfs(j)
+    #
+    #     res = 0
+    #     for i in range(n):
+    #         if not visited[i]:
+    #             dfs(i)
+    #             res += 1
+    #     return res
+
+    # def findCircleNum(self, isConnected: List[List[int]]) -> int:
+    #     n = len(isConnected)
+    #
+    #     def dfs(i, j):
+    #         isConnected[i][j] = 0
+    #         for y in range(n):
+    #             if isConnected[j][y]:
+    #                 dfs(j, y)
+    #
+    #     res = 0
+    #     for i in range(n):
+    #         for j in range(n):
+    #             if isConnected[i][j]:
+    #                 res += 1
+    #                 dfs(i, j)
+    #     return res
+
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        uf = UnionFind(isConnected)
+        for i in range(n-1):
+            for j in range(i+1, n):
+                if isConnected[i][j]:
                     uf.union(i, j)
         return uf.count
-
-
+            
 
 s = Solution()
 m = [[1,1,0],

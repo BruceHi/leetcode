@@ -94,18 +94,41 @@ class Solution:
     #                 res, diff = cur, abs(cur - target)
     #     return res
 
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     nums.sort()
+    #     res, diff = 0, float('inf')
+    #     for i, num in enumerate(nums[:-2]):
+    #         if i > 1 and num == nums[i-1]:
+    #             continue
+    #         left, right = i+1, len(nums)-1
+    #         while left < right:
+    #             cur = num + nums[left] + nums[right]
+    #             if cur == target:
+    #                 return cur
+    #             elif cur < target:
+    #                 while left < right and nums[left] == nums[left+1]:
+    #                     left += 1
+    #                 left += 1
+    #             else:
+    #                 while left < right and nums[right] == nums[right-1]:
+    #                     right -= 1
+    #                 right -= 1
+    #             if abs(cur-target) < diff:
+    #                 res, diff = cur, abs(cur-target)
+    #     return res
+
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        res, diff = 0, float('inf')
+        res, diff = float('inf'), float('inf')
         for i, num in enumerate(nums[:-2]):
-            if i > 1 and num == nums[i-1]:
+            if i > 0 and num == nums[i-1]:
                 continue
-            left, right = i+1, len(nums)-1
+            left, right = i + 1, len(nums) - 1
             while left < right:
                 cur = num + nums[left] + nums[right]
                 if cur == target:
                     return cur
-                elif cur < target:
+                if cur < target:
                     while left < right and nums[left] == nums[left+1]:
                         left += 1
                     left += 1
@@ -113,13 +136,18 @@ class Solution:
                     while left < right and nums[right] == nums[right-1]:
                         right -= 1
                     right -= 1
-                if abs(cur-target) < diff:
-                    res, diff = cur, abs(cur-target)
+                if abs(target-cur) < diff:
+                    res, diff = cur, abs(target-cur)
         return res
+
 
 
 s = Solution()
 nums = [-1, 2, 1, -4]
+target = 1
+print(s.threeSumClosest(nums, target))
+
+nums = [0,0,0]
 target = 1
 print(s.threeSumClosest(nums, target))
 

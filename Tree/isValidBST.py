@@ -133,11 +133,20 @@ class Solution:
     #         return inorder(root.left) + [root.val] + inorder(root.right)
     #     return inorder(root) == sorted(set(inorder(root)))
 
+    # def isValidBST(self, root: TreeNode) -> bool:
+    #     def dfs(root, left, right):
+    #         if not root:
+    #             return True
+    #         return left < root.val < right and dfs(root.left, left, root.val) \
+    #             and dfs(root.right, root.val, right)
+    #
+    #     return dfs(root, float('-inf'), float('inf'))
+
     def isValidBST(self, root: TreeNode) -> bool:
+
         def dfs(root, left, right):
             if not root:
                 return True
-            return left < root.val < right and dfs(root.left, left, root.val) \
-                and dfs(root.right, root.val, right)
+            return left < root.val < right and dfs(root.left, left, root.val) and dfs(root.right, root.val, right)
 
         return dfs(root, float('-inf'), float('inf'))

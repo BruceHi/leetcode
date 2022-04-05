@@ -1,3 +1,4 @@
+# 191. 位1的个数
 # 判断有多少个 1
 class Solution:
     # def hammingWeight(self, n: int) -> int:
@@ -14,16 +15,22 @@ class Solution:
     #         count += 1
     #     return count
 
-    def hammingWeight(self, n: int) -> int:
-        return bin(n).count('1')
+    # def hammingWeight(self, n: int) -> int:
+    #     return bin(n).count('1')
+    #
+    # def hammingWeight(self, n: int) -> int:
+    #     count = 0
+    #     while n:
+    #         n &= n - 1
+    #         count += 1
+    #     return count
 
     def hammingWeight(self, n: int) -> int:
-        count = 0
+        res = 0
         while n:
-            n &= n - 1
-            count += 1
-        return count
-
+            n &= n-1
+            res += 1
+        return res
 
 
 

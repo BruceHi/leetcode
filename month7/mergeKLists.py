@@ -1,5 +1,5 @@
 # 合并 k 个排序链表
-from typing import List
+from typing import List, Optional
 from functools import reduce
 import heapq
 
@@ -8,8 +8,8 @@ class ListNode:
         self.val = x
         self.next = None
 
-    def __lt__(self, other):
-        return self.val < other.val
+    # def __lt__(self, other):
+    #     return self.val < other.val
 
     # def __gt__(self, other):
     #     return self.val > other.val
@@ -73,18 +73,18 @@ class Solution:
     #     return dummy.next
 
     # 使用 堆的正确方法，空间复杂度是 O（k）,时间复杂度是 n log k
-    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        queue = [node for node in lists if node]  # 同样需要 ListNode 构造加上 _lt_
-        heapq.heapify(queue)
-
-        cur = dummy = ListNode(0)
-        while queue:
-            head = heapq.heappop(queue)
-            cur.next = head
-            cur = cur.next
-            if head.next:
-                heapq.heappush(queue, head.next)
-        return dummy.next
+    # def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+    #     queue = [node for node in lists if node]  # 同样需要 ListNode 构造加上 _lt_
+    #     heapq.heapify(queue)
+    #
+    #     cur = dummy = ListNode(0)
+    #     while queue:
+    #         head = heapq.heappop(queue)
+    #         cur.next = head
+    #         cur = cur.next
+    #         if head.next:
+    #             heapq.heappush(queue, head.next)
+    #     return dummy.next
 
     # 堆，不考虑改变构造方法
     # def mergeKLists(self, lists: List[ListNode]) -> ListNode:
@@ -106,37 +106,56 @@ class Solution:
     #             lists[idx] = lists[idx].next
     #     return dummy.next
 
-def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-    queue = [(node.val, i) for i, node in enumerate(lists) if node]
-    heapq.heapify(queue)
+# def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+#     queue = [(node.val, i) for i, node in enumerate(lists) if node]
+#     heapq.heapify(queue)
+#
+#     cur = dummy = ListNode(0)
+#     while queue:
+#         val, idx = heapq.heappop(queue)
+#         cur.next = ListNode(val)
+#         cur = cur.next
+#         if lists[idx].next:
+#             heapq.heappush(queue, (lists[idx].next.val, idx))
+#             lists[idx] = lists[idx].next
+#     return dummy.next
+#
+#     # def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+#     #     queue = []
+#     #     for i, head in enumerate(lists):
+#     #         if head:
+#     #             queue.append((head.val, i))
+#     #             lists[i] = lists[i].next
+#     #     heapq.heapify(queue)
+#     #
+#     #     cur = dummy = ListNode(0)
+#     #     while queue:
+#     #         top, idx = heapq.heappop(queue)
+#     #         cur.next = ListNode(top)
+#     #         cur = cur.next
+#     #         if lists[idx]:
+#     #             heapq.heappush(queue, (lists[idx].val, idx))
+#     #             lists[idx] = lists[idx].next
+#     #     return dummy.next
 
-    cur = dummy = ListNode(0)
-    while queue:
-        val, idx = heapq.heappop(queue)
-        cur.next = ListNode(val)
-        cur = cur.next
-        if lists[idx].next:
-            heapq.heappush(queue, (lists[idx].next.val, idx))
-            lists[idx] = lists[idx].next
-    return dummy.next
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        cur = dummy = ListNode(0)
+        queue = []
+        for i, head in enumerate(lists):
+            if head:  # 怕 head 是空链表
+                # 加入 i 是防止：TypeError: '<' not supported between instances of 'ListNode' and 'ListNode'
+                queue.append((head.val, i, head))
+            heapq.heapify(queue)
 
-    # def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-    #     queue = []
-    #     for i, head in enumerate(lists):
-    #         if head:
-    #             queue.append((head.val, i))
-    #             lists[i] = lists[i].next
-    #     heapq.heapify(queue)
-    #
-    #     cur = dummy = ListNode(0)
-    #     while queue:
-    #         top, idx = heapq.heappop(queue)
-    #         cur.next = ListNode(top)
-    #         cur = cur.next
-    #         if lists[idx]:
-    #             heapq.heappush(queue, (lists[idx].val, idx))
-    #             lists[idx] = lists[idx].next
-    #     return dummy.next
+        while queue:
+            _, i, head = heapq.heappop(queue)
+            cur.next = head
+            cur = cur.next
+            if head.next:
+                heapq.heappush(queue, (head.next.val, i, head.next))
+        return dummy.next
+
+
 
 
 

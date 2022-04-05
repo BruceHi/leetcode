@@ -28,11 +28,29 @@ class Solution:
     #         stack.extend(cur.children)
     #     return res[::-1]
 
+    # def postorder(self, root: 'Node') -> List[int]:
+    #     if not root:
+    #         return []
+    #     res = []
+    #     for node in root.children:
+    #         res.extend(self.postorder(node))
+    #     res.append(root.val)
+    #     return res
+
+    # def postorder(self, root: 'Node') -> List[int]:
+    #     if not root:
+    #         return []
+    #     res = []
+    #     for child in root.children:
+    #         res.extend(self.postorder(child))
+    #     return res + [root.val]
+
     def postorder(self, root: 'Node') -> List[int]:
         if not root:
             return []
-        res = []
-        for node in root.children:
-            res.extend(self.postorder(node))
-        res.append(root.val)
-        return res
+        res, stack = [], [root]
+        while stack:
+            cur = stack.pop()
+            res.append(cur)
+            stack.extend(cur.children)
+        return res[::-1]

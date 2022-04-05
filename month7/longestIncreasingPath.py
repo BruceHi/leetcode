@@ -133,26 +133,67 @@ class Solution:
     #             res = max(res, dfs(i, j))
     #     return res
 
-    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        if not matrix:
-            return 0
-        m, n = len(matrix), len(matrix[0])
-        res = 0
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     if not matrix:
+    #         return 0
+    #     m, n = len(matrix), len(matrix[0])
+    #     res = 0
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         best = 1
+    #         nonlocal res
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 best = max(best, dfs(x, y) + 1)
+    #         res = max(res, best)
+    #         return best
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             dfs(i, j)
+    #     return res
 
-        @lru_cache(None)
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #     res = 0
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         best = 1
+    #         nonlocal res
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 best = max(best, dfs(x, y) + 1)
+    #         res = max(res, best)
+    #         return best
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             dfs(i, j)
+    #     return res
+
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        m, n = len(matrix), len(matrix[0])
+        memo = [[0] * n for _ in range(m)]
+
         def dfs(i, j):
-            best = 1
-            nonlocal res
+            if memo[i][j]:
+                return memo[i][j]
+
+            memo[i][j] = 1
             for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
                 x, y = i + dx, j + dy
                 if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
-                    best = max(best, dfs(x, y) + 1)
-            res = max(res, best)
-            return best
+                    memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
+            return memo[i][j]
 
+        res = 0
         for i in range(m):
             for j in range(n):
-                dfs(i, j)
+                res = max(res, dfs(i, j))
         return res
 
 
@@ -181,5 +222,3 @@ print(s.longestIncreasingPath(nums))
 nums = [[7,7,5],[2,4,6],[8,2,0]]
 print(s.longestIncreasingPath(nums))
 
-nums = []
-print(s.longestIncreasingPath(nums))

@@ -72,34 +72,44 @@ from typing import List
 #     nums[-k:] = reversed(nums[-k:])
 #     nums[:] = reversed(nums)
 
-def rotate(nums: List[int], k: int) -> None:
-    n = len(nums)
-    new = [0] * n
-    for i, num in enumerate(nums):
-        new[(i+k) % n] = num
-    nums[:] = new
+# def rotate(nums: List[int], k: int) -> None:
+#     n = len(nums)
+#     new = [0] * n
+#     for i, num in enumerate(nums):
+#         new[(i+k) % n] = num
+#     nums[:] = new
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        k = k % len(nums)
+        nums[:] = nums[::-1]
+        nums[:] = nums[:k][::-1] + nums[k:][::-1]
 
 
+s = Solution()
 list1 = [1,2,3,4,5,6,7]
-rotate(list1, 3)
+s.rotate(list1, 3)
 print(list1)
 
 list1 = [-1,-100,3,99]
-rotate(list1, 2)
+s.rotate(list1, 2)
 print(list1)
 
 list1 = [-1]
-rotate(list1, 2)
+s.rotate(list1, 2)
 print(list1)
 
 list1 = [1, 2]
-rotate(list1, 3)
+s.rotate(list1, 3)
 print(list1)
 
 list1 = [1, 2, 3]
-rotate(list1, 4)
+s.rotate(list1, 4)
 print(list1)
 
 list1 = [1, 2]
-rotate(list1, 0)
+s.rotate(list1, 0)
 print(list1)

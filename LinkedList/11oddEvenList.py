@@ -45,6 +45,37 @@ class Solution:
     #     odd.next = even_head
     #     return head
 
+    # def oddEvenList(self, head: ListNode) -> ListNode:
+    #     if not head:
+    #         return
+    #     odd, even, even_head = head, head.next, head.next
+    #     while even and even.next:
+    #         odd.next, even.next = even.next, even.next.next
+    #         odd, even = odd.next, even.next
+    #     odd.next = even_head
+    #     return head
+
+    # def oddEvenList(self, head: ListNode) -> ListNode:
+    #     odd_head, even_head = ListNode(0), ListNode(0)
+    #     o_cur, e_cur = odd_head, even_head
+    #
+    #     flag = 1
+    #     while head:
+    #         if flag & 1:
+    #             o_cur.next = head
+    #             o_cur = o_cur.next
+    #         else:
+    #             e_cur.next = head
+    #             e_cur = e_cur.next
+    #         flag += 1
+    #         tmp = head.next
+    #         head.next = None
+    #         head = tmp
+    #
+    #     o_cur.next = even_head.next
+    #     return odd_head.next
+
+
     def oddEvenList(self, head: ListNode) -> ListNode:
         if not head:
             return

@@ -76,16 +76,47 @@ class Solution:
     #     if root:
     #         return right
 
+    # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    #     if not root:
+    #         return
+    #     if root.val == p.val or root.val == q.val:
+    #         return root
+    #     left = self.lowestCommonAncestor(root.left, p, q)
+    #     right = self.lowestCommonAncestor(root.right, p, q)
+    #     if left and right:
+    #         return root
+    #     if left:
+    #         return left
+    #     if right:
+    #         return right
+
+    # 二叉搜索树
+    # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    #     if p is root or q is root:
+    #         return root
+    #     v = root.val
+    #     if p.val < v < q.val or p.val > v > q.val:
+    #         return root
+    #     if p.val < v and q.val < v:
+    #         return self.lowestCommonAncestor(root.left, p, q)
+    #     return self.lowestCommonAncestor(root.right, p, q)
+
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if not root:
-            return
-        if root.val == p.val or root.val == q.val:
-            return root
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
-        if left and right:
-            return root
-        if left:
-            return left
-        if right:
-            return right
+        if p.val < root.val > q.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        if p.val > root.val < q.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        return root
+
+
+    # 二叉树
+    # def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    #     if not root:
+    #         return
+    #     if p is root or q is root:
+    #         return root
+    #     left = self.lowestCommonAncestor(root.left, p, q)
+    #     right = self.lowestCommonAncestor(root.right, p, q)
+    #     if left and right:
+    #         return root
+    #     return left or right

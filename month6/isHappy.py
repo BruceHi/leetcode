@@ -13,16 +13,33 @@ class Solution:
     #         record.add(n)
     #     return True
 
+    # def isHappy(self, n: int) -> bool:
+    #     record = set()
+    #     while n != 1:
+    #         tmp = 0
+    #         while n:
+    #             tmp += (n % 10) ** 2
+    #             n //= 10
+    #         if tmp in record:
+    #             return False
+    #         n = tmp
+    #         record.add(n)
+    #     return True
+
     def isHappy(self, n: int) -> bool:
-        record = set()
-        while n != 1:
-            tmp = 0
+        record = {n}
+
+        def next_val(n):
+            num = 0
             while n:
-                tmp += (n % 10) ** 2
+                num += (n % 10) ** 2
                 n //= 10
-            if tmp in record:
+            return num
+
+        while n != 1:
+            n = next_val(n)
+            if n in record:
                 return False
-            n = tmp
             record.add(n)
         return True
 

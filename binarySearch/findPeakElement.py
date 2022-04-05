@@ -33,11 +33,21 @@ class Solution:
     #     return left
 
 
+    # def findPeakElement(self, nums: List[int]) -> int:
+    #     for i, num in enumerate(nums[:-1]):
+    #         if num > nums[i+1]:
+    #             return i
+    #     return len(nums) - 1
+
     def findPeakElement(self, nums: List[int]) -> int:
-        for i, num in enumerate(nums[:-1]):
-            if num > nums[i+1]:
-                return i
-        return len(nums) - 1
+        left, right = 0, len(nums)-1
+        while left < right:
+            mid = left + right >> 1
+            if nums[mid] < nums[mid+1]:
+                left = mid + 1
+            else:
+                right = mid
+        return right
 
 
 s = Solution()
@@ -48,7 +58,4 @@ nums = [1,2,1,3,5,6,4]
 print(s.findPeakElement(nums))
 
 nums = [1,2]
-print(s.findPeakElement(nums))
-
-nums = []
 print(s.findPeakElement(nums))
