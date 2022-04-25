@@ -101,7 +101,16 @@ from typing import List
 #         nums[j] = tmp
 
 def insert_sort(nums):
-    pass
+    n = len(nums)
+    for i in range(n-1):
+        j = i + 1
+        v = nums[j]
+        while j-1 >= 0 and nums[j-1] > v:
+            nums[j] = nums[j-1]
+            j -= 1
+        nums[j] = v
+
+
 
 nums = [7, 5, 9, 6, 2]
 insert_sort(nums)

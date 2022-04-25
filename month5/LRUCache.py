@@ -285,7 +285,6 @@ class LRUCache:
         self.dic.move_to_end(key)
         return self.dic[key]
 
-
     def put(self, key: int, value: int) -> None:
         if key in self.dic:
             self.dic.move_to_end(key)
@@ -302,35 +301,47 @@ def print_link(head: ListNode) -> None:
     print(res)
 
 
-cache = LRUCache(2)
+# cache = LRUCache(2)
+#
+# cache.put(1, 1)
+# cache.put(2, 2)
+# print(cache.get(1))  # 返回  1
+# cache.put(3, 3)  # 该操作会使得密钥 2 作废
+# print(cache.get(2))  # 返回 -1 (未找到)
+# cache.put(4, 4)  # 该操作会使得密钥 1 作废
+# print(cache.get(1))  # 返回 -1 (未找到)
+# print(cache.get(3))  # 返回  3
+# print(cache.get(4))  # 返回  4
+#
+# print("------------------")
+#
+# cache = LRUCache(2)
+# print(cache.get(2))
+# cache.put(2, 6)
+# print(cache.get(1))
+# cache.put(1, 5)
+# cache.put(1, 2)
+# print(cache.get(1))
+# print(cache.get(2))
+#
+# print("--------------")
+# # [null,null,null,null,null,-1,3]
+# cache = LRUCache(2)
+# cache.put(2, 1)
+# cache.put(1, 1)
+# cache.put(2, 3)
+# cache.put(4, 1)
+# print(cache.get(1))
+# print(cache.get(2))
 
-cache.put(1, 1)
-cache.put(2, 2)
-print(cache.get(1))  # 返回  1
-cache.put(3, 3)  # 该操作会使得密钥 2 作废
-print(cache.get(2))  # 返回 -1 (未找到)
-cache.put(4, 4)  # 该操作会使得密钥 1 作废
-print(cache.get(1))  # 返回 -1 (未找到)
-print(cache.get(3))  # 返回  3
-print(cache.get(4))  # 返回  4
+def print_func(funs, attrs):
+    res = [None]
+    obj = eval(funs[0])(*attrs[0])
+    for f, a in zip(funs[1:], attrs[1:]):
+        res.append(getattr(obj, f)(*a))
+    print(res)
 
-print("------------------")
 
-cache = LRUCache(2)
-print(cache.get(2))
-cache.put(2, 6)
-print(cache.get(1))
-cache.put(1, 5)
-cache.put(1, 2)
-print(cache.get(1))
-print(cache.get(2))
-
-print("--------------")
-# [null,null,null,null,null,-1,3]
-cache = LRUCache(2)
-cache.put(2, 1)
-cache.put(1, 1)
-cache.put(2, 3)
-cache.put(4, 1)
-print(cache.get(1))
-print(cache.get(2))
+funs = ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+attrs = [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+print_func(funs, attrs)

@@ -151,17 +151,28 @@ class MinStack:
     def getMin(self) -> int:
         return self.min_stack[-1]
 
+def print_result(funs, paras):
+    res = [None]
+    obj = eval(funs[0])(*paras[0])
+    for f, p in zip(funs[1:], paras[1:]):
+        res.append(getattr(obj, f)(*p))
+    print(res)
+
+
+funs = ["MinStack","push","push","push","getMin","pop","top","getMin"]
+paras = [[],[-2],[0],[-3],[],[],[],[]]
+
+print_result(funs, paras)
 
 minStack = MinStack()
 minStack.push(-2)
 minStack.push(0)
 minStack.push(-3)
 print(minStack.getMin())  # --> 返回 -3.
-# print(minStack.min())  # --> 返回 -3.
 minStack.pop()
 print(minStack.top())  # --> 返回 0.
 print(minStack.getMin())  # --> 返回 -2.
-# print(minStack.min())  # --> 返回 -2.
+
 
 # minStack.push(-2)
 # minStack.push(0)

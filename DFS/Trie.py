@@ -121,19 +121,29 @@ class Trie:
                 node = node[c]
             del node[tmp]
 
+def print_func(funs, attrs):
+    res = [None]
+    obj = eval(funs[0])(*attrs[0])
+    for f, a in zip(funs[1:], attrs[1:]):
+        res.append(getattr(obj, f)(*a))
+    print(res)
 
 
-trie = Trie()
-trie.insert("apple")
-print(trie.root)
-print(trie.search("apple"))  # True
+funs = ["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+attrs = [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+print_func(funs, attrs)
 
-print(trie.search("app"))  # 返回 false
-print(trie.startsWith("app"))  # 返回 true
-
-trie.insert("app")
-print(trie.root)
-print(trie.search("app"))
+# trie = Trie()
+# trie.insert("apple")
+# print(trie.root)
+# print(trie.search("apple"))  # True
+#
+# print(trie.search("app"))  # 返回 false
+# print(trie.startsWith("app"))  # 返回 true
+#
+# trie.insert("app")
+# print(trie.root)
+# print(trie.search("app"))
 # #
 # print(trie.root)
 
