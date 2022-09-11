@@ -124,16 +124,16 @@ class Solution:
     #         dic[c] = i + 1
     #     return res
 
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        res = 0
-        left = 0
-        dic = {}
-        for i, c in enumerate(s):
-            if c in dic:
-                left = max(left, dic[c])
-            res = max(res, i-left+1)
-            dic[c] = i + 1
-        return res
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     res = 0
+    #     left = 0
+    #     dic = {}
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             left = max(left, dic[c])
+    #         res = max(res, i-left+1)
+    #         dic[c] = i + 1
+    #     return res
 
     # 这个要更快一些
     # def lengthOfLongestSubstring(self, s: str) -> int:
@@ -147,6 +147,62 @@ class Solution:
     #         dic[c] = i + 1
     #     res = max(res, len(s)-left)
     #     return res
+
+    # start不动，end向后移动
+    # 当end遇到重复字符，start应该放在上一个重复字符的位置的后一位，同时记录最长的长度
+    # 怎样判断是否遇到重复字符，且怎么知道上一个重复字符的位置？--用哈希字典的key来判断是否重复，用value来记录该字符的下一个不重复的位置。
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     dic = {}
+    #     res = 0
+    #     left = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             res = max(res, i-left)
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #     return max(res, len(s)-left)
+
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     left, res = 0, 0
+    #     dic = {}
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             res = max(res, i-left)
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #     return max(res, len(s)-left)
+
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     left, dic = 0, {}
+    #     res = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             res = max(res, i - left)
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #     return max(res, len(s)-left)
+
+    # def lengthOfLongestSubstring(self, s: str) -> int:
+    #     left, dic = 0, {}
+    #     res = 0
+    #     for i, c in enumerate(s):
+    #         if c in dic:
+    #             res = max(res, i - left)
+    #             left = max(left, dic[c])
+    #         dic[c] = i + 1
+    #     return max(res, len(s) - left)
+
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        dic = {}
+        left = 0
+        res = 0
+        for i, c in enumerate(s):
+            if c in dic:
+                res = max(res, i-left)
+                left = max(left, dic[c])
+            dic[c] = i + 1
+        res = max(res, len(s)-left)
+        return res
 
 
 s = Solution()

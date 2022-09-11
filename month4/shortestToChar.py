@@ -45,21 +45,69 @@ class Solution:
     #
     #     return res
 
+    # def shortestToChar(self, s: str, c: str) -> List[int]:
+    #     res = []
+    #
+    #     idx = float('-inf')
+    #     for i, t in enumerate(s):
+    #         if t == c:
+    #             idx = i
+    #         res.append(i-idx)
+    #
+    #     idx = float('inf')
+    #     for i in range(len(s)-1, -1, -1):
+    #         if s[i] == c:
+    #             idx = i
+    #         res[i] = min(res[i], idx-i)
+    #
+    #     return res
+
+    # def shortestToChar(self, s: str, c: str) -> List[int]:
+    #     res = []
+    #
+    #     idx = float('-inf')
+    #     for i, t in enumerate(s):
+    #         if t == c:
+    #             idx = i
+    #         res.append(i-idx)
+    #
+    #     idx = float('inf')
+    #     for i in range(len(s)-1, -1, -1):
+    #         if s[i] == c:
+    #             idx = i
+    #         res[i] = min(res[i], idx-i)
+    #
+    #     return res
+
+    # def shortestToChar(self, s: str, c: str) -> List[int]:
+    #     res = []
+    #
+    #     start = float('-inf')
+    #     for i, t in enumerate(s):
+    #         if t == c:
+    #             start = i
+    #         res.append(i-start)
+    #
+    #     start = float('inf')
+    #     for i in range(len(s)-1, -1, -1):
+    #         if s[i] == c:
+    #             start = i
+    #         res[i] = min(res[i], start-i)
+    #     return res
+
     def shortestToChar(self, s: str, c: str) -> List[int]:
         res = []
-
-        idx = float('-inf')
+        last = float('-inf')
         for i, t in enumerate(s):
             if t == c:
-                idx = i
-            res.append(i-idx)
+                last = i
+            res.append(i - last)
 
-        idx = float('inf')
+        last = float('inf')
         for i in range(len(s)-1, -1, -1):
             if s[i] == c:
-                idx = i
-            res[i] = min(res[i], idx-i)
-
+                last = i
+            res[i] = min(res[i], last-i)
         return res
 
 

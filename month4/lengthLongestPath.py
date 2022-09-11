@@ -28,15 +28,47 @@ class Solution:
     #     return res
 
 
+    # def lengthLongestPath(self, input: str) -> int:
+    #     res = 0
+    #     dic = defaultdict(int)
+    #     for line in input.split('\n'):
+    #         depth = line.count('\t')
+    #         dic[depth] = dic[depth-1] + len(line) - depth
+    #         if line.count('.'):
+    #             res = max(res, dic[depth] + depth)
+    #     return res
+
+
+    # def lengthLongestPath(self, input: str) -> int:
+    #     res = 0
+    #     dic = defaultdict(int)
+    #     for path in input.split('\n'):
+    #         depth = path.count('\t')
+    #         dic[depth] = dic[depth-1] + len(path) - depth
+    #         if path.count('.'):
+    #             res = max(res, dic[depth] + depth)
+    #     return res
+
+    # def lengthLongestPath(self, input: str) -> int:
+    #     res = 0
+    #     dic = defaultdict(int)
+    #     for line in input.split('\n'):
+    #         depth = line.count('\t')
+    #         dic[depth] = dic[depth-1] + len(line) - depth
+    #         if '.' in line:
+    #             res = max(res, dic[depth] + depth)
+    #     return res
+
     def lengthLongestPath(self, input: str) -> int:
         res = 0
         dic = defaultdict(int)
         for line in input.split('\n'):
-            depth = line.count('\t')
-            dic[depth] = dic[depth-1] + len(line) - depth
-            if line.count('.'):
-                res = max(res, dic[depth] + depth)
+            num = line.count('\t')
+            dic[num] = dic[num-1] + len(line) - num
+            if '.' in line:
+                res = max(res, dic[num] + num)
         return res
+
 
 s = Solution()
 input = "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"
@@ -50,3 +82,4 @@ print(s.lengthLongestPath(input))
 
 input = "file1.txt\nfile2.txt\nlongfile.txt"
 print(s.lengthLongestPath(input))
+

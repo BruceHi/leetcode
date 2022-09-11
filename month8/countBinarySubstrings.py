@@ -146,17 +146,60 @@ class Solution:
     #         res += min(num, nums[i+1])
     #     return res
 
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     res = 0
+    #     count = 0
+    #     i = 0
+    #     for j, c in enumerate(s):
+    #         if s[i] != c:
+    #             res += min(count, j-i)
+    #             count = j-i
+    #             i = j
+    #     res += min(count, len(s)-i)
+    #     return res
+
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     res, i = 0, 0
+    #     cur = 0
+    #     for j, c in enumerate(s):
+    #         if s[i] != c:
+    #             res += min(cur, j - i)
+    #             cur = j - i
+    #             i = j
+    #     res += min(cur, len(s)-i)
+    #     return res
+
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     i, count = 0, 0
+    #     res = 0
+    #     for j, c in enumerate(s):
+    #         if c != s[i]:
+    #             res += min(count, j-i)
+    #             count = j - i
+    #             i = j
+    #     return res + min(count, len(s)-i)
+
+    # def countBinarySubstrings(self, s: str) -> int:
+    #     i = res = 0
+    #     count = 0
+    #     for j, c in enumerate(s):
+    #         if c != s[i]:
+    #             res += min(count, j - i)
+    #             count = j - i
+    #             i = j
+    #     res += min(count, len(s) - i)
+    #     return res
+
     def countBinarySubstrings(self, s: str) -> int:
-        res = 0
+        res = i = 0
         count = 0
-        i = 0
         for j, c in enumerate(s):
-            if s[i] != c:
+            if c != s[i]:
                 res += min(count, j-i)
-                count = j-i
+                count = j - i
                 i = j
-        res += min(count, len(s)-i)
-        return res
+        return res + min(count, len(s)-i)
+
 
 
 obj = Solution()

@@ -239,6 +239,137 @@ class Solution:
     #     return list(res)
 
 
+    # def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+    #     root = {}
+    #     for word in words:
+    #         node = root
+    #         for c in word:
+    #             node = node.setdefault(c, {})
+    #         node['#'] = '#'
+    #
+    #     m, n = len(board), len(board[0])
+    #     res = set()
+    #
+    #     def dfs(i, j, cur, dic):
+    #         v = board[i][j]
+    #         cur += v
+    #         dic = dic[v]
+    #
+    #         if '#' in dic:
+    #             res.add(cur)
+    #             # return  # 不能return，可能会出现 ['oaa', 'oa'] 这种情况。
+    #
+    #         board[i][j] = ''
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] in dic:
+    #                 dfs(x, y, cur, dic)
+    #         board[i][j] = v
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] in root:
+    #                 dfs(i, j, '', root)
+    #     return list(res)
+
+
+    # def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+    #     root = {}
+    #     for word in words:
+    #         node = root
+    #         for c in word:
+    #             node = node.setdefault(c, {})
+    #         node['#'] = '#'
+    #
+    #     m, n = len(board), len(board[0])
+    #     res = set()
+    #
+    #     def dfs(i, j, cur, dic):
+    #         v = board[i][j]
+    #         cur += v
+    #         dic = dic[v]
+    #
+    #         if '#' in dic:
+    #             res.add(cur)
+    #
+    #         board[i][j] = ''
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] in dic:
+    #                 dfs(x, y, cur, dic)
+    #         board[i][j] = v
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] in root:
+    #                 dfs(i, j, '', root)
+    #
+    #     return list(res)
+
+
+    # def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+    #     root = {}
+    #     for word in words:
+    #         node = root
+    #         for c in word:
+    #             node = node.setdefault(c, {})
+    #         node['#'] = '#'
+    #
+    #     m, n = len(board), len(board[0])
+    #     res = set()
+    #
+    #     def dfs(i, j, cur, dic):
+    #         v = board[i][j]
+    #         cur += v
+    #         dic = dic[v]
+    #
+    #         if '#' in dic:
+    #             res.add(cur)
+    #
+    #         board[i][j] = ''
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] in dic:
+    #                 dfs(x, y, cur, dic)
+    #         board[i][j] = v
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] in root:
+    #                 dfs(i, j, '', root)
+    #     return list(res)
+
+    # def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+    #     root = {}
+    #     for word in words:
+    #         node = root
+    #         for c in word:
+    #             node = node.setdefault(c, {})
+    #         node['#'] = '#'
+    #
+    #     res = set()
+    #     m, n = len(board), len(board[0])
+    #     def dfs(i, j, cur, root):
+    #         v = board[i][j]
+    #         cur += v
+    #         node = root[v]
+    #
+    #         if '#' in node:
+    #             res.add(cur)
+    #
+    #         board[i][j] = ''
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and board[x][y] in node:
+    #                 dfs(x, y, cur, node)
+    #         board[i][j] = v
+    #
+    #     for i in range(m):
+    #         for j in range(n):
+    #             if board[i][j] in root:
+    #                 dfs(i, j, '', root)
+    #     return list(res)
+
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         root = {}
         for word in words:
@@ -247,23 +378,22 @@ class Solution:
                 node = node.setdefault(c, {})
             node['#'] = '#'
 
-        m, n = len(board), len(board[0])
         res = set()
+        m, n = len(board), len(board[0])
 
-        def dfs(i, j, cur, dic):
+        def dfs(i, j, cur, root):
             v = board[i][j]
             cur += v
-            dic = dic[v]
+            node = root[v]
 
-            if '#' in dic:
+            if '#' in node:
                 res.add(cur)
-                # return  # 不能return，可能会出现 ['oaa', 'oa'] 这种情况。
 
-            board[i][j] = ''
+            board[i][j] = '.'
             for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
                 x, y = i + dx, j + dy
-                if 0 <= x < m and 0 <= y < n and board[x][y] in dic:
-                    dfs(x, y, cur, dic)
+                if 0 <= x < m and 0 <= y < n and board[x][y] in node:
+                    dfs(x, y, cur, node)
             board[i][j] = v
 
         for i in range(m):

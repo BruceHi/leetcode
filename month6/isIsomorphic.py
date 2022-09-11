@@ -1,4 +1,4 @@
-# 同构字符串
+# 205. 同构字符串
 class Solution:
 
     # def isIsomorphic(self, s: str, t: str) -> bool:
@@ -33,6 +33,60 @@ class Solution:
     #                 return False
     #             record[s[i]] = t[i]
     #         elif record[s[i]] != t[i]:
+    #             return False
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         elif dic[a] != b:
+    #             return False
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         elif dic[a] != b:
+    #             return False
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a in dic and dic[a] != b:
+    #             return False
+    #         if b in dic.values() and a not in dic:
+    #             return False
+    #         dic[a] = b
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         elif dic[a] != b:
+    #             return False
+    #     return True
+
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     dic = {}
+    #     for a, b in zip(s, t):
+    #         if a not in dic:
+    #             if b in dic.values():
+    #                 return False
+    #             dic[a] = b
+    #         elif dic[a] != b:
     #             return False
     #     return True
 

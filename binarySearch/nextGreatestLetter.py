@@ -37,19 +37,30 @@ class Solution:
     #             return c
     #     return letters[0]
 
+    # def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+    #     left, right = 0, len(letters) - 1
+    #     while left < right:
+    #         mid = left + right >> 1
+    #         if letters[mid] <= target:  # 注意要先排除小于等于的
+    #             left = mid + 1
+    #         else:
+    #             right = mid
+    #
+    #     if letters[left] <= target:
+    #         return letters[0]
+    #     return letters[right]
+
+    # def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+    #     for c in letters:
+    #         if c > target:
+    #             return c
+    #     return letters[0]
+
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        left, right = 0, len(letters) - 1
-        while left < right:
-            mid = left + right >> 1
-            if letters[mid] <= target:  # 注意要先排除小于等于的
-                left = mid + 1
-            else:
-                right = mid
-
-        if letters[left] <= target:
-            return letters[0]
-        return letters[right]
-
+        for c in letters:
+            if c > target:
+                return c
+        return letters[0]
 
 
 s = Solution()

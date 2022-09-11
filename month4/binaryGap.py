@@ -25,6 +25,42 @@ class Solution:
     #         i += 1
     #     return res
 
+    # def binaryGap(self, n: int) -> int:
+    #     res = 0
+    #     last = -1
+    #     i = 0
+    #     while n:
+    #         if n & 1:
+    #             if last != -1:
+    #                 res = max(res, i-last)
+    #             last = i
+    #         n >>= 1
+    #         i += 1
+    #     return res
+
+    # def binaryGap(self, n: int) -> int:
+    #     res, i, last = 0, 0, -1
+    #     while n:
+    #         if n & 1:
+    #             if last != -1:
+    #                 res = max(res, i-last)
+    #             last = i
+    #         i += 1
+    #         n >>= 1
+    #     return res
+
+
+    # def binaryGap(self, n: int) -> int:
+    #     res, i, last = 0, 0, -1
+    #     while n:
+    #         if n & 1:
+    #             if last != -1:
+    #                 res = max(res, i-last)
+    #             last = i
+    #         i += 1
+    #         n >>= 1
+    #     return res
+
     def binaryGap(self, n: int) -> int:
         res = 0
         last = -1
@@ -32,10 +68,10 @@ class Solution:
         while n:
             if n & 1:
                 if last != -1:
-                    res = max(res, i-last)
+                    res = max(res, i - last)
                 last = i
-            n >>= 1
             i += 1
+            n >>= 1
         return res
 
 

@@ -25,11 +25,67 @@ class Solution:
     #         res.append(cur)
     #     return res
 
+    # def levelOrder(self, root: 'Node') -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     res = []
+    #     queue = deque([root])
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             queue.extend(node.children)
+    #         res.append(cur)
+    #     return res
+
+    # def levelOrder(self, root: 'Node') -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue = deque([root])
+    #     res = []
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             queue.extend(node.children)
+    #         res.append(cur)
+    #     return res
+
+    # def levelOrder(self, root: 'Node') -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     queue = deque([root])
+    #     res = []
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             queue.extend(node.children)
+    #         res.append(cur)
+    #     return res
+
+    # def levelOrder(self, root: 'Node') -> List[List[int]]:
+    #     if not root:
+    #         return []
+    #     res = []
+    #     queue = deque([root])
+    #     while queue:
+    #         cur = []
+    #         for _ in range(len(queue)):
+    #             node = queue.popleft()
+    #             cur.append(node.val)
+    #             queue.extend(node.children)
+    #         res.append(cur)
+    #     return res
+
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         if not root:
             return []
-        res = []
         queue = deque([root])
+        res = []
         while queue:
             cur = []
             for _ in range(len(queue)):

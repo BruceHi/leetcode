@@ -273,6 +273,83 @@ class ListNode:
 #         # node.prev.next, node.next.prev = node.next, node.prev
 
 
+# class LRUCache:
+#
+#     def __init__(self, capacity: int):
+#         self.dic = OrderedDict()
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self.dic:
+#             return -1
+#         self.dic.move_to_end(key)
+#         return self.dic[key]
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self.dic:
+#             self.dic.move_to_end(key)
+#         self.dic[key] = value
+#         if len(self.dic) > self.capacity:
+#             self.dic.popitem(last=False)
+
+
+# class LRUCache:
+#
+#     def __init__(self, capacity: int):
+#         self.dic = OrderedDict()
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self.dic:
+#             return -1
+#         self.dic.move_to_end(key)
+#         return self.dic[key]
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self.dic:
+#             self.dic.move_to_end(key)
+#         self.dic[key] = value
+#         if len(self.dic) > self.capacity:
+#             self.dic.popitem(last=False)
+
+# class LRUCache:
+#
+#     def __init__(self, capacity: int):
+#         self.dic = OrderedDict()
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self.dic:
+#             return -1
+#         self.dic.move_to_end(key)
+#         return self.dic[key]
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self.dic:
+#             self.dic.move_to_end(key)
+#         self.dic[key] = value
+#         if len(self.dic) > self.capacity:
+#             self.dic.popitem(last=False)
+
+# class LRUCache:
+#
+#     def __init__(self, capacity: int):
+#         self.dic = OrderedDict()
+#         self.capacity = capacity
+#
+#     def get(self, key: int) -> int:
+#         if key not in self.dic:
+#             return -1
+#         self.dic.move_to_end(key)
+#         return self.dic[key]
+#
+#     def put(self, key: int, value: int) -> None:
+#         if key in self.dic:
+#             self.dic.move_to_end(key)
+#         self.dic[key] = value
+#         if len(self.dic) > self.capacity:
+#             self.dic.popitem(last=False)
+
 class LRUCache:
 
     def __init__(self, capacity: int):
@@ -291,6 +368,7 @@ class LRUCache:
         self.dic[key] = value
         if len(self.dic) > self.capacity:
             self.dic.popitem(last=False)
+
 
 
 def print_link(head: ListNode) -> None:

@@ -1,4 +1,4 @@
-#  最接近的三数之和
+#  16.最接近的三数之和
 from typing import List
 import bisect
 
@@ -117,28 +117,129 @@ class Solution:
     #                 res, diff = cur, abs(cur-target)
     #     return res
 
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     nums.sort()
+    #     res, diff = float('inf'), float('inf')
+    #     for i, num in enumerate(nums[:-2]):
+    #         if i > 0 and num == nums[i-1]:
+    #             continue
+    #         left, right = i + 1, len(nums) - 1
+    #         while left < right:
+    #             cur = num + nums[left] + nums[right]
+    #             if cur == target:
+    #                 return cur
+    #             if cur < target:
+    #                 while left < right and nums[left] == nums[left+1]:
+    #                     left += 1
+    #                 left += 1
+    #             else:
+    #                 while left < right and nums[right] == nums[right-1]:
+    #                     right -= 1
+    #                 right -= 1
+    #             if abs(target-cur) < diff:
+    #                 res, diff = cur, abs(target-cur)
+    #     return res
+
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     nums.sort()
+    #     res, diff = float('inf'), float('inf')
+    #     n = len(nums)
+    #
+    #     for i, num in enumerate(nums[:-2]):
+    #         left, right = i + 1, n - 1
+    #
+    #         while left < right:
+    #             cur = num + nums[left] + nums[right]
+    #             if cur == target:
+    #                 return target
+    #             if cur < target:
+    #                 left += 1
+    #             else:
+    #                 right -= 1
+    #             if abs(cur - target) < diff:
+    #                 res, diff = cur, abs(cur - target)
+    #     return res
+
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     nums.sort()
+    #     res, diff = float('inf'), float('inf')
+    #     n = len(nums)
+    #
+    #     for i, num in enumerate(nums[:-2]):
+    #         left, right = i + 1, n - 1
+    #         while left < right:
+    #             cur = num + nums[left] + nums[right]
+    #             if cur == target:
+    #                 return target
+    #             if cur < target:
+    #                 left += 1
+    #             else:
+    #                 right -= 1
+    #             if abs(cur - target) < diff:
+    #                 res, diff = cur, abs(cur - target)
+    #     return res
+
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     nums.sort()
+    #     res, diff = float('inf'), float('inf')
+    #
+    #     n = len(nums)
+    #     for i, num in enumerate(nums[:-2]):
+    #         left, right = i + 1, n - 1
+    #
+    #         while left < right:
+    #             val = num + nums[left] + nums[right]
+    #             if val == target:
+    #                 return target
+    #             if val < target:
+    #                 left += 1
+    #             else:
+    #                 right -= 1
+    #             if abs(val - target) < diff:
+    #                 res, diff = val, abs(val - target)
+    #     return res
+
+    # def threeSumClosest(self, nums: List[int], target: int) -> int:
+    #     res, diff = 0, float('inf')
+    #     n = len(nums)
+    #     nums.sort()
+    #
+    #     for i, num in enumerate(nums[:-2]):
+    #         left, right = i + 1, n - 1
+    #         while left < right:
+    #             val = num + nums[left] + nums[right]
+    #             if val == target:
+    #                 return target
+    #             if val < target:
+    #                 left += 1
+    #             else:
+    #                 right -= 1
+    #             if abs(val - target) < diff:
+    #                 res, diff = val, abs(val - target)
+    #     return res
+
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        res, diff = float('inf'), float('inf')
+        res, diff = 0, float('inf')
+
+        n = len(nums)
         for i, num in enumerate(nums[:-2]):
-            if i > 0 and num == nums[i-1]:
+            if i > 0 and nums[i] == nums[i-1]:
                 continue
-            left, right = i + 1, len(nums) - 1
+            left, right = i + 1, n - 1
             while left < right:
-                cur = num + nums[left] + nums[right]
-                if cur == target:
-                    return cur
-                if cur < target:
-                    while left < right and nums[left] == nums[left+1]:
-                        left += 1
+                tmp = num + nums[left] + nums[right]
+                if tmp == target:
+                    return target
+                if tmp < target:
                     left += 1
                 else:
-                    while left < right and nums[right] == nums[right-1]:
-                        right -= 1
                     right -= 1
-                if abs(target-cur) < diff:
-                    res, diff = cur, abs(target-cur)
+                if abs(tmp-target) < diff:
+                    res, diff = tmp, abs(tmp-target)
         return res
+
+
 
 
 
@@ -153,4 +254,8 @@ print(s.threeSumClosest(nums, target))
 
 nums = [1,1,1,0]
 target = 100
+print(s.threeSumClosest(nums, target))
+
+nums = [4,0,5,-5,3,3,0,-4,-5]
+target = -2
 print(s.threeSumClosest(nums, target))

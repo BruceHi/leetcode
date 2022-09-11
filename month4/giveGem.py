@@ -10,11 +10,32 @@ class Solution:
     #         gem[b] += v
     #     return max(gem) - min(gem)
 
+    # def giveGem(self, gem: List[int], operations: List[List[int]]) -> int:
+    #     for i, j in operations:
+    #         v = gem[i] // 2
+    #         gem[i] -= v
+    #         gem[j] += v
+    #     return max(gem) - min(gem)
+
+    # def giveGem(self, gem: List[int], operations: List[List[int]]) -> int:
+    #     for i, j in operations:
+    #         v = gem[i] // 2
+    #         gem[i] -= v
+    #         gem[j] += v
+    #     return max(gem) - min(gem)
+
+    # def giveGem(self, gem: List[int], operations: List[List[int]]) -> int:
+    #     for i, j in operations:
+    #         v = gem[i] // 2
+    #         gem[i] -= v
+    #         gem[j] += v
+    #     return max(gem) - min(gem)
+
     def giveGem(self, gem: List[int], operations: List[List[int]]) -> int:
-        for i, j in operations:
-            v = gem[i] // 2
-            gem[i] -= v
-            gem[j] += v
+        for x, y in operations:
+            v = gem[x] // 2
+            gem[x] -= v
+            gem[y] += v
         return max(gem) - min(gem)
 
 

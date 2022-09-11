@@ -17,11 +17,29 @@ class Solution:
     #     count = Counter(p for p in paras if p and p not in banned)
     #     return count.most_common()[0][0]
 
-    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
-        paras = re.split(r'\W+', paragraph.lower())
-        count = Counter(x for x in paras if x and x not in banned)
-        return count.most_common()[0][0]
+    # def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+    #     paras = re.split(r'\W+', paragraph.lower())
+    #     count = Counter(x for x in paras if x and x not in banned)
+    #     return count.most_common()[0][0]
 
+    # def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+    #     paras = re.split(r'\W+', paragraph.lower())
+    #     count = Counter(x for x in paras if x and x not in banned)
+    #     return count.most_common()[0][0]
+
+    # def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+    #     paras = re.split(r'\W+', paragraph.lower())
+    #     count = Counter(p for p in paras if p and p not in banned)
+    #     return count.most_common(1)[0][0]
+
+    # def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+    #     count = Counter(filter(lambda x: x and x not in banned, re.split(r'\W', paragraph.lower())))
+    #     return count.most_common(1)[0][0]
+
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        paras = re.split(r'\W', paragraph.lower())
+        count = Counter(p for p in paras if p and p not in banned)
+        return count.most_common(1)[0][0]
 
 s = Solution()
 paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."

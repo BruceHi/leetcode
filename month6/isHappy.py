@@ -1,4 +1,4 @@
-# 快乐数
+# 202. 快乐数
 class Solution:
     # def isHappy(self, n: int) -> bool:
     #     record = set()
@@ -26,22 +26,75 @@ class Solution:
     #         record.add(n)
     #     return True
 
+    # def isHappy(self, n: int) -> bool:
+    #     record = {n}
+    #
+    #     def next_val(n):
+    #         num = 0
+    #         while n:
+    #             num += (n % 10) ** 2
+    #             n //= 10
+    #         return num
+    #
+    #     while n != 1:
+    #         n = next_val(n)
+    #         if n in record:
+    #             return False
+    #         record.add(n)
+    #     return True
+
+    # def isHappy(self, n: int) -> bool:
+    #
+    #     def sum_n(n):
+    #         res = 0
+    #         while n:
+    #             res += (n % 10) ** 2
+    #             n //= 10
+    #         return res
+    #
+    #     record = set()
+    #     while n != 1:
+    #         n = sum_n(n)
+    #         if n in record:
+    #             return False
+    #         record.add(n)
+    #     return True
+
+    # def isHappy(self, n: int) -> bool:
+    #
+    #     def next_num(n):
+    #         res = 0
+    #         while n:
+    #             res += (n % 10) ** 2
+    #             n //= 10
+    #         return res
+    #
+    #     record = set()
+    #     while n != 1:
+    #         if n in record:
+    #             return False
+    #         record.add(n)
+    #         n = next_num(n)
+    #     return True
+
     def isHappy(self, n: int) -> bool:
-        record = {n}
 
-        def next_val(n):
-            num = 0
+        def next_num(n):
+            res = 0
             while n:
-                num += (n % 10) ** 2
+                res += (n % 10) ** 2
                 n //= 10
-            return num
+            return res
 
+        record = set()
         while n != 1:
-            n = next_val(n)
             if n in record:
                 return False
             record.add(n)
+            n = next_num(n)
         return True
+
+
 
 
 s = Solution()

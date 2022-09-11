@@ -15,14 +15,45 @@ class Solution:
     #             row += 1
     #     return [row, count]
 
+    # def numberOfLines(self, widths: List[int], s: str) -> List[int]:
+    #     line, remain = 1, 0
+    #     for c in s:
+    #         length = widths[ord(c) - ord('a')]
+    #         remain += length
+    #         if remain > 100:
+    #             line += 1
+    #             remain = length
+    #     return [line, remain]
+
+    # def numberOfLines(self, widths: List[int], s: str) -> List[int]:
+    #     line, length = 1, 0
+    #     for c in s:
+    #         t = widths[ord(c)-ord('a')]
+    #         length += t
+    #         if length > 100:
+    #             line += 1
+    #             length = t
+    #     return [line, length]
+
+    # def numberOfLines(self, widths: List[int], s: str) -> List[int]:
+    #     line, remain = 1, 0
+    #     for c in s:
+    #         t = widths[ord(c) - ord('a')]
+    #         remain += t
+    #         if remain > 100:
+    #             line += 1
+    #             remain = t
+    #     return [line, remain]
+
+
     def numberOfLines(self, widths: List[int], s: str) -> List[int]:
         line, remain = 1, 0
         for c in s:
-            length = widths[ord(c) - ord('a')]
-            remain += length
+            v = widths[ord(c) - ord('a')]
+            remain += v
             if remain > 100:
                 line += 1
-                remain = length
+                remain = v
         return [line, remain]
 
 

@@ -1,4 +1,4 @@
-# 矩阵中的最长递增路径
+# 329. 矩阵中的最长递增路径
 # 有向图中的最长路径
 from typing import List
 from functools import lru_cache
@@ -175,20 +175,161 @@ class Solution:
     #             dfs(i, j)
     #     return res
 
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #     memo = [[0] * n for _ in range(m)]
+    #
+    #     def dfs(i, j):
+    #         if memo[i][j]:
+    #             return memo[i][j]
+    #
+    #         memo[i][j] = 1
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
+    #         return memo[i][j]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #     memo = [[0] * n for _ in range(m)]
+    #
+    #     def dfs(i, j):
+    #         if memo[i][j]:
+    #             return memo[i][j]
+    #         memo[i][j] = 1
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
+    #         return memo[i][j]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #     memo = [[0] * n for _ in range(m)]
+    #
+    #     def dfs(i, j):
+    #         if memo[i][j]:
+    #             return memo[i][j]
+    #
+    #         memo[i][j] = 1
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
+    #         return memo[i][j]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         length = 1
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 length = max(length, dfs(x, y) + 1)
+    #
+    #         return length
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         best = 1
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 best = max(best, dfs(x, y) + 1)
+    #         return best
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         path = 1
+    #
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 path = max(path, dfs(x, y) + 1)
+    #
+    #         return path
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
+    # def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    #     m, n = len(matrix), len(matrix[0])
+    #
+    #     @lru_cache(None)
+    #     def dfs(i, j):
+    #         count = 1
+    #         for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+    #             x, y = i + dx, j + dy
+    #             if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+    #                 count = max(count, 1 + dfs(x, y))
+    #         return count
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             res = max(res, dfs(i, j))
+    #     return res
+
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         m, n = len(matrix), len(matrix[0])
-        memo = [[0] * n for _ in range(m)]
 
+        @lru_cache(None)
         def dfs(i, j):
-            if memo[i][j]:
-                return memo[i][j]
+            count = 1
 
-            memo[i][j] = 1
-            for dx, dy in zip([0, 0, 1, -1], [1, -1, 0, 0]):
+            for dx, dy in zip([1, -1, 0, 0], [0, 0, 1, -1]):
                 x, y = i + dx, j + dy
                 if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
-                    memo[i][j] = max(memo[i][j], dfs(x, y) + 1)
-            return memo[i][j]
+                    count = max(count, 1 + dfs(x, y))
+
+            return count
 
         res = 0
         for i in range(m):
@@ -210,6 +351,9 @@ nums = [
   [3,2,6],
   [2,2,1]
 ]
+print(s.longestIncreasingPath(nums))
+
+nums = [[1]]
 print(s.longestIncreasingPath(nums))
 
 nums = [[1,2]]

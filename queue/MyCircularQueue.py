@@ -61,65 +61,261 @@
 #         return str(self.queue)
 
 # 真正的循环队列，时间复杂度都是 O(1)。
+# class MyCircularQueue:
+#
+#     def __init__(self, k: int):
+#         """
+#         Initialize your data structure here. Set the size of the queue to be k.
+#         """
+#         self.queue = [0] * (k + 1)  # 要多留一个长度
+#         self.head = 0
+#         self.tail = 0
+#         self.capacity = k + 1  # 后面要多次用到，所以保留了。
+#
+#     def enQueue(self, value: int) -> bool:
+#         """
+#         Insert an element into the circular queue. Return true if the operation is successful.
+#         """
+#         if self.isFull():
+#             return False
+#         self.queue[self.tail] = value
+#         self.tail = (self.tail + 1) % self.capacity  # 往后移一位，再求余
+#         return True
+#
+#     def deQueue(self) -> bool:
+#         """
+#         Delete an element from the circular queue. Return true if the operation is successful.
+#         """
+#         if self.isEmpty():
+#             return False
+#
+#         # 不需要改变值，直接移动指针即可。
+#         self.head = (self.head + 1) % self.capacity
+#         return True
+#
+#     def Front(self) -> int:
+#         """
+#         Get the front item from the queue.
+#         """
+#         if self.isEmpty():
+#             return -1
+#         return self.queue[self.head]
+#
+#     def Rear(self) -> int:
+#         """
+#         Get the last item from the queue.
+#         """
+#         if self.isEmpty():
+#             return -1
+#         # + capacity 是为了保证 tail=0 时，可以正常得出结果。
+#         return self.queue[(self.tail - 1 + self.capacity) % self.capacity]
+#
+#     def isEmpty(self) -> bool:
+#         """
+#         Checks whether the circular queue is empty or not.
+#         """
+#         return self.head == self.tail
+#
+#     def isFull(self) -> bool:
+#         """
+#         Checks whether the circular queue is full or not.
+#         """
+#         return (self.tail + 1) % self.capacity == self.head
+
+# class MyCircularQueue:
+#
+#     def __init__(self, k: int):
+#         self.queue = [0] * (k + 1)
+#         self.head = 0
+#         self.tail = 0
+#         self.capacity = k + 1
+#
+#     def enQueue(self, value: int) -> bool:
+#         if self.isFull():
+#             return False
+#         self.queue[self.tail] = value
+#         self.tail = (self.tail + 1) % self.capacity
+#         return True
+#
+#     def deQueue(self) -> bool:
+#         if self.isEmpty():
+#             return False
+#         self.head = (self.head + 1) % self.capacity
+#         return True
+#
+#     def Front(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.queue[self.head]
+#
+#     def Rear(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.queue[self.tail-1]
+#
+#     def isEmpty(self) -> bool:
+#         return self.tail == self.head
+#
+#     def isFull(self) -> bool:
+#         return (self.tail + 1) % self.capacity == self.head
+
+# class MyCircularQueue:
+#
+#     def __init__(self, k: int):
+#         self.nums = (k + 1) * [0]
+#         self.capacity = k + 1
+#         self.head = 0
+#         self.tail = 0
+#
+#
+#     def enQueue(self, value: int) -> bool:
+#         if self.isFull():
+#             return False
+#         self.nums[self.tail] = value
+#         self.tail = (self.tail + 1) % self.capacity
+#         return True
+#
+#
+#     def deQueue(self) -> bool:
+#         if self.isEmpty():
+#             return False
+#         self.head = (self.head + 1) % self.capacity
+#         return True
+#
+#     def Front(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.head]
+#
+#     def Rear(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.tail - 1]
+#
+#     def isEmpty(self) -> bool:
+#         return self.head == self.tail
+#
+#     def isFull(self) -> bool:
+#         return (self.tail + 1) % self.capacity == self.head
+
+# 右进左出
+# class MyCircularQueue:
+#
+#     def __init__(self, k: int):
+#         self.nums = [0] * (k+1)
+#         self.capacity = k + 1
+#         self.head = 0
+#         self.tail = 0
+#
+#     # 右边是尾部
+#     def enQueue(self, value: int) -> bool:
+#         if self.isFull():
+#             return False
+#         self.nums[self.tail] = value
+#         self.tail = (self.tail + 1) % self.capacity
+#         return True
+#
+#     def deQueue(self) -> bool:
+#         if self.isEmpty():
+#             return False
+#         self.head = (self.head + 1) % self.capacity
+#         return True
+#
+#     def Front(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.head]
+#
+#     def Rear(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.tail-1]
+#
+#     def isEmpty(self) -> bool:
+#         return self.head == self.tail
+#
+#     def isFull(self) -> bool:
+#         return (self.tail + 1) % self.capacity == self.head
+
+# class MyCircularQueue:
+#
+#     def __init__(self, k: int):
+#         self.nums = [0] * (k+1)
+#         self.capacity = k + 1
+#         self.head = 0
+#         self.tail = 0
+#
+#     def enQueue(self, value: int) -> bool:
+#         if self.isFull():
+#             return False
+#         self.nums[self.tail % self.capacity] = value
+#         self.tail = (self.tail + 1) % self.capacity
+#         return True
+#
+#
+#     def deQueue(self) -> bool:
+#         if self.isEmpty():
+#             return False
+#         self.head = (self.head + 1) % self.capacity
+#         return True
+#
+#
+#     def Front(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.head]
+#
+#
+#     def Rear(self) -> int:
+#         if self.isEmpty():
+#             return -1
+#         return self.nums[self.tail-1]
+#
+#
+#     def isEmpty(self) -> bool:
+#         return self.head == self.tail
+#
+#
+#     def isFull(self) -> bool:
+#         return (self.tail + 1) % self.capacity == self.head
+
+
+# 入队的时候是 tail + 1，即队尾加
 class MyCircularQueue:
 
     def __init__(self, k: int):
-        """
-        Initialize your data structure here. Set the size of the queue to be k.
-        """
-        self.queue = [0] * (k + 1)  # 要多留一个长度
+        self.nums = [0] * (k + 1)
+        self.capacity = k + 1
         self.head = 0
         self.tail = 0
-        self.capacity = k + 1  # 后面要多次用到，所以保留了。
 
     def enQueue(self, value: int) -> bool:
-        """
-        Insert an element into the circular queue. Return true if the operation is successful.
-        """
         if self.isFull():
             return False
-        self.queue[self.tail] = value
-        self.tail = (self.tail + 1) % self.capacity  # 往后移一位，再求余
+        self.nums[self.tail] = value
+        self.tail = (self.tail + 1) % self.capacity
         return True
 
     def deQueue(self) -> bool:
-        """
-        Delete an element from the circular queue. Return true if the operation is successful.
-        """
         if self.isEmpty():
             return False
-
-        # 不需要改变值，直接移动指针即可。
         self.head = (self.head + 1) % self.capacity
         return True
 
     def Front(self) -> int:
-        """
-        Get the front item from the queue.
-        """
         if self.isEmpty():
             return -1
-        return self.queue[self.head]
+        return self.nums[self.head]
 
     def Rear(self) -> int:
-        """
-        Get the last item from the queue.
-        """
         if self.isEmpty():
             return -1
-        # + capacity 是为了保证 tail=0 时，可以正常得出结果。
-        return self.queue[(self.tail - 1 + self.capacity) % self.capacity]
+        return self.nums[self.tail-1]
 
     def isEmpty(self) -> bool:
-        """
-        Checks whether the circular queue is empty or not.
-        """
-        return self.head == self.tail
+        return self.tail == self.head
 
     def isFull(self) -> bool:
-        """
-        Checks whether the circular queue is full or not.
-        """
         return (self.tail + 1) % self.capacity == self.head
 
 
@@ -130,7 +326,7 @@ if __name__ == "__main__":
     q.deQueue()
     q.deQueue()
     q.enQueue(5)
-    print(q)
+    print(q.nums)
 
     circularQueue = MyCircularQueue(3)
     print(circularQueue.enQueue(1))

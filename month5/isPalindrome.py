@@ -50,15 +50,50 @@ class Solution:
     #         x //= 10
     #     return x == n or x == n // 10
 
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x > 0 and x % 10 == 0:
+    #         return False
+    #     res = 0
+    #     while x > res:
+    #         res = res * 10 + x % 10
+    #         x //= 10
+    #     return x == res or x == res // 10
+
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x and x % 10 == 0:
+    #         return False
+    #     res = 0
+    #     while x > res:
+    #         res = res * 10 + x % 10
+    #         x //= 10
+    #     return x == res or res // 10 == x
+
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x and x % 10 == 0:
+    #         return False
+    #     res = 0
+    #     while res < x:
+    #         res = res * 10 + x % 10
+    #         x //= 10
+    #     return res == x or res // 10 == x
+
+    # def isPalindrome(self, x: int) -> bool:
+    #     if x < 0 or x and x % 10 == 0:
+    #         return False
+    #     res = 0
+    #     while res < x:
+    #         res = res * 10 + x % 10
+    #         x //= 10
+    #     return res == x or res // 10 == x
+
     def isPalindrome(self, x: int) -> bool:
-        if x < 0 or x > 0 and x % 10 == 0:
+        if x < 0 or x and x % 10 == 0:
             return False
         res = 0
         while x > res:
             res = res * 10 + x % 10
             x //= 10
-        return x == res or x == res // 10
-
+        return res == x or res // 10 == x
 
 
 s = Solution()
@@ -77,4 +112,7 @@ num = 4
 print(s.isPalindrome(num))
 
 num = 0
+print(s.isPalindrome(num))
+
+num = 1001
 print(s.isPalindrome(num))

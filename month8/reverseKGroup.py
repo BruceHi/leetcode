@@ -64,19 +64,139 @@ class Solution:
     #     return dummy.next
 
 
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #
+    #     def reverse(head):
+    #         pre, cur = None, head
+    #         for _ in range(k):
+    #             cur.next, pre, cur = pre, cur, cur.next
+    #         return pre, head, cur
+    #
+    #     cur = head
+    #     n = 0
+    #     while cur:
+    #         n += 1
+    #         cur = cur.next
+    #     if n < k:
+    #         return head
+    #
+    #     head, end, cur = reverse(head)
+    #     end.next = self.reverseKGroup(cur, k)
+    #     return head
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
+    # def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    #     cur = head
+    #     for _ in range(k):
+    #         if not cur:
+    #             return head
+    #         cur = cur.next
+    #
+    #     pre, cur = None, head
+    #     for _ in range(k):
+    #         cur.next, pre, cur = pre, cur, cur.next
+    #
+    #     head.next = self.reverseKGroup(cur, k)
+    #     return pre
+
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         cur = head
-        for _ in range(k):
-            if not cur:
-                return head
+        n = 0
+        while cur:
+            n += 1
             cur = cur.next
+        if n < k:
+            return head
 
         pre, cur = None, head
         for _ in range(k):
             cur.next, pre, cur = pre, cur, cur.next
-
         head.next = self.reverseKGroup(cur, k)
         return pre
+
 
 
 def generate_link(nums: List[int]) -> ListNode:

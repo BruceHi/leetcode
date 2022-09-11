@@ -29,12 +29,30 @@ class Solution:
     #     # print(isinstance(iter(dic.values()), collections.Iterator))  # 加了 iter 就变成了迭代器，哈哈，不加是可迭代对象
     #     return list(dic.values())
 
+    # def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    #     dic = defaultdict(list)
+    #     for arr in strs:
+    #         dic[tuple(sorted(arr))].append(arr)
+    #     return list(dic.values())
+
+    # def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    #     record = defaultdict(list)
+    #     for c in strs:
+    #         record[tuple(sorted(c))].append(c)
+    #     return list(record.values())
+
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         dic = defaultdict(list)
-        for arr in strs:
-            dic[tuple(sorted(arr))].append(arr)
+        for attr in strs:
+            dic[tuple(sorted(attr))].append(attr)
         return list(dic.values())
 
 s = Solution()
 a = ["eat", "tea", "tan", "ate", "nat", "bat"]
 print(s.groupAnagrams(a))
+
+strs = [""]
+print(s.groupAnagrams(strs))
+
+strs = ["a"]
+print(s.groupAnagrams(strs))

@@ -303,11 +303,106 @@ from random import choice
 #             res.append(getattr(obj, f)(*p))
 #     print(res)
 
+# class RandomizedSet:
+#
+#     def __init__(self):
+#         self.nums = []
+#         self.dic = {}
+#
+#     def insert(self, val: int) -> bool:
+#         if val in self.dic:
+#             return False
+#         self.dic[val] = len(self.nums)
+#         self.nums.append(val)
+#         return True
+#
+#     def remove(self, val: int) -> bool:
+#         if val not in self.dic:
+#             return False
+#         idx = self.dic[val]
+#         last = self.nums[-1]
+#
+#         self.nums[idx] = last
+#         self.nums.pop()
+#
+#         self.dic[last] = idx
+#         del self.dic[val]
+#         return True
+#
+#     def getRandom(self) -> int:
+#         return choice(self.nums)
+
+# class RandomizedSet:
+#
+#     def __init__(self):
+#         self.nums = []
+#         self.dic = {}
+#
+#
+#     def insert(self, val: int) -> bool:
+#         if val in self.dic:
+#             return False
+#         self.dic[val] = len(self.nums)
+#         self.nums.append(val)
+#         return True
+#
+#
+#     def remove(self, val: int) -> bool:
+#         if val not in self.dic:
+#             return False
+#
+#         idx = self.dic[val]
+#         last = self.nums[-1]
+#
+#         self.nums[idx] = last
+#         self.nums.pop()
+#
+#         self.dic[last] = idx
+#         del self.dic[val]
+#
+#         return True
+#
+#     def getRandom(self) -> int:
+#         return choice(self.nums)
+
+# class RandomizedSet:
+#
+#     def __init__(self):
+#         self.dic = {}
+#         self.nums = []
+#
+#
+#     def insert(self, val: int) -> bool:
+#         if val in self.dic:
+#             return False
+#         self.dic[val] = len(self.nums)
+#         self.nums.append(val)
+#         return True
+#
+#
+#     def remove(self, val: int) -> bool:
+#         if val not in self.dic:
+#             return False
+#
+#         idx = self.dic[val]
+#         last = self.nums[-1]
+#
+#         self.nums[idx] = last
+#         self.nums.pop()
+#
+#         self.dic[last] = idx
+#         del self.dic[val]
+#         return True
+#
+#     def getRandom(self) -> int:
+#         return choice(self.nums)
+
+
 class RandomizedSet:
 
     def __init__(self):
-        self.nums = []
         self.dic = {}
+        self.nums = []
 
     def insert(self, val: int) -> bool:
         if val in self.dic:
@@ -319,14 +414,16 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         if val not in self.dic:
             return False
-        idx = self.dic[val]
-        last = self.nums[-1]
 
-        self.nums[idx] = last
+        num = self.nums[-1]
+        idx = self.dic[val]
+
+        self.dic[num] = idx
+        self.dic.pop(val)
+
+        self.nums[idx] = num
         self.nums.pop()
 
-        self.dic[last] = idx
-        del self.dic[val]
         return True
 
     def getRandom(self) -> int:
